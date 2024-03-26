@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.0" />
+    <PackageReference Include="Youshow.Ace.AspNetCore" Version="6.0.17" />
+    <PackageReference Include="Youshow.Ace.AspNetCore.Web" Version="6.0.17" />
+    <PackageReference Include="Youshow.Ace.BackgroundWork" Version="6.0.17" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Traceability_System.DTO\Traceability_System.DTO.csproj" />
+    <ProjectReference Include="..\Traceability_System.Entity\Traceability_System.Entity.csproj" />
+    <ProjectReference Include="..\Traceability_System.Utility\Traceability_System.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
