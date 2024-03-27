@@ -24,7 +24,7 @@ namespace Traceability_System.Models.SelectDB
         Dictionary<string, string> tablePatterns = new Dictionary<string, string>
                     {
                         { "MotorTable", "\n ShipmentSerial like '%{0}%'" },
-                        { "GearTable", "\n DfringSerial like '%{0}%'" },
+                        { "GearTable", "\n DorpinSerial like '%{0}%'" },
                         { "RotorTable", "\n MG1RSerial like '%{0}%'" },
                         { "Rrtable", "\n RRCoverSerial like '%{0}%'" },
                         { "Tatable", "\n ShipmentSerial like '%{0}%'" },
@@ -32,7 +32,7 @@ namespace Traceability_System.Models.SelectDB
                         // 添加更多表名和对应的模式
                         //获取表的列名
                         { "MotorTable_OrderBy", "ShipmentSerial" },
-                        { "GearTable_OrderBy", "DfringSerial" },
+                        { "GearTable_OrderBy", "DorpinSerial" },
                         { "RotorTable_OrderBy", "MG1RSerial" },
                         { "Rrtable_OrderBy", "RRCoverSerial" },
                         { "Tatable_OrderBy", "ShipmentSerial" },
@@ -59,7 +59,7 @@ namespace Traceability_System.Models.SelectDB
                     //string compareExpr = BuildCompareExpr(column, val1, val2);
                     if (requestData.selColName.Count == 3)
                     {
-                        selItem = $"{requestData.selColName[0]} between '{requestData.selColName[1]}' and '{requestData.selColName[1]}'";
+                        selItem = $"{requestData.selColName[0]} between '{requestData.selColName[1]}' and '{requestData.selColName[2]}'";
                     }
                     else
                     {
@@ -102,6 +102,8 @@ namespace Traceability_System.Models.SelectDB
                 {
                     sqlQuery += $"{timeItem} {selItem} {serialNo}";
                 }
+
+
                 sqlQuery+= $"ORDER BY RIGHT({orderByColumn},8) DESC ";
 
                 
@@ -264,11 +266,11 @@ namespace Traceability_System.Models.SelectDB
         {
             string sqlQuery = "select * from TATable as ta" +
                        $"\rleft join vw_MotorTable mo on RIGHT(ta.ShipmentSerial,8) = RIGHT(mo.MoShipmentSerial, 8)" +
-                       $"\rleft join vw_GearTable as df on ta.DfringSerial = df.GeDfringSerial" +
+                       $"\rleft join vw_GearTable as df on ta.DorpinSerial = df.GeDorpinSerial" +
                        $"\rleft join vw1_RotorTable as ro1 on ta.MG1RSerial = ro1.Ro1MG1RSerial and LEFT(ta.MG1RSerial,2) = '11'" +
                        $"\rleft join vw2_RotorTable as ro2 on ta.MG1RSerial = ro2.Ro2MG1RSerial and LEFT(ta.MG1RSerial,2) = '12'" +
                        $"\rleft join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
-                       $"\r{timeItem} {selItem} {selLike} order by RIGHT(ShipmentSerial,8) desc ";
+                       $"\rwhere {timeItem} {selItem} {selLike} order by RIGHT(ShipmentSerial,8) desc ";
             DataTable resultTable = SqlHelper.ExecuteTable(sqlQuery);
             var resultList = new List<Dictionary<string, object>>();
             foreach (DataRow row in resultTable.Rows)

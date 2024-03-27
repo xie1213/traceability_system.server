@@ -17,7 +17,7 @@ namespace Traceability_System.Models.FileOperation
                           {"MotorTable", "ShipmentSerial"},
                           {"Tatable", "ShipmentSerial"},
                           {"RotorTable", "Mg1rserial"},
-                          {"GearTable", "DfringSerial"},
+                          {"GearTable", "DorpinSerial"},
                           {"Rrtable", "RrcoverSerial"}
                         };
         public byte[] newExportExcle(string tableName)
@@ -182,7 +182,7 @@ namespace Traceability_System.Models.FileOperation
             
             if (tableName =="全部数据")
             {
-                disItem.AddRange(new string[] { "CollectionDate", "MoShipmentSerial", "GeDfringSerial", "Ro1MG1RSerial", "Ro2MG1RSerial", "RRRRCoverSerial" });
+                disItem.AddRange(new string[] { "CollectionDate", "MoShipmentSerial", "GeDorpinSerial", "Ro1MG1RSerial", "Ro2MG1RSerial", "RRRRCoverSerial" });
             }
 
             foreach (var dataRow in exportData)

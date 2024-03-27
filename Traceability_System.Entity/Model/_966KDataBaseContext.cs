@@ -9645,7 +9645,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("GeDFReverseDate");
 
-                entity.Property(e => e.GeDfringSerial)
+                entity.Property(e => e.GeDorpinSerial)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 

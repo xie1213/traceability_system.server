@@ -5,7 +5,7 @@ namespace Traceability_System.Entity.Model
 {
     public partial class VwGearTable
     {
-        public string? GeDfringSerial { get; set; }
+        public string? GeDorpinSerial { get; set; }
         public string? GePokayokeDate39 { get; set; }
         public string? GePokayokeDate40 { get; set; }
         public string? GeHsgBrgMeasDate { get; set; }
