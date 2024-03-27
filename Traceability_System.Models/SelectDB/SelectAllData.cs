@@ -23,12 +23,12 @@ namespace Traceability_System.Models.SelectDB
 
         Dictionary<string, string> tablePatterns = new Dictionary<string, string>
                     {
-                        { "MotorTable", "\nand ShipmentSerial like '%{0}%'" },
-                        { "GearTable", "\nand DfringSerial like '%{0}%'" },
-                        { "RotorTable", "\nand MG1RSerial like '%{0}%'" },
-                        { "Rrtable", "\nand RRCoverSerial like '%{0}%'" },
-                        { "Tatable", "\nand ShipmentSerial like '%{0}%'" },
-                        { "全部数据", "\nand ShipmentSerial like '%{0}%'" },
+                        { "MotorTable", "\n ShipmentSerial like '%{0}%'" },
+                        { "GearTable", "\n DfringSerial like '%{0}%'" },
+                        { "RotorTable", "\n MG1RSerial like '%{0}%'" },
+                        { "Rrtable", "\n RRCoverSerial like '%{0}%'" },
+                        { "Tatable", "\n ShipmentSerial like '%{0}%'" },
+                        { "全部数据", "\n ShipmentSerial like '%{0}%'" },
                         // 添加更多表名和对应的模式
                         //获取表的列名
                         { "MotorTable_OrderBy", "ShipmentSerial" },
@@ -48,6 +48,7 @@ namespace Traceability_System.Models.SelectDB
                 redisHelper.DeleteHash(requestData.TableName);
 
                 string timeItem = "", selItem = "", serialNo = "";
+                string orderByColumn = tablePatterns.TryGetValue($"{requestData.TableName}_OrderBy", out var col) ? col : "";
 
                 if (!requestData.selColName.IsNullOrEmpty())
                 {
@@ -68,7 +69,7 @@ namespace Traceability_System.Models.SelectDB
                 }
                 else if (requestData.SerialNo != "")
                 {
-                    serialNo = $"\n SerialNo like '%{requestData.SerialNo}%'";
+                    serialNo = $"\n {orderByColumn} like '%{requestData.SerialNo}%'";
                 }
                 else
                 {
@@ -78,20 +79,19 @@ namespace Traceability_System.Models.SelectDB
 
                 string selLike = "";
 
-                if (!string.IsNullOrEmpty(requestData.SerialNo))
-                {
-                    if (tablePatterns.TryGetValue(requestData.TableName, out var pattern))
-                    {
-                        selLike += string.Format("\n" + pattern, requestData.SerialNo);
-                    }
-                }
+                //if (!string.IsNullOrEmpty(requestData.SerialNo))
+                //{
+                //    if (tablePatterns.TryGetValue(requestData.TableName, out var pattern))
+                //    {
+                //        selLike += string.Format("\n" + pattern, requestData.SerialNo);
+                //    }
+                //}
                 if (requestData.TableName == "全部数据")
                 {
                     return GetAllTable(timeItem, selItem, selLike);
                 }
 
 
-                string orderByColumn = tablePatterns.TryGetValue($"{requestData.TableName}_OrderBy", out var col) ? col : "";
 
                 string sqlQuery = $"SELECT  * FROM {requestData.TableName} where ";
                 if (selItem != "" && serialNo != "")
@@ -104,7 +104,7 @@ namespace Traceability_System.Models.SelectDB
                 }
                 sqlQuery+= $"ORDER BY RIGHT({orderByColumn},8) DESC ";
 
-              
+                
                 DataTable dt = SqlHelper.ExecuteTable(sqlQuery);
 
                 var list = new List<object>();
