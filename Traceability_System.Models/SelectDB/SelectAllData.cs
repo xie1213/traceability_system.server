@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections;
+using System.Data;
 using System.Reflection;
 using System.Text;
 using Appraisal_System.Utility;
@@ -116,8 +117,13 @@ namespace Traceability_System.Models.SelectDB
 
             // 时间字段
             if (parameter.startDateTime != null && parameter.endDateTime != null)
-            {
-                string timeSql = $" CollectionDate BETWEEN '{parameter.startDateTime}' AND '{parameter.endDateTime}' ";
+            { 
+                
+                string timeStr = parameter.tableName == "出荷履历" ? "LeadTimeDate" : "CollectionDate";
+
+
+                string timeSql = $" {timeStr} BETWEEN '{parameter.startDateTime}' AND '{parameter.endDateTime}' ";
+
 
                 sqlList.Add(timeSql);
             }
