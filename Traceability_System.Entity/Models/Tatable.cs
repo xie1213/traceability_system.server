@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class Tatable
     {
@@ -207,7 +207,7 @@ namespace Traceability_System.Entity.Model
         public string? Hsg2MainStroke { get; set; }
         public string? Hsg2Abvalue { get; set; }
         public string? PokayokeDate20 { get; set; }
-        public string? HsgFigpdate { get; set; }
+        public string? HsgFigpDate { get; set; }
         public string? HsgFigpportrait { get; set; }
         public string? HsgFitDate { get; set; }
         public string? Hsg1Date { get; set; }
@@ -485,7 +485,8 @@ namespace Traceability_System.Entity.Model
         public string? InspectionDate { get; set; }
         public string? PokayokeDate32 { get; set; }
         public string? HsgSetDate { get; set; }
-        public string? DtrayWeight { get; set; }
+        public string? Tray { get; set; }
+        public string? Weight { get; set; }
         public DateTime? CollectionDate { get; set; }
         public int? Number { get; set; }
     }

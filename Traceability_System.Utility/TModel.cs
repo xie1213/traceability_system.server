@@ -57,19 +57,24 @@ public static class TModels
     public static object DataRowToType(this DataRow dr, Type modelType)
     {
         object model = Activator.CreateInstance(modelType);
-
-        foreach (var prop in modelType.GetProperties())
+        try
         {
-            if (dr[prop.Name] == DBNull.Value)
+            foreach (var prop in modelType.GetProperties())
             {
-                dr[prop.Name] = "";
+                if (dr[prop.Name] == DBNull.Value)
+                {
+                    dr[prop.Name] = "";
+                }
+
+                prop.SetValue(model, dr[prop.Name]);
             }
-            
-            prop.SetValue(model, dr[prop.Name]);
         }
-
-
-        
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+       
         return model;
     }
 }

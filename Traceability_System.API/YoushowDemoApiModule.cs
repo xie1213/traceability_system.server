@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Traceability_System.API;
+using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Models.FileOperation;
 using Traceability_System.Models.SelectDB;
 using Traceability_System.Utility;
@@ -21,11 +22,11 @@ public class YoushowDemoApiModule : AceModule
         // 加载配置
 
         var services = context.Services;
-       // services.AddAceDbContext<YoushouDemoDbContext>();
-       // 配置选项
-       //Configure<AceDbContextOptions>(options => {
-       //     options.UseSqlServer(); // 或options.UseMySql();
-       // });
+        // services.AddAceDbContext<YoushouDemoDbContext>();
+        // 配置选项
+        //Configure<AceDbContextOptions>(options => {
+        //     options.UseSqlServer(); // 或options.UseMySql();
+        // });
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Youshow.Demo.Api", Version = "v1" });
@@ -38,7 +39,8 @@ public class YoushowDemoApiModule : AceModule
             {
                 //builder.WithOrigins(new string[] { "允许跨域的url1", "允许跨域的url2" ,"..." })
                 //我在给你写一种合理的(注释部分)
-                builder.SetIsOriginAllowed(_=>true)
+                //builder.WithOrigins(new[] { "http://172.31.13.200:5000", "http://192.168.30.1:1213","http://192.168.30.1:8081" })
+                builder.SetIsOriginAllowed(_ => true)
                     .AllowCredentials()
                     .AllowAnyHeader()
                     .AllowAnyMethod();
@@ -54,20 +56,15 @@ public class YoushowDemoApiModule : AceModule
         services.AddScoped<SelectAllData>();
         services.AddScoped<RedisHelper>();
         services.AddScoped<MergeCsv>();
+        services.AddScoped<ExportToExcel>();
+        services.AddScoped<ExportTableMapper>();
+        services.AddScoped<ExportCsv>();
         //services.AddConfig(builder.Configuration);
         /*services.AddDbContext<_966KDataBaseContext>(options => {
             options.UseSqlServer(Configuration.GetConnectionString("Data"));
         });*/
 
     }
-    //public static IHostBuilder CreateHostBuilder(string[] args) =>
-    //Host.CreateDefaultBuilder(args)
-    //    .ConfigureWebHostDefaults(webBuilder =>
-    //    {
-    //        webBuilder
-    //            .UseStartup<YoushowDemoApiModule>()
-    //            .UseUrls("http://*:5000","https://*:5001"); // 监听所有 IP 地址的端口 5000
-    //    });
 
     public override void OnApplicationInitialization(ApplicationInitializationContext context)
     {
@@ -88,12 +85,12 @@ public class YoushowDemoApiModule : AceModule
 
         //app.Configuration.GetSection("Wechat")["AppId"];
     }
-   
+
     // 在这里定义 miniApi
     public override void OnRouteInitialization(RouteBuilderContext context)
     {
         var builder = context.GetEndpointRouteBuilder();
-       
+
         //builder.RegisterType<_966KDataBaseContext>().As<DbContext>().InstancePerLifetimeScope();
         builder.MapGet("/api/getname", () =>
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class Shipping
     {
@@ -9,8 +9,8 @@ namespace Traceability_System.Entity.Model
         public string? SerialNo { get; set; }
         public string? ProductNo { get; set; }
         public string? Printing { get; set; }
-        public DateTime? LeadTime { get; set; }
-        public DateTime? ShippingTime { get; set; }
+        public string? LeadTimeDate { get; set; }
+        public string? ShippingTimeDate { get; set; }
         public string? Destination { get; set; }
         public string? DestinationArea { get; set; }
         public string? ReceivingPoint { get; set; }

@@ -1,11 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class VwGearTable
     {
-        public string? GeDorpinSerial { get; set; }
+        public string? GeDfringSerial { get; set; }
+        public string? GeRotorShaftTrans { get; set; }
+        public string? GeRotorCoreTrans { get; set; }
+        public string? GeRotorHeating { get; set; }
+        public string? GeRotorShaftPress { get; set; }
+        public string? GeRotorNutTight { get; set; }
+        public string? GeRotorForeignSuction { get; set; }
+        public string? GeRotorNutCrimpMg1press { get; set; }
+        public string? GeRotorResolverPress { get; set; }
+        public string? GeRotorReject { get; set; }
+        public string? GeRotorMagnetization { get; set; }
+        public string? GeRotorExtractionInsp { get; set; }
+        public string? GeRotorShippingInsp { get; set; }
+        public string? GeRotorTamg2shaftTrans { get; set; }
+        public string? GeRotorTamg2coreTrans { get; set; }
+        public string? GeRotorTamg2heating { get; set; }
+        public string? GeRotorTamg2shaftPress { get; set; }
+        public string? GeRotorTamg2nutTight { get; set; }
+        public string? GeRotorTamg2foreignSuction { get; set; }
+        public string? GeRotorTamg2nutCrimpMg1press { get; set; }
+        public string? GeRotorTamg2resolverPress { get; set; }
+        public string? GeRotorTamg2reject { get; set; }
+        public string? GeRotorTamg2magnetization { get; set; }
+        public string? GeRotorTamg2extractionInsp { get; set; }
+        public string? GeRotorTamg2shippingInsp { get; set; }
+        public string? GeMotorMtrCode { get; set; }
+        public string? GeMotorSngen { get; set; }
+        public string? GeMotorHsgSrfBrgAm { get; set; }
+        public string? GeMotorHsgSrfKnockPam { get; set; }
+        public string? GeMotorCoolPipeMw { get; set; }
+        public string? GeMotorTermBoardMw { get; set; }
+        public string? GeMotorRrCoverSrfOutBrgAm { get; set; }
+        public string? GeMotorRrCoverSrfKnockPam { get; set; }
+        public string? GeMotorMg1statorInsAm { get; set; }
+        public string? GeMotorMg2statorInsAm { get; set; }
+        public string? GeMotorHarnEscMw { get; set; }
+        public string? GeMotorMg12statorTightAm { get; set; }
+        public string? GeMotorThermMw { get; set; }
+        public string? GeMotorCoolPipeMw2 { get; set; }
+        public string? GeMotorMg12rotorAssem { get; set; }
+        public string? GeMotorFipgapp { get; set; }
+        public string? GeMotorRrCoverAssem { get; set; }
+        public string? GeMotorRrCoverTight1 { get; set; }
+        public string? GeMotorRrCoverTight2 { get; set; }
+        public string? GeMotorInvMw { get; set; }
+        public string? GeMotorMw1 { get; set; }
+        public string? GeMotorMw2 { get; set; }
+        public string? GeMotorPrevStn { get; set; }
+        public string? GeMotorMwco0 { get; set; }
+        public string? GeMotorMwco1 { get; set; }
+        public string? GeMotorMwco2 { get; set; }
+        public string? GeMotorMwco3 { get; set; }
+        public string? GeMotorReject { get; set; }
+        public string? GeCoverSubIdsetSpare { get; set; }
+        public string? GeCoverSubRrCovSetDmread { get; set; }
+        public string? GeCoverSubRrCovBrgPressEquip { get; set; }
+        public string? GeCoverSubMw1 { get; set; }
+        public string? GeCoverSubMw2 { get; set; }
+        public string? GeCoverSubMw3 { get; set; }
+        public string? GeCoverSubMw4 { get; set; }
+        public string? GeCoverSubRrRevEquip { get; set; }
+        public string? GeCoverSubWaterConnTighten { get; set; }
+        public string? GeCoverSubReject { get; set; }
+        public string? GeDefDfcaseRead { get; set; }
+        public string? GeDefDfpinionShaftEquip { get; set; }
+        public string? GeDefDiffOperMeasureEquip { get; set; }
+        public string? GeDefTweezersMw { get; set; }
+        public string? GeDefDiffPinionPress { get; set; }
+        public string? GeDmread { get; set; }
+        public string? GeGearPressIn1 { get; set; }
+        public string? GeGearPressIn2 { get; set; }
+        public string? GeSlnffastening { get; set; }
+        public string? GeSlnfriveting { get; set; }
+        public string? GeDiffBrgPressIn { get; set; }
+        public string? GeDiffBoltTight1 { get; set; }
+        public string? GeDiffBoltTight2 { get; set; }
+        public string? GeRevRivetConfirm { get; set; }
+        public string? GeDamperImage { get; set; }
         public string? GePokayokeDate39 { get; set; }
         public string? GePokayokeDate40 { get; set; }
         public string? GeHsgBrgMeasDate { get; set; }
@@ -24,7 +101,7 @@ namespace Traceability_System.Entity.Model
         public string? GePokayokeDate44 { get; set; }
         public string? GeUpenderDate { get; set; }
         public string? GePokayokeDate45 { get; set; }
-        public string? GeRejectTime { get; set; }
+        public string? GeRejectTimeDate { get; set; }
         public string? GePokayokeDate33 { get; set; }
         public string? GeDgameasDate { get; set; }
         public string? GeDgapos3Axis { get; set; }
@@ -35,6 +112,7 @@ namespace Traceability_System.Entity.Model
         public string? GeDgmmeasDate { get; set; }
         public string? GeDgmdagjudge { get; set; }
         public string? GeDgmlhRh { get; set; }
+        public string? GeDgmrh { get; set; }
         public string? GeDgmmaxTorque { get; set; }
         public string? GeDgmminTorque { get; set; }
         public string? GeDprmeasDate { get; set; }
@@ -75,7 +153,7 @@ namespace Traceability_System.Entity.Model
         public string? GeDpnfFinalStroke { get; set; }
         public string? GeDpnfFinalLoad { get; set; }
         public string? GeDpnfMainStroke { get; set; }
-        public string? GeDfbrgdate { get; set; }
+        public string? GeDfbrgDate { get; set; }
         public string? GeDfbrgstroke { get; set; }
         public string? GeDfbrgload { get; set; }
         public string? GeDfbrgfinalStroke { get; set; }
@@ -85,7 +163,7 @@ namespace Traceability_System.Entity.Model
         public string? GeDfbrgfinalStrokeSec { get; set; }
         public string? GeDfbrgfinalLoadSec { get; set; }
         public string? GeDfbrgmainStroke { get; set; }
-        public string? GeDf1date { get; set; }
+        public string? GeDf1Date { get; set; }
         public string? GeDf1angleAxis1 { get; set; }
         public string? GeDf1codeAxis1 { get; set; }
         public string? GeDf1angleAxis2 { get; set; }
@@ -99,7 +177,7 @@ namespace Traceability_System.Entity.Model
         public string? GeDf1angleAxis6 { get; set; }
         public string? GeDf1codeAxis6 { get; set; }
         public string? GeDf1abvalue { get; set; }
-        public string? GeDf2date { get; set; }
+        public string? GeDf2Date { get; set; }
         public string? GeDf2angleAxis1 { get; set; }
         public string? GeDf2codeAxis1 { get; set; }
         public string? GeDf2angleAxis2 { get; set; }
@@ -124,8 +202,8 @@ namespace Traceability_System.Entity.Model
         public string? GeMg2workTemp { get; set; }
         public string? GeMg2fluxValue { get; set; }
         public string? GeMg2dec { get; set; }
-        public string? GeAsldate { get; set; }
-        public string? GeIctldate { get; set; }
+        public string? GeAslDate { get; set; }
+        public string? GeIctlDate { get; set; }
         public string? GeRcserial { get; set; }
         public string? GeAxisSerial { get; set; }
         public string? GeProcDate { get; set; }
@@ -155,7 +233,7 @@ namespace Traceability_System.Entity.Model
         public string? GeApideviationLoad { get; set; }
         public string? GeApicode { get; set; }
         public string? GeApimachine { get; set; }
-        public string? GeNtdate { get; set; }
+        public string? GeNtDate { get; set; }
         public string? GeNttorqueAxis1 { get; set; }
         public string? GeNtangleAxis1 { get; set; }
         public string? GeNtcode { get; set; }
@@ -163,7 +241,7 @@ namespace Traceability_System.Entity.Model
         public string? GeNtseating1 { get; set; }
         public string? GeNtdrop1 { get; set; }
         public string? GeNtslack1 { get; set; }
-        public string? GeRapdate { get; set; }
+        public string? GeRapDate { get; set; }
         public string? GeRapbefore { get; set; }
         public string? GeRapafter { get; set; }
         public string? GeRapload { get; set; }
@@ -184,5 +262,6 @@ namespace Traceability_System.Entity.Model
         public string? GeRtpmainStroke { get; set; }
         public string? GeRtpcode { get; set; }
         public string? GeRtphistory { get; set; }
+        public DateTime? GeCollectionDate { get; set; }
     }
 }

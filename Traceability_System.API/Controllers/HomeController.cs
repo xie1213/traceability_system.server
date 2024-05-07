@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using Traceability_System.Models;
+using Traceability_System.Models.FileOperation;
 using Traceability_System.Utility;
 
 namespace Traceability_System.Api.Controllers
@@ -10,6 +12,14 @@ namespace Traceability_System.Api.Controllers
     [Route("api/[controller]")]
     public class HomeController : Controller
     {
+
+
+        public readonly ExportCsv _exportCsv;
+
+        public HomeController(ExportCsv exportCsv)
+        {
+            _exportCsv = exportCsv;
+        }
 
         [HttpGet]
         public List<string> GetStr(string txt)
@@ -27,6 +37,15 @@ namespace Traceability_System.Api.Controllers
 
         }
 
+        [HttpGet("GetRedis")]
+        public object GetRedis(string TableName)
+        {
+            RedisHelper redis = new RedisHelper();
+            var colName = redis.RedisGetAsync(TableName, 4);
+            List<Dictionary<string, object>> TableDataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(colName);
+
+            return colName;
+        }
 
         //[HttpGet("getLen")]
         //public IActionResult GetLen(string txt)
@@ -59,9 +78,36 @@ namespace Traceability_System.Api.Controllers
             string jsonData = requestData.ToString();
             //string jsonData = JsonConvert.SerializeObject(requestData);
 
-            RedisHelper.RedisSet("出荷数据", jsonData, 4);
+
+            //RedisHelper.RedisSet("Motor履历", jsonData, 4);
+            //RedisHelper.RedisSet("Rotor履历", jsonData, 4);
+            //RedisHelper.RedisSet("Gear履历", jsonData, 4);
+            //RedisHelper.RedisSet("Ta履历", jsonData, 4);
+
+            //RedisHelper.RedisSet("Rr履历", jsonData, 4);
+
+            RedisHelper.RedisSet("全部履历", jsonData, 4);
+            //RedisHelper.RedisSet("出荷履历", jsonData, 4);
+
+
+
+
         }
 
+
+        [HttpGet("GetExport")]
+        public IActionResult Export(string tableName)
+        {
+
+
+            //var jsonData =  RedisHelper.RedisGetAsync(tableName);
+            byte[] excelBytes = _exportCsv.newExportExcle(tableName);
+            // 返回文件流
+            return File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+
+            // 创建一个新的 ExcelPackage
+
+        }
     }
 
 

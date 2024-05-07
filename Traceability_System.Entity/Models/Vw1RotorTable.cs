@@ -1,11 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class Vw1RotorTable
     {
         public string? Ro1Mg1rserial { get; set; }
+        public string? Ro1RotorShaftTrans { get; set; }
+        public string? Ro1RotorCoreTrans { get; set; }
+        public string? Ro1RotorHeating { get; set; }
+        public string? Ro1RotorShaftPress { get; set; }
+        public string? Ro1RotorNutTight { get; set; }
+        public string? Ro1RotorForeignSuction { get; set; }
+        public string? Ro1RotorNutCrimpMg1press { get; set; }
+        public string? Ro1RotorResolverPress { get; set; }
+        public string? Ro1RotorReject { get; set; }
+        public string? Ro1RotorMagnetization { get; set; }
+        public string? Ro1RotorExtractionInsp { get; set; }
+        public string? Ro1RotorShippingInsp { get; set; }
+        public string? Ro1RotorTamg2shaftTrans { get; set; }
+        public string? Ro1RotorTamg2coreTrans { get; set; }
+        public string? Ro1RotorTamg2heating { get; set; }
+        public string? Ro1RotorTamg2shaftPress { get; set; }
+        public string? Ro1RotorTamg2nutTight { get; set; }
+        public string? Ro1RotorTamg2foreignSuction { get; set; }
+        public string? Ro1RotorTamg2nutCrimpMg1press { get; set; }
+        public string? Ro1RotorTamg2resolverPress { get; set; }
+        public string? Ro1RotorTamg2reject { get; set; }
+        public string? Ro1RotorTamg2magnetization { get; set; }
+        public string? Ro1RotorTamg2extractionInsp { get; set; }
+        public string? Ro1RotorTamg2shippingInsp { get; set; }
+        public string? Ro1MotorMtrCode { get; set; }
+        public string? Ro1MotorSngen { get; set; }
+        public string? Ro1MotorHsgSrfBrgAm { get; set; }
+        public string? Ro1MotorHsgSrfKnockPam { get; set; }
+        public string? Ro1MotorCoolPipeMw { get; set; }
+        public string? Ro1MotorTermBoardMw { get; set; }
+        public string? Ro1MotorRrCoverSrfOutBrgAm { get; set; }
+        public string? Ro1MotorRrCoverSrfKnockPam { get; set; }
+        public string? Ro1MotorMg1statorInsAm { get; set; }
+        public string? Ro1MotorMg2statorInsAm { get; set; }
+        public string? Ro1MotorHarnEscMw { get; set; }
+        public string? Ro1MotorMg12statorTightAm { get; set; }
+        public string? Ro1MotorThermMw { get; set; }
+        public string? Ro1MotorCoolPipeMw2 { get; set; }
+        public string? Ro1MotorMg12rotorAssem { get; set; }
+        public string? Ro1MotorFipgapp { get; set; }
+        public string? Ro1MotorRrCoverAssem { get; set; }
+        public string? Ro1MotorRrCoverTight1 { get; set; }
+        public string? Ro1MotorRrCoverTight2 { get; set; }
+        public string? Ro1MotorInvMw { get; set; }
+        public string? Ro1MotorMw1 { get; set; }
+        public string? Ro1MotorMw2 { get; set; }
+        public string? Ro1MotorPrevStn { get; set; }
+        public string? Ro1MotorMwco0 { get; set; }
+        public string? Ro1MotorMwco1 { get; set; }
+        public string? Ro1MotorMwco2 { get; set; }
+        public string? Ro1MotorMwco3 { get; set; }
+        public string? Ro1MotorReject { get; set; }
+        public string? Ro1CoverSubIdsetSpare { get; set; }
+        public string? Ro1CoverSubRrCovSetDmread { get; set; }
+        public string? Ro1CoverSubRrCovBrgPressEquip { get; set; }
+        public string? Ro1CoverSubMw1 { get; set; }
+        public string? Ro1CoverSubMw2 { get; set; }
+        public string? Ro1CoverSubMw3 { get; set; }
+        public string? Ro1CoverSubMw4 { get; set; }
+        public string? Ro1CoverSubRrRevEquip { get; set; }
+        public string? Ro1CoverSubWaterConnTighten { get; set; }
+        public string? Ro1CoverSubReject { get; set; }
+        public string? Ro1DefDfcaseRead { get; set; }
+        public string? Ro1DefDfpinionShaftEquip { get; set; }
+        public string? Ro1DefDiffOperMeasureEquip { get; set; }
+        public string? Ro1DefTweezersMw { get; set; }
+        public string? Ro1DefDiffPinionPress { get; set; }
+        public string? Ro1Dmread { get; set; }
+        public string? Ro1GearPressIn1 { get; set; }
+        public string? Ro1GearPressIn2 { get; set; }
+        public string? Ro1Slnffastening { get; set; }
+        public string? Ro1Slnfriveting { get; set; }
+        public string? Ro1DiffBrgPressIn { get; set; }
+        public string? Ro1DiffBoltTight1 { get; set; }
+        public string? Ro1DiffBoltTight2 { get; set; }
+        public string? Ro1RevRivetConfirm { get; set; }
+        public string? Ro1DamperImage { get; set; }
         public string? Ro1PokayokeDate39 { get; set; }
         public string? Ro1PokayokeDate40 { get; set; }
         public string? Ro1HsgBrgMeasDate { get; set; }
@@ -24,7 +101,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1PokayokeDate44 { get; set; }
         public string? Ro1UpenderDate { get; set; }
         public string? Ro1PokayokeDate45 { get; set; }
-        public string? Ro1RejectTime { get; set; }
+        public string? Ro1RejectTimeDate { get; set; }
         public string? Ro1PokayokeDate33 { get; set; }
         public string? Ro1DgameasDate { get; set; }
         public string? Ro1Dgapos3Axis { get; set; }
@@ -32,12 +109,12 @@ namespace Traceability_System.Entity.Model
         public string? Ro1Dgapos4Axis { get; set; }
         public string? Ro1Dgaload4Axis { get; set; }
         public string? Ro1PokayokeDate34 { get; set; }
-        public string? Ro1DgmmeasTime { get; set; }
+        public string? Ro1DgmmeasTimeDate { get; set; }
         public string? Ro1Dgmdagjudge { get; set; }
         public string? Ro1DgmlhRh { get; set; }
         public string? Ro1DgmmaxTorque { get; set; }
         public string? Ro1DgmminTorque { get; set; }
-        public string? Ro1DprmeasTime { get; set; }
+        public string? Ro1DprmeasTimeDate { get; set; }
         public string? Ro1Dprfrs { get; set; }
         public string? Ro1Dprfrl { get; set; }
         public string? Ro1PokayokeDate35 { get; set; }
@@ -74,7 +151,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1DpnfFinalStroke { get; set; }
         public string? Ro1DpnfFinalLoad { get; set; }
         public string? Ro1DpnfMainStroke { get; set; }
-        public string? Ro1Dfbrgdate { get; set; }
+        public string? Ro1DfbrgDate { get; set; }
         public string? Ro1Dfbrgstroke { get; set; }
         public string? Ro1Dfbrgload { get; set; }
         public string? Ro1DfbrgfinalStroke { get; set; }
@@ -84,7 +161,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1DfbrgfinalStrokeSec { get; set; }
         public string? Ro1DfbrgfinalLoadSec { get; set; }
         public string? Ro1DfbrgmainStroke { get; set; }
-        public string? Ro1Df1date { get; set; }
+        public string? Ro1Df1Date { get; set; }
         public string? Ro1Df1angleAxis1 { get; set; }
         public string? Ro1Df1codeAxis1 { get; set; }
         public string? Ro1Df1angleAxis2 { get; set; }
@@ -98,7 +175,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1Df1angleAxis6 { get; set; }
         public string? Ro1Df1codeAxis6 { get; set; }
         public string? Ro1Df1abvalue { get; set; }
-        public string? Ro1Df2date { get; set; }
+        public string? Ro1Df2Date { get; set; }
         public string? Ro1Df2angleAxis1 { get; set; }
         public string? Ro1Df2codeAxis1 { get; set; }
         public string? Ro1Df2angleAxis2 { get; set; }
@@ -122,8 +199,8 @@ namespace Traceability_System.Entity.Model
         public string? Ro1Mg2workTemp { get; set; }
         public string? Ro1Mg2fluxValue { get; set; }
         public string? Ro1Mg2dec { get; set; }
-        public string? Ro1Asldate { get; set; }
-        public string? Ro1Ictldate { get; set; }
+        public string? Ro1AslDate { get; set; }
+        public string? Ro1IctlDate { get; set; }
         public string? Ro1Rcserial { get; set; }
         public string? Ro1AxisSerial { get; set; }
         public string? Ro1ProcDate { get; set; }
@@ -141,7 +218,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1HeatOutput { get; set; }
         public string? Ro1HeatEndTime { get; set; }
         public string? Ro1JudgmentCode { get; set; }
-        public string? Ro1Apidate { get; set; }
+        public string? Ro1ApiDate { get; set; }
         public string? Ro1Apistroke { get; set; }
         public string? Ro1Apiload { get; set; }
         public string? Ro1ApifinalStroke { get; set; }
@@ -153,7 +230,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1ApideviationLoad { get; set; }
         public string? Ro1Apicode { get; set; }
         public string? Ro1Apimachine { get; set; }
-        public string? Ro1Ntdate { get; set; }
+        public string? Ro1NtDate { get; set; }
         public string? Ro1NttorqueAxis1 { get; set; }
         public string? Ro1NtangleAxis1 { get; set; }
         public string? Ro1Ntcode { get; set; }
@@ -161,7 +238,7 @@ namespace Traceability_System.Entity.Model
         public string? Ro1Ntseating1 { get; set; }
         public string? Ro1Ntdrop1 { get; set; }
         public string? Ro1Ntslack1 { get; set; }
-        public string? Ro1Rapdate { get; set; }
+        public string? Ro1RapDate { get; set; }
         public string? Ro1Rapbefore { get; set; }
         public string? Ro1Rapafter { get; set; }
         public string? Ro1Rapload { get; set; }
@@ -184,5 +261,6 @@ namespace Traceability_System.Entity.Model
         public string? Ro1Rtphistory { get; set; }
         public string? Ro1Detection1 { get; set; }
         public string? Ro1Detection2 { get; set; }
+        public DateTime? Ro1CollectionDate { get; set; }
     }
 }

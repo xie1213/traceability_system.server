@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class GearTable
     {
@@ -167,7 +167,7 @@ namespace Traceability_System.Entity.Model
         public string? PokayokeDate44 { get; set; }
         public string? UpenderDate { get; set; }
         public string? PokayokeDate45 { get; set; }
-        public string? RejectTime { get; set; }
+        public string? RejectTimeDate { get; set; }
         public string? PokayokeDate33 { get; set; }
         public string? DgameasDate { get; set; }
         public string? Dgapos3Axis { get; set; }
@@ -178,8 +178,7 @@ namespace Traceability_System.Entity.Model
         public string? DgmmeasDate { get; set; }
         public string? Dgmdagjudge { get; set; }
         public string? DgmlhRh { get; set; }
-
-        public string? DgmRh { get; set; }
+        public string? Dgmrh { get; set; }
         public string? DgmmaxTorque { get; set; }
         public string? DgmminTorque { get; set; }
         public string? DprmeasDate { get; set; }
@@ -220,7 +219,7 @@ namespace Traceability_System.Entity.Model
         public string? DpnfFinalStroke { get; set; }
         public string? DpnfFinalLoad { get; set; }
         public string? DpnfMainStroke { get; set; }
-        public string? Dfbrgdate { get; set; }
+        public string? DfbrgDate { get; set; }
         public string? Dfbrgstroke { get; set; }
         public string? Dfbrgload { get; set; }
         public string? DfbrgfinalStroke { get; set; }
@@ -230,7 +229,7 @@ namespace Traceability_System.Entity.Model
         public string? DfbrgfinalStrokeSec { get; set; }
         public string? DfbrgfinalLoadSec { get; set; }
         public string? DfbrgmainStroke { get; set; }
-        public string? Df1date { get; set; }
+        public string? Df1Date { get; set; }
         public string? Df1angleAxis1 { get; set; }
         public string? Df1codeAxis1 { get; set; }
         public string? Df1angleAxis2 { get; set; }
@@ -244,7 +243,7 @@ namespace Traceability_System.Entity.Model
         public string? Df1angleAxis6 { get; set; }
         public string? Df1codeAxis6 { get; set; }
         public string? Df1abvalue { get; set; }
-        public string? Df2date { get; set; }
+        public string? Df2Date { get; set; }
         public string? Df2angleAxis1 { get; set; }
         public string? Df2codeAxis1 { get; set; }
         public string? Df2angleAxis2 { get; set; }
@@ -269,8 +268,8 @@ namespace Traceability_System.Entity.Model
         public string? Mg2workTemp { get; set; }
         public string? Mg2fluxValue { get; set; }
         public string? Mg2dec { get; set; }
-        public string? Asldate { get; set; }
-        public string? Ictldate { get; set; }
+        public string? AslDate { get; set; }
+        public string? IctlDate { get; set; }
         public string? Rcserial { get; set; }
         public string? AxisSerial { get; set; }
         public string? ProcDate { get; set; }
@@ -300,7 +299,7 @@ namespace Traceability_System.Entity.Model
         public string? ApideviationLoad { get; set; }
         public string? Apicode { get; set; }
         public string? Apimachine { get; set; }
-        public string? Ntdate { get; set; }
+        public string? NtDate { get; set; }
         public string? NttorqueAxis1 { get; set; }
         public string? NtangleAxis1 { get; set; }
         public string? Ntcode { get; set; }
@@ -308,7 +307,7 @@ namespace Traceability_System.Entity.Model
         public string? Ntseating1 { get; set; }
         public string? Ntdrop1 { get; set; }
         public string? Ntslack1 { get; set; }
-        public string? Rapdate { get; set; }
+        public string? RapDate { get; set; }
         public string? Rapbefore { get; set; }
         public string? Rapafter { get; set; }
         public string? Rapload { get; set; }

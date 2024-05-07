@@ -5,7 +5,7 @@ using Appraisal_System.Utility;
 using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json;
 using Traceability_System.DTO;
-using Traceability_System.Entity.Model;
+using Traceability_System.Entity.Models;
 using Traceability_System.Models.FileOperation;
 using Traceability_System.Utility;
 
@@ -31,15 +31,144 @@ namespace Traceability_System.Models.SelectDB
                         { "全部数据", "\n ShipmentSerial like '%{0}%'" },
                         // 添加更多表名和对应的模式
                         //获取表的列名
-                        { "MotorTable_OrderBy", "ShipmentSerial" },
-                        { "GearTable_OrderBy", "DorpinSerial" },
-                        { "RotorTable_OrderBy", "MG1RSerial" },
-                        { "Rrtable_OrderBy", "RRCoverSerial" },
-                        { "Tatable_OrderBy", "ShipmentSerial" },
+                        { "Motor履历_OrderBy", "ShipmentSerial" },
+                        { "Gear履历_OrderBy", "DorpinSerial" },
+                        { "Rotor履历_OrderBy", "MG1RSerial" },
+                        { "Rr履历_OrderBy", "RRCoverSerial" },
+                        { "Ta履历_OrderBy", "ShipmentSerial" },
                         { "NewMotorTable_OrderBy", "ShipmentSerial" },
                     };
 
+        // 创建一个字典，存储表名和对应的 orderby 字段
+        Dictionary<string, (string tableName, string orderby)> tableMappings = new Dictionary<string, (string, string)>
+        {
+            ["Motor履历"] = ("MotorTable", "ShipmentSerial"),
+            ["Gear履历"] = ("GearTable", "DorpinSerial"),
+            ["Rotor履历"] = ("RotorTable", "MG1RSerial"),
+            ["Rr履历"] = ("Rrtable", "RRCoverSerial"),
+            ["Ta履历"] = ("Tatable", "ShipmentSerial"),
+            ["出荷履历"] =("Shipping", "SerialNo")
+        };
+
         //获取表格信息
+        public object GetRestTableData(ParameterData parameter)
+        {
+            RedisHelper redisHelper = new RedisHelper();
+            //redisHelper.DeleteHash(parameter.TableName);
+            string tableName = string.Empty;
+            string orderby = string.Empty;
+
+
+            // 根据 parameter.tableName 直接从字典中获取对应的值，并进行赋值
+            (tableName, orderby) = tableMappings.GetValueOrDefault(parameter.tableName, (string.Empty, string.Empty));
+
+            string baseSql = $"select * from {tableName} where ";
+
+
+            //条件sql
+            List<string> sqlList = CreateFactorSql(parameter, orderby);
+
+            string itemSql = string.Join(" and ", sqlList);
+
+            baseSql += $"{itemSql} ORDER BY RIGHT({orderby},8) DESC ";
+
+
+            DataTable dt = SqlHelper.ExecuteTable(baseSql);
+            if (dt.Rows.Count == 0)
+            {
+                return "空值";
+            }
+            redisHelper.DeleteHash(parameter.tableName);
+            var list = new List<object>();
+            //Assembly asm = Assembly.Load("Traceability_System.Entity");
+            //Type modelType = asm.GetType("Traceability_System.Entity.Model." + tableName);
+            Assembly asm = Assembly.Load("Traceability_System.Entity");
+            Type modelType = asm.GetType("Traceability_System.Entity.Models." + tableName);
+
+            //string factor = JsonConvert.SerializeObject(parameter);
+            //_redisHelper.SetJsonData(parameter.tableName, factor);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                var model = dr.DataRowToType(modelType);
+                var jsonData = JsonConvert.SerializeObject(model);
+                var filed = dr["Id"].ToString();
+
+                redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);
+
+                list.Add(model);
+                // RedisHelper.SetHash()
+            }
+            var listData = list.Take(25);
+
+
+            return new { data = listData, count = list.Count() };
+
+        }
+
+
+        // 生成 SQL 语句的方法
+        private List<string> CreateFactorSql(ParameterData parameter, string orderby)
+        {
+            List<string> sqlList = new List<string>();
+            var selectFactor = parameter.selectFactor;
+            
+
+            // 时间字段
+            if (parameter.startDateTime != null && parameter.endDateTime != null)
+            {
+                string timeSql = $" CollectionDate BETWEEN '{parameter.startDateTime}' AND '{parameter.endDateTime}' ";
+
+                sqlList.Add(timeSql);
+            }
+
+            // 序列号不为空
+            if (parameter.serialDateNumber != null)
+            {
+                string serialSql = $" {orderby} like '%{parameter.serialDateNumber}%' ";
+                sqlList.Add(serialSql);
+            }
+            if (selectFactor != null)
+            {
+                string pullDownSql = $"{selectFactor.selectName} ";
+
+               
+
+                // 下拉列表不为空
+                if (selectFactor.topLimit != null && selectFactor.lowerLimit != null)
+                {
+                    //string pullDownSql = $"{selectFactor.selectName} ";
+                    pullDownSql += selectFactor.topLimit == selectFactor.lowerLimit
+                        ? $" like '%{selectFactor.topLimit}%' "
+                        : $" between '{selectFactor.topLimit}' and '{selectFactor.lowerLimit}' ";
+                   
+                }
+                else if (selectFactor.topLimit == null)
+                {
+                    pullDownSql += $" = '{selectFactor.lowerLimit}' ";
+                }
+                else if (selectFactor.lowerLimit == null)
+                {
+                    pullDownSql += $" = '{selectFactor.topLimit}' ";
+                }
+
+                // 当下拉为时间时
+                if (selectFactor.selStartTime != null && selectFactor.selEndTime != null)
+                {
+                    //string pullDownSql = $"{selectFactor.selectName} ";
+                    pullDownSql += $" between '{selectFactor.selStartTime}' and '{selectFactor.selEndTime}' ";
+                    //sqlList.Add(pullDownSql);
+                }
+                sqlList.Add(pullDownSql);
+                // 拼接 SQL 条件
+            }
+
+
+
+            return sqlList;
+            
+        }
+
         public object GetTableByName(SelTableRequest requestData)
         {
             try
@@ -52,11 +181,7 @@ namespace Traceability_System.Models.SelectDB
 
                 if (!requestData.selColName.IsNullOrEmpty())
                 {
-                    //string column = requestData.selColName[0];
-                    //string val1 = requestData.selColName[1];
-                    //string val2 = requestData.selColName[2];
 
-                    //string compareExpr = BuildCompareExpr(column, val1, val2);
                     if (requestData.selColName.Count == 3)
                     {
                         selItem = $"{requestData.selColName[0]} between '{requestData.selColName[1]}' and '{requestData.selColName[2]}'";
@@ -88,7 +213,7 @@ namespace Traceability_System.Models.SelectDB
                 //}
                 if (requestData.TableName == "全部数据")
                 {
-                    return GetAllTable(timeItem, selItem, selLike);
+                    //return GetAllTable(timeItem, selItem, selLike);
                 }
 
 
@@ -104,14 +229,14 @@ namespace Traceability_System.Models.SelectDB
                 }
 
 
-                sqlQuery+= $"ORDER BY RIGHT({orderByColumn},8) DESC ";
+                sqlQuery += $"ORDER BY RIGHT({orderByColumn},8) DESC ";
 
-                
+
                 DataTable dt = SqlHelper.ExecuteTable(sqlQuery);
 
                 var list = new List<object>();
                 Assembly asm = Assembly.Load("Traceability_System.Entity");
-                Type modelType = asm.GetType("Traceability_System.Entity.Model." + requestData.TableName);
+                Type modelType = asm.GetType("Traceability_System.Entity.Models." + requestData.TableName);
 
                 foreach (DataRow dr in dt.Rows)
                 {
@@ -141,68 +266,35 @@ namespace Traceability_System.Models.SelectDB
                 return ex.Message;
             }
         }
-        //getpageLimit
-        //public static object GetPageData(int page,int limit)
-        //{
-        //    try
-        //    {
-        //        return list.Skip((page - 1) * limit).Take(limit); ;
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
 
 
-        public object GetOutTable(SelTableRequest requestData)
+        ////获取出荷数据
+        public object GetOutTable(ParameterData parameter)
         {
-            string selItem = "", timeItem = "", serialNo = "", sql = "select * from Shipping where";
+            string baseSql = "select * from Shipping where";
 
             try
             {
+                //条件sql
+                List<string> sqlList = CreateFactorSql(parameter, "SerialNo");
 
-                if (!requestData.selColName.IsNullOrEmpty())
-                {
-                    //string column = requestData.selColName[0];
-                    //string val1 = requestData.selColName[1];
-                    //string val2 = requestData.selColName[2];
+                string itemSql = string.Join(" and ", sqlList);
 
-                    //string compareExpr = BuildCompareExpr(column, val1, val2);
-                    selItem = $"\r  {requestData.selColName[0]} like '%{requestData.selColName[1]}%'";
-                }
-                else if (requestData.SerialNo != "")
-                {
-                    serialNo = $"\n SerialNo like '%{requestData.SerialNo}%'";
-                }
-                else
-                {
-                    timeItem = $" LeadTime BETWEEN '{requestData.TimeDate[0]}' AND '{requestData.TimeDate[1]}' ";
-                }
-                if (selItem != "" && serialNo != "")
-                {
-                    sql += $"{selItem} and  {serialNo} ";
-                }
-                else
-                {
-
-                    sql += $"{timeItem} {selItem} {serialNo}";
-                }
+                baseSql += $"\n{itemSql} ORDER BY SerialNo DESC ";
 
                 var shipList = new List<object>();
 
-                DataTable dt = SqlHelper.ExecuteTable(sql);
+                DataTable dt = SqlHelper.ExecuteTable(baseSql);
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    _redisHelper.DeleteHash(requestData.TableName);
+                    _redisHelper.DeleteHash(parameter.tableName);
                     foreach (DataRow dr in dt.Rows)
                     {
                         var model = dr.DataRowToModel<Shipping>();
                         var jsonData = JsonConvert.SerializeObject(model);
 
                         var filed = model.Id.ToString();
-                        _redisHelper.SetHashToJson(requestData.TableName, filed, jsonData);
+                        _redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);
 
                         shipList.Add(model);
                     }
@@ -220,58 +312,32 @@ namespace Traceability_System.Models.SelectDB
                 return e.Message;
             }
         }
-        //判断值类型
-        object TryParse(string s)
+
+
+        //获取全部数据
+        public object GetAllTableData(ParameterData parameter)
         {
-            if (int.TryParse(s, out int i))
-                return i;
+            var sqlList =  CreateFactorSql(parameter, "ShipmentSerial");
 
-            if (DateTime.TryParse(s, out DateTime dt))
-                return dt;
-
-            // 其他类型判断
-
-            return s; // 返回字符串
-        }
-        //返回查询语句
-        string BuildCompareExpr(string column, string val1, string val2)
-        {
-            object obj1 = TryParse(val1);
-            object obj2 = TryParse(val2);
-            string sql = "";
-            // 三元运算符逻辑
-            if (val1 == val2)
-            {
-                return $"{column} like '%{val1}%' ";
-            }
-            switch (obj1, obj2)
-            {
-                case (int i1, int i2):
-                    sql = $"{column} between {i1} and {i2}";
-                    break;
-                case (DateTime dt1, DateTime dt2):
-                    sql = $"{column} between '{dt1}' and '{dt2}'";
-                    break;
-                case (string dt1, string dt2):
-                    sql = $"{column} like '%{dt1}%' and {column} like '%{dt2}%' ";
-                    break;
-
-                    // 其他模式匹配
-            }
-            return sql;
-        }
+            string itemSql = string.Join(" and ", sqlList);
 
 
-        object GetAllTable(string timeItem, string selItem, string selLike)
-        {
             string sqlQuery = "select * from TATable as ta" +
                        $"\rleft join vw_MotorTable mo on RIGHT(ta.ShipmentSerial,8) = RIGHT(mo.MoShipmentSerial, 8)" +
-                       $"\rleft join vw_GearTable as df on ta.DorpinSerial = df.GeDorpinSerial" +
+                       $"\rleft join vw_GearTable as df on ta.DfringSerial = df.GeDfringSerial" +
                        $"\rleft join vw1_RotorTable as ro1 on ta.MG1RSerial = ro1.Ro1MG1RSerial and LEFT(ta.MG1RSerial,2) = '11'" +
                        $"\rleft join vw2_RotorTable as ro2 on ta.MG1RSerial = ro2.Ro2MG1RSerial and LEFT(ta.MG1RSerial,2) = '12'" +
                        $"\rleft join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
-                       $"\rwhere {timeItem} {selItem} {selLike} order by RIGHT(ShipmentSerial,8) desc ";
+                       $"\rwhere {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
+
+
+
             DataTable resultTable = SqlHelper.ExecuteTable(sqlQuery);
+            if (resultTable.Rows.Count == 0)
+            {
+                return "空值";
+            }
+
             var resultList = new List<Dictionary<string, object>>();
             foreach (DataRow row in resultTable.Rows)
             {
@@ -284,7 +350,7 @@ namespace Traceability_System.Models.SelectDB
 
                 resultList.Add(rowData);
                 var json = JsonConvert.SerializeObject(rowData);
-                _redisHelper.SetHashToJson("全部数据", row["Id"].ToString(), json);
+                _redisHelper.SetHashToJson("全部履历", row["Id"].ToString(), json);
             }
 
             return new { data = resultList.Take(20), count = resultList.Count() };

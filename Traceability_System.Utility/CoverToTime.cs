@@ -44,4 +44,19 @@ public class CoverToTime
 
     }
     
+    /// <summary>
+    /// 将时间转换为数字
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+
+    public static string TimeToInt(string input)
+    {
+        DateTime dateTime = DateTime.ParseExact(input, "yyyy-MM-dd HH:mm:ss", null);
+
+        // 将 DateTime 对象格式化为数字形式
+        string formattedDateTime = dateTime.ToString("yyyyMMddHHmmss");
+
+        return formattedDateTime;
+    }
 }

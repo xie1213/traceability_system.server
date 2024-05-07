@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Traceability_System.Utility;
 using System.Data;
 using Traceability_System.Models.FileOperation;
+using System.Collections.Generic;
 
 namespace Traceability_System.Api.Controllers
 {
@@ -23,64 +24,92 @@ namespace Traceability_System.Api.Controllers
             _selectAllData = selectAllData;
         }
 
-        [HttpPost("SelTablePost")]
-        public IActionResult SelTablePost([FromBody] SelTableRequest Request)
-         {
+        //#region 禁止
+        //[HttpPost("SelTablePost")]
+        //public IActionResult SelTablePost([FromBody] SelTableRequest Request)
+        // {
 
-            if (Request == null)
-            {
-                return BadRequest("请求参数为空");
-            }
-            Stopwatch stopwatch = new Stopwatch();
-            // 启动计时器
-            stopwatch.Start();
+        //    if (Request == null)
+        //    {
+        //        return BadRequest("请求参数为空");
+        //    }
+        //    //Stopwatch stopwatch = new Stopwatch();
+        //    // 启动计时器
+        //    //stopwatch.Start();
+        //    object list;
+
+
+        //    if (Request.TableName == "出荷履历")
+        //    {
+        //        //list = _selectAllData.GetOutTable(Request);
+        //    }
+        //    else if(Request.TableName == "全部履历")
+        //    {
+
+        //         list = _selectAllData.GetTableByName(Request);
+        //       // SelectAllData.GetTableByName(Request);
+        //    }
+        //    else
+        //    {
+        //        list = _selectAllData.GetTableByName(Request);
+        //    }
+
+        //    //stopwatch.Stop();
+
+        //    //Console.WriteLine("查询数据的时间" + stopwatch.ElapsedMilliseconds);
+        //    return Ok(list);
+        //    // 停止计时器
+            
+        //    //
+
+        //    //try
+        //    //{
+        //    //    if (Request.TableName == "全部数据")
+        //    //    {
+        //    //        Request.limit = 10;
+        //    //    }
+        //    //    //var first50Items = Test.Take(Request.limit);
+        //    //    stopwatch = new Stopwatch();
+        //    //    stopwatch.Start();
+
+        //    //    //var first50Items = RedisHelper.GetHashToPage<MotorTable>(1);
+        //    //    var first50Items = RedisHelper.GetHashToPage(1,50);
+
+        //    //    stopwatch.Stop();
+        //    //    Console.WriteLine("获取数据的时间" + stopwatch.ElapsedMilliseconds);
+
+        //    //    return Ok(new { data = first50Items, code = 200 });
+        //    //}
+        //    //catch (Exception)
+        //    //{
+
+        //    //    throw;
+        //    //}
+
+
+        //}
+        //#endregion
+     
+        [HttpPost("getTableData")]
+        public IActionResult getTableData([FromBody] ParameterData parameter)
+        {
             object list;
-
-
-            if (Request.TableName == "出荷数据")
+            if (parameter.tableName == "全部履历")
             {
-                list = _selectAllData.GetOutTable(Request);
+                list = _selectAllData.GetAllTableData(parameter);
+            }
+            else if (parameter.tableName == "出荷履历")
+            {
+                list = _selectAllData.GetOutTable(parameter);
             }
             else
             {
-
-                 list = _selectAllData.GetTableByName(Request);
-               // SelectAllData.GetTableByName(Request);
+                list = _selectAllData.GetRestTableData(parameter);
             }
-            stopwatch.Stop();
-
-            //Console.WriteLine("查询数据的时间" + stopwatch.ElapsedMilliseconds);
             return Ok(list);
-            // 停止计时器
-            
-            //
-
-            //try
-            //{
-            //    if (Request.TableName == "全部数据")
-            //    {
-            //        Request.limit = 10;
-            //    }
-            //    //var first50Items = Test.Take(Request.limit);
-            //    stopwatch = new Stopwatch();
-            //    stopwatch.Start();
-
-            //    //var first50Items = RedisHelper.GetHashToPage<MotorTable>(1);
-            //    var first50Items = RedisHelper.GetHashToPage(1,50);
-
-            //    stopwatch.Stop();
-            //    Console.WriteLine("获取数据的时间" + stopwatch.ElapsedMilliseconds);
-
-            //    return Ok(new { data = first50Items, code = 200 });
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-
-
+            //return Ok(parameter);
         }
+
 
         [HttpGet("GetRedis")]
         public  IActionResult GetRedis(int page,int limit, string tableName)
@@ -146,30 +175,17 @@ namespace Traceability_System.Api.Controllers
             return Ok(new {data= dataList });
         }
 
+       
+
         //[HttpGet("GetExport")]
         //public IActionResult Export(string tableName)
         //{
-           
-
-        //    //var jsonData =  RedisHelper.RedisGetAsync(tableName);
-        //    ExportCsv exportCsv = new ExportCsv();
+        //    //ExportCsv exportCsv = new ExportCsv();
         //    byte[] excelBytes = exportCsv.newExportExcle(tableName);
-        //    // 返回文件流
-        //    return  File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
 
-        //    // 创建一个新的 ExcelPackage
-
+        //    MemoryStream stream = new MemoryStream(excelBytes);
+        //    return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
         //}
-
-        [HttpGet("GetExport")]
-        public IActionResult Export(string tableName)
-        {
-            ExportCsv exportCsv = new ExportCsv();
-            byte[] excelBytes = exportCsv.newExportExcle(tableName);
-
-            MemoryStream stream = new MemoryStream(excelBytes);
-            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
-        }
 
         //获取表的列名
         [HttpGet("DBGetTable")]

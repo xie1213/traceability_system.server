@@ -15,35 +15,61 @@ namespace Traceability_System.Models.FileOperation
             var ipchack = IPInspect();
             if (ipchack != "链接成功")
                 return;
-
-            //一级文件
-            List<string> csvDir = Directory.GetDirectories(dirPath).ToList();
-
-            foreach (string csvFliesDir in csvDir)
+            try
             {
-                //二级文件
-                List<string> csvFiles = Directory.GetDirectories(csvFliesDir).ToList();
-                foreach (string csvFile in csvFiles)
+                List<string> csvDir = Directory.GetDirectories(dirPath).ToList();
+                if(csvDir == null)
                 {
-                    GetAllCsvs(csvFile);
+                    return;
                 }
-                //Console.WriteLine("-----------------------");
+                foreach (string csvFliesDir in csvDir)
+                {
+                    //二级文件
+                    List<string> csvFiles = Directory.GetDirectories(csvFliesDir).ToList();
+                    if (csvFiles == null)
+                    {
+                        return;
+                    }
+                    foreach (string csvFile in csvFiles)
+                    {
+                        if (File.Exists(csvFile))
+                        {
+                            GetAllCsvs(csvFile);
 
+                        }
+                    }
+                }
             }
+            catch (Exception e)
+            {
+
+                Logger.WriteLogAsync($"出荷链接错误:{e.Message}");
+            }
+            //一级文件
+
         }
 
         //获取该文件下的所有csv文件
         public void GetAllCsvs(string csvFile)
         {
-            string[] csvItemGather = Directory.GetFiles(csvFile, "*.csv");
-
-            string pathName = Path.GetFileName(csvFile);
-            foreach (var item in csvItemGather)
+            try
             {
-                string itemName = Path.GetFileNameWithoutExtension(item);
-                var itemValue = ReadCsv(item, pathName);
-                RedisHelper.RedisSet(itemName, itemValue);
+                string[] csvItemGather = Directory.GetFiles(csvFile, "*.csv");
+
+                string pathName = Path.GetFileName(csvFile);
+                foreach (var item in csvItemGather)
+                {
+                    string itemName = Path.GetFileNameWithoutExtension(item);
+                    var itemValue = ReadCsv(item, pathName);
+                    RedisHelper.RedisSet(itemName, itemValue);
+                }
             }
+            catch (Exception e)
+            {
+
+                Logger.WriteLogAsync($"获取出荷文件时出现错误:{e.Message}");
+            }
+
 
         }
 

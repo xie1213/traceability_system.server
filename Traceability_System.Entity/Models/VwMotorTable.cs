@@ -1,11 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class VwMotorTable
     {
         public string? MoShipmentSerial { get; set; }
+        public string? MoRotorShaftTrans { get; set; }
+        public string? MoRotorCoreTrans { get; set; }
+        public string? MoRotorHeating { get; set; }
+        public string? MoRotorShaftPress { get; set; }
+        public string? MoRotorNutTight { get; set; }
+        public string? MoRotorForeignSuction { get; set; }
+        public string? MoRotorNutCrimpMg1press { get; set; }
+        public string? MoRotorResolverPress { get; set; }
+        public string? MoRotorReject { get; set; }
+        public string? MoRotorMagnetization { get; set; }
+        public string? MoRotorExtractionInsp { get; set; }
+        public string? MoRotorShippingInsp { get; set; }
+        public string? MoRotorTamg2shaftTrans { get; set; }
+        public string? MoRotorTamg2coreTrans { get; set; }
+        public string? MoRotorTamg2heating { get; set; }
+        public string? MoRotorTamg2shaftPress { get; set; }
+        public string? MoRotorTamg2nutTight { get; set; }
+        public string? MoRotorTamg2foreignSuction { get; set; }
+        public string? MoRotorTamg2nutCrimpMg1press { get; set; }
+        public string? MoRotorTamg2resolverPress { get; set; }
+        public string? MoRotorTamg2reject { get; set; }
+        public string? MoRotorTamg2magnetization { get; set; }
+        public string? MoRotorTamg2extractionInsp { get; set; }
+        public string? MoRotorTamg2shippingInsp { get; set; }
         public string? MoPokayokeDate1 { get; set; }
         public string? MoPokayokeDate2 { get; set; }
         public string? MoHsgBrgDate { get; set; }
@@ -145,7 +169,6 @@ namespace Traceability_System.Entity.Model
         public string? MoAxis9Code { get; set; }
         public string? MoAngle10Axis { get; set; }
         public string? MoAxis10Code { get; set; }
-        public string? MoAb { get; set; }
         public string? MoReDate { get; set; }
         public string? MoPokayokeDateBas { get; set; }
         public string? MoPokayokeDate8 { get; set; }
@@ -155,5 +178,6 @@ namespace Traceability_System.Entity.Model
         public string? MoPokayokeDate12 { get; set; }
         public string? MoPokayokeDate13 { get; set; }
         public string? MoPokayokeDate14 { get; set; }
+        public DateTime? MoCollectionDate { get; set; }
     }
 }

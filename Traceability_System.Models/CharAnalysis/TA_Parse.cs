@@ -167,7 +167,8 @@ public class TA_Parse : GeneralAnalysis
         LastIndex += 6;
         AddTwelveToTime(9); //1872 -- 1979
         LastIndex += 4;
-        AddOneItem(8);
+        AddOneItem(3);
+        AddOneItem(5);
     }
 
     /// <summary>

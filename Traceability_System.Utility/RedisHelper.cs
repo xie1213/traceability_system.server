@@ -61,17 +61,12 @@ namespace Traceability_System.Utility
         /// </summary>
         /// <param name="key"></param>
         /// <param name="data"></param>
-        public static void SetJsonData(string key, string data, int dbNum = 0)
-        {
-            Task.Run(() =>
-            {
-                db = redis.GetDatabase(dbNum);
-                if (dbNum != 5)
-                {
-                    db.StringSet(key, data);
-                }
-            });
+        public void SetJsonData(string key, string data, TimeSpan expiry ,int dbNum = 6)
+        { 
+            db = redis.GetDatabase(dbNum);
+            db.StringSet(key, data,expiry);
         }
+
 
         /// <summary>
         /// 读取json
@@ -147,6 +142,7 @@ namespace Traceability_System.Utility
         public  void SetHashToJson(string hashKey, string field, string value, int dbnum = 7)
         {
             db = redis.GetDatabase(dbnum);
+            
             db.HashSet(hashKey, field, value);
         }
         //获取Hash键值
@@ -200,10 +196,20 @@ namespace Traceability_System.Utility
             return values;
         }
 
-        public  void DeleteHash(string tableName,int dbnum = 7)
+        public  void DeleteHash(string hashKey, int dbnum = 7)
         {
             db = redis.GetDatabase(dbnum);
-            db.KeyDelete(tableName);
+            bool hashExists = db.KeyExists(hashKey) && db.KeyType(hashKey) == RedisType.Hash;
+            if (hashExists)
+            {
+                db.KeyDelete(hashKey);
+                //Console.WriteLine($"存在{hashKey} 已删除");
+            }
+        }
+
+        public async Task SetHashToJsonAsync(string tableName, string? filed, string jsonData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

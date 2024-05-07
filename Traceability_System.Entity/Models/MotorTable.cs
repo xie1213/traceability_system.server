@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
-    public partial class Rrtable
+    public partial class MotorTable
     {
         public int Id { get; set; }
         public string? InterNo { get; set; }
@@ -149,9 +149,9 @@ namespace Traceability_System.Entity.Model
         public string? Fipgreject { get; set; }
         public string? LabelPrinting { get; set; }
         public string? Reshuffle { get; set; }
-        public string? PokayokeDate39 { get; set; }
-        public string? PokayokeDate40 { get; set; }
-        public string? HsgBrgMdate { get; set; }
+        public string? PokayokeDate1 { get; set; }
+        public string? PokayokeDate2 { get; set; }
+        public string? HsgBrgDate { get; set; }
         public string? HsgBrgStroke { get; set; }
         public string? HsgBrgLoad { get; set; }
         public string? HsgBrgFinalStroke { get; set; }
@@ -161,14 +161,144 @@ namespace Traceability_System.Entity.Model
         public string? HsgBrgFinalStrokeSec { get; set; }
         public string? HsgBrgFinalLoadSec { get; set; }
         public string? HsgBrgMainStroke { get; set; }
-        public string? PokayokeDate41 { get; set; }
-        public string? PokayokeDate42 { get; set; }
-        public string? PokayokeDate43 { get; set; }
-        public string? PokayokeDate44 { get; set; }
-        public string? UpenderDate { get; set; }
-        public string? PokayokeDate45 { get; set; }
-        public string? RejectTime { get; set; }
+        public string? HsgBrgAbvalue { get; set; }
+        public string? HsgKnockDate { get; set; }
+        public string? HsgKnockStroke { get; set; }
+        public string? HsgKnockLoad { get; set; }
+        public string? HsgKnockFinalStroke { get; set; }
+        public string? HsgKnockFinalLoad { get; set; }
+        public string? HsgKnockStrokeSec { get; set; }
+        public string? HsgKnockLoadSec { get; set; }
+        public string? HsgKnockFinalStrokeSec { get; set; }
+        public string? HsgKnockFinalLoadSec { get; set; }
+        public string? HsgKnockMainStroke { get; set; }
+        public string? HsgKnockAbvalue { get; set; }
+        public string? PokayokeDate3 { get; set; }
+        public string? PokayokeDate4 { get; set; }
+        public string? RrbrgDate { get; set; }
+        public string? RrbrgStroke { get; set; }
+        public string? RrbrgLoad { get; set; }
+        public string? RrbrgFinalStroke { get; set; }
+        public string? RrbrgFinalLoad { get; set; }
+        public string? RrbrgStrokeSec { get; set; }
+        public string? RrbrgLoadSec { get; set; }
+        public string? RrbrgFinalStrokeSec { get; set; }
+        public string? RrbrgFinalLoadSec { get; set; }
+        public string? RrbrgMainStroke { get; set; }
+        public string? RrbrgAbvalue { get; set; }
+        public string? RrknockDate { get; set; }
+        public string? RrknockStroke { get; set; }
+        public string? RrknockLoad { get; set; }
+        public string? RrknockFinalStroke { get; set; }
+        public string? RrknockFinalLoad { get; set; }
+        public string? RrknockStrokeSec { get; set; }
+        public string? RrknockLoadSec { get; set; }
+        public string? RrknockFinalStrokeSec { get; set; }
+        public string? RrknockFinalLoadSec { get; set; }
+        public string? RrknockMainStroke { get; set; }
+        public string? RrknockAbvalue { get; set; }
+        public string? Mg1date { get; set; }
+        public string? Mg1torqAngleAxis1 { get; set; }
+        public string? Mg1codeAxis1 { get; set; }
+        public string? Mg1torqAngleAxis2 { get; set; }
+        public string? Mg1codeAxis2 { get; set; }
+        public string? Mg1torqAngleAxis3 { get; set; }
+        public string? Mg1codeAxis3 { get; set; }
+        public string? Mg2date { get; set; }
+        public string? Mg2torqAngleAxis1 { get; set; }
+        public string? Mg2codeAxis1 { get; set; }
+        public string? Mg2torqAngleAxis2 { get; set; }
+        public string? Mg2codeAxis2 { get; set; }
+        public string? Mg2torqAngleAxis3 { get; set; }
+        public string? Mg2codeAxis3 { get; set; }
+        public string? PokayokeDate5 { get; set; }
+        public string? StatorDate { get; set; }
+        public string? TorqAngleAxis1 { get; set; }
+        public string? CodeAxis1 { get; set; }
+        public string? TorqAngleAxis2 { get; set; }
+        public string? CodeAxis2 { get; set; }
+        public string? TorqAngleAxis3 { get; set; }
+        public string? CodeAxis3 { get; set; }
+        public string? AngleAxis1Sec { get; set; }
+        public string? AxisCode1Sec { get; set; }
+        public string? AngleAxis2Sec { get; set; }
+        public string? AxisCode2Sec { get; set; }
+        public string? AngleAxis3Sec { get; set; }
+        public string? AxisCode3Sec { get; set; }
+        public string? Mg1stator1 { get; set; }
+        public string? Mg1stator2 { get; set; }
+        public string? Mg1stator3 { get; set; }
+        public string? Mg2stator1 { get; set; }
+        public string? Mg2stator2 { get; set; }
+        public string? Mg2stator3 { get; set; }
+        public string? PokayokeDate6 { get; set; }
+        public string? PokayokeDate7 { get; set; }
+        public string? MeasDate { get; set; }
+        public string? Mg1workTemp { get; set; }
+        public string? Mg1fluxValue { get; set; }
+        public string? Mg1dec { get; set; }
+        public string? Mg2workTemp { get; set; }
+        public string? Mg2fluxValue { get; set; }
+        public string? Mg2dec { get; set; }
+        public string? RrFigpdate { get; set; }
+        public string? ImgResult { get; set; }
+        public string? RrcoverDate { get; set; }
+        public string? TotalDate1 { get; set; }
+        public string? Total1AngleAxis1 { get; set; }
+        public string? Total1Axis1Code { get; set; }
+        public string? Total1AngleAxis2 { get; set; }
+        public string? Total1Axis2Code { get; set; }
+        public string? Total1AngleAxis3 { get; set; }
+        public string? Total1Axis3Code { get; set; }
+        public string? Total1AngleAxis4 { get; set; }
+        public string? Total1Axis4Code { get; set; }
+        public string? Total1AngleAxis5 { get; set; }
+        public string? Total1Axis5Code { get; set; }
+        public string? Total1AngleAxis6 { get; set; }
+        public string? Total1Axis6Code { get; set; }
+        public string? Total1AngleAxis7 { get; set; }
+        public string? Total1Axis7Code { get; set; }
+        public string? Total1AngleAxis8 { get; set; }
+        public string? Total1Axis8Code { get; set; }
+        public string? Total1AngleAxis9 { get; set; }
+        public string? Total1Axis9Code { get; set; }
+        public string? Total1AngleAxis10 { get; set; }
+        public string? Total1Axis10Code { get; set; }
+        public string? Total1AngleAxis11 { get; set; }
+        public string? Total1Axis11Code { get; set; }
+        public string? Total1Abvalue { get; set; }
+        public string? Total2Date { get; set; }
+        public string? Angle1Axis { get; set; }
+        public string? Axis1Code { get; set; }
+        public string? Angle2Axis { get; set; }
+        public string? Axis2Code { get; set; }
+        public string? Angle3Axis { get; set; }
+        public string? Axis3Code { get; set; }
+        public string? Angle4Axis { get; set; }
+        public string? Axis4Code { get; set; }
+        public string? Angle5Axis { get; set; }
+        public string? Axis5Code { get; set; }
+        public string? Angle6Axis { get; set; }
+        public string? Axis6Code { get; set; }
+        public string? Angle7Axis { get; set; }
+        public string? Axis7Code { get; set; }
+        public string? Angle8Axis { get; set; }
+        public string? Axis8Code { get; set; }
+        public string? Angle9Axis { get; set; }
+        public string? Axis9Code { get; set; }
+        public string? Angle10Axis { get; set; }
+        public string? Axis10Code { get; set; }
+        public string? Ab { get; set; }
+        public string? ReDate { get; set; }
+        public string? PokayokeDateBas { get; set; }
+        public string? PokayokeDate8 { get; set; }
+        public string? PokayokeDate9 { get; set; }
+        public string? PokayokeDate10 { get; set; }
+        public string? PokayokeDate11 { get; set; }
+        public string? PokayokeDate12 { get; set; }
+        public string? PokayokeDate13 { get; set; }
+        public string? PokayokeDate14 { get; set; }
         public DateTime? CollectionDate { get; set; }
-        public string? Number { get; set; }
+        public int? Number { get; set; }
     }
 }

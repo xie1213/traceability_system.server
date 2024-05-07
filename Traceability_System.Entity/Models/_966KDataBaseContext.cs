@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Traceability_System.Entity.Model
+namespace Traceability_System.Entity.Models
 {
     public partial class _966KDataBaseContext : DbContext
     {
@@ -43,15 +43,13 @@ namespace Traceability_System.Entity.Model
             {
                 entity.ToTable("GearTable");
 
-                entity.HasIndex(e => e.DfringSerial, "idx_GearTable_DfringSerial");
-
                 entity.Property(e => e.Apicode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APICode");
 
                 entity.Property(e => e.ApicoreTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APICoreTemp");
 
@@ -61,42 +59,42 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("APIDate");
 
                 entity.Property(e => e.ApideviationLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIDeviationLoad");
 
                 entity.Property(e => e.ApifinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIFinalStroke");
 
                 entity.Property(e => e.ApiinitTilt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIInitTilt");
 
                 entity.Property(e => e.Apiload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APILoad");
 
                 entity.Property(e => e.Apimachine)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIMachine");
 
                 entity.Property(e => e.ApimainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIMainStroke");
 
                 entity.Property(e => e.Apipos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIPos");
 
                 entity.Property(e => e.Apistroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIStroke");
 
@@ -105,10 +103,9 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("APISTTime");
 
-                entity.Property(e => e.Asldate)
+                entity.Property(e => e.AslDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("ASLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.AssemJoining1)
                     .HasMaxLength(1)
@@ -141,15 +138,15 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.AxisSerial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AxisTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CaseDec)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CaseFipgapp)
@@ -163,7 +160,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Cdtemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("CDTemp");
 
@@ -174,15 +171,15 @@ namespace Traceability_System.Entity.Model
                 entity.Property(e => e.CollectionDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Contact)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CoreAfter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CoreBefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CoverSubIdsetSpare)
@@ -269,7 +266,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.DefLingDec)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DefTweezersMw)
@@ -278,198 +275,195 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("DefTweezersMW")
                     .IsFixedLength();
 
+                entity.Property(e => e.Df1Date)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Df1abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1ABValue");
 
                 entity.Property(e => e.Df1angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis1");
 
                 entity.Property(e => e.Df1angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis2");
 
                 entity.Property(e => e.Df1angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis3");
 
                 entity.Property(e => e.Df1angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis4");
 
                 entity.Property(e => e.Df1angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis5");
 
                 entity.Property(e => e.Df1angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis6");
 
                 entity.Property(e => e.Df1codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis1");
 
                 entity.Property(e => e.Df1codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis2");
 
                 entity.Property(e => e.Df1codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis3");
 
                 entity.Property(e => e.Df1codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis4");
 
                 entity.Property(e => e.Df1codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis5");
 
                 entity.Property(e => e.Df1codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis6");
 
-                entity.Property(e => e.Df1date)
+                entity.Property(e => e.Df2Date)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("DF1Date");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Df2abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2ABValue");
 
                 entity.Property(e => e.Df2angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis1");
 
                 entity.Property(e => e.Df2angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis2");
 
                 entity.Property(e => e.Df2angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis3");
 
                 entity.Property(e => e.Df2angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis4");
 
                 entity.Property(e => e.Df2angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis5");
 
                 entity.Property(e => e.Df2angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis6");
 
                 entity.Property(e => e.Df2codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis1");
 
                 entity.Property(e => e.Df2codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis2");
 
                 entity.Property(e => e.Df2codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis3");
 
                 entity.Property(e => e.Df2codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis4");
 
                 entity.Property(e => e.Df2codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis5");
 
                 entity.Property(e => e.Df2codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis6");
 
-                entity.Property(e => e.Df2date)
+                entity.Property(e => e.DfbrgDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("DF2Date");
-
-                entity.Property(e => e.Dfbrgdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("DFBRGDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DfbrgfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalLoad");
 
                 entity.Property(e => e.DfbrgfinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalLoadSec");
 
                 entity.Property(e => e.DfbrgfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalStroke");
 
                 entity.Property(e => e.DfbrgfinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalStrokeSec");
 
                 entity.Property(e => e.Dfbrgload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGLoad");
 
                 entity.Property(e => e.DfbrgloadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGLoadSec");
 
                 entity.Property(e => e.DfbrgmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGMainStroke");
 
                 entity.Property(e => e.Dfbrgstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGStroke");
 
                 entity.Property(e => e.DfbrgstrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGStrokeSec");
 
                 entity.Property(e => e.Dfcase)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFCase");
 
@@ -489,12 +483,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("DFRingSerial");
 
                 entity.Property(e => e.Dgaload3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGALoad3Axis");
 
                 entity.Property(e => e.Dgaload4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGALoad4Axis");
 
@@ -504,32 +498,27 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("DGAMeasDate");
 
                 entity.Property(e => e.Dgapos3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGAPos3Axis");
 
                 entity.Property(e => e.Dgapos4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGAPos4Axis");
 
                 entity.Property(e => e.Dgmdagjudge)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMDAGJudge");
 
                 entity.Property(e => e.DgmlhRh)
-                    .HasMaxLength(15)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMLhRh");
 
-                entity.Property(e => e.DgmRh)
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("DGMRh");
-
                 entity.Property(e => e.DgmmaxTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMMaxTorque");
 
@@ -539,9 +528,14 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("DGMMeasDate");
 
                 entity.Property(e => e.DgmminTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMMinTorque");
+
+                entity.Property(e => e.Dgmrh)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("DGMRh");
 
                 entity.Property(e => e.DiffBoltTight1)
                     .HasMaxLength(1)
@@ -579,15 +573,15 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfMeasDate)
@@ -595,7 +589,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntAngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntDate)
@@ -603,32 +597,32 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntDrop)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntJudgment)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntSeating)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntSlack)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntTorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Dprfrl)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DPRFRL");
 
                 entity.Property(e => e.Dprfrs)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DPRFRS");
 
@@ -658,7 +652,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Gear2Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Gear2ABValue");
 
@@ -667,43 +661,43 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2Load)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2LoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearAbvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GearABValue");
 
@@ -713,35 +707,35 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.GearDec)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearMeasDate)
@@ -759,27 +753,27 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.GearStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatEndTime)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatOutput)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatProcedure)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatSt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("HeatST");
 
@@ -788,39 +782,39 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgMaasterStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgMeasDate)
@@ -838,7 +832,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.HsgDec)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgSerial)
@@ -850,10 +844,9 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.Ictldate)
+                entity.Property(e => e.IctlDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("ICTLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Idexchange)
                     .HasMaxLength(1)
@@ -868,12 +861,12 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Ihafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IHAfter");
 
                 entity.Property(e => e.Ihbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IHBefore");
 
@@ -883,16 +876,16 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.InterNo)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IsRcheat)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IsRCHeat");
 
                 entity.Property(e => e.JudgmentCode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LabelPrinting)
@@ -901,7 +894,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.LineDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LubPipeAssem)
@@ -915,17 +908,17 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Mg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1Dec");
 
                 entity.Property(e => e.Mg1fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1FluxValue");
 
                 entity.Property(e => e.Mg1rotorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1RotorDec");
 
@@ -940,27 +933,27 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MG1SSerial");
 
                 entity.Property(e => e.Mg1statorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1StatorDec");
 
                 entity.Property(e => e.Mg1workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1WorkTemp");
 
                 entity.Property(e => e.Mg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2Dec");
 
                 entity.Property(e => e.Mg2fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2FluxValue");
 
                 entity.Property(e => e.Mg2rotorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2RotorDec");
 
@@ -975,12 +968,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MG2SSerial");
 
                 entity.Property(e => e.Mg2statorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2StatorDec");
 
                 entity.Property(e => e.Mg2workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2WorkTemp");
 
@@ -1168,43 +1161,42 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MW3")
                     .IsFixedLength();
 
+                entity.Property(e => e.NtDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.NtangleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTAngleAxis1");
 
                 entity.Property(e => e.Ntcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTCode");
 
-                entity.Property(e => e.Ntdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("NTDate");
-
                 entity.Property(e => e.Ntdrop1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTDrop1");
 
                 entity.Property(e => e.Nthistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTHistory");
 
                 entity.Property(e => e.Ntseating1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTSeating1");
 
                 entity.Property(e => e.Ntslack1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTSlack1");
 
                 entity.Property(e => e.NttorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTTorqueAxis1");
 
@@ -1219,7 +1211,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.OilPump)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.OilPumpAssembly)
@@ -1228,11 +1220,11 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.ParkingDec)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Pinposition)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PokayokeDate33)
@@ -1296,78 +1288,77 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.RapDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Rapafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPAfter");
 
                 entity.Property(e => e.Rapbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPBefore");
 
                 entity.Property(e => e.Rapcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPCode");
 
                 entity.Property(e => e.Rapcode2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPCode2");
 
-                entity.Property(e => e.Rapdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("RAPDate");
-
                 entity.Property(e => e.RapfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPFinalStroke");
 
                 entity.Property(e => e.Rapload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPLoad");
 
                 entity.Property(e => e.RaploadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPLoadSec");
 
                 entity.Property(e => e.Rapmain2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPMain2Stroke");
 
                 entity.Property(e => e.RapmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPMainStroke");
 
                 entity.Property(e => e.Rapstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPStroke");
 
                 entity.Property(e => e.RapwashMain)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPWashMain");
 
                 entity.Property(e => e.RapwashPos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPWashPos");
 
                 entity.Property(e => e.RapwashSensor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPWashSensor");
 
                 entity.Property(e => e.Rcserial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RCSerial");
 
@@ -1376,7 +1367,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.RejectTime)
+                entity.Property(e => e.RejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
@@ -1391,7 +1382,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.RoomTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.RotorCoreTrans)
@@ -1528,7 +1519,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.RrCoverDec)
-                    .HasMaxLength(5)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.RrcoverSerial)
@@ -1542,27 +1533,27 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("RRopSerial");
 
                 entity.Property(e => e.Rtpcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPCode");
 
                 entity.Property(e => e.RtpfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPFinalStroke");
 
                 entity.Property(e => e.Rtphistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPHistory");
 
                 entity.Property(e => e.Rtpload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPLoad");
 
                 entity.Property(e => e.RtpmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPMainStroke");
 
@@ -1572,7 +1563,7 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("RTPStartDate");
 
                 entity.Property(e => e.Rtpstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPStroke");
 
@@ -3040,60 +3031,57 @@ namespace Traceability_System.Entity.Model
             {
                 entity.ToTable("RotorTable");
 
-                entity.HasIndex(e => e.Mg1rserial, "idx_Rotor_MG1RSerial");
+                entity.Property(e => e.ApiDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Apicode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APICode");
 
                 entity.Property(e => e.ApicoreTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APICoreTemp");
 
-                entity.Property(e => e.Apidate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("APIDate");
-
                 entity.Property(e => e.ApideviationLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIDeviationLoad");
 
                 entity.Property(e => e.ApifinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIFinalStroke");
 
                 entity.Property(e => e.ApiinitTilt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIInitTilt");
 
                 entity.Property(e => e.Apiload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APILoad");
 
                 entity.Property(e => e.Apimachine)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIMachine");
 
                 entity.Property(e => e.ApimainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIMainStroke");
 
                 entity.Property(e => e.Apipos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIPos");
 
                 entity.Property(e => e.Apistroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("APIStroke");
 
@@ -3102,10 +3090,9 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("APISTTime");
 
-                entity.Property(e => e.Asldate)
+                entity.Property(e => e.AslDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("ASLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.AssemJoining1)
                     .HasMaxLength(1)
@@ -3138,15 +3125,15 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.AxisSerial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.AxisTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CaseDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CaseFipgapp)
@@ -3160,7 +3147,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Cdtemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("CDTemp");
 
@@ -3171,11 +3158,11 @@ namespace Traceability_System.Entity.Model
                 entity.Property(e => e.CollectionDate).HasColumnType("datetime");
 
                 entity.Property(e => e.CoreAfter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CoreBefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CoverSubIdsetSpare)
@@ -3262,7 +3249,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.DefLingDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DefTweezersMw)
@@ -3272,205 +3259,202 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Detection1)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Detection2)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Df1Date)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Df1abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1ABValue");
 
                 entity.Property(e => e.Df1angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis1");
 
                 entity.Property(e => e.Df1angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis2");
 
                 entity.Property(e => e.Df1angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis3");
 
                 entity.Property(e => e.Df1angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis4");
 
                 entity.Property(e => e.Df1angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis5");
 
                 entity.Property(e => e.Df1angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1AngleAxis6");
 
                 entity.Property(e => e.Df1codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis1");
 
                 entity.Property(e => e.Df1codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis2");
 
                 entity.Property(e => e.Df1codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis3");
 
                 entity.Property(e => e.Df1codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis4");
 
                 entity.Property(e => e.Df1codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis5");
 
                 entity.Property(e => e.Df1codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF1CodeAxis6");
 
-                entity.Property(e => e.Df1date)
+                entity.Property(e => e.Df2Date)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("DF1Date");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Df2abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2ABValue");
 
                 entity.Property(e => e.Df2angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis1");
 
                 entity.Property(e => e.Df2angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis2");
 
                 entity.Property(e => e.Df2angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis3");
 
                 entity.Property(e => e.Df2angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis4");
 
                 entity.Property(e => e.Df2angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis5");
 
                 entity.Property(e => e.Df2angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2AngleAxis6");
 
                 entity.Property(e => e.Df2codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis1");
 
                 entity.Property(e => e.Df2codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis2");
 
                 entity.Property(e => e.Df2codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis3");
 
                 entity.Property(e => e.Df2codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis4");
 
                 entity.Property(e => e.Df2codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis5");
 
                 entity.Property(e => e.Df2codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DF2CodeAxis6");
 
-                entity.Property(e => e.Df2date)
+                entity.Property(e => e.DfbrgDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("DF2Date");
-
-                entity.Property(e => e.Dfbrgdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("DFBRGDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DfbrgfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalLoad");
 
                 entity.Property(e => e.DfbrgfinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalLoadSec");
 
                 entity.Property(e => e.DfbrgfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalStroke");
 
                 entity.Property(e => e.DfbrgfinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGFinalStrokeSec");
 
                 entity.Property(e => e.Dfbrgload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGLoad");
 
                 entity.Property(e => e.DfbrgloadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGLoadSec");
 
                 entity.Property(e => e.DfbrgmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGMainStroke");
 
                 entity.Property(e => e.Dfbrgstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGStroke");
 
                 entity.Property(e => e.DfbrgstrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFBRGStrokeSec");
 
                 entity.Property(e => e.Dfcase)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFCase");
 
@@ -3490,12 +3474,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("DFRingSerial");
 
                 entity.Property(e => e.Dgaload3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGALoad3Axis");
 
                 entity.Property(e => e.Dgaload4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGALoad4Axis");
 
@@ -3505,37 +3489,37 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("DGAMeasDate");
 
                 entity.Property(e => e.Dgapos3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGAPos3Axis");
 
                 entity.Property(e => e.Dgapos4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGAPos4Axis");
 
                 entity.Property(e => e.Dgmdagjudge)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMDAGJudge");
 
                 entity.Property(e => e.DgmlhRh)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMLhRh");
 
                 entity.Property(e => e.DgmmaxTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMMaxTorque");
 
-                entity.Property(e => e.DgmmeasTime)
+                entity.Property(e => e.DgmmeasTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("DGMMeasTime");
+                    .HasColumnName("DGMMeasTimeDate");
 
                 entity.Property(e => e.DgmminTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DGMMinTorque");
 
@@ -3575,15 +3559,15 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpnfMeasDate)
@@ -3591,7 +3575,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntAngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntDate)
@@ -3599,39 +3583,39 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntDrop)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntJudgment)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntSeating)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntSlack)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DpntTorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Dprfrl)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DPRFRL");
 
                 entity.Property(e => e.Dprfrs)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DPRFRS");
 
-                entity.Property(e => e.DprmeasTime)
-                    .HasMaxLength(10)
+                entity.Property(e => e.DprmeasTimeDate)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("DPRMeasTime");
+                    .HasColumnName("DPRMeasTimeDate");
 
                 entity.Property(e => e.DrainPlugTight)
                     .HasMaxLength(1)
@@ -3654,7 +3638,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Gear2Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Gear2ABValue");
 
@@ -3663,43 +3647,43 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2Load)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2LoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Gear2StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearAbvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GearABValue");
 
@@ -3709,35 +3693,35 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.GearDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearMeasDate)
@@ -3755,11 +3739,11 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.GearStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatEndTime)
@@ -3767,15 +3751,15 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatOutput)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatProcedure)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HeatSt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("HeatST");
 
@@ -3784,39 +3768,39 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgInflectPtStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgMaasterStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgMeasDate)
@@ -3834,7 +3818,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.HsgDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgSerial)
@@ -3846,10 +3830,9 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.Ictldate)
+                entity.Property(e => e.IctlDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("ICTLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Idexchange)
                     .HasMaxLength(1)
@@ -3864,12 +3847,12 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Ihafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IHAfter");
 
                 entity.Property(e => e.Ihbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IHBefore");
 
@@ -3879,16 +3862,16 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.InterNo)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IsRcheat)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IsRCHeat");
 
                 entity.Property(e => e.JudgmentCode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LabelPrinting)
@@ -3897,7 +3880,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.LineDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LubPipeAssem)
@@ -3911,17 +3894,17 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Mg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1Dec");
 
                 entity.Property(e => e.Mg1fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1FluxValue");
 
                 entity.Property(e => e.Mg1rotorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1RotorDec");
 
@@ -3936,27 +3919,27 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MG1SSerial");
 
                 entity.Property(e => e.Mg1statorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1StatorDec");
 
                 entity.Property(e => e.Mg1workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1WorkTemp");
 
                 entity.Property(e => e.Mg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2Dec");
 
                 entity.Property(e => e.Mg2fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2FluxValue");
 
                 entity.Property(e => e.Mg2rotorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2RotorDec");
 
@@ -3971,12 +3954,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MG2SSerial");
 
                 entity.Property(e => e.Mg2statorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2StatorDec");
 
                 entity.Property(e => e.Mg2workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2WorkTemp");
 
@@ -4164,43 +4147,42 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MW3")
                     .IsFixedLength();
 
+                entity.Property(e => e.NtDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.NtangleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTAngleAxis1");
 
                 entity.Property(e => e.Ntcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTCode");
 
-                entity.Property(e => e.Ntdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("NTDate");
-
                 entity.Property(e => e.Ntdrop1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTDrop1");
 
                 entity.Property(e => e.Nthistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTHistory");
 
                 entity.Property(e => e.Ntseating1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTSeating1");
 
                 entity.Property(e => e.Ntslack1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTSlack1");
 
                 entity.Property(e => e.NttorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("NTTorqueAxis1");
 
@@ -4215,7 +4197,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.OilPump)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.OilPumpAssembly)
@@ -4224,7 +4206,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.ParkingDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PokayokeDate33)
@@ -4288,78 +4270,77 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.RapDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Rapafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPAfter");
 
                 entity.Property(e => e.Rapbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPBefore");
 
                 entity.Property(e => e.Rapcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPCode");
 
                 entity.Property(e => e.Rapcode2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPCode2");
 
-                entity.Property(e => e.Rapdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("RAPDate");
-
                 entity.Property(e => e.RapfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPFinalStroke");
 
                 entity.Property(e => e.Rapload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPLoad");
 
                 entity.Property(e => e.RaploadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPLoadSec");
 
                 entity.Property(e => e.Rapmain2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPMain2Stroke");
 
                 entity.Property(e => e.RapmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPMainStroke");
 
                 entity.Property(e => e.Rapstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPStroke");
 
                 entity.Property(e => e.RapwashMain)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPWashMain");
 
                 entity.Property(e => e.RapwashPos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPWashPos");
 
                 entity.Property(e => e.RapwashSensor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RAPWashSensor");
 
                 entity.Property(e => e.Rcserial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RCSerial");
 
@@ -4368,7 +4349,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.RejectTime)
+                entity.Property(e => e.RejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
@@ -4383,7 +4364,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.RoomTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.RotorCoreTrans)
@@ -4520,7 +4501,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.RrCoverDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.RrcoverSerial)
@@ -4534,27 +4515,27 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("RRopSerial");
 
                 entity.Property(e => e.Rtpcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPCode");
 
                 entity.Property(e => e.RtpfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPFinalStroke");
 
                 entity.Property(e => e.Rtphistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPHistory");
 
                 entity.Property(e => e.Rtpload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPLoad");
 
                 entity.Property(e => e.RtpmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPMainStroke");
 
@@ -4564,7 +4545,7 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("RTPStartDate");
 
                 entity.Property(e => e.Rtpstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RTPStroke");
 
@@ -5248,7 +5229,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.RejectTime)
+                entity.Property(e => e.RejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
@@ -5470,7 +5451,9 @@ namespace Traceability_System.Entity.Model
 
                 entity.Property(e => e.DestinationArea).HasMaxLength(50);
 
-                entity.Property(e => e.LeadTime).HasColumnType("datetime");
+                entity.Property(e => e.LeadTimeDate)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Operator).HasMaxLength(50);
 
@@ -5490,7 +5473,9 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(50)
                     .IsFixedLength();
 
-                entity.Property(e => e.ShippingTime).HasColumnType("datetime");
+                entity.Property(e => e.ShippingTimeDate)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Tatable>(entity =>
@@ -5532,7 +5517,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.CaseDec)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CaseFipgapp)
@@ -5635,7 +5620,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.DefLingDec)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DefTweezersMw)
@@ -5645,7 +5630,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Dfcase)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("DFCase");
 
@@ -5703,11 +5688,6 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DtrayWeight)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("DTrayWeight");
-
                 entity.Property(e => e.EngravingData)
                     .HasMaxLength(17)
                     .IsUnicode(false);
@@ -5729,7 +5709,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.GearDec)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GearPressIn1)
@@ -5743,101 +5723,101 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Hsg1Ab)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Hsg1AB");
 
                 entity.Property(e => e.Hsg1Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Hsg1ABValue");
 
                 entity.Property(e => e.Hsg1AngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis10)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis11)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis7)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis8)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1AngleAxis9)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis10)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis11)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis7)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis8)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1CodeAxis9)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1Date)
@@ -5845,23 +5825,23 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1MeasDate)
@@ -5869,117 +5849,117 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1PtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1PtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg1StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2Ab)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Hsg2AB");
 
                 entity.Property(e => e.Hsg2Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Hsg2ABValue");
 
                 entity.Property(e => e.Hsg2AngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis10)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis11)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis7)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis8)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2AngleAxis9)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis10)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis11)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis7)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis8)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2CodeAxis9)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2Date)
@@ -5987,19 +5967,19 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2MaesDate)
@@ -6007,23 +5987,23 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2PtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2PtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Hsg2StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.HsgBrgPressIn1)
@@ -6037,16 +6017,15 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.HsgDec)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.HsgFigpdate)
+                entity.Property(e => e.HsgFigpDate)
                     .HasMaxLength(17)
-                    .IsUnicode(false)
-                    .HasColumnName("HsgFIGPDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.HsgFigpportrait)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("HsgFIGPPortrait");
 
@@ -6089,565 +6068,565 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.InterNo)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssCol)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssDate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssFunction)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssMg1disUv)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1DisUV");
 
                 entity.Property(e => e.IssMg1disUvdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1DisUVDec");
 
                 entity.Property(e => e.IssMg1disVw)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1DisVW");
 
                 entity.Property(e => e.IssMg1disVwdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1DisVWDec");
 
                 entity.Property(e => e.IssMg1uv)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1UV");
 
                 entity.Property(e => e.IssMg1uvdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1UVDec");
 
                 entity.Property(e => e.IssMg1value)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1Value");
 
                 entity.Property(e => e.IssMg1valueDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1ValueDec");
 
                 entity.Property(e => e.IssMg1vw)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1VW");
 
                 entity.Property(e => e.IssMg1vwdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG1VWDec");
 
                 entity.Property(e => e.IssMg2disUv)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2DisUV");
 
                 entity.Property(e => e.IssMg2disUvdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2DisUVDec");
 
                 entity.Property(e => e.IssMg2disVw)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2DisVW");
 
                 entity.Property(e => e.IssMg2disVwdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2DisVWDec");
 
                 entity.Property(e => e.IssMg2gear)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2Gear");
 
                 entity.Property(e => e.IssMg2gearDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2GearDec");
 
                 entity.Property(e => e.IssMg2uv)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2UV");
 
                 entity.Property(e => e.IssMg2uvdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2UVDec");
 
                 entity.Property(e => e.IssMg2value)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2Value");
 
                 entity.Property(e => e.IssMg2valueDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2ValueDec");
 
                 entity.Property(e => e.IssMg2vw)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2VW");
 
                 entity.Property(e => e.IssMg2vwdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("IssMG2VWDec");
 
                 entity.Property(e => e.IssOilPump)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssOilPumpDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssOilTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssP)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssReliefValve)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssReliefValveDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev1Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev1Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev2Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev2Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev3Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev3Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev4Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev4Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev5Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRev5Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevAvg)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevAvgDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor1Dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor1Hz)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor1dB)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor1rpm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor1sum)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor2Dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor2Hz)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor2dB)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor2rpm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor2sum)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor3Dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor3Hz)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor3dB)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor3rpm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevColor3sum)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevCounter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast1Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast1Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast2Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast2Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast3Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast3Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast4Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast4Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast5Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevLast5Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssRevup)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow1Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow1Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow2Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow2Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow3Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow3Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow4Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow4Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow5Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlow5Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowAvg)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowAvgDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor1Dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor1Hz)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor1dB)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor1rpm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor1sum)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor2Dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor2Hz)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor2dB)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor2rpm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor2sum)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor3Dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor3Hz)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor3dB)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor3rpm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowColor3sum)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowCounter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast1Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast1Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast2Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast2Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast3Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast3Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast4Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast4Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast5Noise)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowLast5Rate)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssSlowup)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.IssnotP)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LabelPrinting)
@@ -6656,11 +6635,11 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.LeakCol)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakCorrect)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakDate)
@@ -6668,271 +6647,271 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakEtaf)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakETAF");
 
                 entity.Property(e => e.LeakFrontOil)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakGear)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakHumidity)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakLastOil)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakMain)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakMg1135)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1135");
 
                 entity.Property(e => e.LeakMg1135dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1135Dec");
 
                 entity.Property(e => e.LeakMg11410)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG11410");
 
                 entity.Property(e => e.LeakMg11410dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG11410Dec");
 
                 entity.Property(e => e.LeakMg196)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG196");
 
                 entity.Property(e => e.LeakMg196dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG196Dec");
 
                 entity.Property(e => e.LeakMg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1Dec");
 
                 entity.Property(e => e.LeakMg1dielectric)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1Dielectric");
 
                 entity.Property(e => e.LeakMg1dielectricDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1DielectricDec");
 
                 entity.Property(e => e.LeakMg1mohm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1Mohm");
 
                 entity.Property(e => e.LeakMg1rotateDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1RotateDec");
 
                 entity.Property(e => e.LeakMg1uv)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1UV");
 
                 entity.Property(e => e.LeakMg1uvdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1UVDec");
 
                 entity.Property(e => e.LeakMg1uw)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1UW");
 
                 entity.Property(e => e.LeakMg1uwdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1UWDec");
 
                 entity.Property(e => e.LeakMg1wmg2v)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1WMG2V");
 
                 entity.Property(e => e.LeakMg1wu)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1WU");
 
                 entity.Property(e => e.LeakMg1wudec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG1WUDec");
 
                 entity.Property(e => e.LeakMg2117)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2117");
 
                 entity.Property(e => e.LeakMg2117dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2117Dec");
 
                 entity.Property(e => e.LeakMg232)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG232");
 
                 entity.Property(e => e.LeakMg232dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG232Dec");
 
                 entity.Property(e => e.LeakMg281)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG281");
 
                 entity.Property(e => e.LeakMg281dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG281Dec");
 
                 entity.Property(e => e.LeakMg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2Dec");
 
                 entity.Property(e => e.LeakMg2dielectric)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2Dielectric");
 
                 entity.Property(e => e.LeakMg2dielectricDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2DielectricDec");
 
                 entity.Property(e => e.LeakMg2mohm)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2Mohm");
 
                 entity.Property(e => e.LeakMg2rotateDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2RotateDec");
 
                 entity.Property(e => e.LeakMg2uv)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2UV");
 
                 entity.Property(e => e.LeakMg2uvdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2UVDec");
 
                 entity.Property(e => e.LeakMg2uw)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2UW");
 
                 entity.Property(e => e.LeakMg2uwdec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2UWDec");
 
                 entity.Property(e => e.LeakMg2wu)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2WU");
 
                 entity.Property(e => e.LeakMg2wudec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakMG2WUDec");
 
                 entity.Property(e => e.LeakOil)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakOilLine)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakOilLineDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakOilTempDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakOilTempMohmDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakResolver)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakResolverDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakTempDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakThermistor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakThermistorDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LeakThermistorMg1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakThermistorMG1");
 
                 entity.Property(e => e.LeakThermistorMg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakThermistorMG1Dec");
 
                 entity.Property(e => e.LeakThermistorMg2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakThermistorMG2");
 
                 entity.Property(e => e.LeakThermistorMg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("LeakThermistorMG2Dec");
 
                 entity.Property(e => e.LineDec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.LubPipeAssem)
@@ -6946,7 +6925,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Mg1rotorDec)
-                    .HasMaxLength(4)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1RotorDec");
 
@@ -6961,12 +6940,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MG1SSerial");
 
                 entity.Property(e => e.Mg1statorDec)
-                    .HasMaxLength(4)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG1StatorDec");
 
                 entity.Property(e => e.Mg2rotorDec)
-                    .HasMaxLength(4)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2RotorDec");
 
@@ -6981,7 +6960,7 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("MG2SSerial");
 
                 entity.Property(e => e.Mg2statorDec)
-                    .HasMaxLength(4)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("MG2StatorDec");
 
@@ -7180,7 +7159,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.OilPump)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.OilPumpAssembly)
@@ -7189,7 +7168,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.Os1abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1ABValue");
 
@@ -7199,52 +7178,52 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("OS1Date");
 
                 entity.Property(e => e.Os1lhfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1LHFinalLoad");
 
                 entity.Property(e => e.Os1lhfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1LHFinalStroke");
 
                 entity.Property(e => e.Os1lhload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1LHLoad");
 
                 entity.Property(e => e.Os1lhstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1LHStroke");
 
                 entity.Property(e => e.Os1mainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1MainStroke");
 
                 entity.Property(e => e.Os1rhfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1RHFinalLoad");
 
                 entity.Property(e => e.Os1rhfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1RHFinalStroke");
 
                 entity.Property(e => e.Os1rhload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1RHLoad");
 
                 entity.Property(e => e.Os1rhstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS1RHStroke");
 
                 entity.Property(e => e.Os2abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS2ABValue");
 
@@ -7254,32 +7233,32 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("OS2Date");
 
                 entity.Property(e => e.Os2finalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS2FinalLoad");
 
                 entity.Property(e => e.Os2finalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS2FinalStroke");
 
                 entity.Property(e => e.Os2mainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS2MainStroke");
 
                 entity.Property(e => e.Os2ptLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS2PtLoad");
 
                 entity.Property(e => e.Os2stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("OS2Stroke");
 
                 entity.Property(e => e.ParkingDec)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.PokayokeDate15)
@@ -7504,7 +7483,7 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.RrCoverDec)
-                    .HasMaxLength(2)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.RrcoverSerial)
@@ -7523,43 +7502,43 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.ShimCaset2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimCaset4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimGear)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimGrade)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimGradeCo)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimGradeIn)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimHsgt1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimHsgt3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimHsgt5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimHsgt7)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimMeasDate)
@@ -7572,79 +7551,79 @@ namespace Traceability_System.Entity.Model
                     .IsFixedLength();
 
                 entity.Property(e => e.ShimShellt6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimShellt8)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimSlider)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimValueCo)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimValueDiff)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimValueIn)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShimValuePin)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt1Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt1t2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt2Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt3Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt3t4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt4Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt5Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt5t6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt6Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt7Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt7t8)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Shimt8Main)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ShipmentSerial)
@@ -7682,10 +7661,18 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(17)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Tray)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.VisualInsp)
                     .HasMaxLength(1)
                     .IsUnicode(false)
                     .IsFixedLength();
+
+                entity.Property(e => e.Weight)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Vw1RotorTable>(entity =>
@@ -7694,58 +7681,57 @@ namespace Traceability_System.Entity.Model
 
                 entity.ToView("vw1_RotorTable");
 
+                entity.Property(e => e.Ro1ApiDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ro1Apicode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APICode");
 
                 entity.Property(e => e.Ro1ApicoreTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APICoreTemp");
 
-                entity.Property(e => e.Ro1Apidate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1APIDate");
-
                 entity.Property(e => e.Ro1ApideviationLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIDeviationLoad");
 
                 entity.Property(e => e.Ro1ApifinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIFinalStroke");
 
                 entity.Property(e => e.Ro1ApiinitTilt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIInitTilt");
 
                 entity.Property(e => e.Ro1Apiload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APILoad");
 
                 entity.Property(e => e.Ro1Apimachine)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIMachine");
 
                 entity.Property(e => e.Ro1ApimainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIMainStroke");
 
                 entity.Property(e => e.Ro1Apipos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIPos");
 
                 entity.Property(e => e.Ro1Apistroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1APIStroke");
 
@@ -7754,227 +7740,314 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("Ro1APISTTime");
 
-                entity.Property(e => e.Ro1Asldate)
+                entity.Property(e => e.Ro1AslDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1ASLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro1AxisSerial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1AxisTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Cdtemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1CDTemp");
 
+                entity.Property(e => e.Ro1CollectionDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Ro1CoreAfter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1CoreBefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro1CoverSubIdsetSpare)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1CoverSubIDSetSpare")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1CoverSubMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1CoverSubMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubMw3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1CoverSubMW3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubMw4)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1CoverSubMW4")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubRrCovBrgPressEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubRrCovSetDmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1CoverSubRrCovSetDMRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubRrRevEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1CoverSubWaterConnTighten)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DamperImage)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DefDfcaseRead)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1DefDFCaseRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DefDfpinionShaftEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1DefDFPinionShaftEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DefDiffOperMeasureEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DefDiffPinionPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DefTweezersMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1DefTweezersMW")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro1Detection1)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Detection2)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ro1Df1Date)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Df1abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1ABValue");
 
                 entity.Property(e => e.Ro1Df1angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1AngleAxis1");
 
                 entity.Property(e => e.Ro1Df1angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1AngleAxis2");
 
                 entity.Property(e => e.Ro1Df1angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1AngleAxis3");
 
                 entity.Property(e => e.Ro1Df1angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1AngleAxis4");
 
                 entity.Property(e => e.Ro1Df1angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1AngleAxis5");
 
                 entity.Property(e => e.Ro1Df1angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1AngleAxis6");
 
                 entity.Property(e => e.Ro1Df1codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1CodeAxis1");
 
                 entity.Property(e => e.Ro1Df1codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1CodeAxis2");
 
                 entity.Property(e => e.Ro1Df1codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1CodeAxis3");
 
                 entity.Property(e => e.Ro1Df1codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1CodeAxis4");
 
                 entity.Property(e => e.Ro1Df1codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1CodeAxis5");
 
                 entity.Property(e => e.Ro1Df1codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF1CodeAxis6");
 
-                entity.Property(e => e.Ro1Df1date)
+                entity.Property(e => e.Ro1Df2Date)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1DF1Date");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Df2abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2ABValue");
 
                 entity.Property(e => e.Ro1Df2angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2AngleAxis1");
 
                 entity.Property(e => e.Ro1Df2angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2AngleAxis2");
 
                 entity.Property(e => e.Ro1Df2angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2AngleAxis3");
 
                 entity.Property(e => e.Ro1Df2angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2AngleAxis4");
 
                 entity.Property(e => e.Ro1Df2angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2AngleAxis5");
 
                 entity.Property(e => e.Ro1Df2angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2AngleAxis6");
 
                 entity.Property(e => e.Ro1Df2codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2CodeAxis1");
 
                 entity.Property(e => e.Ro1Df2codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2CodeAxis2");
 
                 entity.Property(e => e.Ro1Df2codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2CodeAxis3");
 
                 entity.Property(e => e.Ro1Df2codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2CodeAxis4");
 
                 entity.Property(e => e.Ro1Df2codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2CodeAxis5");
 
                 entity.Property(e => e.Ro1Df2codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DF2CodeAxis6");
 
-                entity.Property(e => e.Ro1Df2date)
+                entity.Property(e => e.Ro1DfbrgDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1DF2Date");
-
-                entity.Property(e => e.Ro1Dfbrgdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1DFBRGDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DfbrgfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGFinalLoad");
 
                 entity.Property(e => e.Ro1DfbrgfinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGFinalLoadSec");
 
                 entity.Property(e => e.Ro1DfbrgfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGFinalStroke");
 
                 entity.Property(e => e.Ro1DfbrgfinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGFinalStrokeSec");
 
                 entity.Property(e => e.Ro1Dfbrgload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGLoad");
 
                 entity.Property(e => e.Ro1DfbrgloadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGLoadSec");
 
                 entity.Property(e => e.Ro1DfbrgmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGMainStroke");
 
                 entity.Property(e => e.Ro1Dfbrgstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGStroke");
 
                 entity.Property(e => e.Ro1DfbrgstrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DFBRGStrokeSec");
 
@@ -7984,12 +8057,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro1DFReverseDate");
 
                 entity.Property(e => e.Ro1Dgaload3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGALoad3Axis");
 
                 entity.Property(e => e.Ro1Dgaload4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGALoad4Axis");
 
@@ -7999,50 +8072,71 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro1DGAMeasDate");
 
                 entity.Property(e => e.Ro1Dgapos3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGAPos3Axis");
 
                 entity.Property(e => e.Ro1Dgapos4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGAPos4Axis");
 
                 entity.Property(e => e.Ro1Dgmdagjudge)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGMDAGJudge");
 
                 entity.Property(e => e.Ro1DgmlhRh)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGMLhRh");
 
                 entity.Property(e => e.Ro1DgmmaxTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGMMaxTorque");
 
-                entity.Property(e => e.Ro1DgmmeasTime)
+                entity.Property(e => e.Ro1DgmmeasTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("Ro1DGMMeasTime");
+                    .HasColumnName("Ro1DGMMeasTimeDate");
 
                 entity.Property(e => e.Ro1DgmminTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DGMMinTorque");
 
+                entity.Property(e => e.Ro1DiffBoltTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DiffBoltTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1DiffBrgPressIn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1Dmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1DMRead")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro1DpnfFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpnfFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpnfMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpnfMeasDate)
@@ -8050,7 +8144,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntAngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntDate)
@@ -8058,42 +8152,42 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntDrop)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntJudgment)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntSeating)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntSlack)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1DpntTorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Dprfrl)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DPRFRL");
 
                 entity.Property(e => e.Ro1Dprfrs)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1DPRFRS");
 
-                entity.Property(e => e.Ro1DprmeasTime)
-                    .HasMaxLength(10)
+                entity.Property(e => e.Ro1DprmeasTimeDate)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("Ro1DPRMeasTime");
+                    .HasColumnName("Ro1DPRMeasTimeDate");
 
                 entity.Property(e => e.Ro1Gear2Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1Gear2ABValue");
 
@@ -8102,84 +8196,94 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2Load)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2LoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Gear2StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearAbvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1GearABValue");
 
                 entity.Property(e => e.Ro1GearFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearMeasDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro1GearPressIn1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1GearPressIn2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro1GearStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1GearStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HeatEndTime)
@@ -8187,15 +8291,15 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HeatOutput)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HeatProcedure)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HeatSt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1HeatST");
 
@@ -8204,76 +8308,75 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgInflectPtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgInflectPtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgInflectPtStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgInflectPtStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgMaasterStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1HsgBrgMeasDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Ro1Ictldate)
+                entity.Property(e => e.Ro1IctlDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1ICTLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Ihafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1IHAfter");
 
                 entity.Property(e => e.Ro1Ihbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1IHBefore");
 
                 entity.Property(e => e.Ro1IsRcheat)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1IsRCHeat");
 
                 entity.Property(e => e.Ro1JudgmentCode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro1Mg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1MG1Dec");
 
                 entity.Property(e => e.Ro1Mg1fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1MG1FluxValue");
 
@@ -8283,62 +8386,223 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro1MG1RSerial");
 
                 entity.Property(e => e.Ro1Mg1workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1MG1WorkTemp");
 
                 entity.Property(e => e.Ro1Mg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1MG2Dec");
 
                 entity.Property(e => e.Ro1Mg2fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1MG2FluxValue");
 
                 entity.Property(e => e.Ro1Mg2workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1MG2WorkTemp");
 
+                entity.Property(e => e.Ro1MotorCoolPipeMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorCoolPipeMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorCoolPipeMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorCoolPipeMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorFipgapp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorFIPGApp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorHarnEscMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorHarnEscMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorHsgSrfBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorHsgSrfBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorHsgSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorHsgSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorInvMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorInvMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMg12rotorAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMG12RotorAssem")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMg12statorTightAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMG12StatorTightAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMg1statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMG1StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMg2statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMG2StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMtrCode)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMwco0)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMWCo0")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMwco1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMWCo1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMwco2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMWCo2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorMwco3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorMWCo3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorPrevStn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorRrCoverAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorRrCoverSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorRrCoverSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorRrCoverSrfOutBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorRrCoverSrfOutBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorRrCoverTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorRrCoverTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorSngen)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorSNGen")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorTermBoardMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorTermBoardMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1MotorThermMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1MotorThermMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1NtDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ro1NtangleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTAngleAxis1");
 
                 entity.Property(e => e.Ro1Ntcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTCode");
 
-                entity.Property(e => e.Ro1Ntdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1NTDate");
-
                 entity.Property(e => e.Ro1Ntdrop1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTDrop1");
 
                 entity.Property(e => e.Ro1Nthistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTHistory");
 
                 entity.Property(e => e.Ro1Ntseating1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTSeating1");
 
                 entity.Property(e => e.Ro1Ntslack1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTSlack1");
 
                 entity.Property(e => e.Ro1NttorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1NTTorqueAxis1");
 
@@ -8398,111 +8662,248 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro1RapDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ro1Rapafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPAfter");
 
                 entity.Property(e => e.Ro1Rapbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPBefore");
 
                 entity.Property(e => e.Ro1Rapcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPCode");
 
                 entity.Property(e => e.Ro1Rapcode2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPCode2");
 
-                entity.Property(e => e.Ro1Rapdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro1RAPDate");
-
                 entity.Property(e => e.Ro1RapfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPFinalStroke");
 
                 entity.Property(e => e.Ro1Rapload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPLoad");
 
                 entity.Property(e => e.Ro1RaploadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPLoadSec");
 
                 entity.Property(e => e.Ro1Rapmain2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPMain2Stroke");
 
                 entity.Property(e => e.Ro1RapmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPMainStroke");
 
                 entity.Property(e => e.Ro1Rapstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPStroke");
 
                 entity.Property(e => e.Ro1RapwashMain)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPWashMain");
 
                 entity.Property(e => e.Ro1RapwashPos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPWashPos");
 
                 entity.Property(e => e.Ro1RapwashSensor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RAPWashSensor");
 
                 entity.Property(e => e.Ro1Rcserial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RCSerial");
 
-                entity.Property(e => e.Ro1RejectTime)
+                entity.Property(e => e.Ro1RejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro1RevRivetConfirm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro1RoomTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro1RotorCoreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorExtractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorForeignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorHeating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorMagnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorNutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorNutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorNutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorResolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorShaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorShaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorShippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2coreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2CoreTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2extractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2ExtractionInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2foreignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2ForeignSuction")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2heating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2Heating")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2magnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2Magnetization")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2nutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2NutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2nutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2NutTight")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2reject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2Reject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2resolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2ResolverPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2shaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2ShaftPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2shaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2ShaftTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1RotorTamg2shippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1RotorTAMG2ShippingInsp")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro1Rtpcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RTPCode");
 
                 entity.Property(e => e.Ro1RtpfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RTPFinalStroke");
 
                 entity.Property(e => e.Ro1Rtphistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RTPHistory");
 
                 entity.Property(e => e.Ro1Rtpload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RTPLoad");
 
                 entity.Property(e => e.Ro1RtpmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RTPMainStroke");
 
@@ -8512,9 +8913,21 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro1RTPStartDate");
 
                 entity.Property(e => e.Ro1Rtpstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro1RTPStroke");
+
+                entity.Property(e => e.Ro1Slnffastening)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1SLNFFastening")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro1Slnfriveting)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro1SLNFRiveting")
+                    .IsFixedLength();
 
                 entity.Property(e => e.Ro1UpenderDate)
                     .HasMaxLength(20)
@@ -8527,58 +8940,57 @@ namespace Traceability_System.Entity.Model
 
                 entity.ToView("vw2_RotorTable");
 
+                entity.Property(e => e.Ro2ApiDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ro2Apicode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APICode");
 
                 entity.Property(e => e.Ro2ApicoreTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APICoreTemp");
 
-                entity.Property(e => e.Ro2Apidate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2APIDate");
-
                 entity.Property(e => e.Ro2ApideviationLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIDeviationLoad");
 
                 entity.Property(e => e.Ro2ApifinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIFinalStroke");
 
                 entity.Property(e => e.Ro2ApiinitTilt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIInitTilt");
 
                 entity.Property(e => e.Ro2Apiload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APILoad");
 
                 entity.Property(e => e.Ro2Apimachine)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIMachine");
 
                 entity.Property(e => e.Ro2ApimainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIMainStroke");
 
                 entity.Property(e => e.Ro2Apipos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIPos");
 
                 entity.Property(e => e.Ro2Apistroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2APIStroke");
 
@@ -8587,227 +8999,314 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("Ro2APISTTime");
 
-                entity.Property(e => e.Ro2Asldate)
+                entity.Property(e => e.Ro2AslDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2ASLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro2AxisSerial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2AxisTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Cdtemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2CDTemp");
 
+                entity.Property(e => e.Ro2CollectionDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Ro2CoreAfter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2CoreBefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro2CoverSubIdsetSpare)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2CoverSubIDSetSpare")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2CoverSubMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2CoverSubMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubMw3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2CoverSubMW3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubMw4)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2CoverSubMW4")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubRrCovBrgPressEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubRrCovSetDmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2CoverSubRrCovSetDMRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubRrRevEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2CoverSubWaterConnTighten)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DamperImage)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DefDfcaseRead)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2DefDFCaseRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DefDfpinionShaftEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2DefDFPinionShaftEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DefDiffOperMeasureEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DefDiffPinionPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DefTweezersMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2DefTweezersMW")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro2Detection1)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Detection2)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ro2Df1Date)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Df1abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1ABValue");
 
                 entity.Property(e => e.Ro2Df1angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1AngleAxis1");
 
                 entity.Property(e => e.Ro2Df1angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1AngleAxis2");
 
                 entity.Property(e => e.Ro2Df1angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1AngleAxis3");
 
                 entity.Property(e => e.Ro2Df1angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1AngleAxis4");
 
                 entity.Property(e => e.Ro2Df1angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1AngleAxis5");
 
                 entity.Property(e => e.Ro2Df1angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1AngleAxis6");
 
                 entity.Property(e => e.Ro2Df1codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1CodeAxis1");
 
                 entity.Property(e => e.Ro2Df1codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1CodeAxis2");
 
                 entity.Property(e => e.Ro2Df1codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1CodeAxis3");
 
                 entity.Property(e => e.Ro2Df1codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1CodeAxis4");
 
                 entity.Property(e => e.Ro2Df1codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1CodeAxis5");
 
                 entity.Property(e => e.Ro2Df1codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF1CodeAxis6");
 
-                entity.Property(e => e.Ro2Df1date)
+                entity.Property(e => e.Ro2Df2Date)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2DF1Date");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Df2abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2ABValue");
 
                 entity.Property(e => e.Ro2Df2angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2AngleAxis1");
 
                 entity.Property(e => e.Ro2Df2angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2AngleAxis2");
 
                 entity.Property(e => e.Ro2Df2angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2AngleAxis3");
 
                 entity.Property(e => e.Ro2Df2angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2AngleAxis4");
 
                 entity.Property(e => e.Ro2Df2angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2AngleAxis5");
 
                 entity.Property(e => e.Ro2Df2angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2AngleAxis6");
 
                 entity.Property(e => e.Ro2Df2codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2CodeAxis1");
 
                 entity.Property(e => e.Ro2Df2codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2CodeAxis2");
 
                 entity.Property(e => e.Ro2Df2codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2CodeAxis3");
 
                 entity.Property(e => e.Ro2Df2codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2CodeAxis4");
 
                 entity.Property(e => e.Ro2Df2codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2CodeAxis5");
 
                 entity.Property(e => e.Ro2Df2codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DF2CodeAxis6");
 
-                entity.Property(e => e.Ro2Df2date)
+                entity.Property(e => e.Ro2DfbrgDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2DF2Date");
-
-                entity.Property(e => e.Ro2Dfbrgdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2DFBRGDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DfbrgfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGFinalLoad");
 
                 entity.Property(e => e.Ro2DfbrgfinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGFinalLoadSec");
 
                 entity.Property(e => e.Ro2DfbrgfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGFinalStroke");
 
                 entity.Property(e => e.Ro2DfbrgfinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGFinalStrokeSec");
 
                 entity.Property(e => e.Ro2Dfbrgload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGLoad");
 
                 entity.Property(e => e.Ro2DfbrgloadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGLoadSec");
 
                 entity.Property(e => e.Ro2DfbrgmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGMainStroke");
 
                 entity.Property(e => e.Ro2Dfbrgstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGStroke");
 
                 entity.Property(e => e.Ro2DfbrgstrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DFBRGStrokeSec");
 
@@ -8817,12 +9316,12 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro2DFReverseDate");
 
                 entity.Property(e => e.Ro2Dgaload3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGALoad3Axis");
 
                 entity.Property(e => e.Ro2Dgaload4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGALoad4Axis");
 
@@ -8832,50 +9331,71 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro2DGAMeasDate");
 
                 entity.Property(e => e.Ro2Dgapos3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGAPos3Axis");
 
                 entity.Property(e => e.Ro2Dgapos4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGAPos4Axis");
 
                 entity.Property(e => e.Ro2Dgmdagjudge)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGMDAGJudge");
 
                 entity.Property(e => e.Ro2DgmlhRh)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGMLhRh");
 
                 entity.Property(e => e.Ro2DgmmaxTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGMMaxTorque");
 
-                entity.Property(e => e.Ro2DgmmeasTime)
+                entity.Property(e => e.Ro2DgmmeasTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("Ro2DGMMeasTime");
+                    .HasColumnName("Ro2DGMMeasTimeDate");
 
                 entity.Property(e => e.Ro2DgmminTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DGMMinTorque");
 
+                entity.Property(e => e.Ro2DiffBoltTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DiffBoltTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2DiffBrgPressIn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2Dmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2DMRead")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro2DpnfFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpnfFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpnfMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpnfMeasDate)
@@ -8883,7 +9403,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntAngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntDate)
@@ -8891,42 +9411,42 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntDrop)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntJudgment)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntSeating)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntSlack)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2DpntTorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Dprfrl)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DPRFRL");
 
                 entity.Property(e => e.Ro2Dprfrs)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2DPRFRS");
 
-                entity.Property(e => e.Ro2DprmeasTime)
-                    .HasMaxLength(10)
+                entity.Property(e => e.Ro2DprmeasTimeDate)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("Ro2DPRMeasTime");
+                    .HasColumnName("Ro2DPRMeasTimeDate");
 
                 entity.Property(e => e.Ro2Gear2Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2Gear2ABValue");
 
@@ -8935,84 +9455,94 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2Load)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2LoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Gear2StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearAbvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2GearABValue");
 
                 entity.Property(e => e.Ro2GearFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearMeasDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro2GearPressIn1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2GearPressIn2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro2GearStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2GearStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HeatEndTime)
@@ -9020,15 +9550,15 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HeatOutput)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HeatProcedure)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HeatSt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2HeatST");
 
@@ -9037,76 +9567,75 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgInflectPtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgInflectPtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgInflectPtStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgInflectPtStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgMaasterStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2HsgBrgMeasDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Ro2Ictldate)
+                entity.Property(e => e.Ro2IctlDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2ICTLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Ihafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2IHAfter");
 
                 entity.Property(e => e.Ro2Ihbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2IHBefore");
 
                 entity.Property(e => e.Ro2IsRcheat)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2IsRCHeat");
 
                 entity.Property(e => e.Ro2JudgmentCode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Ro2Mg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2MG1Dec");
 
                 entity.Property(e => e.Ro2Mg1fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2MG1FluxValue");
 
@@ -9116,62 +9645,223 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro2MG1RSerial");
 
                 entity.Property(e => e.Ro2Mg1workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2MG1WorkTemp");
 
                 entity.Property(e => e.Ro2Mg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2MG2Dec");
 
                 entity.Property(e => e.Ro2Mg2fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2MG2FluxValue");
 
                 entity.Property(e => e.Ro2Mg2workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2MG2WorkTemp");
 
+                entity.Property(e => e.Ro2MotorCoolPipeMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorCoolPipeMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorCoolPipeMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorCoolPipeMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorFipgapp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorFIPGApp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorHarnEscMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorHarnEscMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorHsgSrfBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorHsgSrfBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorHsgSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorHsgSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorInvMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorInvMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMg12rotorAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMG12RotorAssem")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMg12statorTightAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMG12StatorTightAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMg1statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMG1StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMg2statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMG2StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMtrCode)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMwco0)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMWCo0")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMwco1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMWCo1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMwco2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMWCo2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorMwco3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorMWCo3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorPrevStn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorRrCoverAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorRrCoverSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorRrCoverSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorRrCoverSrfOutBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorRrCoverSrfOutBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorRrCoverTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorRrCoverTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorSngen)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorSNGen")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorTermBoardMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorTermBoardMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2MotorThermMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2MotorThermMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2NtDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ro2NtangleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTAngleAxis1");
 
                 entity.Property(e => e.Ro2Ntcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTCode");
 
-                entity.Property(e => e.Ro2Ntdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2NTDate");
-
                 entity.Property(e => e.Ro2Ntdrop1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTDrop1");
 
                 entity.Property(e => e.Ro2Nthistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTHistory");
 
                 entity.Property(e => e.Ro2Ntseating1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTSeating1");
 
                 entity.Property(e => e.Ro2Ntslack1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTSlack1");
 
                 entity.Property(e => e.Ro2NttorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2NTTorqueAxis1");
 
@@ -9231,111 +9921,248 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro2RapDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Ro2Rapafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPAfter");
 
                 entity.Property(e => e.Ro2Rapbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPBefore");
 
                 entity.Property(e => e.Ro2Rapcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPCode");
 
                 entity.Property(e => e.Ro2Rapcode2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPCode2");
 
-                entity.Property(e => e.Ro2Rapdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("Ro2RAPDate");
-
                 entity.Property(e => e.Ro2RapfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPFinalStroke");
 
                 entity.Property(e => e.Ro2Rapload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPLoad");
 
                 entity.Property(e => e.Ro2RaploadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPLoadSec");
 
                 entity.Property(e => e.Ro2Rapmain2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPMain2Stroke");
 
                 entity.Property(e => e.Ro2RapmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPMainStroke");
 
                 entity.Property(e => e.Ro2Rapstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPStroke");
 
                 entity.Property(e => e.Ro2RapwashMain)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPWashMain");
 
                 entity.Property(e => e.Ro2RapwashPos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPWashPos");
 
                 entity.Property(e => e.Ro2RapwashSensor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RAPWashSensor");
 
                 entity.Property(e => e.Ro2Rcserial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RCSerial");
 
-                entity.Property(e => e.Ro2RejectTime)
+                entity.Property(e => e.Ro2RejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro2RevRivetConfirm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro2RoomTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Ro2RotorCoreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorExtractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorForeignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorHeating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorMagnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorNutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorNutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorNutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorResolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorShaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorShaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorShippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2coreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2CoreTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2extractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2ExtractionInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2foreignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2ForeignSuction")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2heating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2Heating")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2magnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2Magnetization")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2nutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2NutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2nutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2NutTight")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2reject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2Reject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2resolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2ResolverPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2shaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2ShaftPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2shaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2ShaftTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2RotorTamg2shippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2RotorTAMG2ShippingInsp")
+                    .IsFixedLength();
+
                 entity.Property(e => e.Ro2Rtpcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RTPCode");
 
                 entity.Property(e => e.Ro2RtpfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RTPFinalStroke");
 
                 entity.Property(e => e.Ro2Rtphistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RTPHistory");
 
                 entity.Property(e => e.Ro2Rtpload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RTPLoad");
 
                 entity.Property(e => e.Ro2RtpmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RTPMainStroke");
 
@@ -9345,9 +10172,21 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("Ro2RTPStartDate");
 
                 entity.Property(e => e.Ro2Rtpstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("Ro2RTPStroke");
+
+                entity.Property(e => e.Ro2Slnffastening)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2SLNFFastening")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ro2Slnfriveting)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("Ro2SLNFRiveting")
+                    .IsFixedLength();
 
                 entity.Property(e => e.Ro2UpenderDate)
                     .HasMaxLength(20)
@@ -9361,12 +10200,12 @@ namespace Traceability_System.Entity.Model
                 entity.ToView("vw_GearTable");
 
                 entity.Property(e => e.GeApicode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPICode");
 
                 entity.Property(e => e.GeApicoreTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPICoreTemp");
 
@@ -9376,42 +10215,42 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("GeAPIDate");
 
                 entity.Property(e => e.GeApideviationLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIDeviationLoad");
 
                 entity.Property(e => e.GeApifinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIFinalStroke");
 
                 entity.Property(e => e.GeApiinitTilt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIInitTilt");
 
                 entity.Property(e => e.GeApiload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPILoad");
 
                 entity.Property(e => e.GeApimachine)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIMachine");
 
                 entity.Property(e => e.GeApimainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIMainStroke");
 
                 entity.Property(e => e.GeApipos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIPos");
 
                 entity.Property(e => e.GeApistroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeAPIStroke");
 
@@ -9420,223 +10259,310 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("GeAPISTTime");
 
-                entity.Property(e => e.GeAsldate)
+                entity.Property(e => e.GeAslDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeASLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.GeAxisSerial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeAxisTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeCdtemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeCDTemp");
 
+                entity.Property(e => e.GeCollectionDate).HasColumnType("datetime");
+
                 entity.Property(e => e.GeContact)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeCoreAfter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeCoreBefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GeCoverSubIdsetSpare)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeCoverSubIDSetSpare")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeCoverSubMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeCoverSubMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubMw3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeCoverSubMW3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubMw4)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeCoverSubMW4")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubRrCovBrgPressEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubRrCovSetDmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeCoverSubRrCovSetDMRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubRrRevEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeCoverSubWaterConnTighten)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDamperImage)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDefDfcaseRead)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeDefDFCaseRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDefDfpinionShaftEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeDefDFPinionShaftEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDefDiffOperMeasureEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDefDiffPinionPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDefTweezersMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeDefTweezersMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDf1Date)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDf1abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1ABValue");
 
                 entity.Property(e => e.GeDf1angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1AngleAxis1");
 
                 entity.Property(e => e.GeDf1angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1AngleAxis2");
 
                 entity.Property(e => e.GeDf1angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1AngleAxis3");
 
                 entity.Property(e => e.GeDf1angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1AngleAxis4");
 
                 entity.Property(e => e.GeDf1angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1AngleAxis5");
 
                 entity.Property(e => e.GeDf1angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1AngleAxis6");
 
                 entity.Property(e => e.GeDf1codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1CodeAxis1");
 
                 entity.Property(e => e.GeDf1codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1CodeAxis2");
 
                 entity.Property(e => e.GeDf1codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1CodeAxis3");
 
                 entity.Property(e => e.GeDf1codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1CodeAxis4");
 
                 entity.Property(e => e.GeDf1codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1CodeAxis5");
 
                 entity.Property(e => e.GeDf1codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF1CodeAxis6");
 
-                entity.Property(e => e.GeDf1date)
+                entity.Property(e => e.GeDf2Date)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeDF1Date");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.GeDf2abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2ABValue");
 
                 entity.Property(e => e.GeDf2angleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2AngleAxis1");
 
                 entity.Property(e => e.GeDf2angleAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2AngleAxis2");
 
                 entity.Property(e => e.GeDf2angleAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2AngleAxis3");
 
                 entity.Property(e => e.GeDf2angleAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2AngleAxis4");
 
                 entity.Property(e => e.GeDf2angleAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2AngleAxis5");
 
                 entity.Property(e => e.GeDf2angleAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2AngleAxis6");
 
                 entity.Property(e => e.GeDf2codeAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2CodeAxis1");
 
                 entity.Property(e => e.GeDf2codeAxis2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2CodeAxis2");
 
                 entity.Property(e => e.GeDf2codeAxis3)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2CodeAxis3");
 
                 entity.Property(e => e.GeDf2codeAxis4)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2CodeAxis4");
 
                 entity.Property(e => e.GeDf2codeAxis5)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2CodeAxis5");
 
                 entity.Property(e => e.GeDf2codeAxis6)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDF2CodeAxis6");
 
-                entity.Property(e => e.GeDf2date)
+                entity.Property(e => e.GeDfbrgDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeDF2Date");
-
-                entity.Property(e => e.GeDfbrgdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeDFBRGDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.GeDfbrgfinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGFinalLoad");
 
                 entity.Property(e => e.GeDfbrgfinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGFinalLoadSec");
 
                 entity.Property(e => e.GeDfbrgfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGFinalStroke");
 
                 entity.Property(e => e.GeDfbrgfinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGFinalStrokeSec");
 
                 entity.Property(e => e.GeDfbrgload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGLoad");
 
                 entity.Property(e => e.GeDfbrgloadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGLoadSec");
 
                 entity.Property(e => e.GeDfbrgmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGMainStroke");
 
                 entity.Property(e => e.GeDfbrgstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGStroke");
 
                 entity.Property(e => e.GeDfbrgstrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDFBRGStrokeSec");
 
@@ -9645,17 +10571,18 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("GeDFReverseDate");
 
-                entity.Property(e => e.GeDorpinSerial)
+                entity.Property(e => e.GeDfringSerial)
                     .HasMaxLength(20)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasColumnName("GeDFRingSerial");
 
                 entity.Property(e => e.GeDgaload3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGALoad3Axis");
 
                 entity.Property(e => e.GeDgaload4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGALoad4Axis");
 
@@ -9665,27 +10592,27 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("GeDGAMeasDate");
 
                 entity.Property(e => e.GeDgapos3Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGAPos3Axis");
 
                 entity.Property(e => e.GeDgapos4Axis)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGAPos4Axis");
 
                 entity.Property(e => e.GeDgmdagjudge)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGMDAGJudge");
 
                 entity.Property(e => e.GeDgmlhRh)
-                    .HasMaxLength(15)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGMLhRh");
 
                 entity.Property(e => e.GeDgmmaxTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGMMaxTorque");
 
@@ -9695,20 +10622,46 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("GeDGMMeasDate");
 
                 entity.Property(e => e.GeDgmminTorque)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDGMMinTorque");
 
+                entity.Property(e => e.GeDgmrh)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("GeDGMRh");
+
+                entity.Property(e => e.GeDiffBoltTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDiffBoltTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDiffBrgPressIn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeDmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeDMRead")
+                    .IsFixedLength();
+
                 entity.Property(e => e.GeDpnfFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpnfFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpnfMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpnfMeasDate)
@@ -9716,7 +10669,7 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntAngleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntDate)
@@ -9724,32 +10677,32 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntDrop)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntJudgment)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntSeating)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntSlack)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDpntTorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeDprfrl)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDPRFRL");
 
                 entity.Property(e => e.GeDprfrs)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeDPRFRS");
 
@@ -9759,7 +10712,7 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("GeDPRMeasDate");
 
                 entity.Property(e => e.GeGear2Abvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeGear2ABValue");
 
@@ -9768,100 +10721,110 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2FinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2FinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2FinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2FinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2Load)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2LoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2MainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGear2StrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearAbvalue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeGearABValue");
 
                 entity.Property(e => e.GeGearFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearMainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearMeasDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.GeGearPressIn1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeGearPressIn2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.GeGearStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeGearStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHeatEndTime)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHeatOutput)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHeatProcedure)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHeatSt)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeHeatST");
 
@@ -9870,141 +10833,301 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgFinalLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgFinalLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgFinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgFinalStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgInflectPtLoad)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgInflectPtLoadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgInflectPtStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgInflectPtStrokeSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgMaasterStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeHsgBrgMeasDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.GeIctldate)
+                entity.Property(e => e.GeIctlDate)
                     .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeICTLDate");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.GeIhafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeIHAfter");
 
                 entity.Property(e => e.GeIhbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeIHBefore");
 
                 entity.Property(e => e.GeIsRcheat)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeIsRCHeat");
 
                 entity.Property(e => e.GeJudgmentCode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GeMg1dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeMG1Dec");
 
                 entity.Property(e => e.GeMg1fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeMG1FluxValue");
 
                 entity.Property(e => e.GeMg1workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeMG1WorkTemp");
 
                 entity.Property(e => e.GeMg2dec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeMG2Dec");
 
                 entity.Property(e => e.GeMg2fluxValue)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeMG2FluxValue");
 
                 entity.Property(e => e.GeMg2workTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeMG2WorkTemp");
 
+                entity.Property(e => e.GeMotorCoolPipeMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorCoolPipeMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorCoolPipeMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorCoolPipeMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorFipgapp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorFIPGApp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorHarnEscMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorHarnEscMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorHsgSrfBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorHsgSrfBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorHsgSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorHsgSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorInvMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorInvMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMg12rotorAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMG12RotorAssem")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMg12statorTightAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMG12StatorTightAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMg1statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMG1StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMg2statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMG2StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMtrCode)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMwco0)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMWCo0")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMwco1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMWCo1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMwco2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMWCo2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorMwco3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorMWCo3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorPrevStn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorRrCoverAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorRrCoverSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorRrCoverSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorRrCoverSrfOutBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorRrCoverSrfOutBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorRrCoverTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorRrCoverTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorSngen)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorSNGen")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorTermBoardMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorTermBoardMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeMotorThermMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeMotorThermMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeNtDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.GeNtangleAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTAngleAxis1");
 
                 entity.Property(e => e.GeNtcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTCode");
 
-                entity.Property(e => e.GeNtdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeNTDate");
-
                 entity.Property(e => e.GeNtdrop1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTDrop1");
 
                 entity.Property(e => e.GeNthistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTHistory");
 
                 entity.Property(e => e.GeNtseating1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTSeating1");
 
                 entity.Property(e => e.GeNtslack1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTSlack1");
 
                 entity.Property(e => e.GeNttorqueAxis1)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeNTTorqueAxis1");
 
                 entity.Property(e => e.GePinposition)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GePokayokeDate33)
@@ -10063,111 +11186,248 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.GeRapDate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.GeRapafter)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPAfter");
 
                 entity.Property(e => e.GeRapbefore)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPBefore");
 
                 entity.Property(e => e.GeRapcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPCode");
 
                 entity.Property(e => e.GeRapcode2)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPCode2");
 
-                entity.Property(e => e.GeRapdate)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("GeRAPDate");
-
                 entity.Property(e => e.GeRapfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPFinalStroke");
 
                 entity.Property(e => e.GeRapload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPLoad");
 
                 entity.Property(e => e.GeRaploadSec)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPLoadSec");
 
                 entity.Property(e => e.GeRapmain2Stroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPMain2Stroke");
 
                 entity.Property(e => e.GeRapmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPMainStroke");
 
                 entity.Property(e => e.GeRapstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPStroke");
 
                 entity.Property(e => e.GeRapwashMain)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPWashMain");
 
                 entity.Property(e => e.GeRapwashPos)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPWashPos");
 
                 entity.Property(e => e.GeRapwashSensor)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRAPWashSensor");
 
                 entity.Property(e => e.GeRcserial)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRCSerial");
 
-                entity.Property(e => e.GeRejectTime)
+                entity.Property(e => e.GeRejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.GeRevRivetConfirm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.GeRoomTemp)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.GeRotorCoreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorExtractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorForeignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorHeating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorMagnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorNutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorNutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorNutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorResolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorShaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorShaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorShippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2coreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2CoreTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2extractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2ExtractionInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2foreignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2ForeignSuction")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2heating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2Heating")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2magnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2Magnetization")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2nutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2NutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2nutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2NutTight")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2reject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2Reject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2resolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2ResolverPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2shaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2ShaftPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2shaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2ShaftTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeRotorTamg2shippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeRotorTAMG2ShippingInsp")
+                    .IsFixedLength();
+
                 entity.Property(e => e.GeRtpcode)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRTPCode");
 
                 entity.Property(e => e.GeRtpfinalStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRTPFinalStroke");
 
                 entity.Property(e => e.GeRtphistory)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRTPHistory");
 
                 entity.Property(e => e.GeRtpload)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRTPLoad");
 
                 entity.Property(e => e.GeRtpmainStroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRTPMainStroke");
 
@@ -10177,9 +11437,21 @@ namespace Traceability_System.Entity.Model
                     .HasColumnName("GeRTPStartDate");
 
                 entity.Property(e => e.GeRtpstroke)
-                    .HasMaxLength(10)
+                    .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("GeRTPStroke");
+
+                entity.Property(e => e.GeSlnffastening)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeSLNFFastening")
+                    .IsFixedLength();
+
+                entity.Property(e => e.GeSlnfriveting)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("GeSLNFRiveting")
+                    .IsFixedLength();
 
                 entity.Property(e => e.GeUpenderDate)
                     .HasMaxLength(20)
@@ -10191,11 +11463,6 @@ namespace Traceability_System.Entity.Model
                 entity.HasNoKey();
 
                 entity.ToView("vw_MotorTable");
-
-                entity.Property(e => e.MoAb)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("MoAB");
 
                 entity.Property(e => e.MoAngle10Axis)
                     .HasMaxLength(10)
@@ -10312,6 +11579,8 @@ namespace Traceability_System.Entity.Model
                 entity.Property(e => e.MoCodeAxis3)
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.MoCollectionDate).HasColumnType("datetime");
 
                 entity.Property(e => e.MoHsgBrgAbvalue)
                     .HasMaxLength(10)
@@ -10604,6 +11873,139 @@ namespace Traceability_System.Entity.Model
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
+                entity.Property(e => e.MoRotorCoreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorExtractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorForeignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorHeating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorMagnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorNutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorNutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorNutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorResolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorShaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorShaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorShippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2coreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2CoreTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2extractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2ExtractionInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2foreignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2ForeignSuction")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2heating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2Heating")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2magnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2Magnetization")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2nutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2NutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2nutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2NutTight")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2reject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2Reject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2resolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2ResolverPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2shaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2ShaftPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2shaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2ShaftTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.MoRotorTamg2shippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("MoRotorTAMG2ShippingInsp")
+                    .IsFixedLength();
+
                 entity.Property(e => e.MoRrFigpdate)
                     .HasMaxLength(20)
                     .IsUnicode(false)
@@ -10852,6 +12254,142 @@ namespace Traceability_System.Entity.Model
 
                 entity.ToView("vw_RRTable");
 
+                entity.Property(e => e.RrcollectionDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("RRCollectionDate");
+
+                entity.Property(e => e.RrcoverSubIdsetSpare)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubIDSetSpare")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubMw3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubMW3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubMw4)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubMW4")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubReject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubRrCovBrgPressEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubRrCovBrgPressEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubRrCovSetDmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubRrCovSetDMRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubRrRevEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubRrRevEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrcoverSubWaterConnTighten)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRCoverSubWaterConnTighten")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdamperImage)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDamperImage")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdefDfcaseRead)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDefDFCaseRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdefDfpinionShaftEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDefDFPinionShaftEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdefDiffOperMeasureEquip)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDefDiffOperMeasureEquip")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdefDiffPinionPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDefDiffPinionPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdefTweezersMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDefTweezersMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdiffBoltTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDiffBoltTight1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdiffBoltTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDiffBoltTight2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrdiffBrgPressIn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDiffBrgPressIn")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Rrdmread)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRDMRead")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrgearPressIn1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRGearPressIn1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrgearPressIn2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRGearPressIn2")
+                    .IsFixedLength();
+
                 entity.Property(e => e.RrhsgBrgFinalLoad)
                     .HasMaxLength(10)
                     .IsUnicode(false)
@@ -10902,6 +12440,174 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("RRHsgBrgStrokeSec");
 
+                entity.Property(e => e.RrmotorCoolPipeMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorCoolPipeMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorCoolPipeMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorCoolPipeMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorFipgapp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorFIPGApp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorHarnEscMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorHarnEscMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorHsgSrfBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorHsgSrfBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorHsgSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorHsgSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorInvMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorInvMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMg12rotorAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMG12RotorAssem")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMg12statorTightAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMG12StatorTightAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMg1statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMG1StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMg2statorInsAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMG2StatorInsAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMtrCode)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMtrCode")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMw1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMW1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMw2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMW2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMwco0)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMWCo0")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMwco1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMWCo1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMwco2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMWCo2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorMwco3)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorMWCo3")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorPrevStn)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorPrevStn")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorReject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorRrCoverAssem)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorRrCoverAssem")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorRrCoverSrfKnockPam)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorRrCoverSrfKnockPAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorRrCoverSrfOutBrgAm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorRrCoverSrfOutBrgAM")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorRrCoverTight1)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorRrCoverTight1")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorRrCoverTight2)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorRrCoverTight2")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorSngen)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorSNGen")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorTermBoardMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorTermBoardMW")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrmotorThermMw)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRMotorThermMW")
+                    .IsFixedLength();
+
                 entity.Property(e => e.RrpokayokeDate39)
                     .HasMaxLength(20)
                     .IsUnicode(false)
@@ -10937,15 +12643,177 @@ namespace Traceability_System.Entity.Model
                     .IsUnicode(false)
                     .HasColumnName("RRPokayokeDate45");
 
-                entity.Property(e => e.RrrejectTime)
+                entity.Property(e => e.RrrejectTimeDate)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .HasColumnName("RRRejectTime");
+                    .HasColumnName("RRRejectTimeDate");
+
+                entity.Property(e => e.RrrevRivetConfirm)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRevRivetConfirm")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorCoreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorCoreTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorExtractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorExtractionInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorForeignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorForeignSuction")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorHeating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorHeating")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorMagnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorMagnetization")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorNutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorNutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorNutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorNutTight")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorReject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorReject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorResolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorResolverPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorShaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorShaftPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorShaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorShaftTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorShippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorShippingInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2coreTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2CoreTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2extractionInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2ExtractionInsp")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2foreignSuction)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2ForeignSuction")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2heating)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2Heating")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2magnetization)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2Magnetization")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2nutCrimpMg1press)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2NutCrimpMG1Press")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2nutTight)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2NutTight")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2reject)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2Reject")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2resolverPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2ResolverPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2shaftPress)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2ShaftPress")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2shaftTrans)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2ShaftTrans")
+                    .IsFixedLength();
+
+                entity.Property(e => e.RrrotorTamg2shippingInsp)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRRotorTAMG2ShippingInsp")
+                    .IsFixedLength();
 
                 entity.Property(e => e.RrrrcoverSerial)
                     .HasMaxLength(20)
                     .IsUnicode(false)
                     .HasColumnName("RRRRCoverSerial");
+
+                entity.Property(e => e.Rrslnffastening)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRSLNFFastening")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Rrslnfriveting)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .HasColumnName("RRSLNFRiveting")
+                    .IsFixedLength();
 
                 entity.Property(e => e.RrupenderDate)
                     .HasMaxLength(20)
