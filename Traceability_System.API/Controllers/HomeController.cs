@@ -13,14 +13,6 @@ namespace Traceability_System.Api.Controllers
     public class HomeController : Controller
     {
 
-
-        public readonly ExportCsv _exportCsv;
-
-        public HomeController(ExportCsv exportCsv)
-        {
-            _exportCsv = exportCsv;
-        }
-
         [HttpGet]
         public List<string> GetStr(string txt)
         {
@@ -95,19 +87,19 @@ namespace Traceability_System.Api.Controllers
         }
 
 
-        [HttpGet("GetExport")]
-        public IActionResult Export(string tableName)
-        {
+        //[HttpGet("GetExport")]
+        //public IActionResult Export(string tableName)
+        //{
 
 
-            //var jsonData =  RedisHelper.RedisGetAsync(tableName);
-            byte[] excelBytes = _exportCsv.newExportExcle(tableName);
-            // 返回文件流
-            return File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+        //    //var jsonData =  RedisHelper.RedisGetAsync(tableName);
+        //    byte[] excelBytes = _exportCsv.newExportExcle(tableName);
+        //    // 返回文件流
+        //    return File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
 
-            // 创建一个新的 ExcelPackage
+        //    // 创建一个新的 ExcelPackage
 
-        }
+        //}
     }
 
 

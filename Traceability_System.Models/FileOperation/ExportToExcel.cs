@@ -223,6 +223,7 @@ namespace Traceability_System.Models.FileOperation
 
                     object convertedValue ="";
                     
+                    //List中是否存在不格式化字段
                     if (_exportTable.columns.Contains(key, comparer))
                     {
                         convertedValue = rowdata[key];
@@ -266,25 +267,5 @@ namespace Traceability_System.Models.FileOperation
             return displayedColumns;
         }
 
-        // 将值转换为适当的类型
-        object ConvertToAppropriateType(string value)
-        {
-
-            object keyValue;
-            // 如果值包含 "Date"，则尝试将其转换为日期类型
-
-            if (value.Contains("Date"))
-            {
-                keyValue = DateTime.TryParse(value, out DateTime dateValue) ? dateValue : value;
-
-                return keyValue;
-            }
-            // 尝试将数字字符串转换为双精度浮点数
-            else
-            {
-                keyValue = double.TryParse(value, out double numericValue) ? numericValue : value;
-                return keyValue;
-            }
-        }
     }
 }

@@ -58,7 +58,6 @@ public class YoushowDemoApiModule : AceModule
         services.AddScoped<MergeCsv>();
         services.AddScoped<ExportToExcel>();
         services.AddScoped<ExportTableMapper>();
-        services.AddScoped<ExportCsv>();
         //services.AddConfig(builder.Configuration);
         /*services.AddDbContext<_966KDataBaseContext>(options => {
             options.UseSqlServer(Configuration.GetConnectionString("Data"));
