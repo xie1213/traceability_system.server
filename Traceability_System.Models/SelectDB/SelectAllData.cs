@@ -81,18 +81,16 @@ namespace Traceability_System.Models.SelectDB
             }
             redisHelper.DeleteHash(parameter.tableName);
             var list = new List<object>();
-            //Assembly asm = Assembly.Load("Traceability_System.Entity");
-            //Type modelType = asm.GetType("Traceability_System.Entity.Model." + tableName);
             Assembly asm = Assembly.Load("Traceability_System.Entity");
             Type modelType = asm.GetType("Traceability_System.Entity.Models." + tableName);
 
-            //string factor = JsonConvert.SerializeObject(parameter);
-            //_redisHelper.SetJsonData(parameter.tableName, factor);
 
             foreach (DataRow dr in dt.Rows)
             {
                 var model = dr.DataRowToType(modelType);
                 var jsonData = JsonConvert.SerializeObject(model);
+
+
                 var filed = dr["Id"].ToString();
 
                 redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);

@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,7 @@ namespace Traceability_System.Models.FileOperation
                     row = 3;
                 }
                 AddDataToAll(worksheet, exportTableName, row);
+
 
                 //自动调整列宽
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
@@ -185,6 +187,12 @@ namespace Traceability_System.Models.FileOperation
             worksheet.Cells.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
 
 
+
+            // 根据B列的后八位进行排序
+            exportData = GetDescData(exportData, tableName);
+
+
+
             foreach (var dataRow in exportData)
             {
                 int col = 3;
@@ -219,10 +227,10 @@ namespace Traceability_System.Models.FileOperation
                     }
 
                     //bool containsKey = _exportTable.columns.TryGetValue(key, out var column);
-                    var comparer = StringComparer.OrdinalIgnoreCase; 
+                    var comparer = StringComparer.OrdinalIgnoreCase;
 
-                    object convertedValue ="";
-                    
+                    object convertedValue = "";
+
                     //List中是否存在不格式化字段
                     if (_exportTable.columns.Contains(key, comparer))
                     {
@@ -251,6 +259,8 @@ namespace Traceability_System.Models.FileOperation
             }
         }
 
+
+
         //跳过字段
         List<string> SkipField(string tableName)
         {
@@ -267,5 +277,26 @@ namespace Traceability_System.Models.FileOperation
             return displayedColumns;
         }
 
+
+        //获取倒序数据
+        List<string> GetDescData(List<string> exportData,string tableName)
+        {
+           return exportData.OrderByDescending(dataRow =>
+            {
+                var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataRow);
+
+                var clonum = _exportTable.keyValuePairs[tableName];
+                if (rowData.ContainsKey(clonum))
+                {
+                    string columnValue = rowData[clonum].ToString();
+                    if (columnValue.Length >= 8)
+                    {
+                        return columnValue.Substring(columnValue.Length - 8);
+                    }
+                }
+                return "";
+            }).ToList();
+
+        }
     }
 }

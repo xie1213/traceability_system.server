@@ -189,11 +189,14 @@ namespace Traceability_System.Utility
         
         //获取hash中的值
 
-        public  RedisValue[] GetAllHashValues(string tableName,int dbnum=7)
+        public List<string> GetAllHashValues(string tableName,int dbnum=7)
         {
             db = redis.GetDatabase(dbnum);
             var values = db.HashValues(tableName);
-            return values;
+
+
+            return values.Select(v => v.ToString()).ToList();
+            //return values;
         }
 
         public  void DeleteHash(string hashKey, int dbnum = 7)
