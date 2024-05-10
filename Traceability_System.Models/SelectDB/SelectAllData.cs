@@ -204,17 +204,6 @@ namespace Traceability_System.Models.SelectDB
                 {
                     timeItem = $"CollectionDate BETWEEN '{requestData.TimeDate[0]}' AND '{requestData.TimeDate[1]}' ";
                 }
-
-
-                string selLike = "";
-
-                //if (!string.IsNullOrEmpty(requestData.SerialNo))
-                //{
-                //    if (tablePatterns.TryGetValue(requestData.TableName, out var pattern))
-                //    {
-                //        selLike += string.Format("\n" + pattern, requestData.SerialNo);
-                //    }
-                //}
                 if (requestData.TableName == "全部数据")
                 {
                     //return GetAllTable(timeItem, selItem, selLike);
