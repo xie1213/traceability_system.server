@@ -98,7 +98,7 @@ namespace Traceability_System.Models.SelectDB
                 list.Add(model);
                 // RedisHelper.SetHash()
             }
-            var listData = list.Take(25);
+            var listData = list.Take(30);
 
 
             return new { data = listData, count = list.Count() };
@@ -291,7 +291,7 @@ namespace Traceability_System.Models.SelectDB
 
                         shipList.Add(model);
                     }
-                    return new { data = shipList.Take(25), count = shipList.Count() };
+                    return new { data = shipList.Take(30), count = shipList.Count() };
 
                 }
                 else
@@ -346,7 +346,7 @@ namespace Traceability_System.Models.SelectDB
                 _redisHelper.SetHashToJson("全部履历", row["Id"].ToString(), json);
             }
 
-            return new { data = resultList.Take(20), count = resultList.Count() };
+            return new { data = resultList.Take(30), count = resultList.Count() };
             //return null;
         }
 

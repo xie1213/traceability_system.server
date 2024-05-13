@@ -101,7 +101,7 @@ public class TableOperation
                     if(renew >= 1)
                     {
                         Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum+1}次");
-                        Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
+                        //Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
                         
                     }
 
@@ -113,14 +113,14 @@ public class TableOperation
                     {
 
                         Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},添加成功");
-                        Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},添加成功");
+                        //Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},添加成功");
                     }
 
 
                     //Logger.WriteLogAsync(fileName + "添加成功");
 
                 }
-                Logger.WriteLogAsync($"旧文件路径:{fileName}");
+                //Logger.WriteLogAsync($"旧文件路径:{fileName}");
             }
             UploadFile(fileName,folder);
             
@@ -182,9 +182,9 @@ public class TableOperation
 
             return strList;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            Logger.WriteLogAsync(str);
+            Logger.WriteLogAsync($"解析表失败{ex.Message}");
             //Console.WriteLine(str + "error");
             throw;
         }

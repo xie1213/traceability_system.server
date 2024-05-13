@@ -130,7 +130,7 @@ namespace Traceability_System.Api.Controllers
             }
             catch (Exception e)
             {
-                Logger.WriteLogAsync("redis 读取 "+e.Message);
+                Logger.WriteLogAsync("redis 读取 错误"+e.Message);
                 throw;
             }
             
