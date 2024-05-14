@@ -34,7 +34,7 @@
         public string? selectName { get; set;}
         public string ? topLimit { get; set; }
         public string? lowerLimit { get; set; }
-        public string? selStartTime { get; set; }
-        public string? selEndTime { get; set;}
+        public string? startDateTime { get; set; }
+        public string? endDateTime { get; set;}
     }
 }

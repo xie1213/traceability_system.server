@@ -110,33 +110,54 @@ namespace Traceability_System.Models.SelectDB
         private List<string> CreateFactorSql(ParameterData parameter, string orderby)
         {
             List<string> sqlList = new List<string>();
+
+            //条件查询
             var selectFactor = parameter.selectFactor;
-            
+
+            //表名
+            var tableName = parameter.tableName;    
+
+            //开始时间
+            var startDateTime = parameter.startDateTime;
+
+            //结束时间
+            var endDateTime = parameter.endDateTime;
+
+            //序列号
+            var serialDateNumber = parameter.serialDateNumber;
+
 
             // 时间字段
-            if (parameter.startDateTime != null && parameter.endDateTime != null)
+            if (startDateTime != null && endDateTime != null)
             { 
                 
-                string timeStr = parameter.tableName == "出荷履历" ? "LeadTimeDate" : "CollectionDate";
+                string timeStr = tableName == "出荷履历" ? "LeadTimeDate" : "CollectionDate";
 
 
-                string timeSql = $" {timeStr} BETWEEN '{parameter.startDateTime}' AND '{parameter.endDateTime}' ";
+                string timeSql = $" {timeStr} BETWEEN '{startDateTime}' AND '{endDateTime}' ";
 
 
                 sqlList.Add(timeSql);
             }
 
             // 序列号不为空
-            if (parameter.serialDateNumber != null)
+            if (serialDateNumber != null)
             {
-                string serialSql = $" {orderby} like '%{parameter.serialDateNumber}%' ";
+                string serialSql = $" {orderby} like '%{serialDateNumber}%' ";
                 sqlList.Add(serialSql);
             }
+
             if (selectFactor != null)
             {
                 string pullDownSql = $"{selectFactor.selectName} ";
 
-               
+                // 当下拉为时间时
+                if (selectFactor.selectName.Contains("Date"))
+                {
+                    //string pullDownSql = $"{selectFactor.selectName} ";
+                    pullDownSql += $" between '{selectFactor.startDateTime}' and '{selectFactor.endDateTime}' ";
+                    //sqlList.Add(pullDownSql);
+                }
 
                 // 下拉列表不为空
                 if (selectFactor.topLimit != null && selectFactor.lowerLimit != null)
@@ -147,22 +168,16 @@ namespace Traceability_System.Models.SelectDB
                         : $" between '{selectFactor.topLimit}' and '{selectFactor.lowerLimit}' ";
                    
                 }
-                else if (selectFactor.topLimit == null)
+                else if (selectFactor.topLimit == null && selectFactor.lowerLimit != null)
                 {
                     pullDownSql += $" = '{selectFactor.lowerLimit}' ";
                 }
-                else if (selectFactor.lowerLimit == null)
+                else if (selectFactor.lowerLimit == null && selectFactor.topLimit!= null )
                 {
                     pullDownSql += $" = '{selectFactor.topLimit}' ";
                 }
 
-                // 当下拉为时间时
-                if (selectFactor.selStartTime != null && selectFactor.selEndTime != null)
-                {
-                    //string pullDownSql = $"{selectFactor.selectName} ";
-                    pullDownSql += $" between '{selectFactor.selStartTime}' and '{selectFactor.selEndTime}' ";
-                    //sqlList.Add(pullDownSql);
-                }
+                
                 sqlList.Add(pullDownSql);
                 // 拼接 SQL 条件
             }
