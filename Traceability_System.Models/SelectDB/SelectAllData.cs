@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Data;
 using System.Reflection;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
+using System.Text.RegularExpressions;
 using Appraisal_System.Utility;
 using Microsoft.VisualBasic.FileIO;
 using Newtonsoft.Json;
@@ -48,7 +50,7 @@ namespace Traceability_System.Models.SelectDB
             ["Rotor履历"] = ("RotorTable", "MG1RSerial"),
             ["Rr履历"] = ("Rrtable", "RRCoverSerial"),
             ["Ta履历"] = ("Tatable", "ShipmentSerial"),
-            ["出荷履历"] =("Shipping", "SerialNo")
+            ["出荷履历"] = ("Shipping", "SerialNo")
         };
 
         //获取表格信息
@@ -99,10 +101,7 @@ namespace Traceability_System.Models.SelectDB
                 // RedisHelper.SetHash()
             }
             var listData = list.Take(30);
-
-
             return new { data = listData, count = list.Count() };
-
         }
 
 
@@ -115,7 +114,7 @@ namespace Traceability_System.Models.SelectDB
             var selectFactor = parameter.selectFactor;
 
             //表名
-            var tableName = parameter.tableName;    
+            var tableName = parameter.tableName;
 
             //开始时间
             var startDateTime = parameter.startDateTime;
@@ -126,11 +125,12 @@ namespace Traceability_System.Models.SelectDB
             //序列号
             var serialDateNumber = parameter.serialDateNumber;
 
+            var selName = parameter.tableName;
 
             // 时间字段
             if (startDateTime != null && endDateTime != null)
-            { 
-                
+            {
+
                 string timeStr = tableName == "出荷履历" ? "LeadTimeDate" : "CollectionDate";
 
 
@@ -143,49 +143,102 @@ namespace Traceability_System.Models.SelectDB
             // 序列号不为空
             if (serialDateNumber != null)
             {
+                int numLen  = serialDateNumber.Length;
+                serialDateNumber = serialDateNumber.Replace(" ","%");
                 string serialSql = $" {orderby} like '%{serialDateNumber}%' ";
+
+
                 sqlList.Add(serialSql);
             }
 
             if (selectFactor != null)
             {
-                string pullDownSql = $"{selectFactor.selectName} ";
-
-                // 当下拉为时间时
-                if (selectFactor.selectName.Contains("Date"))
-                {
-                    //string pullDownSql = $"{selectFactor.selectName} ";
-                    pullDownSql += $" between '{selectFactor.startDateTime}' and '{selectFactor.endDateTime}' ";
-                    //sqlList.Add(pullDownSql);
-                }
-
-                // 下拉列表不为空
-                if (selectFactor.topLimit != null && selectFactor.lowerLimit != null)
-                {
-                    //string pullDownSql = $"{selectFactor.selectName} ";
-                    pullDownSql += selectFactor.topLimit == selectFactor.lowerLimit
-                        ? $" like '%{selectFactor.topLimit}%' "
-                        : $" between '{selectFactor.topLimit}' and '{selectFactor.lowerLimit}' ";
-                   
-                }
-                else if (selectFactor.topLimit == null && selectFactor.lowerLimit != null)
-                {
-                    pullDownSql += $" = '{selectFactor.lowerLimit}' ";
-                }
-                else if (selectFactor.lowerLimit == null && selectFactor.topLimit!= null )
-                {
-                    pullDownSql += $" = '{selectFactor.topLimit}' ";
-                }
+                //string pullDownSql = $"{selectFactor.selectName} ";
 
                 
-                sqlList.Add(pullDownSql);
+                sqlList.Add(CheckedToString(selectFactor));
                 // 拼接 SQL 条件
+            }
+            return sqlList;
+        }
+
+
+        //验证字符串
+        public string CheckedToString(selectFactor selectFactor)
+        {
+            string selSql = $"{selectFactor.selectName} ";
+            //string pullDownSql = $"{selectFactor.selectName} ";
+
+            //是否为数字
+            bool topMatch = Regex.IsMatch(selectFactor.topLimit, "^\\d+(\\.\\d+)?$");
+            bool lowerMatch = Regex.IsMatch(selectFactor.lowerLimit, "^\\d+(\\.\\d+)?$");
+
+            //判断是否等于空
+            bool isTopLimit = selectFactor.topLimit == null;
+            bool isLowerLimit = selectFactor.lowerLimit == null;
+
+            bool equalStr = selectFactor.topLimit == selectFactor.lowerLimit;
+
+            //是否是时间
+            if (selectFactor.selectName.Contains("Date"))
+            {
+                selSql += $" between '{selectFactor.startDateTime}' and '{selectFactor.endDateTime}' ";
+                return selSql;
+            }
+
+            //上下限都不等于空
+            if (!isTopLimit && !isLowerLimit)
+            {
+                if (equalStr)
+                {
+                    selSql += $" like '%{selectFactor.topLimit}%' ";
+                }
+                else {
+
+                    selSql = CreateFactorSql(selectFactor.selectName, selectFactor.topLimit, selectFactor.lowerLimit);
+                }
+            }
+            else if (isTopLimit)
+            {
+                //上限为空,下限不为空
+                selSql += $" like '%{selectFactor.lowerLimit}%' ";
+            }
+            else
+            {
+                //下限为空,上限不为空
+                selSql += $" like '%{selectFactor.topLimit}%' ";
             }
 
 
 
-            return sqlList;
-            
+            return selSql;
+        }
+
+        string CreateFactorSql(string selName,string topLimit,string lowerLimit)
+        {
+            int topLen = topLimit.Length;
+            int lowerLen = lowerLimit.Length;
+
+            return $" RIGHT({selName},{topLen}) between '{lowerLimit}' and '{topLimit}'";
+        }
+
+
+        string CheckedToCase(string topLimit, string lowerLimit)
+        {
+            int topIndex = topLimit.IndexOf("#");
+            int lowerindex = lowerLimit.IndexOf("#");
+            string selSql;
+            if (topIndex != 1 && lowerindex != 1)
+            {
+                selSql = $"CONVERT(BIGINT, SUBSTRING(CaseSerial, 6, LEN(CaseSerial) - 5)) BETWEEN '{lowerLimit}' AND '{topLimit}'";
+            }
+            else
+            {
+                selSql = $" between '{lowerLimit}' and '{topLimit}' ";
+            }
+            return selSql ;
+
+
         }
 
         public object GetTableByName(SelTableRequest requestData)
@@ -325,7 +378,7 @@ namespace Traceability_System.Models.SelectDB
         //获取全部数据
         public object GetAllTableData(ParameterData parameter)
         {
-            var sqlList =  CreateFactorSql(parameter, "ShipmentSerial");
+            var sqlList = CreateFactorSql(parameter, "ShipmentSerial");
 
             string itemSql = string.Join(" and ", sqlList);
 
