@@ -51,11 +51,11 @@ namespace Traceability_System.Models.FileOperation
                 {
                     //导出全部数据时表头
                     worksheet.Cells[2, 1, 2, 2].Merge = true;
-                    worksheet.Cells[2, 1].Value = "固定列";
+                    worksheet.Cells[2, 1].Value = "上传时间和序列号";
                     worksheet.Cells[2, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center; // 设置居中对齐
 
                     //worksheet.Cells[3, 1, 2, twoCol + twoLen - 1].Merge = true;
-                    worksheet.Cells[3, 1].Value = "采集时间";
+                    worksheet.Cells[3, 1].Value = "上传时间";
                     worksheet.Cells[3, 2].Value = "出荷序列";
 
                     ForAllTable(worksheet, colName);

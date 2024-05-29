@@ -170,8 +170,11 @@ namespace Traceability_System.Models.SelectDB
             //string pullDownSql = $"{selectFactor.selectName} ";
 
             //是否为数字
-            bool topMatch = Regex.IsMatch(selectFactor.topLimit, "^\\d+(\\.\\d+)?$");
-            bool lowerMatch = Regex.IsMatch(selectFactor.lowerLimit, "^\\d+(\\.\\d+)?$");
+            //bool topMatch = Regex.IsMatch(selectFactor.topLimit, "^\\d+(\\.\\d+)?$");
+
+            //bool lowerMatch = Regex.IsMatch(selectFactor.lowerLimit, "^\\d+(\\.\\d+)?$");
+
+
 
             //判断是否等于空
             bool isTopLimit = selectFactor.topLimit == null;
