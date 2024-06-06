@@ -5450,10 +5450,7 @@ namespace Traceability_System.Entity.Models
                 entity.Property(e => e.Destination).HasMaxLength(50);
 
                 entity.Property(e => e.DestinationArea).HasMaxLength(50);
-
-                entity.Property(e => e.LeadTimeDate)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.LeadTimeDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Operator).HasMaxLength(50);
 
@@ -5473,9 +5470,7 @@ namespace Traceability_System.Entity.Models
                     .HasMaxLength(50)
                     .IsFixedLength();
 
-                entity.Property(e => e.ShippingTimeDate)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.ShippingTimeDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Tatable>(entity =>

@@ -13,10 +13,10 @@ namespace Traceability_System.Models.FileOperation
         /// </summary>
         /// <param name="logLevel"></param>
         /// <returns></returns>
-        public static async void WriteLogAsync(string logMessage)
+        public static async void WriteLogAsync(string logMessage,string path = "D:\\Traceability")
         {
 
-            string logPath = await LogPathIsNull(); // 日志文件夹路径
+            string logPath = await LogPathIsNull(path); // 日志文件夹路径
 
             //string logTxtPath = await CreateLogFileAsync();//日志文件路径
 
@@ -140,9 +140,9 @@ namespace Traceability_System.Models.FileOperation
 
 
 
-        public static async Task<string> LogPathIsNull()
+        public static async Task<string> LogPathIsNull(string path)
         {
-            string logFileDire = "D:\\Traceability";
+            string logFileDire = path;
 
             string logFileNow = Path.Combine(logFileDire, $"{Today}");
             //根据LogConfig配置判断LogPath是否为空

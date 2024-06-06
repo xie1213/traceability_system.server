@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Traceability_System.Entity.Models;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Utility;
 
@@ -118,14 +119,12 @@ namespace Traceability_System.Models.FileOperation
         //出荷表表头
         void ForShip(ExcelWorksheet worksheet, string tableName)
         {
-            RedisHelper redisHelper = new RedisHelper();
-
-            var josn = redisHelper.ReStringAsync(tableName, 4);
+            JArray jsonArray = JArray.Parse(tableName);
             int i = 1;
-            foreach (var item in josn)
+            foreach (var item in jsonArray)
             {
-                var a = item["tableName"].ToString();
-                worksheet.Cells[1, i].Value = a;
+                var a = item["tableName"];
+                worksheet.Cells[1, i].Value = a.ToString(); ;
                 i++;
             }
         }
@@ -184,7 +183,7 @@ namespace Traceability_System.Models.FileOperation
             //// 设置整列的样式
             //ExcelRange columnRange = worksheet.Cells[row, 3, row + exportData.Count(), worksheet.Dimension.Columns];
             //columnRange.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
-            worksheet.Cells.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+            //worksheet.Cells.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
 
 
 
@@ -195,23 +194,30 @@ namespace Traceability_System.Models.FileOperation
 
             foreach (var dataRow in exportData)
             {
-                int col = 3;
+                int col  = 1;
+                List<string> writtenKeys = new List<string>();
+                //JArray jsonArray = JArray.Parse(dataRow);
 
                 var rowdata = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataRow);
-
                 //根据表名选择第二列
                 string Itemvalue = _exportTable.keyValuePairs.TryGetValue(tableName, out string itemKey) ?
                     rowdata[itemKey].ToString() : "";
+                if (tableName != "出荷履历")
+                {
 
-                DateTime collectionDate = DateTime.Parse(rowdata["CollectionDate"].ToString());
+                    DateTime collectionDate = DateTime.Parse(rowdata["CollectionDate"].ToString());
 
-                worksheet.Cells[row, 1].Value = collectionDate;
+                    worksheet.Cells[row, 1].Value = collectionDate;
 
-                worksheet.Cells[row, 1].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
+                    worksheet.Cells[row, 1].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
 
-                worksheet.Cells[row, 2].Value = Itemvalue;
+                    worksheet.Cells[row, 2].Value = Itemvalue;
 
-                var writtenKeys = new List<string> { "CollectionDate", itemKey };
+                    writtenKeys.Add("CollectionDate");
+                    writtenKeys.Add(itemKey);
+                    col = 3;
+                }
+                
 
                 foreach (var key in rowdata.Keys)
                 {
@@ -243,15 +249,27 @@ namespace Traceability_System.Models.FileOperation
                             convertedValue = dateValue;
                             cell.Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
                         }
+                        else if(double.TryParse(rowdata[key].TrimEnd(), out double numericValue))
+                        {
+                            convertedValue = numericValue;
+                            if (key == "" || key == "Operator")
+                            {
+                                cell.Style.Numberformat.Format = "000000000"; // 邮政编码格式
+                            }
+                            //cell.Style.Numberformat.Format = "@"; // 文本格式
+                        }
                         else
                         {
-                            convertedValue = double.TryParse(rowdata[key], out double numericValue) ? numericValue : rowdata[key];
+                            convertedValue = rowdata[key];
                         }
+
+
                     }
                     cell.Value = convertedValue;
+                    //cell.OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
                     //cell.Value = rowdata[key];
 
-                    //cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left; // 设置居中对齐
+                    cell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left; // 设置居中对齐
 
                     col++;
                 }

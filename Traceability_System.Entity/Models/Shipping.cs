@@ -9,8 +9,8 @@ namespace Traceability_System.Entity.Models
         public string? SerialNo { get; set; }
         public string? ProductNo { get; set; }
         public string? Printing { get; set; }
-        public string? LeadTimeDate { get; set; }
-        public string? ShippingTimeDate { get; set; }
+        public DateTime? LeadTimeDate { get; set; }
+        public DateTime? ShippingTimeDate { get; set; }
         public string? Destination { get; set; }
         public string? DestinationArea { get; set; }
         public string? ReceivingPoint { get; set; }

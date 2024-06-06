@@ -70,7 +70,7 @@ namespace Traceability_System.Api.Controllers
             string jsonData = requestData.ToString();
             //string jsonData = JsonConvert.SerializeObject(requestData);
 
-
+            RedisHelper redisHelper = new RedisHelper();
             //RedisHelper.RedisSet("Motor履历", jsonData, 4);
             //RedisHelper.RedisSet("Rotor履历", jsonData, 4);
             //RedisHelper.RedisSet("Gear履历", jsonData, 4);
@@ -78,12 +78,8 @@ namespace Traceability_System.Api.Controllers
 
             //RedisHelper.RedisSet("Rr履历", jsonData, 4);
 
-            RedisHelper.RedisSet("全部履历", jsonData, 4);
+            redisHelper.RedisSet("全部履历", jsonData, 4);
             //RedisHelper.RedisSet("出荷履历", jsonData, 4);
-
-
-
-
         }
 
 

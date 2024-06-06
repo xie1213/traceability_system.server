@@ -39,24 +39,6 @@
             list.AddRange(new[] { field, keyCode});
             return list;
         } 
-        public  void SetRedis(string key, string keyCode)
-        {
-            RedisHelper _redisHelper = new RedisHelper();
-
-            List<string> list = new();
-            //Console.WriteLine(key);
-            var check = _redisHelper.SetHash(key + "Check", keyCode, 2);
-           
-        }
-        public  int GetRedis(string key,string keyCode)
-        {
-            RedisHelper _redisHelper = new RedisHelper();
-
-            var check = _redisHelper.SetHash(key + "Check", keyCode, 2);
-            var RedisHash = _redisHelper.GetHashValue(key + "Check", keyCode, 2);
-            return check;
-          
-        }
     }
 
 

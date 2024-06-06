@@ -27,7 +27,7 @@ namespace Traceability_System.Models.DictionaryMapper
             "CaseSerial", "HsgSerial", "MG1SSerial", "MG2SSerial", "MG1RSerial",
             "MG2RSerial", "CoDriveSerial", "MoDriveSerial", "DrivenSerial",
             "DorpinSerial", "DFRingSerial", "DFCaseSerial", "RRCoverSerial",
-            "ShipmentSerial", "RRopSerial"
+            "ShipmentSerial", "RRopSerial","ProductNo","ReceivingNo"
         };
     }
 }

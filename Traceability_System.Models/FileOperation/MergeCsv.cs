@@ -1,43 +1,66 @@
 ﻿using Appraisal_System.Utility;
+using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic.FileIO;
+using System;
+using System.Globalization;
+using System.Linq;
 using System.Text;
+using Traceability_System.DTO;
 using Traceability_System.Utility;
 
 namespace Traceability_System.Models.FileOperation
 {
     public class MergeCsv
     {
-        string dirPath = @"\\192.168.0.10\\meiwa\\CSV";
+        //string dirPath = @"\\192.168.0.10\\meiwa\\CSV";
+
+        static readonly string Today = DateTime.Now.ToString("yyyy-MM-dd");
+        string dirPath = @"C:\\Users\\x1769\\Desktop\\CSV";
+        private readonly RedisHelper _redisHelper;
+
+        public MergeCsv(RedisHelper redisHelper)
+        {
+            _redisHelper = redisHelper;
+        }
 
         public void GetDirList()
         {
-
-            var ipchack = IPInspect();
-            if (ipchack != "链接成功")
-                return;
+            //if (IPInspect() != "链接成功" || !Directory.Exists(dirPath))
+            //    return;
             try
             {
+
+                //获取路径下的所有子目录
                 List<string> csvDir = Directory.GetDirectories(dirPath).ToList();
-                if(csvDir == null)
-                {
+                if (csvDir == null)
                     return;
-                }
+
                 foreach (string csvFliesDir in csvDir)
                 {
-                    //二级文件
-                    List<string> csvFiles = Directory.GetDirectories(csvFliesDir).ToList();
-                    if (csvFiles == null)
-                    {
-                        return;
-                    }
-                    foreach (string csvFile in csvFiles)
-                    {
-                        if (File.Exists(csvFile))
-                        {
-                            GetAllCsvs(csvFile);
 
-                        }
+                    //获取二级文件下是否存在文件
+                    List<string> csvFiles = Directory.GetDirectories(csvFliesDir).ToList();
+
+                    //List<string> csvFiles = Directory.GetFiles(csvFliesDir).ToList();
+
+                    if (csvFiles == null)
+                        return;
+
+                    //循环输出文件路径
+
+                    for (int i = 0; i < csvFiles.Count; i++)
+                    {
+                        string[] files = Directory.GetFiles(csvFiles[i]);
+                        if (files.Length == 0)
+                            return;
+
+
+                        GetCsv(files);
+
+
                     }
+
+
                 }
             }
             catch (Exception e)
@@ -49,37 +72,39 @@ namespace Traceability_System.Models.FileOperation
 
         }
 
-        //获取该文件下的所有csv文件
-        public void GetAllCsvs(string csvFile)
+        //获取csv文件
+        void GetCsv(string[] files)
         {
-            try
+            for (int i = 0; i < files.Length; i++)
             {
-                string[] csvItemGather = Directory.GetFiles(csvFile, "*.csv");
+                //string dirPath = GetPath(files[i]);
 
-                string pathName = Path.GetFileName(csvFile);
-                foreach (var item in csvItemGather)
+                string[] parts = files[i].Split('\\');
+                string filePath = parts[parts.Length - 3];
+                string itemName = filePath + "\\"+ parts[parts.Length - 2];
+
+                string item = parts[parts.Length - 1].Replace(".csv","");
+                var redisPath = _redisHelper.GetAllHashValues(itemName,0);
+                //int index = redisPath == null ? -1 : Array.FindIndex(files, file => file.Contains(redisPath));
+
+                if (redisPath.Contains(item) || GetTime(filePath))
                 {
-                    string itemName = Path.GetFileNameWithoutExtension(item);
-                    var itemValue = ReadCsv(item, pathName);
-                    RedisHelper.RedisSet(itemName, itemValue);
+                    continue;
                 }
+
+                ReadCsv(files[i], itemName, dirPath);
+
             }
-            catch (Exception e)
-            {
-
-                Logger.WriteLogAsync($"获取出荷文件时出现错误:{e.Message}");
-            }
-
-
         }
 
         //读取Csv文件并保存到数据库
-        public string ReadCsv(string itemName, string pathName)
+        public void ReadCsv(string itemName, string pathName, string dirPath)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             try
             {
-                string sql = "";
+                //SvaeRedis(itemName);
+
                 using (TextFieldParser parser = new TextFieldParser(itemName, Encoding.GetEncoding("gb18030")))
                 {
                     // 指定分隔符（CSV文件一般使用逗号作为分隔符）
@@ -93,52 +118,31 @@ namespace Traceability_System.Models.FileOperation
                     {
                         // 获取当前行的字段数组
                         string[] fields = parser.ReadFields();
-                        var isNull = GetBySerialNo(fields[0]);
-                        if (pathName == "Senko")
-                        {
-
-                            if (isNull)
-                            {
-                                //break;
-                                sql = $"update Shipping set ProductNo = '{fields[1]}',Printing = '{fields[5]}',LeadTime = '{fields[2]}' where SerialNo = '{fields[0]}' ";
-                                //Console.WriteLine("有值");
-                            }
-                            else
-                            {
-                                sql = $"insert into Shipping (SerialNo,ProductNo,Printing,LeadTime) ";
-                                sql += $" values('{fields[0]}','{fields[1]}','{fields[5]}','{fields[2]}') ";
-                            }
-                        }
-                        else
-                        {
-                            if (isNull)
-                            {
-                                sql = $"update Shipping set ShippingTime = '{fields[16]}',Destination = '{fields[12]}'," +
-                                $"DestinationArea = '{fields[18]}',ReceivingPoint = '{fields[19]}',BackNo = '{fields[20]}'," +
-                                $"OrderNo = '{fields[22]}',PlineNo = '{fields[23]}',ReceivingNo = '{fields[21]}',Operator = '{fields[17]}' " +
-                                $"where SerialNo = '{fields[0]}'";
-                            }
-                            else
-                            {
-                                sql = $"insert into Shipping (SerialNo,ShippingTime,Destination,DestinationArea,ReceivingPoint,BackNo,OrderNo,PlineNo,ReceivingNo,Operator)" +
-                                    $"values('{fields[0]}','{fields[16]}','{fields[12]}','{fields[18]}','{fields[19]}','{fields[20]}'," +
-                                    $"'{fields[22]}','{fields[23]}','{fields[21]}','{fields[17]}')";
-                            }
+                        bool isNull = GetBySerialNo(fields[0]);
 
 
-                        }
+                        string[] parts = itemName.Split('\\');
+                        // 提取倒数第一个和倒数第二个部分，即最后的文件夹路径部分
+                        string lastFolder = parts[parts.Length - 3] + "\\" + parts[parts.Length - 2];
+                        string item = parts[parts.Length - 1].Replace(".csv", "");
+
+                        string sql = BuildQuery(pathName, isNull, fields, item);
+
                         SqlHelper.ExecuteNonQuery(sql);
 
-                        return sql;
+                        if (parser.EndOfData)
+                        {
+                            _redisHelper.SetHash(lastFolder, item, 0);
+                            //_redisHelper.RedisSet(lastFolder, item);
+                        }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                //throw ex.Message;
+                Console.WriteLine(ex.Message);
             }
-            return itemName;
         }
 
         //根据序列号获取数据
@@ -149,6 +153,48 @@ namespace Traceability_System.Models.FileOperation
             return str == null ? false : true;
         }
 
+        //获取sql
+        private string BuildQuery(string pathName, bool isNull, string[] fields, string itemName)
+        {
+            string sql = "";
+            string path = "D:\\Traceability\\Ship";
+            if (isNull)
+            {
+                sql = "UPDATE Shipping SET ";
+                if (pathName.Contains("Senko"))
+                {
+                    sql += $"ProductNo = '{fields[1]}',Printing = '{fields[5]}',LeadTimeDate = '{fields[2]}' ";
+                }
+                else
+                {
+                    sql += $"ShippingTimeDate = '{fields[16]}',Destination = '{fields[12]}'," +
+                                $"DestinationArea = '{fields[18]}',ReceivingPoint = '{fields[19]}',BackNo = '{fields[20]}'," +
+                                $"OrderNo = '{fields[22]}',PlineNo = '{fields[23]}',ReceivingNo = '{fields[21]}',Operator = '{fields[17]}' ";
+                }
+
+                Logger.WriteLogAsync($"{pathName}文件下的{itemName}中的{fields[0]}字段更新", path);
+                sql += $"WHERE SerialNo = '{fields[0]}'";
+            }
+            else
+            {
+                sql = "INSERT INTO Shipping ";
+                if (pathName.Contains("Senko"))
+                {
+                    sql += $"(SerialNo,ProductNo,Printing,LeadTimeDate) ";
+                    sql += $" values('{fields[0]}','{fields[1]}','{fields[5]}','{fields[2]}') ";
+                }
+                else
+                {
+                    sql += $"(SerialNo,ShippingTimeDate,Destination,DestinationArea,ReceivingPoint," +
+                                    $"BackNo,OrderNo,PlineNo,ReceivingNo,Operator)" +
+                                    $"values('{fields[0]}','{fields[16]}','{fields[12]}','{fields[18]}','{fields[19]}','{fields[20]}'," +
+                                    $"'{fields[22]}','{fields[23]}','{fields[21]}','{fields[17]}')";
+                }
+
+            }
+            return sql;
+        }
+
         //检查ip通不通
         public string IPInspect()
         {
@@ -157,6 +203,19 @@ namespace Traceability_System.Models.FileOperation
             var lastPingStatus = iPInspect.IPInspectMethod();
 
             return lastPingStatus.ToString();
+        }
+
+        bool GetTime(string fileTime)
+        {
+            bool timeDate = false;
+            DateTime fileDate = DateTime.ParseExact(fileTime, "yyyyMMdd", CultureInfo.InvariantCulture);
+            DateTime currentDate = DateTime.Now;
+            DateTime twoDaysAgo = currentDate.AddDays(-3);
+            if (fileDate < twoDaysAgo)
+            {
+                 timeDate =true;
+            }
+            return timeDate;
         }
     }
 }

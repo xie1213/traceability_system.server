@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
@@ -71,9 +72,6 @@ namespace Appraisal_System.Utility
                     }
                     return rows;
                 }
-
-
-
             }
         }
         //執行查詢返回單個值方法
@@ -90,12 +88,7 @@ namespace Appraisal_System.Utility
                     conn.Open();
 
                     return cmd.ExecuteScalar();
-
-
                 }
-
-
-
             }
         }
 
@@ -126,42 +119,7 @@ namespace Appraisal_System.Utility
                 }
 
             }
-
-
-
-
         }
-
-        public static Boolean AddTable(DataTable dt, string tableName)
-        {
-            using (SqlConnection sqlCon = new SqlConnection(ConStr))
-            {
-                try
-                {
-                    sqlCon.Open();
-                    using (SqlBulkCopy bulkCopy = new SqlBulkCopy(sqlCon))
-                    {
-                        bulkCopy.DestinationTableName = tableName;
-
-                        for (int i = 0; i < dt.Columns.Count; i++)
-                        {
-                            bulkCopy.ColumnMappings.Add(dt.Columns[i].Caption.ToString(), dt.Columns[i].Caption.ToString());
-                        }
-                        bulkCopy.WriteToServer(dt);
-                        return true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw;
-                }
-                finally
-                {
-                    sqlCon.Close();
-                }
-            }
-        }
-
 
         public static List<string> GetSqlColumnName(string TableName)
         {
@@ -193,24 +151,6 @@ namespace Appraisal_System.Utility
 
 
 
-        }
-
-
-        //封装一个返回DataTable的方法
-        public static DataTable ExecuteDataTable(string sql, CommandType cmdType, params SqlParameter[] pms)
-        {
-            DataTable dt = new DataTable();
-            using (SqlDataAdapter adapter = new SqlDataAdapter(sql, ConStr))
-            {
-                adapter.SelectCommand.CommandType = cmdType;
-                if (pms != null)
-                {
-                    adapter.SelectCommand.Parameters.AddRange(pms);
-                }
-                adapter.Fill(dt);
-            }
-
-            return dt;
         }
 
         //批量添加
@@ -334,6 +274,8 @@ namespace Appraisal_System.Utility
           
         }
 
+
+       
         private static SqlConnection GetConnection()
         {
             // 从配置文件读取连接字符串

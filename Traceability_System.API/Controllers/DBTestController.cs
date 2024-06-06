@@ -18,82 +18,20 @@ namespace Traceability_System.Api.Controllers
 
         //private readonly _966KDataBaseContext _dbContext;
         private readonly SelectAllData _selectAllData;
+        private readonly RedisHelper _redisHelper;
 
         public DBTestController( SelectAllData selectAllData)
         {
             _selectAllData = selectAllData;
+            _redisHelper = new RedisHelper();
         }
-
-        //#region 禁止
-        //[HttpPost("SelTablePost")]
-        //public IActionResult SelTablePost([FromBody] SelTableRequest Request)
-        // {
-
-        //    if (Request == null)
-        //    {
-        //        return BadRequest("请求参数为空");
-        //    }
-        //    //Stopwatch stopwatch = new Stopwatch();
-        //    // 启动计时器
-        //    //stopwatch.Start();
-        //    object list;
-
-
-        //    if (Request.TableName == "出荷履历")
-        //    {
-        //        //list = _selectAllData.GetOutTable(Request);
-        //    }
-        //    else if(Request.TableName == "全部履历")
-        //    {
-
-        //         list = _selectAllData.GetTableByName(Request);
-        //       // SelectAllData.GetTableByName(Request);
-        //    }
-        //    else
-        //    {
-        //        list = _selectAllData.GetTableByName(Request);
-        //    }
-
-        //    //stopwatch.Stop();
-
-        //    //Console.WriteLine("查询数据的时间" + stopwatch.ElapsedMilliseconds);
-        //    return Ok(list);
-        //    // 停止计时器
-            
-        //    //
-
-        //    //try
-        //    //{
-        //    //    if (Request.TableName == "全部数据")
-        //    //    {
-        //    //        Request.limit = 10;
-        //    //    }
-        //    //    //var first50Items = Test.Take(Request.limit);
-        //    //    stopwatch = new Stopwatch();
-        //    //    stopwatch.Start();
-
-        //    //    //var first50Items = RedisHelper.GetHashToPage<MotorTable>(1);
-        //    //    var first50Items = RedisHelper.GetHashToPage(1,50);
-
-        //    //    stopwatch.Stop();
-        //    //    Console.WriteLine("获取数据的时间" + stopwatch.ElapsedMilliseconds);
-
-        //    //    return Ok(new { data = first50Items, code = 200 });
-        //    //}
-        //    //catch (Exception)
-        //    //{
-
-        //    //    throw;
-        //    //}
-
-
-        //}
-        //#endregion
      
         [HttpPost("getTableData")]
         public IActionResult getTableData([FromBody] ParameterData parameter)
         {
             object list;
+            _redisHelper.DeleteHash(parameter.tableName);
+
             if (parameter.tableName == "全部履历")
             {
                 list = _selectAllData.GetAllTableData(parameter);
@@ -107,23 +45,22 @@ namespace Traceability_System.Api.Controllers
                 list = _selectAllData.GetRestTableData(parameter);
             }
             return Ok(list);
-            //return Ok(parameter);
         }
 
 
         [HttpGet("GetRedis")]
-        public  IActionResult GetRedis(int page,int limit, string tableName)
+        public  async Task<IActionResult>  GetRedis(int page,int limit, string tableName)
         {
             try
             {
-                Stopwatch stopwatch = new Stopwatch();
+                //Stopwatch stopwatch = new Stopwatch();
                 // 启动计时器
                 //var json = await RedisHelper.ReStringAs
-                stopwatch.Start();
+                //stopwatch.Start();
                 RedisHelper redisHelper = new RedisHelper();
-                var first50Items = redisHelper.GetHashToPage(tableName,page, limit);
+                var first50Items = await redisHelper.GetHashToPageAsync(tableName,page, limit);
                 //await Console.Out.WriteLineAsync();
-                stopwatch.Stop();
+                //stopwatch.Stop();
 
                 //Console.WriteLine("分页查询时间"+stopwatch.ElapsedMilliseconds);
                 return Ok(new { data = first50Items });

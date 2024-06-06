@@ -18,27 +18,10 @@ namespace Traceability_System.Utility
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static bool RedisSet(string key, string value, int dbNum = 0)
+        public bool RedisSet(string key, string value, int dbNum = 0)
         {
             db = redis.GetDatabase(dbNum);
-            // 判断key是否存在
-            //if (db.KeyExists(key))
-            //{
-            //    //// key存在，判断value是否存在
-            //    //if (!string.IsNullOrEmpty(db.StringGet(key)))
-            //    //{
-            //    //    //存在return;
-            //    //    return false;
-            //    //}
-            //    //// value不存在，将新的value添加到原有的value后面
-            //    //db.StringAppend(key, value);
-
-            //}
-            //else
-            //{
-            //    // key不存在，创建key并设置value
-            //    db.StringSet(key, value);
-            //}
+            
             db.StringSet(key, value);
             return true;
         }
@@ -121,21 +104,23 @@ namespace Traceability_System.Utility
         /// <param name="hashField"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public  int SetHash(string redisKey, string hashField, int dbnum)
+        public  void SetHash(string redisKey, string hashField, int dbnum)
         {
             db = redis.GetDatabase(dbnum);
 
-            int value = 0;
+            //int value = 0;
             if (db.HashExists(redisKey, hashField))
             {
                 var newvalue = db.HashGet(redisKey, hashField);
-                if (!newvalue.IsNull)
-                {
-                    value = (int)newvalue + 1;
-                }
+                //if (!newvalue.IsNull)
+                //{
+                //    value = (int)newvalue + 1;
+                //}
             }
-            db.HashSet(redisKey, hashField, value);
-            return value;
+            db.HashSet(redisKey, hashField,hashField);
+            TimeSpan expiry = TimeSpan.FromDays(3);
+            db.KeyExpire(redisKey, expiry);
+            //return ;
         }
 
         //存入json类型得hash
@@ -151,6 +136,7 @@ namespace Traceability_System.Utility
             db = redis.GetDatabase(dbnum);
             return db.HashGet(key, field);
         }
+
         /// <summary>
         /// 从Hash中获取分页数据
         /// </summary>
@@ -158,33 +144,48 @@ namespace Traceability_System.Utility
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public  List<object> GetHashToPage(string tableName,int page = 0,int pageSize = 0)
+        public async Task<List<object>> GetHashToPageAsync(string tableName, int page = 0, int pageSize = 0)
         {
-            db = redis.GetDatabase(7);
-
-            var allFields = db.HashKeys(tableName);
-            //const int pageSize = 50;
-            List<object> list = new List<object>();
-            RedisValue[]? pageFields = null;
-            if (page == 0 || pageSize == 0 )
+            try
             {
-                pageFields = allFields.ToArray();
+                db = redis.GetDatabase(7);
 
+                var allFields = await db.HashKeysAsync(tableName);
+                List<object> list = new List<object>();
+
+                RedisValue[] pageFields;
+                if (page == 0 || pageSize == 0)
+                {
+                    pageFields = allFields;
+                }
+                else
+                {
+                    int startIndex = (page - 1) * pageSize;
+                    int count = Math.Min(pageSize, allFields.Length - startIndex);
+                    pageFields = allFields.Skip(startIndex).Take(count).ToArray();
+                }
+
+                var values = await db.HashGetAsync(tableName, pageFields);
+                foreach (var item in values)
+                {
+                    var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item);
+                    list.Add(rowData);
+                }
+
+                return list;
             }
-            else
+            catch (RedisConnectionException ex)
             {
-                pageFields = allFields.Skip((page - 1) * pageSize).Take(pageSize).ToArray(); ;
+                // 处理 Redis 连接异常
+                Console.WriteLine("Redis 连接失败：" + ex.Message);
+                return null;
             }
-
-            var values = db.HashGet(tableName, pageFields);
-            foreach (var item in values)
+            catch (Exception ex)
             {
-                var Rowdata = JsonConvert.DeserializeObject<Dictionary<string, string>>(item.ToString());
-
-                list.Add(Rowdata);
+                // 处理其他异常
+                Console.WriteLine("发生异常：" + ex.Message);
+                return null;
             }
-
-            return list;
         }
         
         //获取hash中的值
