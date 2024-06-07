@@ -12,21 +12,22 @@ namespace Traceability_System.Models.FileOperation
 {
     public class MergeCsv
     {
-        //string dirPath = @"\\192.168.0.10\\meiwa\\CSV";
+        string dirPath = @"\\192.168.0.10\\meiwa\\CSV";
 
-        static readonly string Today = DateTime.Now.ToString("yyyy-MM-dd");
-        string dirPath = @"C:\\Users\\x1769\\Desktop\\CSV";
+        //string dirPath = @"C:\\Users\\x1769\\Desktop\\CSV";
         private readonly RedisHelper _redisHelper;
+        private static object lockObject = new object();
+        string path = "D:\\Traceability\\Ship";
 
         public MergeCsv(RedisHelper redisHelper)
         {
             _redisHelper = redisHelper;
         }
 
-        public void GetDirList()
+        public async Task GetDirList()
         {
-            //if (IPInspect() != "链接成功" || !Directory.Exists(dirPath))
-            //    return;
+            if (IPInspect() != "链接成功" || !Directory.Exists(dirPath))
+                return;
             try
             {
 
@@ -54,13 +55,12 @@ namespace Traceability_System.Models.FileOperation
                         if (files.Length == 0)
                             return;
 
+                        lock (lockObject)
+                        {
+                            GetCsv(files);
 
-                        GetCsv(files);
-
-
+                        }
                     }
-
-
                 }
             }
             catch (Exception e)
@@ -100,6 +100,7 @@ namespace Traceability_System.Models.FileOperation
         //读取Csv文件并保存到数据库
         public void ReadCsv(string itemName, string pathName, string dirPath)
         {
+
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             try
             {
@@ -113,29 +114,27 @@ namespace Traceability_System.Models.FileOperation
                     // 设置是否处理引号
                     parser.HasFieldsEnclosedInQuotes = true;
 
+
+                    string[] parts = itemName.Split('\\');
+                    // 提取倒数第一个和倒数第二个部分，即最后的文件夹路径部分
+                    string lastFolder = parts[parts.Length - 3] + "\\" + parts[parts.Length - 2];
+                    string item = parts[parts.Length - 1].Replace(".csv", "");
+
                     // 循环读取每一行
                     while (!parser.EndOfData)
                     {
                         // 获取当前行的字段数组
                         string[] fields = parser.ReadFields();
-                        bool isNull = GetBySerialNo(fields[0]);
-
-
-                        string[] parts = itemName.Split('\\');
-                        // 提取倒数第一个和倒数第二个部分，即最后的文件夹路径部分
-                        string lastFolder = parts[parts.Length - 3] + "\\" + parts[parts.Length - 2];
-                        string item = parts[parts.Length - 1].Replace(".csv", "");
+                        bool isNull = GetBySerialNo(fields[0].TrimEnd());
+                        string numPath = Path.Combine(path, "序列号");
 
                         string sql = BuildQuery(pathName, isNull, fields, item);
 
                         SqlHelper.ExecuteNonQuery(sql);
 
-                        if (parser.EndOfData)
-                        {
-                            _redisHelper.SetHash(lastFolder, item, 0);
-                            //_redisHelper.RedisSet(lastFolder, item);
-                        }
                     }
+                    _redisHelper.SetHash(lastFolder, item, 0);
+
                 }
             }
             catch (Exception ex)
@@ -147,7 +146,7 @@ namespace Traceability_System.Models.FileOperation
 
         //根据序列号获取数据
         public bool GetBySerialNo(string SerialNo)
-        {
+        { 
             string sql = $"select * from Shipping where SerialNo = '{SerialNo}'";
             var str = SqlHelper.ExecuteScalar(sql);
             return str == null ? false : true;
@@ -157,7 +156,6 @@ namespace Traceability_System.Models.FileOperation
         private string BuildQuery(string pathName, bool isNull, string[] fields, string itemName)
         {
             string sql = "";
-            string path = "D:\\Traceability\\Ship";
             if (isNull)
             {
                 sql = "UPDATE Shipping SET ";
