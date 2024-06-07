@@ -104,8 +104,6 @@ namespace Traceability_System.Models.FileOperation
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             try
             {
-                //SvaeRedis(itemName);
-
                 using (TextFieldParser parser = new TextFieldParser(itemName, Encoding.GetEncoding("gb18030")))
                 {
                     // 指定分隔符（CSV文件一般使用逗号作为分隔符）
@@ -139,7 +137,6 @@ namespace Traceability_System.Models.FileOperation
             }
             catch (Exception ex)
             {
-                //throw ex.Message;
                 Console.WriteLine(ex.Message);
             }
         }
