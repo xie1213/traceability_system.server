@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Appraisal_System.Utility;
+using Microsoft.OpenApi.Models;
 using Traceability_System.API;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Models.FileOperation;
@@ -55,7 +56,7 @@ public class YoushowDemoApiModule : AceModule
         services.AddScoped<ExportToExcel>();
         services.AddScoped<ExportTableMapper>();
         services.AddScoped<newExportToExcel>();
-
+        services.AddScoped<SqlHelper>();
         services.AddSingleton<IHostLifetime, NoopConsoleLifetime>();
         //services.AddConfig(builder.Configuration);
         /*services.AddDbContext<_966KDataBaseContext>(options => {

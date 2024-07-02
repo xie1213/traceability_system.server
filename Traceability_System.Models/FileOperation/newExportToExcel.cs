@@ -15,6 +15,8 @@ namespace Traceability_System.Models.FileOperation
 
         string baseDirectory = @"D:\work\Traceability_System\assets";
         public string tableName = "";
+        int count = 0;
+
 
         public newExportToExcel(RedisHelper redisHelper, ExportTableMapper exportTable)
         {
@@ -26,7 +28,7 @@ namespace Traceability_System.Models.FileOperation
 
         public async Task<byte[]> ExportTable(string tableName)
         {
-
+            //文件保存路径
             filePath = CopyFile(tableName);
 
             tableName = subStr(tableName);
@@ -38,11 +40,11 @@ namespace Traceability_System.Models.FileOperation
             var exportData = _redisHelper.GetAllHashValues(tableName);
             // 将当前页数据添加到总数据集合中
 
-            int count = exportData.Count;
+            count = exportData.Count;
 
 
             // 调用方法将数据导出为 Excel 文件
-            byte[] excelBytes = await ExportToExcel(exportData, tableName, count);
+            byte[] excelBytes = await ExportToExcel(exportData);
 
 
             //await ExportToExcel(exportData, tableName);
@@ -51,55 +53,15 @@ namespace Traceability_System.Models.FileOperation
 
         }
 
-        //导出数据
-        public async Task<byte[]> ExportToExcel(List<string> list, string tableName, int count)
+        //导出数据发送流给前端
+        public async Task<byte[]> ExportToExcel<T>(List<T> list)
         {
             FileInfo fileInfo = new FileInfo(filePath);
-            var skipKeys = SkipField(tableName); // 跳过字段
 
             using (ExcelPackage package = new ExcelPackage(fileInfo))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // 第一个工作表
-                int batchSize = 1000; // 每次处理的数据量
-                //int totalRows = list.Count;
-                int processedRows = 0;
 
-                while (processedRows < 1000)
-                {
-                    var batchList = list.Skip(processedRows).Take(batchSize).ToList();
-                    processedRows += batchList.Count;
-
-
-                    var tasks = batchList.Select(async (item, index) =>
-                    {
-                        var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item);
-
-                        string itemKey = _exportTable.keyValuePairs.TryGetValue(tableName, out string key) ? rowData[key].ToString() : string.Empty;
-
-                        int row = processedRows - batchList.Count + index + 3; // 起始行
-                        DateTime collectionDate = DateTime.Parse(rowData["CollectionDate"]);
-
-                        worksheet.Cells[row, 1].Value = collectionDate; //固定字段
-                        worksheet.Cells[row, 2].Value = itemKey;
-                        //skipKeys.Add("");
-                        skipKeys.Add(key);
-                        int col = 3;
-                        foreach (var pair in rowData)
-                        {
-
-                            var cells = worksheet.Cells[row, col];
-
-                            if (skipKeys.Contains(pair.Key))
-                                continue;
-
-                            cells.Value = pair.Value;
-                            col++;
-                        }
-                    });
-
-                    await Task.WhenAll(tasks);
-                }
-
+                await CreateExcel(package, list);
                 //worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
 
                 using (var memoryStream = new MemoryStream())
@@ -112,12 +74,75 @@ namespace Traceability_System.Models.FileOperation
             }
         }
 
-        public void SaveTable()
+        //直接保存到后端
+        public async Task SevaToExcel<T>(List<T> list)
         {
+            FileInfo fileInfo = new FileInfo(filePath);
 
+            using (ExcelPackage package = new ExcelPackage(fileInfo))
+            {
+
+                await CreateExcel(package, list);
+                //worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    await package.SaveAsAsync(memoryStream);
+
+                    package.Save();
+                }
+            }
         }
 
+        //创建表格
+        public async Task<ExcelPackage> CreateExcel<T>(ExcelPackage package,List<T> list)
+        {
+            ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // 第一个工作表
+            int processedRows = 0;
+            //int batchSize = count;
+            int batchSize = 500;
 
+
+            var skipKeys = SkipField(tableName); // 跳过字段
+            while (processedRows < batchSize)
+            {
+                var batchList = list.Skip(processedRows).Take(batchSize).ToList();
+                processedRows += batchList.Count;
+
+
+                var tasks = batchList.Select(async (item, index) =>
+                {
+                    var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item.ToString());
+
+                    //根据表格名字选择第二列
+                    string itemKey = _exportTable.keyValuePairs.TryGetValue(tableName, out string key) ? rowData[key].ToString() : string.Empty;
+
+                    int row = processedRows - batchList.Count + index + 3; // 起始行
+                    DateTime collectionDate = DateTime.Parse(rowData["CollectionDate"]);
+
+                    worksheet.Cells[row, 1].Value = collectionDate; //固定字段
+                    worksheet.Cells[row, 2].Value = itemKey;
+                    //skipKeys.Add("");
+                    skipKeys.Add(key);
+                    int col = 3;
+                    foreach (var pair in rowData)
+                    {
+
+                        var cells = worksheet.Cells[row, col];
+
+                        if (skipKeys.Contains(pair.Key))
+                            continue;
+
+                        cells.Value = pair.Value;
+                        col++;
+                    }
+                });
+
+                await Task.WhenAll(tasks);
+            }
+
+            return package;
+        }
 
         //获取单元格格式
         void GetKeyType(string key, string value, ExcelRange cells)
@@ -174,7 +199,7 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //截取字符
-        string subStr(string tableName)
+        public string subStr(string tableName)
         {
             int underscoreIndex = tableName.IndexOf('_');
 

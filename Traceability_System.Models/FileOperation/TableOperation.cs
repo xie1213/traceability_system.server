@@ -16,6 +16,7 @@ public class TableOperation
     public string Complete = "D:\\FTP\\Complete";
     string today = DateTime.Today.ToString("yyyy-MM-dd");
 
+    readonly SqlHelper _sqlHelper = new();
 
     //public static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
 
@@ -38,7 +39,7 @@ public class TableOperation
 
                 foreach (var fileName in files)
                 {
-                    GetCsvCellValueTask(fileName, folder);
+                   await GetCsvCellValueTask(fileName, folder);
                 }
             }
 
@@ -53,7 +54,7 @@ public class TableOperation
     }
 
     //读取文件并移动文件
-    public void GetCsvCellValueTask(string fileName, string folder)
+    public async Task GetCsvCellValueTask(string fileName, string folder)
     {
         if (!File.Exists(fileName))
         {
@@ -95,7 +96,7 @@ public class TableOperation
 
                 if (sqlTest != null)
                 {
-                    var renew = SqlHelper.BuildUpdateQuery(renewParameter);
+                    int renew = await _sqlHelper.BuildUpdateQuery(renewParameter);
                     if (renew >= 1)
                     {
                         Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");

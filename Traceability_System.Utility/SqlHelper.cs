@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
 using System.Data;
 using Traceability_System.DTO;
 using Traceability_System.Utility;
@@ -42,7 +44,8 @@ namespace Appraisal_System.Utility
                 catch (Exception e)
                 {
 
-                    throw e;
+                    Console.WriteLine("查询出错"+e.Message);
+                    throw;
                 }
 
             }
@@ -52,6 +55,28 @@ namespace Appraisal_System.Utility
         public static int ExecuteNonQuery(string cmdText, params SqlParameter[] sqlParameters)
         {
             using (SqlConnection conn = new SqlConnection(ConStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                {
+                    if (sqlParameters != null)
+                    {
+                        cmd.Parameters.AddRange(sqlParameters);
+                    }
+                    conn.Open();
+
+                    int rows = cmd.ExecuteNonQuery();
+                    if (rows <= 0)
+                    {
+                        //throw new Exception("数据库操作失败");
+                    }
+                    return rows;
+                }
+            }
+        }
+
+        public async Task<int> ExecuteNonQueryAsync(string cmdText, params SqlParameter[] sqlParameters)
+        {
+          await  using (SqlConnection conn = new SqlConnection(ConStr))
             {
                 using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                 {
@@ -140,7 +165,7 @@ namespace Appraisal_System.Utility
                 }
                 catch (Exception e)
                 {
-
+                    Console.WriteLine(e.Message);
                 }
                 return columnName;
             }
@@ -213,29 +238,27 @@ namespace Appraisal_System.Utility
                     bulkCopy.WriteToServer(dt);
                 }
                 // 写入数据
+
+                conn.Close();
                 return true;
             }
             catch (Exception e)
             {
 
                 //Console.WriteLine(e);
-
+                Console.WriteLine("插入失败"+e.Message);
                 throw;
                 // false;   
             }
-            conn.Close();
 
         }
 
         //public static bool BuildUpdateQuery(string tableName, List<string> colNameList, List<string> valueList, List<string> strings, string strTime)
-        public static int BuildUpdateQuery(RenewParameter renewParameter)
+        public async Task<int> BuildUpdateQuery(RenewParameter renewParameter)
         {
             ProofData proofData = new ProofData();
             //var chack = proofData.GetRedis(tableName, strings[1]);
             // 构建 SET 子句
-
-
-
             List<string> setClauses = new List<string>();
             try
             {
@@ -259,13 +282,16 @@ namespace Appraisal_System.Utility
                 }
                 // 构建完整的更新语句
                 string updateQuery = $"UPDATE {renewParameter.tableName} SET {string.Join(", ", setClauses)} WHERE {renewParameter.specify[0]} = '{renewParameter.specify[1]}'  ;";
-                return ExecuteNonQuery(updateQuery);
+             
+                
+                return await ExecuteNonQueryAsync(updateQuery);
+                
 
             }
             catch (Exception e)
             {
 
-                throw e;
+                throw;
             }
 
         }

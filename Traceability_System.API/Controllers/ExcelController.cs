@@ -31,7 +31,6 @@ namespace Traceability_System.API.Controllers
             //return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.csv");
             return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
 
-            //return null;
 
         }
         [HttpGet("SeveToTable")]
