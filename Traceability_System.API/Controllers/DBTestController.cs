@@ -80,33 +80,7 @@ namespace Traceability_System.Api.Controllers
             DataTable list = SqlHelper.ExecuteTable(sql);
 
             string json = JsonConvert.SerializeObject(list);
-            //try
-            //{
-            //    byte[] jsonData = Encoding.UTF8.GetBytes(json);
-
-            //    // 使用 GZip 压缩 JSON 数据
-            //    byte[] compressedData;
-            //    using (MemoryStream outputStream = new MemoryStream())
-            //    {
-            //        using (GZipStream gzipStream = new GZipStream(outputStream, CompressionMode.Compress))
-            //        {
-            //            gzipStream.Write(jsonData, 0, jsonData.Length);
-            //        }
-            //        compressedData = outputStream.ToArray();
-            //    }
-
-            //    // 设置响应头，指定 Content-Encoding 为 gzip
-            //    Response.Headers.Add("Content-Encoding", "gzip");
-
-            //    // 返回压缩后的 JSON 数据
-            //    return Ok(compressedData);
-            //}
-            //catch (Exception e)
-            //{
-
-            //    throw;
-            //}
-            //// 创建一个内存流来存储 JSON 数据
+           
                    
             var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(json);
             return Ok(new {data= dataList });

@@ -30,7 +30,7 @@ namespace Traceability_System.Models.FileOperation
 
 
         //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-        public byte[] ExportTable(string tableName)
+        public  byte[] ExportTable(string tableName)
         {
             //许可证
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;

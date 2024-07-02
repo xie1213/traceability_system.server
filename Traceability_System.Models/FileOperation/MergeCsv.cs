@@ -1,11 +1,7 @@
 ﻿using Appraisal_System.Utility;
-using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic.FileIO;
-using System;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using Traceability_System.DTO;
 using Traceability_System.Utility;
 
 namespace Traceability_System.Models.FileOperation

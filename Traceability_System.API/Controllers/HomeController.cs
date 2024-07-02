@@ -71,15 +71,15 @@ namespace Traceability_System.Api.Controllers
             //string jsonData = JsonConvert.SerializeObject(requestData);
 
             RedisHelper redisHelper = new RedisHelper();
-            //RedisHelper.RedisSet("Motor履历", jsonData, 4);
-            //RedisHelper.RedisSet("Rotor履历", jsonData, 4);
-            //RedisHelper.RedisSet("Gear履历", jsonData, 4);
-            //RedisHelper.RedisSet("Ta履历", jsonData, 4);
+            //redisHelper.RedisSet("Motor履历", jsonData, 4);
+            //redisHelper.RedisSet("Rotor履历", jsonData, 4);
+            //redisHelper.RedisSet("Gear履历", jsonData, 4);
+            //redisHelper.RedisSet("Ta履历", jsonData, 4);
 
-            //RedisHelper.RedisSet("Rr履历", jsonData, 4);
+            //redisHelper.RedisSet("Rr履历", jsonData, 4);
 
-            redisHelper.RedisSet("全部履历", jsonData, 4);
-            //RedisHelper.RedisSet("出荷履历", jsonData, 4);
+            //redisHelper.RedisSet("全部履历", jsonData, 4);
+            redisHelper.RedisSet("出荷履历", jsonData, 4);
         }
 
 

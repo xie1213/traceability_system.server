@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Traceability_System.Models.FileOperation;
 
 namespace Traceability_System.API.Controllers
@@ -6,24 +7,44 @@ namespace Traceability_System.API.Controllers
     [Route("api/[controller]")]
     public class ExcelController : Controller
     {
-        private readonly ExportToExcel _exportToExcel;
+        //private readonly ExportToExcel _exportToExcel;
+        private readonly newExportToExcel _exportToExcel;
 
-        public ExcelController(ExportToExcel exportToExcel)
+        public ExcelController(newExportToExcel exportToExcel)
         {
             _exportToExcel = exportToExcel;
+
         }
 
         [HttpGet("ExportData")]
-        public IActionResult ExportTable(string tableName)
+        public async Task<IActionResult> ExportTable(string tableName)
         {
             // 调用 ExcelService 中的方法创建 Excel 表
-            var filePath = _exportToExcel.ExportTable(tableName);
+            //_exportToExcel
+            var watch = Stopwatch.StartNew();
 
-            //返回生成的 Excel 文件给前端进行下载
-            //string filePath = $"{tableName}.xlsx";
-            //byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            var filePath = await _exportToExcel.ExportTable(tableName);
+            watch.Stop();
+            var elapsedMilliseconds = watch.ElapsedMilliseconds;
 
+            await Console.Out.WriteLineAsync("2000条用了:"+elapsedMilliseconds);
+            //return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.csv");
             return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+
+            //return null;
+
         }
+        [HttpGet("SeveToTable")]
+        public async Task SeveTable(string tableName)
+        {
+            var watch = Stopwatch.StartNew();
+
+            await _exportToExcel.ExportTable(tableName);
+            watch.Stop();
+            var elapsedMilliseconds = watch.ElapsedMilliseconds;
+
+            await Console.Out.WriteLineAsync("2000条用了:" + elapsedMilliseconds);
+        }
+
     }
 }
