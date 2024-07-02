@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using Appraisal_System.Utility;
-using Microsoft.AspNetCore.Mvc;
+﻿using Appraisal_System.Utility;
 using Traceability_System.DTO;
 using Traceability_System.Models.CharAnalysis;
 using Traceability_System.Utility;
@@ -97,12 +95,12 @@ public class TableOperation
 
                 if (sqlTest != null)
                 {
-                   var renew =  SqlHelper.BuildUpdateQuery(renewParameter);
-                    if(renew >= 1)
+                    var renew = SqlHelper.BuildUpdateQuery(renewParameter);
+                    if (renew >= 1)
                     {
-                        Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum+1}次");
+                        Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
                         //Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
-                        
+
                     }
 
                 }
@@ -122,8 +120,8 @@ public class TableOperation
                 }
                 //Logger.WriteLogAsync($"旧文件路径:{fileName}");
             }
-            UploadFile(fileName,folder);
-            
+            UploadFile(fileName, folder);
+
         }
         catch (IOException ex)
         {
@@ -190,10 +188,10 @@ public class TableOperation
         }
 
     }
-    
+
 
     //移动文件
-    public  void UploadFile(string oldPath, string folder)
+    public void UploadFile(string oldPath, string folder)
     {
         if (!File.Exists(oldPath))
         {
@@ -206,7 +204,7 @@ public class TableOperation
 
 
             string fileName = Path.GetFileName(oldPath);
-            
+
 
             string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
 
@@ -233,7 +231,7 @@ public class TableOperation
         }
         catch (IOException ex)
         {
-           
+
 
             Logger.WriteLogAsync($"无法移动文件'{oldPath}',{ex.Message}。");
             // 可以选择等待一段时间或者尝试其他方式来解决这个问题

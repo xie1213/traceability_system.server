@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Traceability_System.DTO
+﻿namespace Traceability_System.DTO
 {
     public class PairField
     {

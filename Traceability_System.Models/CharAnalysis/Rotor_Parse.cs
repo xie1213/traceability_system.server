@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Traceability_System.Models.CharAnalysis
+﻿namespace Traceability_System.Models.CharAnalysis
 {
     public class Rotor_Parse : GeneralAnalysis
     {

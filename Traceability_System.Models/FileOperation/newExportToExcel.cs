@@ -1,12 +1,8 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Data;
-using System.Text;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Utility;
-using ExcelKit;
-using System.Diagnostics;
 
 
 namespace Traceability_System.Models.FileOperation
@@ -18,7 +14,7 @@ namespace Traceability_System.Models.FileOperation
         public string filePath = "";
 
         string baseDirectory = @"D:\work\Traceability_System\assets";
-        public string tableName  = "";
+        public string tableName = "";
 
         public newExportToExcel(RedisHelper redisHelper, ExportTableMapper exportTable)
         {
@@ -56,7 +52,7 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //导出数据
-        public async Task<byte[]> ExportToExcel(List<string> list, string tableName,int count)
+        public async Task<byte[]> ExportToExcel(List<string> list, string tableName, int count)
         {
             FileInfo fileInfo = new FileInfo(filePath);
             var skipKeys = SkipField(tableName); // 跳过字段
@@ -73,8 +69,8 @@ namespace Traceability_System.Models.FileOperation
                     var batchList = list.Skip(processedRows).Take(batchSize).ToList();
                     processedRows += batchList.Count;
 
-                    
-                    var tasks =  batchList.Select(async (item, index) =>
+
+                    var tasks = batchList.Select(async (item, index) =>
                     {
                         var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item);
 
@@ -91,7 +87,7 @@ namespace Traceability_System.Models.FileOperation
                         foreach (var pair in rowData)
                         {
 
-                           var cells = worksheet.Cells[row, col];
+                            var cells = worksheet.Cells[row, col];
 
                             if (skipKeys.Contains(pair.Key))
                                 continue;
@@ -109,7 +105,7 @@ namespace Traceability_System.Models.FileOperation
                 using (var memoryStream = new MemoryStream())
                 {
                     await package.SaveAsAsync(memoryStream);
-                   
+
                     return memoryStream.ToArray();
                     //package.Save();
                 }
@@ -124,15 +120,15 @@ namespace Traceability_System.Models.FileOperation
 
 
         //获取单元格格式
-        void GetKeyType(string key,string value, ExcelRange cells)
+        void GetKeyType(string key, string value, ExcelRange cells)
         {
             //比较字符串
             var comparer = StringComparer.OrdinalIgnoreCase;
-            
+
             if (_exportTable.columns.Contains(key, comparer) || value == "")
             {
                 cells.Value = value;
-                
+
             }
             else
             {
@@ -151,13 +147,13 @@ namespace Traceability_System.Models.FileOperation
                     }
                     //cell.Style.Numberformat.Format = "@"; // 文本格式
                 }
-                
+
             }
         }
 
-        
+
         //复制文件路径
-        public string CopyFile(string tableName )
+        public string CopyFile(string tableName)
         {
             string filePath = Path.Combine(baseDirectory, $"{tableName}.xlsx");
             string copyName = $"{tableName}_.xlsx";
@@ -205,7 +201,7 @@ namespace Traceability_System.Models.FileOperation
 
 
         //获取倒序数据
-        List<string> GetDescData( string tableName)
+        List<string> GetDescData(string tableName)
         {
             //List<string> exportData = new List<string>();
             var exportData = _redisHelper.GetAllHashValues(tableName);

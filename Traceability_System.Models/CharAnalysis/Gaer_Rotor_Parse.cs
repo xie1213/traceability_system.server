@@ -6,10 +6,10 @@ public class Gaer_Rotor_Parse : GeneralAnalysis
     {
         InputText = parse;
     }
-    public  List<string> RR_and_GearSplitList()
+    public List<string> RR_and_GearSplitList()
     {
 
-        var baseRuslt  =  base.SplitList();
+        var baseRuslt = base.SplitList();
         RrBrg();
         MeasDateTime();
         DefAssembly();
@@ -53,7 +53,7 @@ public class Gaer_Rotor_Parse : GeneralAnalysis
         AddTwelveToTime(5); //530 - 589
         LastIndex += 1;
         AddTwelveToTime(2); //591 - 614
-        LastIndex += 9;     
+        LastIndex += 9;
         AddTwelveToTime(2); //
     }
 
@@ -70,8 +70,8 @@ public class Gaer_Rotor_Parse : GeneralAnalysis
     {
         AddTwelveToTime();
         AddOneItem();
-        AddOneItem(5,-3);
-        AddOneItem(5,-3);
+        AddOneItem(5, -3);
+        AddOneItem(5, -3);
         AddToList(2, 5, -3);
         LastIndex += 1;
 

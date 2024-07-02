@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient.Server;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace Traceability_System.Utility;
 
@@ -26,7 +25,7 @@ public class CoverToTime
 
         if (input.All(c => c == '0'))
         {
-            
+
             return input.Replace('0', ' ');
         }
         try
@@ -36,14 +35,15 @@ public class CoverToTime
             {
                 return dt.ToString("yy-MM-dd HH:mm:ss");
             }
-        }catch (FormatException e)
+        }
+        catch (FormatException e)
         {
             throw e;
         }
         return input;
 
     }
-    
+
     /// <summary>
     /// 将时间转换为数字
     /// </summary>

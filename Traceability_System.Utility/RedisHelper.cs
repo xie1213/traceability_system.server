@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using StackExchange.Redis;
-using System;
-using Traceability_System.DTO;
 
 namespace Traceability_System.Utility
 {

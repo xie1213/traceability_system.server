@@ -1,8 +1,4 @@
-﻿using Autofac.Core;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Traceability_System.API;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Models.FileOperation;

@@ -1,7 +1,6 @@
 ﻿
 using Appraisal_System.Utility;
 using Traceability_System.Models.FileOperation;
-using Traceability_System.Models.SelectDB;
 
 namespace Traceability_System.API
 {

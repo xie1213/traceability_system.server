@@ -74,7 +74,7 @@ public static class TModels
             Console.WriteLine(ex.Message);
             throw;
         }
-       
+
         return model;
     }
 }

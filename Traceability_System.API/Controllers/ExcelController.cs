@@ -27,7 +27,7 @@ namespace Traceability_System.API.Controllers
             watch.Stop();
             var elapsedMilliseconds = watch.ElapsedMilliseconds;
 
-            await Console.Out.WriteLineAsync("2000条用了:"+elapsedMilliseconds);
+            await Console.Out.WriteLineAsync("2000条用了:" + elapsedMilliseconds);
             //return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.csv");
             return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
 

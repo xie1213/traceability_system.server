@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Traceability_System.Entity.Models
+﻿namespace Traceability_System.Entity.Models
 {
     public partial class VwRrtable
     {

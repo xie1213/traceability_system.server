@@ -1,14 +1,12 @@
 ﻿
-using Microsoft.AspNetCore.Mvc;
-using Traceability_System.DTO;
-using Traceability_System.Models.SelectDB;
-using Newtonsoft.Json;
 using Appraisal_System.Utility;
-using System.Diagnostics;
-using Traceability_System.Utility;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Data;
+using Traceability_System.DTO;
 using Traceability_System.Models.FileOperation;
-using System.Collections.Generic;
+using Traceability_System.Models.SelectDB;
+using Traceability_System.Utility;
 
 namespace Traceability_System.Api.Controllers
 {
@@ -20,12 +18,12 @@ namespace Traceability_System.Api.Controllers
         private readonly SelectAllData _selectAllData;
         private readonly RedisHelper _redisHelper;
 
-        public DBTestController( SelectAllData selectAllData)
+        public DBTestController(SelectAllData selectAllData)
         {
             _selectAllData = selectAllData;
             _redisHelper = new RedisHelper();
         }
-     
+
         [HttpPost("getTableData")]
         public IActionResult getTableData([FromBody] ParameterData parameter)
         {
@@ -49,7 +47,7 @@ namespace Traceability_System.Api.Controllers
 
 
         [HttpGet("GetRedis")]
-        public  async Task<IActionResult>  GetRedis(int page,int limit, string tableName)
+        public async Task<IActionResult> GetRedis(int page, int limit, string tableName)
         {
             try
             {
@@ -58,7 +56,7 @@ namespace Traceability_System.Api.Controllers
                 //var json = await RedisHelper.ReStringAs
                 //stopwatch.Start();
                 RedisHelper redisHelper = new RedisHelper();
-                var first50Items = await redisHelper.GetHashToPageAsync(tableName,page, limit);
+                var first50Items = await redisHelper.GetHashToPageAsync(tableName, page, limit);
                 //await Console.Out.WriteLineAsync();
                 //stopwatch.Stop();
 
@@ -67,10 +65,10 @@ namespace Traceability_System.Api.Controllers
             }
             catch (Exception e)
             {
-                Logger.WriteLogAsync("redis 读取 错误"+e.Message);
+                Logger.WriteLogAsync("redis 读取 错误" + e.Message);
                 throw;
             }
-            
+
         }
 
         [HttpGet("SelTableGet")]
@@ -80,13 +78,13 @@ namespace Traceability_System.Api.Controllers
             DataTable list = SqlHelper.ExecuteTable(sql);
 
             string json = JsonConvert.SerializeObject(list);
-           
-                   
+
+
             var dataList = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(json);
-            return Ok(new {data= dataList });
+            return Ok(new { data = dataList });
         }
 
-       
+
 
         //[HttpGet("GetExport")]
         //public IActionResult Export(string tableName)
@@ -163,7 +161,7 @@ namespace Traceability_System.Api.Controllers
                     foreach (DataColumn col in resultTable.Columns)
                     {
                         rowData[col.ColumnName] = row[col].ToString() == "" ? "" : row[col];
-                    } 
+                    }
                     resultList.Add(rowData);
                 }
                 //RedisHelper.SetJsonHash("test", resultList, 3);
@@ -175,7 +173,7 @@ namespace Traceability_System.Api.Controllers
 
                 throw;
             }
-            
+
         }
 
     }

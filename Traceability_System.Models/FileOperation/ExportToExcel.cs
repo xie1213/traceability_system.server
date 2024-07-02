@@ -1,14 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Traceability_System.Entity.Models;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Utility;
 
@@ -30,7 +23,7 @@ namespace Traceability_System.Models.FileOperation
 
 
         //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-        public  byte[] ExportTable(string tableName)
+        public byte[] ExportTable(string tableName)
         {
             //许可证
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -194,7 +187,7 @@ namespace Traceability_System.Models.FileOperation
 
             foreach (var dataRow in exportData)
             {
-                int col  = 1;
+                int col = 1;
                 List<string> writtenKeys = new List<string>();
                 //JArray jsonArray = JArray.Parse(dataRow);
 
@@ -217,7 +210,7 @@ namespace Traceability_System.Models.FileOperation
                     writtenKeys.Add(itemKey);
                     col = 3;
                 }
-                
+
 
                 foreach (var key in rowdata.Keys)
                 {
@@ -249,7 +242,7 @@ namespace Traceability_System.Models.FileOperation
                             convertedValue = dateValue;
                             cell.Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
                         }
-                        else if(double.TryParse(rowdata[key].TrimEnd(), out double numericValue))
+                        else if (double.TryParse(rowdata[key].TrimEnd(), out double numericValue))
                         {
                             convertedValue = numericValue;
                             if (key == "" || key == "Operator")
@@ -297,23 +290,23 @@ namespace Traceability_System.Models.FileOperation
 
 
         //获取倒序数据
-        List<string> GetDescData(List<string> exportData,string tableName)
+        List<string> GetDescData(List<string> exportData, string tableName)
         {
-           return exportData.OrderByDescending(dataRow =>
-            {
-                var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataRow);
+            return exportData.OrderByDescending(dataRow =>
+             {
+                 var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataRow);
 
-                var clonum = _exportTable.keyValuePairs[tableName];
-                if (rowData.ContainsKey(clonum))
-                {
-                    string columnValue = rowData[clonum].ToString();
-                    if (columnValue.Length >= 8)
-                    {
-                        return columnValue.Substring(columnValue.Length - 8);
-                    }
-                }
-                return "";
-            }).ToList();
+                 var clonum = _exportTable.keyValuePairs[tableName];
+                 if (rowData.ContainsKey(clonum))
+                 {
+                     string columnValue = rowData[clonum].ToString();
+                     if (columnValue.Length >= 8)
+                     {
+                         return columnValue.Substring(columnValue.Length - 8);
+                     }
+                 }
+                 return "";
+             }).ToList();
 
         }
     }

@@ -1,12 +1,7 @@
-﻿using System.Collections;
+﻿using Appraisal_System.Utility;
+using Newtonsoft.Json;
 using System.Data;
 using System.Reflection;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Text.RegularExpressions;
-using Appraisal_System.Utility;
-using Microsoft.VisualBasic.FileIO;
-using Newtonsoft.Json;
 using Traceability_System.DTO;
 using Traceability_System.Entity.Models;
 using Traceability_System.Models.FileOperation;
@@ -143,8 +138,8 @@ namespace Traceability_System.Models.SelectDB
             // 序列号不为空
             if (serialDateNumber != null)
             {
-                int numLen  = serialDateNumber.Length;
-                serialDateNumber = serialDateNumber.Replace(" ","%");
+                int numLen = serialDateNumber.Length;
+                serialDateNumber = serialDateNumber.Replace(" ", "%");
                 string serialSql = $" {orderby} like '%{serialDateNumber}%' ";
 
 
@@ -155,7 +150,7 @@ namespace Traceability_System.Models.SelectDB
             {
                 //string pullDownSql = $"{selectFactor.selectName} ";
 
-                
+
                 sqlList.Add(CheckedToString(selectFactor));
                 // 拼接 SQL 条件
             }
@@ -196,7 +191,8 @@ namespace Traceability_System.Models.SelectDB
                 {
                     selSql += $" like '%{selectFactor.topLimit}%' ";
                 }
-                else {
+                else
+                {
 
                     selSql = CreateFactorSql(selectFactor.selectName, selectFactor.topLimit, selectFactor.lowerLimit);
                 }
@@ -217,7 +213,7 @@ namespace Traceability_System.Models.SelectDB
             return selSql;
         }
 
-        string CreateFactorSql(string selName,string topLimit,string lowerLimit)
+        string CreateFactorSql(string selName, string topLimit, string lowerLimit)
         {
             int topLen = topLimit.Length;
             int lowerLen = lowerLimit.Length;
@@ -239,7 +235,7 @@ namespace Traceability_System.Models.SelectDB
             {
                 selSql = $" between '{lowerLimit}' and '{topLimit}' ";
             }
-            return selSql ;
+            return selSql;
 
 
         }

@@ -177,10 +177,10 @@ public class TA_Parse : GeneralAnalysis
     /// <param name="item"></param>
     /// <param name="num"></param>
     /// <param name="skipNum"></param>
-    void AddOneItem(int item = 1, int num = 0, int skipNum = 0,string param = "")
+    void AddOneItem(int item = 1, int num = 0, int skipNum = 0, string param = "")
     {
 
-        SplitByIndex(item, num, skipNum,param);
+        SplitByIndex(item, num, skipNum, param);
     }
 
     /// <summary>

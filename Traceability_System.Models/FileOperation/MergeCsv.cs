@@ -77,10 +77,10 @@ namespace Traceability_System.Models.FileOperation
 
                 string[] parts = files[i].Split('\\');
                 string filePath = parts[parts.Length - 3];
-                string itemName = filePath + "\\"+ parts[parts.Length - 2];
+                string itemName = filePath + "\\" + parts[parts.Length - 2];
 
-                string item = parts[parts.Length - 1].Replace(".csv","");
-                var redisPath = _redisHelper.GetAllHashValues(itemName,0);
+                string item = parts[parts.Length - 1].Replace(".csv", "");
+                var redisPath = _redisHelper.GetAllHashValues(itemName, 0);
                 //int index = redisPath == null ? -1 : Array.FindIndex(files, file => file.Contains(redisPath));
 
                 if (redisPath.Contains(item) || GetTime(filePath))
@@ -139,7 +139,7 @@ namespace Traceability_System.Models.FileOperation
 
         //根据序列号获取数据
         public bool GetBySerialNo(string SerialNo)
-        { 
+        {
             string sql = $"select * from Shipping where SerialNo = '{SerialNo}'";
             var str = SqlHelper.ExecuteScalar(sql);
             return str == null ? false : true;
@@ -204,7 +204,7 @@ namespace Traceability_System.Models.FileOperation
             DateTime twoDaysAgo = currentDate.AddDays(-3);
             if (fileDate < twoDaysAgo)
             {
-                 timeDate =true;
+                timeDate = true;
             }
             return timeDate;
         }

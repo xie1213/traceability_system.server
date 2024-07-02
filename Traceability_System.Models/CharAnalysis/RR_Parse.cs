@@ -8,7 +8,7 @@ public class RR_Parse : GeneralAnalysis
         RrList = new List<(int, int)>();
     }
 
-    public RR_Parse (string txt)
+    public RR_Parse(string txt)
     {
         InputText = txt;
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.NetworkInformation;
 
 namespace Traceability_System.Models.FileOperation
 {
@@ -17,7 +12,7 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //检查IP
-        public  string IPInspectMethod()
+        public string IPInspectMethod()
         {
             using (Ping ping = new Ping())
             {
@@ -25,24 +20,24 @@ namespace Traceability_System.Models.FileOperation
                 {
                     // 发送Ping请求
                     PingReply reply = ping.Send(_ipAddress);
-                    var ipstart =  UpPingStatus(reply);
+                    var ipstart = UpPingStatus(reply);
                     //Console.WriteLine("成功");
                     return ipstart;
                 }
                 catch (Exception ex)
                 {
                     // 更新最后一次的Ping状态为失败
-                    var err =  UpPingStatus(null, ex.Message);
+                    var err = UpPingStatus(null, ex.Message);
                     Console.WriteLine(ex.Message);
                     return err;
                 }
             }
 
         }
-        
 
-           
-        public string UpPingStatus(PingReply? reply,string? errorMessage = null)
+
+
+        public string UpPingStatus(PingReply? reply, string? errorMessage = null)
         {
             string lastPingStatus;
             if (reply != null && reply.Status == IPStatus.Success)

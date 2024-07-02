@@ -86,7 +86,7 @@ public class GeneralAnalysis : KeyList
             return;
         }
         List<string> result;
-        string substring = InputText.Substring(LastIndex, strLen)+param;
+        string substring = InputText.Substring(LastIndex, strLen) + param;
 
         // 转换时间
         if (takeSize > strLen)
@@ -99,7 +99,7 @@ public class GeneralAnalysis : KeyList
         if (takeSize < 0)
         {
             int floatLength = takeSize;
-           
+
             //substring = CoverToFlaot.ConvertToFloat(substring, floatLength);
 
             substring = CoverToFlaot.NewConvertToFloat(substring, floatLength);

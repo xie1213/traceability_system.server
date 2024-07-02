@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
 using Traceability_System.Models;
-using Traceability_System.Models.FileOperation;
 using Traceability_System.Utility;
 
 namespace Traceability_System.Api.Controllers
@@ -61,7 +57,7 @@ namespace Traceability_System.Api.Controllers
         [HttpGet("WriteCsvToRedis")]
         public void WriteCsvToRedis(string txt)
         {
-           //SelectAllData.GetDirList();
+            //SelectAllData.GetDirList();
         }
 
         [HttpPost("requestData")]

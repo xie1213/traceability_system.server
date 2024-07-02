@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using Newtonsoft.Json;
-using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 using Traceability_System.DTO;
 using Traceability_System.Utility;
 
@@ -22,11 +15,11 @@ namespace Traceability_System.Models.SelectDB
 
         public void SetParameterRedis(ParameterData parameter)
         {
-            string setRedis =parameter.tableName;
+            string setRedis = parameter.tableName;
             if (parameter.startDateTime != "")
             {
-                 
-                string startTime =  ConvertToTime(parameter.startDateTime);
+
+                string startTime = ConvertToTime(parameter.startDateTime);
                 string endTime = ConvertToTime(parameter.endDateTime);
                 setRedis += $"_{startTime}-{endTime}";
             }
@@ -35,7 +28,7 @@ namespace Traceability_System.Models.SelectDB
             {
                 setRedis += $"_{parameter.serialDateNumber}";
             }
-      
+
 
             string factor = JsonConvert.SerializeObject(parameter);
 

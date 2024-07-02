@@ -4,11 +4,11 @@
     public class SelTableRequest
     {
         public string? TableName { get; set; }
-        public List<string> ? TimeDate { get; set; }
-       
+        public List<string>? TimeDate { get; set; }
+
         public List<string>? selColName { get; set; }
 
-        public string ? SerialNo { get; set; }
+        public string? SerialNo { get; set; }
     }
 
     public class ParameterData
@@ -31,10 +31,10 @@
 
     public class selectFactor
     {
-        public string? selectName { get; set;}
-        public string ? topLimit { get; set; }
+        public string? selectName { get; set; }
+        public string? topLimit { get; set; }
         public string? lowerLimit { get; set; }
         public string? startDateTime { get; set; }
-        public string? endDateTime { get; set;}
+        public string? endDateTime { get; set; }
     }
 }

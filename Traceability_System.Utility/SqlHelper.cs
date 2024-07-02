@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Traceability_System.DTO;
 using Traceability_System.Utility;
 using DataTable = System.Data.DataTable;
@@ -48,7 +44,7 @@ namespace Appraisal_System.Utility
 
                     throw e;
                 }
-               
+
             }
         }
 
@@ -157,11 +153,11 @@ namespace Appraisal_System.Utility
         //public static bool BatchAddTable(List<string> valueList, List<string> colNameList, string tableName, string strtime)
         public static bool BatchAddTable(RenewParameter renew)
         {
-            
-            
+
+
             if (renew.valueList.Count > renew.colNameList.Count)
             {
-                
+
                 return false;
             }
             using var conn = GetConnection();
@@ -205,7 +201,7 @@ namespace Appraisal_System.Utility
             {
                 // 5. 执行批量插入 
                 using var bulkCopy = new SqlBulkCopy(conn);
-                bulkCopy.DestinationTableName =renew.tableName;
+                bulkCopy.DestinationTableName = renew.tableName;
                 //bulkCopy.WriteToServer(dt);
                 //映射列
                 foreach (var colName in renew.colNameList)
@@ -221,9 +217,9 @@ namespace Appraisal_System.Utility
             }
             catch (Exception e)
             {
-                
+
                 //Console.WriteLine(e);
-                
+
                 throw;
                 // false;   
             }
@@ -258,24 +254,24 @@ namespace Appraisal_System.Utility
                     {
                         setClauses.Add($"{renewParameter.colNameList[i]} = '{renewParameter.renewTime}'");
                         i++;
-                        setClauses.Add($"{renewParameter.colNameList[i]}  = ' {renewParameter.renewNum+1}'");
+                        setClauses.Add($"{renewParameter.colNameList[i]}  = ' {renewParameter.renewNum + 1}'");
                     }
                 }
                 // 构建完整的更新语句
                 string updateQuery = $"UPDATE {renewParameter.tableName} SET {string.Join(", ", setClauses)} WHERE {renewParameter.specify[0]} = '{renewParameter.specify[1]}'  ;";
                 return ExecuteNonQuery(updateQuery);
-                
+
             }
             catch (Exception e)
             {
 
                 throw e;
             }
-          
+
         }
 
 
-       
+
         private static SqlConnection GetConnection()
         {
             // 从配置文件读取连接字符串

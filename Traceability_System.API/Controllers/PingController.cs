@@ -7,7 +7,7 @@ namespace Traceability_System.API.Controllers
     public class PingController : Controller
     {
 
-        private string lastPingStatus ="";
+        private string lastPingStatus = "";
         private string ipAddress = "192.168.0.10";
 
         // GET: /ping/status

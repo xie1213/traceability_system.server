@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Traceability_System.Utility
+﻿namespace Traceability_System.Utility
 {
-    using System;
     using StackExchange.Redis;
+    using System;
 
     class Program
     {

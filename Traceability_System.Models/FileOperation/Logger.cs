@@ -13,7 +13,7 @@ namespace Traceability_System.Models.FileOperation
         /// </summary>
         /// <param name="logLevel"></param>
         /// <returns></returns>
-        public static async void WriteLogAsync(string logMessage,string path = "D:\\Traceability")
+        public static async void WriteLogAsync(string logMessage, string path = "D:\\Traceability")
         {
 
             string logPath = await LogPathIsNull(path); // 日志文件夹路径

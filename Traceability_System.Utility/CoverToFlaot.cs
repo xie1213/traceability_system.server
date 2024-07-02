@@ -1,16 +1,15 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace Traceability_System.Utility;
 
 public class CoverToFlaot
 {
-    
+
     public static string NewConvertToFloat(string str, int floatNum)
     {
         if (string.IsNullOrWhiteSpace(str))
             return str;
-       
+
 
         //str = str.Trim();
         if (str.All(c => c == '0'))
@@ -25,12 +24,12 @@ public class CoverToFlaot
             //Console.WriteLine(str.Replace('+', ' '));
         }
 
- 
+
         int length = str.Length;
-        
+
         int startNum = length + floatNum;
 
-        int endNum = length - startNum;  
+        int endNum = length - startNum;
         StringBuilder resultBuilder = new StringBuilder(str);
         //小数点前
         string frontPart = resultBuilder.ToString(0, Math.Min(startNum, resultBuilder.Length));
@@ -42,18 +41,19 @@ public class CoverToFlaot
         string frontPartChar = frontPart.TrimStart('0').Trim();
 
         // 如果整数部分为空，则设置为 "0"
-        if (string.IsNullOrEmpty(frontPartChar)||frontPartChar=="00")
+        if (string.IsNullOrEmpty(frontPartChar) || frontPartChar == "00")
         {
             frontPartChar = "0";
         }
         else if (frontPartChar == "-")
         {
             frontPartChar += '0';
-        }else if(frontPartChar == "-00")
+        }
+        else if (frontPartChar == "-00")
         {
             frontPartChar = "-0";
         }
-        
+
 
         // 处理小数部分
         string decimalPart = backPart.TrimEnd('0').Trim();
