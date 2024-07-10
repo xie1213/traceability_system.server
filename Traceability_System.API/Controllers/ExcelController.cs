@@ -17,19 +17,22 @@ namespace Traceability_System.API.Controllers
         }
 
         [HttpGet("ExportData")]
-        public async Task<IActionResult> ExportTable(string tableName)
+        public async Task<IActionResult> ExportTable(string tableName,string count)
         {
-            // 调用 ExcelService 中的方法创建 Excel 表
-            //_exportToExcel
-            var watch = Stopwatch.StartNew();
 
-            var filePath = await _exportToExcel.ExportTable(tableName);
-            watch.Stop();
-            var elapsedMilliseconds = watch.ElapsedMilliseconds;
+            int tabCount = Convert.ToInt32(count);
+            if (tabCount == 0) return NotFound();
 
-            await Console.Out.WriteLineAsync("2000条用了:" + elapsedMilliseconds);
-            //return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.csv");
-            return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+            var filePath = await _exportToExcel.ExportToExcel(tableName, tabCount);
+
+            if (filePath != null && filePath.Length > 0)
+            {
+                return File(filePath, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+            }
+            else
+            {
+                return NotFound();
+            }
 
 
         }
@@ -38,7 +41,7 @@ namespace Traceability_System.API.Controllers
         {
             var watch = Stopwatch.StartNew();
 
-            await _exportToExcel.ExportTable(tableName);
+            await _exportToExcel.SevaToExcel(tableName);
             watch.Stop();
             var elapsedMilliseconds = watch.ElapsedMilliseconds;
 

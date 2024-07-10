@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 using OfficeOpenXml;
 using System.Data;
 using Traceability_System.Models.DictionaryMapper;
@@ -13,9 +14,9 @@ namespace Traceability_System.Models.FileOperation
         private readonly ExportTableMapper _exportTable;
         public string filePath = "";
 
-        string baseDirectory = @"D:\work\Traceability_System\assets";
-        public string tableName = "";
-        int count = 0;
+        string baseDirectory = @"D:\exportTable";
+        public string _tableName = "";
+        int _count = 0;
 
 
         public newExportToExcel(RedisHelper redisHelper, ExportTableMapper exportTable)
@@ -25,49 +26,39 @@ namespace Traceability_System.Models.FileOperation
 
         }
 
-
-        public async Task<byte[]> ExportTable(string tableName)
+        //导出数据发送流给前端
+        public async Task<byte[]> ExportToExcel(string tableName,int  count)
         {
             //文件保存路径
             filePath = CopyFile(tableName);
 
-            tableName = subStr(tableName);
             //许可证
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             //List<string> allList = new List<string>();
 
-            var exportData = _redisHelper.GetAllHashValues(tableName);
+            var list = _redisHelper.GetAllHashValues(_tableName);
             // 将当前页数据添加到总数据集合中
 
-            count = exportData.Count;
+            _count = count;
 
-
-            // 调用方法将数据导出为 Excel 文件
-            byte[] excelBytes = await ExportToExcel(exportData);
-
-
-            //await ExportToExcel(exportData, tableName);
-
-            return excelBytes;
-
-        }
-
-        //导出数据发送流给前端
-        public async Task<byte[]> ExportToExcel<T>(List<T> list)
-        {
+            // 如果数据为空，则返回空数组
+            if (count == 0)
+            {
+                return new byte[0];
+            }
             FileInfo fileInfo = new FileInfo(filePath);
 
             using (ExcelPackage package = new ExcelPackage(fileInfo))
             {
 
-                await CreateExcel(package, list);
+                await CreateExcel(package, list,tableName);
                 //worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
 
                 using (var memoryStream = new MemoryStream())
                 {
                     await package.SaveAsAsync(memoryStream);
-
+                    File.Delete(filePath);
                     return memoryStream.ToArray();
                     //package.Save();
                 }
@@ -75,14 +66,26 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //直接保存到后端
-        public async Task SevaToExcel<T>(List<T> list)
+        public async Task SevaToExcel(string tableName)
         {
+            //文件保存路径
+            filePath = CopyFile(tableName);
+
+            //许可证
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            //List<string> allList = new List<string>();
+
+            var list = _redisHelper.GetAllHashValues(_tableName);
+            // 将当前页数据添加到总数据集合中
+
+            _count = list.Count;
             FileInfo fileInfo = new FileInfo(filePath);
 
             using (ExcelPackage package = new ExcelPackage(fileInfo))
             {
 
-                await CreateExcel(package, list);
+                await CreateExcel(package, list, tableName);
                 //worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
 
                 using (var memoryStream = new MemoryStream())
@@ -95,19 +98,24 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //创建表格
-        public async Task<ExcelPackage> CreateExcel<T>(ExcelPackage package,List<T> list)
+        public async Task<ExcelPackage> CreateExcel<T>(ExcelPackage package,List<T> list,string tableName)
         {
             ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // 第一个工作表
             int processedRows = 0;
             //int batchSize = count;
-            int batchSize = 500;
+            int batchSize = 1000;
 
+            worksheet.Name = tableName;
 
-            var skipKeys = SkipField(tableName); // 跳过字段
-            while (processedRows < batchSize)
+            var skipKeys = SkipField(_tableName); // 跳过字段
+            while (processedRows < _count)
             {
                 var batchList = list.Skip(processedRows).Take(batchSize).ToList();
+
+                if (batchList.Count == 0) break;
+
                 processedRows += batchList.Count;
+
 
 
                 var tasks = batchList.Select(async (item, index) =>
@@ -115,23 +123,39 @@ namespace Traceability_System.Models.FileOperation
                     var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item.ToString());
 
                     //根据表格名字选择第二列
-                    string itemKey = _exportTable.keyValuePairs.TryGetValue(tableName, out string key) ? rowData[key].ToString() : string.Empty;
+                    string itemKey = _exportTable.keyValuePairs.TryGetValue(_tableName, out string key) ? rowData[key].ToString() : string.Empty;
 
-                    int row = processedRows - batchList.Count + index + 3; // 起始行
-                    DateTime collectionDate = DateTime.Parse(rowData["CollectionDate"]);
-
-                    worksheet.Cells[row, 1].Value = collectionDate; //固定字段
-                    worksheet.Cells[row, 2].Value = itemKey;
-                    //skipKeys.Add("");
-                    skipKeys.Add(key);
+                    int row = processedRows - batchList.Count + index; // 起始行
                     int col = 3;
+                    if (_tableName.Contains("出荷"))
+                    {
+                        row += 2;
+                        col = 1;
+                    }
+                    else
+                    {
+
+                        row = _tableName.Contains("全部") ? 4 : 3;
+                        DateTime collectionDate = DateTime.Parse(rowData["CollectionDate"]);
+                        worksheet.Cells[row, 1].Value = collectionDate; //固定字段
+                        worksheet.Cells[row, 1].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
+                        worksheet.Cells[row, 2].Value = itemKey;
+                        //skipKeys.Add("");
+                        skipKeys.Add(key);
+
+                        
+                    }
+
+
                     foreach (var pair in rowData)
                     {
 
-                        var cells = worksheet.Cells[row, col];
+                        ExcelRange cells = worksheet.Cells[row, col];
 
                         if (skipKeys.Contains(pair.Key))
                             continue;
+
+                        GetKeyType(pair.Key, pair.Value, cells);
 
                         cells.Value = pair.Value;
                         col++;
@@ -178,10 +202,12 @@ namespace Traceability_System.Models.FileOperation
 
 
         //复制文件路径
-        public string CopyFile(string tableName)
+        public string CopyFile(string fileName)
         {
-            string filePath = Path.Combine(baseDirectory, $"{tableName}.xlsx");
-            string copyName = $"{tableName}_.xlsx";
+            _tableName = subStr(fileName);
+
+            string filePath = Path.Combine(baseDirectory, $"{_tableName}.xlsx");
+            string copyName = $"{fileName}_.xlsx";
             string copyPath = Path.Combine(baseDirectory, copyName);
 
             if (!Directory.Exists(baseDirectory))

@@ -67,6 +67,10 @@ public class TableOperation
                 //await _fileAccessSemaphore.WaitAsync(); // 获取文件信号保证只有一个
                 ProofData proofData = new ProofData();
                 string[] lines = File.ReadLines(fileName).ToArray();
+                if (lines.Length == 0)
+                {
+                    return;
+                }
 
                 var strFile = lines[RowIndex].Split(',')[ColIndex];
                 var strtime = lines[RowIndex].Split(',')[0];

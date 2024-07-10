@@ -76,8 +76,9 @@ namespace Traceability_System.Utility
         public void SetHashToJson(string hashKey, string field, string value, int dbnum = 7)
         {
             db = redis.GetDatabase(dbnum);
-
+            TimeSpan expiry = TimeSpan.FromDays(1);
             db.HashSet(hashKey, field, value);
+            db.KeyExpire(hashKey, expiry);
         }
 
         /// <summary>
