@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Data;
+using System.Drawing.Drawing2D;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Utility;
 
@@ -26,7 +27,7 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //导出数据发送流给前端
-        public async Task<byte[]> ExportToExcel(string tableName,int  count)
+        public async Task<byte[]> ExportToExcel(string tableName, int count)
         {
             //文件保存路径
             filePath = CopyFile(tableName);
@@ -48,20 +49,36 @@ namespace Traceability_System.Models.FileOperation
             }
             FileInfo fileInfo = new FileInfo(filePath);
 
-            using (ExcelPackage package = new ExcelPackage(fileInfo))
+            try
             {
-
-                await CreateExcel(package, list,tableName);
-                //worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
-
-                using (var memoryStream = new MemoryStream())
+                using (ExcelPackage package = new ExcelPackage(fileInfo))
                 {
-                    await package.SaveAsAsync(memoryStream);
-                    File.Delete(filePath);
-                    return memoryStream.ToArray();
-                    //package.Save();
+
+                    await CreateExcel(package, list, tableName);
+                    //worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await package.SaveAsAsync(memoryStream);
+                        File.Delete(filePath);
+                        return memoryStream.ToArray();
+                        //package.Save();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            finally
+            {
+                if (fileInfo.Exists)
+                {
+                    fileInfo.Delete();
+                }
+            }
+
         }
 
         //直接保存到后端
@@ -97,7 +114,7 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //创建表格
-        public async Task<ExcelPackage> CreateExcel<T>(ExcelPackage package,List<T> list,string tableName)
+        public async Task<ExcelPackage> CreateExcel<T>(ExcelPackage package, List<T> list, string tableName)
         {
             try
             {
@@ -176,14 +193,14 @@ namespace Traceability_System.Models.FileOperation
                 Console.WriteLine(ex.Message);
                 throw;
             }
-            
+
         }
 
         //获取单元格格式
         void GetKeyType(string key, string value, ExcelRange cells)
         {
             //比较字符串
-            var comparer = StringComparer.OrdinalIgnoreCase; 
+            var comparer = StringComparer.OrdinalIgnoreCase;
 
             try
             {
@@ -220,9 +237,9 @@ namespace Traceability_System.Models.FileOperation
                 throw;
             }
 
-            
 
-            
+
+
         }
 
 
@@ -233,20 +250,15 @@ namespace Traceability_System.Models.FileOperation
 
             string filePath = Path.Combine(baseDirectory, $"{_tableName}.xlsx");
             string copyName = $"{fileName}_.xlsx";
-            string copyPath = Path.Combine(baseDirectory, copyName);
+            string copyPath = Path.Combine(baseDirectory, "export");
 
-            //if (!Directory.Exists(baseDirectory))
-            //{
-            //    Directory.CreateDirectory(baseDirectory);
-            //}
+            if (!Directory.Exists(copyPath))
+                Directory.CreateDirectory(copyPath);
 
-            if (File.Exists(copyPath))
-            {
-                File.Delete(copyPath);
-            }
+            string copyFlie  = Path.Combine(copyPath, copyName);
 
-            File.Copy(filePath, copyPath);
-            return copyPath;
+            File.Copy(filePath, copyFlie);
+            return copyFlie;
         }
 
         //截取字符

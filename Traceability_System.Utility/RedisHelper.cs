@@ -36,6 +36,8 @@ namespace Traceability_System.Utility
             db = redis.GetDatabase(dbNum);
 
             await db.StringSetAsync(key, value);
+            TimeSpan expiry = TimeSpan.FromDays(1);
+            db.KeyExpire(key, expiry);
         }
 
 
