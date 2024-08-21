@@ -1,6 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Logging;
 using System.Data;
 using Traceability_System.DTO;
 using Traceability_System.Utility;

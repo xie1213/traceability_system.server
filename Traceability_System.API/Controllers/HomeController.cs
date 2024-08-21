@@ -26,10 +26,10 @@ namespace Traceability_System.Api.Controllers
         }
 
         [HttpGet("GetRedis")]
-        public object GetRedis(string TableName)
+        public async Task<object> GetRedis(string TableName)
         {
             RedisHelper redis = new RedisHelper();
-            var colName = redis.RedisGetAsync(TableName, 4);
+            var colName = await redis.RedisGetAsync(TableName, 4);
             List<Dictionary<string, object>> TableDataList = JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(colName);
 
             return colName;

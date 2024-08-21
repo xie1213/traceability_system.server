@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using NPOI.SS.Formula.Functions;
 using OfficeOpenXml;
 using System.Data;
 using Traceability_System.Models.DictionaryMapper;
@@ -100,104 +99,130 @@ namespace Traceability_System.Models.FileOperation
         //创建表格
         public async Task<ExcelPackage> CreateExcel<T>(ExcelPackage package,List<T> list,string tableName)
         {
-            ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // 第一个工作表
-            int processedRows = 0;
-            //int batchSize = count;
-            int batchSize = 1000;
-
-            worksheet.Name = tableName;
-
-            var skipKeys = SkipField(_tableName); // 跳过字段
-            while (processedRows < _count)
+            try
             {
-                var batchList = list.Skip(processedRows).Take(batchSize).ToList();
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // 第一个工作表
+                int processedRows = 0;
+                //int batchSize = count;
+                int batchSize = 5000;
 
-                if (batchList.Count == 0) break;
+                worksheet.Name = tableName;
 
-                processedRows += batchList.Count;
+                var skipKeys = SkipField(_tableName); // 跳过字段
 
+                #region 原版
 
-
-                var tasks = batchList.Select(async (item, index) =>
+                while (processedRows < _count)
                 {
-                    var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item.ToString());
+                    var batchList = list.Skip(processedRows).Take(batchSize).ToList();
 
-                    //根据表格名字选择第二列
-                    string itemKey = _exportTable.keyValuePairs.TryGetValue(_tableName, out string key) ? rowData[key].ToString() : string.Empty;
+                    if (batchList.Count == 0) break;
 
-                    int row = processedRows - batchList.Count + index; // 起始行
-                    int col = 3;
-                    if (_tableName.Contains("出荷"))
+                    processedRows += batchList.Count;
+
+
+
+                    var tasks = batchList.Select(async (item, index) =>
                     {
-                        row += 2;
-                        col = 1;
-                    }
-                    else
-                    {
+                        var rowData = JsonConvert.DeserializeObject<Dictionary<string, string>>(item.ToString());
 
-                        row = _tableName.Contains("全部") ? 4 : 3;
-                        DateTime collectionDate = DateTime.Parse(rowData["CollectionDate"]);
-                        worksheet.Cells[row, 1].Value = collectionDate; //固定字段
-                        worksheet.Cells[row, 1].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
-                        worksheet.Cells[row, 2].Value = itemKey;
-                        //skipKeys.Add("");
-                        skipKeys.Add(key);
+                        //根据表格名字选择第二列
+                        string itemKey = _exportTable.keyValuePairs.TryGetValue(_tableName, out string key) ? rowData[key].ToString() : string.Empty;
 
-                        
-                    }
+                        int row = processedRows - batchList.Count + index; // 起始行
+                        int col = 3;
+                        if (_tableName.Contains("出荷"))
+                        {
+                            row += 2;
+                            col = 1;
+                        }
+                        else
+                        {
+
+                            row += _tableName.Contains("全部") ? 4 : 3;
+                            DateTime collectionDate = DateTime.Parse(rowData["CollectionDate"]);
+                            worksheet.Cells[row, 1].Value = collectionDate; //固定字段
+                            worksheet.Cells[row, 1].Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
+                            worksheet.Cells[row, 2].Value = itemKey;
+                            //skipKeys.Add("");
+                            skipKeys.Add(key);
+                        }
 
 
-                    foreach (var pair in rowData)
-                    {
+                        foreach (var pair in rowData)
+                        {
 
-                        ExcelRange cells = worksheet.Cells[row, col];
+                            ExcelRange cells = worksheet.Cells[row, col];
 
-                        if (skipKeys.Contains(pair.Key))
-                            continue;
+                            if (skipKeys.Contains(pair.Key))
+                                continue;
 
-                        GetKeyType(pair.Key, pair.Value, cells);
+                            GetKeyType(pair.Key, pair.Value, cells);
 
-                        cells.Value = pair.Value;
-                        col++;
-                    }
-                });
+                            cells.Value = pair.Value;
+                            col++;
+                        }
+                    });
 
-                await Task.WhenAll(tasks);
+                    await Task.WhenAll(tasks);
+                }
+                #endregion
+
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
+                return package; // 返回处理后的包
             }
-
-            return package;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            
         }
 
         //获取单元格格式
         void GetKeyType(string key, string value, ExcelRange cells)
         {
             //比较字符串
-            var comparer = StringComparer.OrdinalIgnoreCase;
+            var comparer = StringComparer.OrdinalIgnoreCase; 
 
-            if (_exportTable.columns.Contains(key, comparer) || value == "")
+            try
             {
-                cells.Value = value;
-
-            }
-            else
-            {
-                if (key.Contains("Date") && DateTime.TryParse(value, out DateTime dateValue))
+                if (_exportTable.columns.Contains(key, comparer) || value == "")
                 {
-                    cells.Value = dateValue;
-                    cells.Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
+                    cells.Value = value;
+
                 }
-                else if (double.TryParse(value.TrimEnd(), out double numericValue))
+                else
                 {
-                    cells.Value = numericValue;
-
-                    if (key == "" || key == "Operator")
+                    if (key.Contains("Date") && DateTime.TryParse(value, out DateTime dateValue))
                     {
-                        cells.Style.Numberformat.Format = "000000000"; // 邮政编码格式
-                    }
-                    //cell.Style.Numberformat.Format = "@"; // 文本格式
-                }
+                        DateTime collectionDate = DateTime.Parse(value);
 
+                        cells.Value = collectionDate;
+                        cells.Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
+                    }
+                    else if (double.TryParse(value.TrimEnd(), out double numericValue))
+                    {
+                        cells.Value = numericValue;
+
+                        if (key == "" || key == "Operator")
+                        {
+                            cells.Style.Numberformat.Format = "000000000"; // 邮政编码格式
+                        }
+                        //cell.Style.Numberformat.Format = "@"; // 文本格式
+                    }
+
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+            
+
+            
         }
 
 
@@ -210,10 +235,10 @@ namespace Traceability_System.Models.FileOperation
             string copyName = $"{fileName}_.xlsx";
             string copyPath = Path.Combine(baseDirectory, copyName);
 
-            if (!Directory.Exists(baseDirectory))
-            {
-                Directory.CreateDirectory(baseDirectory);
-            }
+            //if (!Directory.Exists(baseDirectory))
+            //{
+            //    Directory.CreateDirectory(baseDirectory);
+            //}
 
             if (File.Exists(copyPath))
             {

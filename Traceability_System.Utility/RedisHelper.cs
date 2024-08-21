@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using StackExchange.Redis;
+using System.Collections.Generic;
 
 namespace Traceability_System.Utility
 {
@@ -23,16 +24,32 @@ namespace Traceability_System.Utility
             return true;
         }
 
+
+        /// <summary>
+        /// 异步存储
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="dbNum"></param>
+        public async Task RedisSetAsync(string key,string value,int dbNum = 0)
+        {
+            db = redis.GetDatabase(dbNum);
+
+            await db.StringSetAsync(key, value);
+        }
+
+
         /// <summary>
         /// 根据键获取值
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public string RedisGetAsync(string key, int dbNum = 0)
+        public async Task<string> RedisGetAsync(string key, int dbNum = 0)
         {
             //Task.Delay(1000); // 模拟延迟
             var db = redis.GetDatabase(dbNum);
-            return db.StringGet(key);
+            var value =  await db.StringGetAsync(key);
+            return value;
         }
 
 
@@ -122,13 +139,13 @@ namespace Traceability_System.Utility
             {
                 // 处理 Redis 连接异常
                 Console.WriteLine("Redis 连接失败：" + ex.Message);
-                return null;
+                throw;
             }
             catch (Exception ex)
             {
                 // 处理其他异常
                 Console.WriteLine("发生异常：" + ex.Message);
-                return null;
+                throw;
             }
         }
 
@@ -188,16 +205,24 @@ namespace Traceability_System.Utility
             //return values;
         }
 
-        public void DeleteHash(string hashKey, int dbnum = 7)
+        public void DeleteHash(string key, int dbnum = 7)
         {
             db = redis.GetDatabase(dbnum);
-            bool hashExists = db.KeyExists(hashKey) && db.KeyType(hashKey) == RedisType.Hash;
-            if (hashExists)
+            bool keyExists = db.KeyExists(key);
+            if (keyExists)
             {
-                db.KeyDelete(hashKey);
+                db.KeyDelete(key);
                 //Console.WriteLine($"存在{hashKey} 已删除");
             }
         }
 
+
+        //检查键是否存在
+        public bool keyExists(string Key, int dbnum = 0)
+        {
+            db = redis.GetDatabase(dbnum);
+            bool keyExists = db.KeyExists(Key);
+            return keyExists;
+        }
     }
 }

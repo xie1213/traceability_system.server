@@ -148,8 +148,6 @@ namespace Traceability_System.Models.SelectDB
 
             if (selectFactor != null)
             {
-                //string pullDownSql = $"{selectFactor.selectName} ";
-
 
                 sqlList.Add(CheckedToString(selectFactor));
                 // 拼接 SQL 条件
@@ -200,12 +198,12 @@ namespace Traceability_System.Models.SelectDB
             else if (isTopLimit)
             {
                 //上限为空,下限不为空
-                selSql += $" like '%{selectFactor.lowerLimit}%' ";
+                selSql = $"CAST({selSql} AS FLOAT)>={selectFactor.lowerLimit}";
             }
             else
             {
                 //下限为空,上限不为空
-                selSql += $" like '%{selectFactor.topLimit}%' ";
+                selSql = $"CAST({selSql} AS FLOAT)<={selectFactor.lowerLimit}";
             }
 
 

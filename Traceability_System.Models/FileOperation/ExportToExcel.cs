@@ -23,7 +23,7 @@ namespace Traceability_System.Models.FileOperation
 
 
         //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-        public byte[] ExportTable(string tableName)
+        public async Task<byte[]> ExportTable(string tableName)
         {
             //许可证
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -33,7 +33,7 @@ namespace Traceability_System.Models.FileOperation
 
             string exportTableName = underscoreIndex != -1 ? tableName.Substring(0, underscoreIndex) : "";
 
-            string colName = _redisHelper.RedisGetAsync(exportTableName, 4);
+            string colName = await _redisHelper.RedisGetAsync(exportTableName, 4);
 
             using (var package = new ExcelPackage())
             {
