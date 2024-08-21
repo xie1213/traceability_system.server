@@ -176,7 +176,7 @@ namespace Traceability_System.Models.FileOperation
 
                             GetKeyType(pair.Key, pair.Value, cells);
 
-                            cells.Value = pair.Value;
+                            //cells.Value = pair.Value;
                             col++;
                         }
                     });
@@ -213,9 +213,8 @@ namespace Traceability_System.Models.FileOperation
                 {
                     if (key.Contains("Date") && DateTime.TryParse(value, out DateTime dateValue))
                     {
-                        DateTime collectionDate = DateTime.Parse(value);
-
-                        cells.Value = collectionDate;
+                        
+                        cells.Value =dateValue;
                         cells.Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
                     }
                     else if (double.TryParse(value.TrimEnd(), out double numericValue))
