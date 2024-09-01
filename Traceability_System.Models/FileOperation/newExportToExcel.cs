@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Data;
-using System.Drawing.Drawing2D;
+using System.Diagnostics;
 using Traceability_System.Models.DictionaryMapper;
 using Traceability_System.Utility;
 
@@ -118,6 +118,7 @@ namespace Traceability_System.Models.FileOperation
         {
             try
             {
+                var watch = Stopwatch.StartNew();
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // 第一个工作表
                 int processedRows = 0;
                 //int batchSize = count;
@@ -174,9 +175,9 @@ namespace Traceability_System.Models.FileOperation
                             if (skipKeys.Contains(pair.Key))
                                 continue;
 
-                            GetKeyType(pair.Key, pair.Value, cells);
+                            // GetKeyType(pair.Key, pair.Value, cells);
 
-                            //cells.Value = pair.Value;
+                            cells.Value = pair.Value;
                             col++;
                         }
                     });
@@ -186,6 +187,8 @@ namespace Traceability_System.Models.FileOperation
                 #endregion
 
                 worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns(); // 最后一次调整列宽
+                watch.Stop();
+                Console.WriteLine(_count + "条用了:" + watch.ElapsedMilliseconds);
                 return package; // 返回处理后的包
             }
             catch (Exception ex)
@@ -213,8 +216,8 @@ namespace Traceability_System.Models.FileOperation
                 {
                     if (key.Contains("Date") && DateTime.TryParse(value, out DateTime dateValue))
                     {
-                        
-                        cells.Value =dateValue;
+
+                        cells.Value = dateValue;
                         cells.Style.Numberformat.Format = "yyyy-MM-dd HH:mm:ss";
                     }
                     else if (double.TryParse(value.TrimEnd(), out double numericValue))
@@ -254,7 +257,7 @@ namespace Traceability_System.Models.FileOperation
             if (!Directory.Exists(copyPath))
                 Directory.CreateDirectory(copyPath);
 
-            string copyFlie  = Path.Combine(copyPath, copyName);
+            string copyFlie = Path.Combine(copyPath, copyName);
 
             File.Copy(filePath, copyFlie);
             return copyFlie;

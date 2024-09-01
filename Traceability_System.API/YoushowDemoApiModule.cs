@@ -2,6 +2,8 @@
 using Microsoft.OpenApi.Models;
 using Traceability_System.API;
 using Traceability_System.Models.DictionaryMapper;
+using Traceability_System.Models.ExportedMethod;
+using Traceability_System.Models.ExportedMethod.interfaces;
 using Traceability_System.Models.FileOperation;
 using Traceability_System.Models.SelectDB;
 using Traceability_System.Utility;
@@ -57,7 +59,10 @@ public class YoushowDemoApiModule : AceModule
         services.AddScoped<ExportTableMapper>();
         services.AddScoped<newExportToExcel>();
         services.AddScoped<SqlHelper>();
+        services.AddScoped<ExportedManager>();
+
         services.AddSingleton<IHostLifetime, NoopConsoleLifetime>();
+        services.AddSingleton<IContext, ContextService>();
         //services.AddConfig(builder.Configuration);
         /*services.AddDbContext<_966KDataBaseContext>(options => {
             options.UseSqlServer(Configuration.GetConnectionString("Data"));

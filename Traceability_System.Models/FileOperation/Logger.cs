@@ -7,7 +7,7 @@ namespace Traceability_System.Models.FileOperation
 
         private static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
 
-        static  string Today = DateTime.Now.ToString("yyyy-MM-dd");
+        static string Today = DateTime.Now.ToString("yyyy-MM-dd");
         /// <summary>
         /// 写入日志
         /// </summary>

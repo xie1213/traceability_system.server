@@ -4,6 +4,7 @@ using System.Data;
 using System.Reflection;
 using Traceability_System.DTO;
 using Traceability_System.Entity.Models;
+using Traceability_System.Models.ExportedMethod;
 using Traceability_System.Models.FileOperation;
 using Traceability_System.Utility;
 
@@ -48,6 +49,10 @@ namespace Traceability_System.Models.SelectDB
             ["出荷履历"] = ("Shipping", "SerialNo")
         };
 
+        //导出表名
+        public string exportedName = "";
+
+
         //获取表格信息
         public object GetRestTableData(ParameterData parameter)
         {
@@ -62,6 +67,7 @@ namespace Traceability_System.Models.SelectDB
 
             string baseSql = $"select * from {tableName} where ";
 
+            exportedName = tableName;
 
             //条件sql
             List<string> sqlList = CreateFactorSql(parameter, orderby);
@@ -81,6 +87,13 @@ namespace Traceability_System.Models.SelectDB
             Assembly asm = Assembly.Load("Traceability_System.Entity");
             Type modelType = asm.GetType("Traceability_System.Entity.Models." + tableName);
 
+            _ = Task.Run(async () =>
+            {
+                ExportedManager exported = new ExportedManager();
+                exported._tableName = exportedName;
+                exported.data = dt;
+                await exported.ExportedTable();
+            });
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -131,7 +144,10 @@ namespace Traceability_System.Models.SelectDB
 
                 string timeSql = $" {timeStr} BETWEEN '{startDateTime}' AND '{endDateTime}' ";
 
+                string a =  CoverToTime.TimeToInt(startDateTime);
 
+                string b = CoverToTime.TimeToInt(endDateTime);
+                exportedName += $"_{a}-{b}";
                 sqlList.Add(timeSql);
             }
 
@@ -142,7 +158,7 @@ namespace Traceability_System.Models.SelectDB
                 serialDateNumber = serialDateNumber.Replace(" ", "%");
                 string serialSql = $" {orderby} like '%{serialDateNumber}%' ";
 
-
+                exportedName += $"_{serialDateNumber}";
                 sqlList.Add(serialSql);
             }
 
@@ -160,15 +176,7 @@ namespace Traceability_System.Models.SelectDB
         public string CheckedToString(selectFactor selectFactor)
         {
             string selSql = $"{selectFactor.selectName} ";
-            //string pullDownSql = $"{selectFactor.selectName} ";
-
-            //是否为数字
-            //bool topMatch = Regex.IsMatch(selectFactor.topLimit, "^\\d+(\\.\\d+)?$");
-
-            //bool lowerMatch = Regex.IsMatch(selectFactor.lowerLimit, "^\\d+(\\.\\d+)?$");
-
-
-
+            
             //判断是否等于空
             bool isTopLimit = selectFactor.topLimit == null;
             bool isLowerLimit = selectFactor.lowerLimit == null;
@@ -179,6 +187,10 @@ namespace Traceability_System.Models.SelectDB
             if (selectFactor.selectName.Contains("Date"))
             {
                 selSql += $" between '{selectFactor.startDateTime}' and '{selectFactor.endDateTime}' ";
+                string a = CoverToTime.TimeToInt(selectFactor.startDateTime);
+
+                string b = CoverToTime.TimeToInt(selectFactor.endDateTime);
+                exportedName += $"_{a}-{b}";
                 return selSql;
             }
 
@@ -188,10 +200,11 @@ namespace Traceability_System.Models.SelectDB
                 if (equalStr)
                 {
                     selSql += $" like '%{selectFactor.topLimit}%' ";
+                    exportedName += $"_{selectFactor.topLimit}";
                 }
                 else
                 {
-
+                    exportedName += $"_{selectFactor.topLimit}-{selectFactor.lowerLimit}";
                     selSql = CreateFactorSql(selectFactor.selectName, selectFactor.topLimit, selectFactor.lowerLimit);
                 }
             }
@@ -199,11 +212,13 @@ namespace Traceability_System.Models.SelectDB
             {
                 //上限为空,下限不为空
                 selSql = $"CAST({selSql} AS FLOAT)>={selectFactor.lowerLimit}";
+                exportedName += $"_{selectFactor.lowerLimit}";
             }
             else
             {
                 //下限为空,上限不为空
-                selSql = $"CAST({selSql} AS FLOAT)<={selectFactor.lowerLimit}";
+                selSql = $"CAST({selSql} AS FLOAT)<={selectFactor.topLimit}";
+                exportedName += $"_{selectFactor.topLimit}";
             }
 
 

@@ -42,7 +42,7 @@ namespace Appraisal_System.Utility
                 catch (Exception e)
                 {
 
-                    Console.WriteLine("查询出错"+e.Message);
+                    Console.WriteLine("查询出错" + e.Message);
                     throw;
                 }
 
@@ -74,7 +74,7 @@ namespace Appraisal_System.Utility
 
         public async Task<int> ExecuteNonQueryAsync(string cmdText, params SqlParameter[] sqlParameters)
         {
-          await  using (SqlConnection conn = new SqlConnection(ConStr))
+            await using (SqlConnection conn = new SqlConnection(ConStr))
             {
                 using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                 {
@@ -244,7 +244,7 @@ namespace Appraisal_System.Utility
             {
 
                 //Console.WriteLine(e);
-                Console.WriteLine("插入失败"+e.Message);
+                Console.WriteLine("插入失败" + e.Message);
                 throw;
                 // false;   
             }
@@ -280,10 +280,10 @@ namespace Appraisal_System.Utility
                 }
                 // 构建完整的更新语句
                 string updateQuery = $"UPDATE {renewParameter.tableName} SET {string.Join(", ", setClauses)} WHERE {renewParameter.specify[0]} = '{renewParameter.specify[1]}'  ;";
-             
-                
+
+
                 return await ExecuteNonQueryAsync(updateQuery);
-                
+
 
             }
             catch (Exception e)

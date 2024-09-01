@@ -45,7 +45,7 @@ namespace Traceability_System.API
         private async void ReadFiles(object state)
         {
             await ReadFilesAsync(); // 异步并行读取文件夹
-           await _mergeCsv.GetDirList();
+            await _mergeCsv.GetDirList();
         }
 
         // 定时任务调用的方法 

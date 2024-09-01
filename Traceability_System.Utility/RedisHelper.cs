@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using StackExchange.Redis;
-using System.Collections.Generic;
 
 namespace Traceability_System.Utility
 {
@@ -31,7 +30,7 @@ namespace Traceability_System.Utility
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="dbNum"></param>
-        public async Task RedisSetAsync(string key,string value,int dbNum = 0)
+        public async Task RedisSetAsync(string key, string value, int dbNum = 0)
         {
             db = redis.GetDatabase(dbNum);
 
@@ -50,7 +49,7 @@ namespace Traceability_System.Utility
         {
             //Task.Delay(1000); // 模拟延迟
             var db = redis.GetDatabase(dbNum);
-            var value =  await db.StringGetAsync(key);
+            var value = await db.StringGetAsync(key);
             return value;
         }
 

@@ -39,7 +39,7 @@ public class TableOperation
 
                 foreach (var fileName in files)
                 {
-                   await GetCsvCellValueTask(fileName, folder);
+                    await GetCsvCellValueTask(fileName, folder);
                 }
             }
 

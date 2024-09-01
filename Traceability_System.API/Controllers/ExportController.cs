@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using NPOI.SS.Formula.Functions;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
 using Traceability_System.Models.FileOperation;
 using Traceability_System.Utility;
 
@@ -65,7 +62,7 @@ namespace Traceability_System.API.Controllers
                     Console.WriteLine($"导出失败: {ex.Message}");
                     exportTask.Status = ExportStatus.Failed;
                     exportTask.ErrorMessage = ex.Message;
-                   
+
                     //ExportTasks[taskId].Status = ExportStatus.Failed;
                 }
                 finally
@@ -88,7 +85,7 @@ namespace Traceability_System.API.Controllers
                 string Status = ExportStatus.InProgress.ToString();
 
                 // 如果状态为 "Failed"，抛出异常
-                
+
                 if (KeyExists)
                 {
                     string list = await _redisHelper.RedisGetAsync(taskId);
@@ -130,7 +127,7 @@ namespace Traceability_System.API.Controllers
                 throw;
             }
 
-           
+
         }
     }
 

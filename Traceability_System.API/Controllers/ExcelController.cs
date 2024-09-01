@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using Traceability_System.Models.FileOperation;
@@ -42,7 +41,7 @@ namespace Traceability_System.API.Controllers
         }
 
 
-        private  readonly ConcurrentDictionary<string, byte[]> ExportTasks = new ConcurrentDictionary<string, byte[]>();
+        private readonly ConcurrentDictionary<string, byte[]> ExportTasks = new ConcurrentDictionary<string, byte[]>();
 
         [HttpPost("StartExport")]
         public async Task<IActionResult> StartExport([FromBody] ExportRequest request)

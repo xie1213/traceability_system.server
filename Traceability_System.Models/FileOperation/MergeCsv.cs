@@ -32,7 +32,7 @@ namespace Traceability_System.Models.FileOperation
                 if (csvDir == null)
                     return;
 
-               foreach (string csvFliesDir in csvDir)
+                foreach (string csvFliesDir in csvDir)
                 {
 
                     //获取二级文件下是否存在文件
