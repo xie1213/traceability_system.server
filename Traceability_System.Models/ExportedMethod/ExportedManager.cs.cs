@@ -12,15 +12,22 @@ using Traceability_System.Utility;
 
 namespace Traceability_System.Models.ExportedMethod
 {
-    public class ExportedManager 
+    public class ExportedManager
     {
         public string _tableName = "";
         public DataTable? data = null;
         public int _count;
+        string _path = @"D:\exportTable\export";
+        string _taskId = "";
+        private readonly RedisHelper _redisHelper = new RedisHelper();
 
-
+        //启始程序
         public async Task ExportedTable()
         {
+            _taskId = Guid.NewGuid().ToString();
+
+           await _redisHelper.RedisSetAsync(_taskId,"");
+
             var _handlers = new Dictionary<string, Func<Task>>()
             {
                 { "Ta", () => GetInitialTa(data) },
@@ -35,7 +42,7 @@ namespace Traceability_System.Models.ExportedMethod
             {
                 if (_tableName.Contains(item.Key))
                 {
-                    await item.Value(); 
+                    await item.Value();
                 }
             }
         }
@@ -43,42 +50,53 @@ namespace Traceability_System.Models.ExportedMethod
         #region 根据不同得数据生成不同表
         public async Task GetInitialTa(DataTable data)
         {
+            var watch = new Stopwatch();
+
             Console.WriteLine("导出ta数据");
             await ProcessDataAsync(
                 data,
+                watch,
                 dr => dr.DataRowToModel<ExportedTa>());
 
         }
 
         public async Task GetInitialGear(DataTable data)
         {
+            var watch = new Stopwatch();
             Console.WriteLine("导出Gear数据");
             await ProcessDataAsync(
                 data,
+                watch,
                 dr => dr.DataRowToModel<ExportedGear>());
         }
 
         public async Task GetInitialMotor(DataTable data)
         {
+            var watch = new Stopwatch();
             Console.WriteLine("导出Motor数据");
             await ProcessDataAsync(
                 data,
+                watch,
                 dr => dr.DataRowToModel<ExportedMotor>());
         }
 
         public async Task GetInitialRotor(DataTable data)
         {
+            var watch = new Stopwatch();
             Console.WriteLine("导出Rotor数据");
             await ProcessDataAsync(
                 data,
+                watch,
                 dr => dr.DataRowToModel<ExportedRotor>());
         }
 
         public async Task GetInitialRr(DataTable data)
         {
+            var watch = new Stopwatch();
             Console.WriteLine("导出Motor数据");
             await ProcessDataAsync(
                 data,
+                watch,
                 dr => dr.DataRowToModel<ExportedRr>());
         }
 
@@ -87,9 +105,14 @@ namespace Traceability_System.Models.ExportedMethod
 
 
         //分析表数据并导出
-        public async Task ProcessDataAsync<T>(DataTable data, Func<DataRow, T> converter) where T : class, new()
+        public async Task ProcessDataAsync<T>(DataTable data, Stopwatch watch, Func<DataRow, T> converter) where T : class, new()
         {
-           
+            if (data.Rows.Count == 0)
+            {
+                _redisHelper.DeleteHash(_taskId,0);
+                return;
+            }
+
             var result = new List<T>();
 
             foreach (DataRow dr in data.Rows)
@@ -98,22 +121,26 @@ namespace Traceability_System.Models.ExportedMethod
                 result.Add(item);
             }
 
-            var watch = Stopwatch.StartNew();
             string filename = _tableName;
             if (IsFileInUse(_tableName + ".xlsx"))
                 return;
 
-            Console.WriteLine("开始导出");
+            Console.WriteLine("开始导出" + watch.ElapsedMilliseconds);
             try
             {
-                using (var context = ContextFactory.GetWriteContext(filename))
+                string prefix = filename.Split('_')[0];
+                using (var context = ContextFactory.GetWriteContext(prefix))
                 {
-                    var sheet = context.CrateSheet<T>(_tableName);
+                    var sheet = context.CrateSheet<T>(prefix);
                     for (int i = 0; i < result.Count; i++)
                     {
-                        sheet.AppendData(_tableName, result[i]);
+                        sheet.AppendData(prefix, result[i]);
                     }
                     string path = context.Save();
+
+                    File.Move(path, _path);
+
+                    Console.WriteLine("导出成功" + watch.ElapsedMilliseconds);
                     Console.WriteLine("路径" + path);
                 }
             }
@@ -125,44 +152,26 @@ namespace Traceability_System.Models.ExportedMethod
 
         }
 
-        //复制文件路径
-        //public string CopyFile(string fileName)
-        //{
-        //    _tableName = subStr(fileName);
-
-        //    string filePath = Path.Combine(baseDirectory, $"{_tableName}.xlsx");
-        //    string copyName = $"{fileName}_.xlsx";
-        //    string copyPath = Path.Combine(baseDirectory, "export");
-
-        //    if (!Directory.Exists(copyPath))
-        //        Directory.CreateDirectory(copyPath);
-
-        //    string copyFlie = Path.Combine(copyPath, copyName);
-
-        //    File.Copy(filePath, copyFlie);
-        //    return copyFlie;
-        //}
-
-        public static bool IsFileInUse(string fileName)
+        //检查文件是否存在
+        public bool IsFileInUse(string fileName)
         {
             bool inUse = true;
-            string path = @"D:\exportTable\export";
 
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(_path))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(_path);
             }
 
-            path = Path.Combine(path, fileName);
+            _path = Path.Combine(_path, fileName);
 
-            if (!File.Exists(path))
+            if (!File.Exists(_path))
                 return false;
 
             FileStream fs = null;
             try
             {
                 fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None);
-                
+
                 inUse = false;
             }
             catch (Exception ex)

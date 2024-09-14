@@ -46,7 +46,9 @@ namespace Traceability_System.API.Controllers
             {
                 try
                 {
-                    byte[] fileBytes = await _exportToExcel.ExportToExcel(request.TableName, request.Count);
+                   
+
+                     byte[] fileBytes = await _exportToExcel.ExportToExcel(request.TableName, request.Count);
                     if (fileBytes != null && fileBytes.Length > 0)
                     {
                         exportTask.Status = ExportStatus.Completed;
@@ -117,6 +119,7 @@ namespace Traceability_System.API.Controllers
                 {
                     return BadRequest("没有数据");
                 }
+
                 ExportTask exportTask = JsonConvert.DeserializeObject<ExportTask>(list);
                 _redisHelper.DeleteHash(taskId, 0);
                 return File(exportTask.FileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", tableName + ".xlsx");
@@ -126,9 +129,28 @@ namespace Traceability_System.API.Controllers
                 Console.WriteLine(ex.Message);
                 throw;
             }
-
-
         }
+
+        [HttpGet("DownloadTable")]
+        public IActionResult DownloadTable(string tableName)
+        {
+            var path = Path.Combine(@"D:\exportTable\export",tableName + ".xlsx");
+
+
+            // 检查文件是否存在
+            if (!System.IO.File.Exists(path))
+            {
+                return NotFound(); // 文件未找到，返回404
+            }
+
+            // 读取文件内容
+            var fileBytes = System.IO.File.ReadAllBytes(path);
+
+            // 返回文件内容作为下载
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+        }
+
+
     }
 
 

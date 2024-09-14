@@ -67,7 +67,7 @@ namespace Traceability_System.Models.SelectDB
 
             string baseSql = $"select * from {tableName} where ";
 
-            exportedName = tableName;
+            exportedName = parameter.tableName;
 
             //条件sql
             List<string> sqlList = CreateFactorSql(parameter, orderby);
