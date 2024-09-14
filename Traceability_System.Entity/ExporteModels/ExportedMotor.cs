@@ -7,7 +7,7 @@ namespace Traceability_System.Entity.ExporteModels
     public class ExportedMotor
     {
 
-        [ExcelKit(Desc = "采集时间", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "采集时间", Align = TextAlign.Center)]
         public DateTime? CollectionDate { get; set; }
 
         [ExcelKit(Desc = "Motor出荷序列", Align = TextAlign.Center)]
@@ -445,7 +445,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "防错防误2计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate2 { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? HsgBrgDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -478,7 +478,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? HsgBrgAbvalue { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? HsgKnockDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -517,7 +517,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "防错防误4计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate4 { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? RrbrgDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -550,7 +550,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? RrbrgAbvalue { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? RrknockDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -583,7 +583,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? RrknockAbvalue { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? Mg1date { get; set; }
 
         [ExcelKit(Desc = "紧固角度1轴", Align = TextAlign.Center)]
@@ -604,7 +604,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "第3轴判定代码", Align = TextAlign.Center)]
         public string? Mg1codeAxis3 { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? Mg2date { get; set; }
 
         [ExcelKit(Desc = "紧固角度1轴", Align = TextAlign.Center)]
@@ -628,7 +628,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "防错防误５计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate5 { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? StatorDate { get; set; }
 
         [ExcelKit(Desc = "紧固角度1軸", Align = TextAlign.Center)]
@@ -691,7 +691,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "防错防误7计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate7 { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? MeasDate { get; set; }
 
         [ExcelKit(Desc = "MG1工件温度", Align = TextAlign.Center)]
@@ -712,7 +712,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "MG2判定", Align = TextAlign.Center)]
         public string? Mg2dec { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? RrFigpdate { get; set; }
 
         [ExcelKit(Desc = "画像判定結果", Align = TextAlign.Center)]
@@ -721,7 +721,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? RrcoverDate { get; set; }
 
-        [ExcelKit(Desc = "计测日时合体", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时合体", Align = TextAlign.Center)]
         public string? TotalDate1 { get; set; }
 
         [ExcelKit(Desc = "紧固角度1軸", Align = TextAlign.Center)]
@@ -793,7 +793,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? Total1Abvalue { get; set; }
 
-        [ExcelKit(Desc = "计测日时", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
         public string? Total2Date { get; set; }
 
         [ExcelKit(Desc = "紧固角度1軸", Align = TextAlign.Center)]

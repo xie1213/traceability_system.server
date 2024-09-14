@@ -20,8 +20,6 @@ namespace Traceability_System.API.Controllers
             _redisHelper = new RedisHelper();
             //_exportTask = exportTask;
         }
-
-
         [HttpGet("DownloadTable")]
         public async Task<IActionResult> DownloadTable(string tableName)
         {
@@ -30,20 +28,53 @@ namespace Traceability_System.API.Controllers
             {
                 return BadRequest("没有数据");
             }
-            ExportTask exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
 
+            ExportTask exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
             var status = exportTask.Status.ToString();
 
-
-            Console.WriteLine(exportTask.Status);
             if (status == "InProgress")
                 return Ok("InProgress");
 
-   
-            //// 返回文件内容作为下载
-            return File(exportTask.FileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{tableName}.xlsx");
+            try
+            {
+                // Ensure file exists before trying to open
+                if (!System.IO.File.Exists(exportTask.fliePath))
+                {
+                    return NotFound("文件未找到");
+                }
 
+                var fileName = $"{tableName}.xlsx";
+                var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                var fileStream = new FileStream(exportTask.fliePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+                // Create a file result
+                var fileResult = File(fileStream, contentType, fileName);
+
+                // Asynchronously delete the file after returning it
+                Task.Run(async () =>
+                {
+                    await Task.Delay(2000); // Delay to ensure file stream has been handled
+                    try
+                    {
+                        fileStream.Close(); // Ensure the stream is closed
+                        System.IO.File.Delete(exportTask.fliePath);
+                    }
+                    catch (Exception deleteEx)
+                    {
+                        // Log exception
+                        Console.WriteLine($"文件删除失败: {deleteEx.Message}");
+                    }
+                });
+
+                return fileResult;
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync($"处理文件时发生错误: {ex.Message}");
+                return StatusCode(500, "处理文件时发生错误");
+            }
         }
+
 
         [HttpGet("test")]
         public void test(string path1,string path2)

@@ -141,6 +141,7 @@ namespace Traceability_System.Models.ExportedMethod
 
             if (IsFileInUse(_tableName + ".xlsx"))
                 return;
+
             ExportTask exportTask = new ExportTask();
             watch.Stop();
             w1 = watch.Elapsed.ToString();
@@ -152,7 +153,6 @@ namespace Traceability_System.Models.ExportedMethod
                 string suffix = _tableName.Split("_")[1];
                 string tableName = prefix + "test";
 
-                string fliePath = Path.Combine(@"D:\exportTable", prefix + ".xlsx");
 
                 using (var context = ContextFactory.GetWriteContext(prefix))
                 {
@@ -167,7 +167,18 @@ namespace Traceability_System.Models.ExportedMethod
                     w2 = watch.Elapsed.ToString();
                     Console.WriteLine("保存成功" + w2);
 
-                    InsertRow(path, _path, prefix);
+                    if (prefix.Contains("出荷"))
+                    {
+                        File.Move(path, _path);
+                        File.Delete(path);
+                        ToFileByts(_path);
+                    }
+                    else
+                    {
+                        InsertRow(path, _path, prefix);
+                    }
+
+
                 }
 
             }
@@ -239,11 +250,11 @@ namespace Traceability_System.Models.ExportedMethod
 
             string tblHdrPath = Path.Combine(@"D:\exportTable", prefix + ".xlsx");
 
-            File.Delete(oldPath);
+            //File.Delete(oldPath);
 
             wacth.Stop();
 
-            Console.WriteLine("添加行"+wacth.Elapsed);
+            Console.WriteLine("添加行" + wacth.Elapsed);
 
             MergeFile(newPatn, tblHdrPath);
 
@@ -291,21 +302,8 @@ namespace Traceability_System.Models.ExportedMethod
                 wacth.Stop();
 
                 Console.WriteLine("添加表头" + wacth.Elapsed);
+                ToFileByts(path1);
 
-                wacth.Start();
-                var fileBytes = File.ReadAllBytes(path1);
-
-                ExportTask exportTask = new ExportTask();
-                exportTask.FileBytes = fileBytes;
-
-                exportTask.Status = ExportStatus.Completed;
-
-                var initialJson = JsonConvert.SerializeObject(exportTask);
-
-                _redisHelper.RedisSet(_tableName, initialJson);
-
-                wacth.Stop() ;
-                Console.WriteLine("转化流"+wacth.Elapsed);
             }
             catch (Exception ex)
             {
@@ -315,11 +313,31 @@ namespace Traceability_System.Models.ExportedMethod
         }
 
 
+        public void ToFileByts(string path1)
+        {
+            var wacth = Stopwatch.StartNew();
+
+            //var fileBytes = File.ReadAllBytes(path1);
+
+            ExportTask exportTask = new ExportTask();
+            exportTask.fliePath = path1;
+
+            exportTask.Status = ExportStatus.Completed;
+
+            var initialJson = JsonConvert.SerializeObject(exportTask);
+
+            _redisHelper.RedisSet(_tableName, initialJson);
+
+            wacth.Stop();
+            Console.WriteLine("转化流" + wacth.Elapsed);
+        }
+
     }
     public class ExportTask
     {
         public ExportStatus Status { get; set; } = ExportStatus.InProgress;
-        public byte[] FileBytes { get; set; }
+
+        public   string fliePath { get; set; }  
 
         public string ErrorMessage { get; set; }
 

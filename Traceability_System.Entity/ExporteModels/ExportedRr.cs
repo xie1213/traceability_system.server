@@ -439,10 +439,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "修改历史记录", Align = TextAlign.Center)]
         public string? Reshuffle { get; set; }
 
-        [ExcelKit(Desc = "防错防误39计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误39计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate39 { get; set; }
 
-        [ExcelKit(Desc = "防错防误40计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误40计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate40 { get; set; }
 
         [ExcelKit(Desc = "RrBrg圧入计测日时", Align = TextAlign.Center)]
@@ -475,25 +475,25 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "RrBrg圧入主行程", Align = TextAlign.Center)]
         public string? HsgBrgMainStroke { get; set; }
 
-        [ExcelKit(Desc = "防错防误41计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误41计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate41 { get; set; }
 
-        [ExcelKit(Desc = "防错防误42计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误42计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate42 { get; set; }
 
-        [ExcelKit(Desc = "防错防误43计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误43计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate43 { get; set; }
 
-        [ExcelKit(Desc = "防错防误44计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误44计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate44 { get; set; }
 
-        [ExcelKit(Desc = "反転機计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "反転機计测日時", Align = TextAlign.Center)]
         public string? UpenderDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误45计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误45计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate45 { get; set; }
 
-        [ExcelKit(Desc = "拒绝计测日時", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "拒绝计测日時", Align = TextAlign.Center)]
         public string? RejectTimeDate { get; set; }
 
     }

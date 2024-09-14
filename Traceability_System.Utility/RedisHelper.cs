@@ -20,6 +20,8 @@ namespace Traceability_System.Utility
             db = redis.GetDatabase(dbNum);
             TimeSpan expiry = TimeSpan.FromDays(1);
             db.StringSet(key, value);
+            db.KeyExpire(key, expiry);
+
             return true;
         }
 
