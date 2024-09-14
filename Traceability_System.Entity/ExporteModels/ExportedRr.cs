@@ -7,7 +7,7 @@ namespace Traceability_System.Entity.ExporteModels
     public class ExportedRr
     {
 
-        [ExcelKit(Desc = "上传时间", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "上传时间", Align = TextAlign.Center)]
         public DateTime? CollectionDate { get; set; }
 
         [ExcelKit(Desc = "rr盖序列", Align = TextAlign.Center)]

@@ -16,10 +16,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "印字标识", Align = TextAlign.Center)]
         public string? Printing { get; set; }
 
-        [ExcelKit(Desc = "先行时间", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "先行时间", Align = TextAlign.Center)]
         public DateTime? LeadTimeDate { get; set; }
 
-        [ExcelKit(Desc = "出荷时间", Converter = typeof(DateTimeFmtConverter), ConverterParam = "yyyy-MM-dd HH:mm:ss", Align = TextAlign.Center)]
+        [ExcelKit(Desc = "出荷时间", Align = TextAlign.Center)]
         public DateTime? ShippingTimeDate { get; set; }
 
         [ExcelKit(Desc = "出荷目的地", Align = TextAlign.Center)]

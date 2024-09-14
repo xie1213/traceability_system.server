@@ -1,6 +1,7 @@
 ﻿using Appraisal_System.Utility;
 using Newtonsoft.Json;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection;
 using Traceability_System.DTO;
 using Traceability_System.Entity.Models;
@@ -61,7 +62,6 @@ namespace Traceability_System.Models.SelectDB
             string tableName = string.Empty;
             string orderby = string.Empty;
 
-
             // 根据 parameter.tableName 直接从字典中获取对应的值，并进行赋值
             (tableName, orderby) = tableMappings.GetValueOrDefault(parameter.tableName, (string.Empty, string.Empty));
 
@@ -87,14 +87,11 @@ namespace Traceability_System.Models.SelectDB
             Assembly asm = Assembly.Load("Traceability_System.Entity");
             Type modelType = asm.GetType("Traceability_System.Entity.Models." + tableName);
 
-            _ = Task.Run(async () =>
-            {
-                ExportedManager exported = new ExportedManager();
-                exported._tableName = exportedName;
-                exported.data = dt;
-                await exported.ExportedTable();
-            });
 
+            Task.Run(() => ExportDataAsync( exportedName, dt));
+         
+
+            Console.WriteLine("数据转化");
             foreach (DataRow dr in dt.Rows)
             {
                 var model = dr.DataRowToType(modelType);
@@ -144,7 +141,7 @@ namespace Traceability_System.Models.SelectDB
 
                 string timeSql = $" {timeStr} BETWEEN '{startDateTime}' AND '{endDateTime}' ";
 
-                string a =  CoverToTime.TimeToInt(startDateTime);
+                string a = CoverToTime.TimeToInt(startDateTime);
 
                 string b = CoverToTime.TimeToInt(endDateTime);
                 exportedName += $"_{a}-{b}";
@@ -171,12 +168,11 @@ namespace Traceability_System.Models.SelectDB
             return sqlList;
         }
 
-
         //验证字符串
         public string CheckedToString(selectFactor selectFactor)
         {
             string selSql = $"{selectFactor.selectName} ";
-            
+
             //判断是否等于空
             bool isTopLimit = selectFactor.topLimit == null;
             bool isLowerLimit = selectFactor.lowerLimit == null;
@@ -345,9 +341,10 @@ namespace Traceability_System.Models.SelectDB
         public object GetOutTable(ParameterData parameter)
         {
             string baseSql = "select * from Shipping where";
-
+            Console.WriteLine("查找出荷数据");
             try
             {
+                exportedName = parameter.tableName;
                 //条件sql
                 List<string> sqlList = CreateFactorSql(parameter, "SerialNo");
 
@@ -360,6 +357,8 @@ namespace Traceability_System.Models.SelectDB
                 DataTable dt = SqlHelper.ExecuteTable(baseSql);
                 if (dt != null && dt.Rows.Count > 0)
                 {
+                    Task.Run(() => ExportDataAsync(exportedName, dt));
+                    
                     _redisHelper.DeleteHash(parameter.tableName);
                     foreach (DataRow dr in dt.Rows)
                     {
@@ -372,7 +371,6 @@ namespace Traceability_System.Models.SelectDB
                         shipList.Add(model);
                     }
                     return new { data = shipList.Take(30), count = shipList.Count() };
-
                 }
                 else
                 {
@@ -390,18 +388,20 @@ namespace Traceability_System.Models.SelectDB
         //获取全部数据
         public object GetAllTableData(ParameterData parameter)
         {
+            exportedName = parameter.tableName;
+
             var sqlList = CreateFactorSql(parameter, "ShipmentSerial");
 
             string itemSql = string.Join(" and ", sqlList);
 
 
             string sqlQuery = "select * from TATable as ta" +
-                       $"\rleft join vw_MotorTable mo on RIGHT(ta.ShipmentSerial,8) = RIGHT(mo.MoShipmentSerial, 8)" +
-                       $"\rleft join vw_GearTable as df on ta.DfringSerial = df.GeDfringSerial" +
-                       $"\rleft join vw1_RotorTable as ro1 on ta.MG1RSerial = ro1.Ro1MG1RSerial and LEFT(ta.MG1RSerial,2) = '11'" +
-                       $"\rleft join vw2_RotorTable as ro2 on ta.MG1RSerial = ro2.Ro2MG1RSerial and LEFT(ta.MG1RSerial,2) = '12'" +
-                       $"\rleft join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
-                       $"\rwhere {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
+                       $" left join vw_MotorTable mo on RIGHT(ta.ShipmentSerial,8) = RIGHT(mo.MoShipmentSerial, 8)" +
+                       $" left join vw_GearTable as df on ta.DfringSerial = df.GeDfringSerial" +
+                       $" left join vw1_RotorTable as ro1 on ta.MG1RSerial = ro1.Ro1MG1RSerial and LEFT(ta.MG1RSerial,2) = '11'" +
+                       $" left join vw2_RotorTable as ro2 on ta.MG1RSerial = ro2.Ro2MG1RSerial and LEFT(ta.MG1RSerial,2) = '12'" +
+                       $" left join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
+                       $" where {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
 
 
 
@@ -410,6 +410,7 @@ namespace Traceability_System.Models.SelectDB
             {
                 return "空值";
             }
+            Task.Run(() => ExportDataAsync(exportedName, resultTable));
 
             var resultList = new List<Dictionary<string, object>>();
             foreach (DataRow row in resultTable.Rows)
@@ -440,5 +441,17 @@ namespace Traceability_System.Models.SelectDB
 
             return lastPingStatus.ToString();
         }
+
+
+        private async Task ExportDataAsync(string exportedName, DataTable dt)
+        {
+            ExportedManager exported = new ExportedManager();
+            exported._tableName = exportedName;
+            exported.data = dt;
+
+            Console.WriteLine("开始导出");
+            await exported.ExportedTable();
+        }
+
     }
 }

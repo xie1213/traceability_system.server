@@ -18,7 +18,7 @@ namespace Traceability_System.Utility
         public bool RedisSet(string key, string value, int dbNum = 0)
         {
             db = redis.GetDatabase(dbNum);
-
+            TimeSpan expiry = TimeSpan.FromDays(1);
             db.StringSet(key, value);
             return true;
         }
