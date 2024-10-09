@@ -133,14 +133,20 @@ namespace Traceability_System.Models.ExportedMethod
 
             var result = new List<T>();
 
+            if (IsFileInUse(_tableName))
+            {
+                Console.WriteLine("已有数据");
+                return;
+            }
+
             foreach (DataRow dr in data.Rows)
             {
                 var item = converter(dr);
                 result.Add(item);
             }
 
-            if (IsFileInUse(_tableName + ".xlsx"))
-                return;
+           
+
 
             ExportTask exportTask = new ExportTask();
             watch.Stop();
@@ -151,7 +157,7 @@ namespace Traceability_System.Models.ExportedMethod
                 watch.Start();
                 string prefix = _tableName.Split('_')[0];
                 string suffix = _tableName.Split("_")[1];
-                string tableName = prefix + "test";
+                //string tableName = prefix + "test";
 
 
                 using (var context = ContextFactory.GetWriteContext(prefix))
@@ -167,15 +173,16 @@ namespace Traceability_System.Models.ExportedMethod
                     w2 = watch.Elapsed.ToString();
                     Console.WriteLine("保存成功" + w2);
 
+                    string fliePath = Path.Combine(_path, _tableName + ".xlsx");
                     if (prefix.Contains("出荷"))
                     {
-                        File.Move(path, _path);
+                        File.Move(path, fliePath);
                         File.Delete(path);
-                        ToFileByts(_path);
+                        ToFileByts(fliePath);
                     }
                     else
                     {
-                        InsertRow(path, _path, prefix);
+                        InsertRow(path, fliePath, prefix);
                     }
 
 
@@ -197,38 +204,33 @@ namespace Traceability_System.Models.ExportedMethod
         //检查文件是否存在
         public bool IsFileInUse(string fileName)
         {
-            bool inUse = true;
+            var value = CheckKey(fileName);
 
-            if (!Directory.Exists(_path))
-            {
-                Directory.CreateDirectory(_path);
-            }
 
-            _path = Path.Combine(_path, fileName);
-
-            if (!File.Exists(_path))
+            if (value == null)
                 return false;
 
-            FileStream fs = null;
-            try
-            {
-                fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None);
+            string status = value.Status.ToString();
 
-                inUse = false;
-            }
-            catch (Exception ex)
+            if (status == "InProgress")
             {
-                Console.WriteLine("文件正在占用，请先关闭文件");
-                Console.WriteLine(ex.Message);
+                //_redisHelper.DeleteHash(fileName, 0);
+                return false;
+                //inUse =false;
             }
-            finally
+            
+            bool isflie = File.Exists(value.fliePath);
+
+            if (!isflie)
             {
-                if (fs != null)
-                {
-                    fs.Close();
-                }
+                ExportTask exportTask = new ExportTask();
+                _redisHelper.DeleteHash(fileName, 0); // 文件不存在，删除哈希
+                var initialJson = JsonConvert.SerializeObject(exportTask);
+                _redisHelper.RedisSet(_tableName, initialJson);
+                isflie = false;
+
             }
-            return inUse;//true表示正在使用,false没有使用
+            return isflie;//true表示正在使用,false没有使用
         }
 
         //添加行
@@ -256,13 +258,13 @@ namespace Traceability_System.Models.ExportedMethod
 
             Console.WriteLine("添加行" + wacth.Elapsed);
 
-            MergeFile(newPatn, tblHdrPath);
+            MergeFile(newPatn, tblHdrPath, row);
 
 
         }
 
         //合并文件
-        public void MergeFile(string path1, string path2)
+        public void MergeFile(string path1, string path2,int intCount)
         {
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
             try
@@ -281,10 +283,10 @@ namespace Traceability_System.Models.ExportedMethod
                     {
                         w1.Cells[merge].Merge = true;
                     }
-                    var rowCount2 = w2.Dimension.End.Row;
+
                     var colCount2 = w2.Dimension.End.Column;
 
-                    for (int row = 1; row <= rowCount2; row++)
+                    for (int row = 1; row <= intCount; row++)
                     {
                         for (int col = 1; col <= colCount2; col++)
                         {
@@ -312,7 +314,7 @@ namespace Traceability_System.Models.ExportedMethod
             }
         }
 
-
+        //存入redis
         public void ToFileByts(string path1)
         {
             var wacth = Stopwatch.StartNew();
@@ -332,12 +334,27 @@ namespace Traceability_System.Models.ExportedMethod
             Console.WriteLine("转化流" + wacth.Elapsed);
         }
 
+        //check 键是否存在
+        public ExportTask CheckKey(string tableName)
+        {
+
+            string value = _redisHelper.RedisGet(tableName);
+            if (value == null)
+                return null;
+
+            ExportTask exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
+
+
+            return exportTask;
+        }
+
     }
+
     public class ExportTask
     {
         public ExportStatus Status { get; set; } = ExportStatus.InProgress;
 
-        public   string fliePath { get; set; }  
+        public string fliePath { get; set; }
 
         public string ErrorMessage { get; set; }
 

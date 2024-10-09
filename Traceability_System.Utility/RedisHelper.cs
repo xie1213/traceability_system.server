@@ -56,6 +56,21 @@ namespace Traceability_System.Utility
         }
 
 
+
+        /// <summary>
+        /// 同步获取值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="dbNum"></param>
+        /// <returns></returns>
+        public string RedisGet(string key,int dbNum = 0)
+        {
+            var db = redis.GetDatabase(dbNum);
+            var value = db.StringGet(key);
+            return value;
+        }
+
+
         /// <summary>
         /// 存入json数据
         /// </summary>

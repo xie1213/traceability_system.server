@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Bcpg.Sig;
 using Traceability_System.Models.ExportedMethod;
@@ -12,15 +13,34 @@ namespace Traceability_System.API.Controllers
     {
         private readonly newExportToExcel _exportToExcel;
         private readonly RedisHelper _redisHelper;
-        //private readonly ExportTask _exportTask;
+
+        private ExportTask _exportTask;
+
 
         public ExportController(newExportToExcel exportToExcel)
         {
             _exportToExcel = exportToExcel;
             _redisHelper = new RedisHelper();
-            //_exportTask = exportTask;
+            _exportTask = new ExportTask();
         }
-        [HttpGet("DownloadTable")]
+
+
+        [HttpGet("GetPath")]
+        public async Task<IActionResult> GetPath(string tableName)
+        {
+            var value = await _redisHelper.RedisGetAsync(tableName);
+            if (value == null)
+            {
+                return BadRequest("没有数据");
+            }
+            _exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
+
+            var status = _exportTask.Status.ToString();
+
+            return Ok(status);
+        }
+
+        [HttpPost("DownloadTable")]
         public async Task<IActionResult> DownloadTable(string tableName)
         {
             var value = await _redisHelper.RedisGetAsync(tableName);
@@ -28,40 +48,32 @@ namespace Traceability_System.API.Controllers
             {
                 return BadRequest("没有数据");
             }
-
-            ExportTask exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
-            var status = exportTask.Status.ToString();
-
-            if (status == "InProgress")
-                return Ok("InProgress");
+            _exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
 
             try
             {
-                // Ensure file exists before trying to open
-                if (!System.IO.File.Exists(exportTask.fliePath))
+                if (!System.IO.File.Exists(_exportTask.fliePath))
                 {
                     return NotFound("文件未找到");
                 }
 
                 var fileName = $"{tableName}.xlsx";
                 var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                var fileStream = new FileStream(exportTask.fliePath, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-                // Create a file result
+                var fileStream = new FileStream(_exportTask.fliePath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 var fileResult = File(fileStream, contentType, fileName);
 
                 // Asynchronously delete the file after returning it
-                Task.Run(async () =>
+                _ = Task.Run(async () =>
                 {
-                    await Task.Delay(2000); // Delay to ensure file stream has been handled
+                    await Task.Delay(6000); // Delay to ensure the file stream has been handled
                     try
                     {
-                        fileStream.Close(); // Ensure the stream is closed
-                        System.IO.File.Delete(exportTask.fliePath);
+                        fileStream.Dispose(); // Dispose the stream before deleting
+                        System.IO.File.Delete(_exportTask.fliePath);
                     }
                     catch (Exception deleteEx)
                     {
-                        // Log exception
                         Console.WriteLine($"文件删除失败: {deleteEx.Message}");
                     }
                 });
@@ -76,11 +88,51 @@ namespace Traceability_System.API.Controllers
         }
 
 
-        [HttpGet("test")]
-        public void test(string path1,string path2)
+
+        [HttpPost("testexpot")]
+        public IActionResult testexpot()
         {
-            MergeExcel.MergeExcelFiles(path1, path2);
+            string path = @"D:\exportTable\export\Test.xlsx";
+            var fileName = $"Test.xlsx";
+            var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var fileResult = File(fileStream, contentType, fileName);
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(6000); // Delay to ensure the file stream has been handled
+                try
+                {
+                    fileStream.Dispose(); // Dispose the stream before deleting
+                }
+                catch (Exception deleteEx)
+                {
+                    Console.WriteLine($"文件删除失败: {deleteEx.Message}");
+                }
+            });
+
+            return fileResult;
+
+            //string path = @"D:\exportTable\export\Test.xlsx";
+            //var fileName = "Test.xlsx";
+            //var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            //try
+            //{
+            //    using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            //    {
+            //        var fileResult = File(fileStream, contentType, fileName);
+            //        return fileResult;
+            //    }
+            //}
+            //catch (Exception ex )
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    throw;
+            //}
+
+
         }
+
     }
 
 

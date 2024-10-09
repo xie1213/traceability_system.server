@@ -40,20 +40,25 @@ public class CoverToFlaot
         // 移除整数部分的前导零
         string frontPartChar = frontPart.TrimStart('0').Trim();
 
-        // 如果整数部分为空，则设置为 "0"
-        if (string.IsNullOrEmpty(frontPartChar) || frontPartChar == "00")
+        switch (frontPartChar)
         {
-            frontPartChar = "0";
+            case null:
+            case "":
+            case "00":
+                frontPartChar = "0";
+                break;
+            case "-":
+                frontPartChar += '0';
+                break;
+            case "-00":
+                frontPartChar = "-0";
+                break;
+            case "-01":
+                frontPartChar = "-1";
+                break;
+            default:
+                break;
         }
-        else if (frontPartChar == "-")
-        {
-            frontPartChar += '0';
-        }
-        else if (frontPartChar == "-00")
-        {
-            frontPartChar = "-0";
-        }
-
 
         // 处理小数部分
         string decimalPart = backPart.TrimEnd('0').Trim();

@@ -179,6 +179,8 @@ namespace Traceability_System.Models.SelectDB
 
             bool equalStr = selectFactor.topLimit == selectFactor.lowerLimit;
 
+
+            exportedName += $"_{selectFactor.selectNameZh}";
             //是否是时间
             if (selectFactor.selectName.Contains("Date"))
             {
@@ -186,7 +188,7 @@ namespace Traceability_System.Models.SelectDB
                 string a = CoverToTime.TimeToInt(selectFactor.startDateTime);
 
                 string b = CoverToTime.TimeToInt(selectFactor.endDateTime);
-                exportedName += $"_{a}-{b}";
+                exportedName += $"-{a}-{b}";
                 return selSql;
             }
 
@@ -196,11 +198,11 @@ namespace Traceability_System.Models.SelectDB
                 if (equalStr)
                 {
                     selSql += $" like '%{selectFactor.topLimit}%' ";
-                    exportedName += $"_{selectFactor.topLimit}";
+                    exportedName += $"-{selectFactor.topLimit}";
                 }
                 else
                 {
-                    exportedName += $"_{selectFactor.topLimit}-{selectFactor.lowerLimit}";
+                    exportedName += $"-{selectFactor.topLimit}-{selectFactor.lowerLimit}";
                     selSql = CreateFactorSql(selectFactor.selectName, selectFactor.topLimit, selectFactor.lowerLimit);
                 }
             }
@@ -208,16 +210,14 @@ namespace Traceability_System.Models.SelectDB
             {
                 //上限为空,下限不为空
                 selSql = $"CAST({selSql} AS FLOAT)>={selectFactor.lowerLimit}";
-                exportedName += $"_{selectFactor.lowerLimit}";
+                exportedName += $"-{selectFactor.lowerLimit}";
             }
             else
             {
                 //下限为空,上限不为空
                 selSql = $"CAST({selSql} AS FLOAT)<={selectFactor.topLimit}";
-                exportedName += $"_{selectFactor.topLimit}";
+                exportedName += $"-{selectFactor.topLimit}";
             }
-
-
 
             return selSql;
         }

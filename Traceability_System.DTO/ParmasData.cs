@@ -36,5 +36,6 @@
         public string? lowerLimit { get; set; }
         public string? startDateTime { get; set; }
         public string? endDateTime { get; set; }
+        public string? selectNameZh { get; set; }
     }
 }
