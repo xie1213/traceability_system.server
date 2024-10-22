@@ -22,6 +22,8 @@ namespace Traceability_System.API
         public void Dispose()
         {
             //释放资源
+            //服务器代码测试
+
             _timer.Dispose();
         }
 
