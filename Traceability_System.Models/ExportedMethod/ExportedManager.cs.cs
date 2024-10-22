@@ -174,17 +174,9 @@ namespace Traceability_System.Models.ExportedMethod
                     Console.WriteLine("保存成功" + w2);
 
                     string fliePath = Path.Combine(_path, _tableName + ".xlsx");
-                    if (prefix.Contains("出荷"))
-                    {
-                        File.Move(path, fliePath);
-                        File.Delete(path);
-                        ToFileByts(fliePath);
-                    }
-                    else
-                    {
-                        InsertRow(path, fliePath, prefix);
-                    }
-
+                    File.Move(path, fliePath);
+                    File.Delete(path);
+                    ToFileByts(fliePath);
 
                 }
 
