@@ -37,9 +37,6 @@ namespace Traceability_System.Models.ExportedMethod
                 { "Rr", () => GetInitialRr(data) },
                 { "全部", () => GetInitialAll(data) },
                 { "出荷", () => GetInitialShip(data) },
-
-
-
             };
 
             foreach (var item in _handlers)
@@ -122,7 +119,7 @@ namespace Traceability_System.Models.ExportedMethod
         public async Task ProcessDataAsync<T>(DataTable data, Func<DataRow, T> converter) where T : class, new()
         {
             var watch = new Stopwatch();
-            string w1, w2, w3;
+            string w1, w2;
             watch.Start();
 
             if (data.Rows.Count == 0)
@@ -238,6 +235,8 @@ namespace Traceability_System.Models.ExportedMethod
 
             // 从第 3 行开始在工作表中插入 10 行
             worksheet.Cells.InsertRows(0, row);
+
+
 
             // 保存修改后的 Excel 文件
             workbook.Save(newPatn);

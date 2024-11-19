@@ -1122,13 +1122,13 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "減速側最终综合判定",  Align = TextAlign.Left)]
         public string? IssSlowLast { get; set; }
 
-        [ExcelKit(Desc = "加速側差速器轴平均負荷扭矩", Converter =typeof(DecimalPointDigitConverter),ConverterParam =2, Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側差速器轴平均負荷扭矩", Align = TextAlign.Left)]
         public string? IssRevAvg { get; set; }
 
         [ExcelKit(Desc = "加速側差速器轴平均負荷扭矩判定",  Align = TextAlign.Left)]
         public string? IssRevAvgDec { get; set; }
 
-        [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩", Converter = typeof(DecimalPointDigitConverter), ConverterParam = 2, Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩",  Align = TextAlign.Left)]
         public string? IssSlowAvg { get; set; }
 
         [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩判定",  Align = TextAlign.Left)]
