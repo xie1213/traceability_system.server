@@ -15,10 +15,11 @@ namespace Traceability_System.Models.SelectDB
     {
 
         private readonly RedisHelper _redisHelper;
-
-        public SelectAllData(RedisHelper redisHelper)
+        private readonly LogHelper _logHelper;
+        public SelectAllData(RedisHelper redisHelper, LogHelper logHelper)
         {
             _redisHelper = redisHelper;
+            _logHelper = logHelper;
         }
 
         Dictionary<string, string> tablePatterns = new Dictionary<string, string>
@@ -388,47 +389,55 @@ namespace Traceability_System.Models.SelectDB
         //获取全部数据
         public object GetAllTableData(ParameterData parameter)
         {
-            exportedName = parameter.tableName;
-
-            var sqlList = CreateFactorSql(parameter, "ShipmentSerial");
-
-            string itemSql = string.Join(" and ", sqlList);
-
-
-            string sqlQuery = "select * from TATable as ta" +
-                       $" left join vw_MotorTable mo on RIGHT(ta.ShipmentSerial,8) = RIGHT(mo.MoShipmentSerial, 8)" +
-                       $" left join vw_GearTable as df on ta.DfringSerial = df.GeDfringSerial" +
-                       $" left join vw1_RotorTable as ro1 on ta.MG1RSerial = ro1.Ro1MG1RSerial and LEFT(ta.MG1RSerial,2) = '11'" +
-                       $" left join vw2_RotorTable as ro2 on ta.MG1RSerial = ro2.Ro2MG1RSerial and LEFT(ta.MG1RSerial,2) = '12'" +
-                       $" left join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
-                       $" where {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
-
-
-
-            DataTable resultTable = SqlHelper.ExecuteTable(sqlQuery);
-            if (resultTable.Rows.Count == 0)
+            try
             {
-                return "空值";
-            }
-            Task.Run(() => ExportDataAsync(exportedName, resultTable));
+                exportedName = parameter.tableName;
 
-            var resultList = new List<Dictionary<string, object>>();
-            foreach (DataRow row in resultTable.Rows)
-            {
-                var rowData = new Dictionary<string, object>();
-                foreach (DataColumn col in resultTable.Columns)
+                var sqlList = CreateFactorSql(parameter, "ShipmentSerial");
+
+                string itemSql = string.Join(" and ", sqlList);
+
+
+                string sqlQuery = "select * from TATable as ta" +
+                           $" left join vw_MotorTable mo on RIGHT(ta.ShipmentSerial,8) = RIGHT(mo.MoShipmentSerial, 8)" +
+                           $" left join vw_GearTable as df on ta.DfringSerial = df.GeDfringSerial" +
+                           $" left join vw1_RotorTable as ro1 on ta.MG1RSerial = ro1.Ro1MG1RSerial and LEFT(ta.MG1RSerial,2) = '11'" +
+                           $" left join vw2_RotorTable as ro2 on ta.MG1RSerial = ro2.Ro2MG1RSerial and LEFT(ta.MG1RSerial,2) = '12'" +
+                           $" left join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
+                           $" where {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
+
+
+                DataTable resultTable = SqlHelper.ExecuteTable(sqlQuery);
+                if (resultTable.Rows.Count == 0)
                 {
+                    return "空值";
+                }
+                Task.Run(() => ExportDataAsync(exportedName, resultTable));
 
-                    rowData[col.ColumnName] = row[col].ToString() == "" ? "" : row[col];
+                var resultList = new List<Dictionary<string, object>>();
+                foreach (DataRow row in resultTable.Rows)
+                {
+                    var rowData = new Dictionary<string, object>();
+                    foreach (DataColumn col in resultTable.Columns)
+                    {
+
+                        rowData[col.ColumnName] = row[col].ToString() == "" ? "" : row[col];
+                    }
+
+                    resultList.Add(rowData);
+                    var json = JsonConvert.SerializeObject(rowData);
+                    _redisHelper.SetHashToJson("全部履历", row["Id"].ToString(), json);
                 }
 
-                resultList.Add(rowData);
-                var json = JsonConvert.SerializeObject(rowData);
-                _redisHelper.SetHashToJson("全部履历", row["Id"].ToString(), json);
+                return new { data = resultList.Take(30), count = resultList.Count() };
+                //return null;
             }
-
-            return new { data = resultList.Take(30), count = resultList.Count() };
-            //return null;
+            catch (Exception ex)
+            {
+                _logHelper.Error("全部表读取错误" + ex.Message);
+                throw;
+            }
+          
         }
 
 

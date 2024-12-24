@@ -59,6 +59,7 @@ public class YoushowDemoApiModule : AceModule
         services.AddScoped<ExportTableMapper>();
         services.AddScoped<newExportToExcel>();
         services.AddScoped<SqlHelper>();
+        services.AddScoped<LogHelper>();
         services.AddScoped<ExportedManager>();
 
         services.AddSingleton<IHostLifetime, NoopConsoleLifetime>();

@@ -10,6 +10,7 @@ namespace Appraisal_System.Utility
     {
         public static string ConStr { get; set; } = "";
 
+        private static readonly LogHelper logHelper = new LogHelper();
         //public SqlHelper()
         //{
         //    ConStr = "Data Source=.;uid=sa;pwd=123456;Datebase:966KData;";
@@ -41,8 +42,8 @@ namespace Appraisal_System.Utility
                 }
                 catch (Exception e)
                 {
-
-                    Console.WriteLine("查询出错" + e.Message);
+                    //Console.WriteLine("查询出错" + e.Message);
+                    logHelper.Warn("查询时出现错误"+e.Message);
                     throw;
                 }
 
@@ -52,63 +53,90 @@ namespace Appraisal_System.Utility
         //執行增刪改的方法
         public static int ExecuteNonQuery(string cmdText, params SqlParameter[] sqlParameters)
         {
-            using (SqlConnection conn = new SqlConnection(ConStr))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                using (SqlConnection conn = new SqlConnection(ConStr))
                 {
-                    if (sqlParameters != null)
+                    using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                     {
-                        cmd.Parameters.AddRange(sqlParameters);
-                    }
-                    conn.Open();
+                        if (sqlParameters != null)
+                        {
+                            cmd.Parameters.AddRange(sqlParameters);
+                        }
+                        conn.Open();
 
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows <= 0)
-                    {
-                        //throw new Exception("数据库操作失败");
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows <= 0)
+                        {
+                            //throw new Exception("数据库操作失败");
+                        }
+                        return rows;
                     }
-                    return rows;
                 }
             }
+            catch (Exception ex)
+            {
+                logHelper.Warn("增删改时出现错误" + ex.Message);
+                throw;
+            }
+            
         }
 
         public async Task<int> ExecuteNonQueryAsync(string cmdText, params SqlParameter[] sqlParameters)
         {
-            await using (SqlConnection conn = new SqlConnection(ConStr))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                await using (SqlConnection conn = new SqlConnection(ConStr))
                 {
-                    if (sqlParameters != null)
+                    using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                     {
-                        cmd.Parameters.AddRange(sqlParameters);
-                    }
-                    conn.Open();
+                        if (sqlParameters != null)
+                        {
+                            cmd.Parameters.AddRange(sqlParameters);
+                        }
+                        conn.Open();
 
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows <= 0)
-                    {
-                        //throw new Exception("数据库操作失败");
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows <= 0)
+                        {
+                            //throw new Exception("数据库操作失败");
+                        }
+                        return rows;
                     }
-                    return rows;
                 }
             }
+            catch (Exception ex)
+            {
+                logHelper.Warn("ExecuteNonQueryAsync错误" + ex.Message);
+                throw;
+            }
+           
         }
         //執行查詢返回單個值方法
         public static object ExecuteScalar(string cmdText, params SqlParameter[] sqlParameters)
         {
-            using (SqlConnection conn = new SqlConnection(ConStr))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                using (SqlConnection conn = new SqlConnection(ConStr))
                 {
-                    if (sqlParameters != null)
+                    using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                     {
-                        cmd.Parameters.AddRange(sqlParameters);
-                    }
-                    conn.Open();
+                        if (sqlParameters != null)
+                        {
+                            cmd.Parameters.AddRange(sqlParameters);
+                        }
+                        conn.Open();
 
-                    return cmd.ExecuteScalar();
+                        return cmd.ExecuteScalar();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                logHelper.Warn("单个值出现错误" + ex.Message);
+                throw;
+            }
+            
         }
 
         //執行查詢返回多行多列的方法
@@ -177,8 +205,10 @@ namespace Appraisal_System.Utility
         public static bool BatchAddTable(RenewParameter renew)
         {
 
+            try
+            {
 
-            if (renew.valueList.Count > renew.colNameList.Count)
+                if (renew.valueList.Count > renew.colNameList.Count)
             {
 
                 return false;
@@ -220,8 +250,6 @@ namespace Appraisal_System.Utility
             }
             dt.Rows.Add(newRow);
 
-            try
-            {
                 // 5. 执行批量插入 
                 using var bulkCopy = new SqlBulkCopy(conn);
                 bulkCopy.DestinationTableName = renew.tableName;
@@ -244,7 +272,8 @@ namespace Appraisal_System.Utility
             {
 
                 //Console.WriteLine(e);
-                Console.WriteLine("插入失败" + e.Message);
+                //Console.WriteLine("插入失败" + e.Message);
+                logHelper.Error("批量插入时失败" + e.Message);
                 throw;
                 // false;   
             }
@@ -288,7 +317,7 @@ namespace Appraisal_System.Utility
             }
             catch (Exception e)
             {
-
+                logHelper.Error("BuildUpdateQuery方法错误"+e.Message);
                 throw;
             }
 

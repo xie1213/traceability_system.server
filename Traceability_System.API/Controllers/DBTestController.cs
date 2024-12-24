@@ -17,11 +17,12 @@ namespace Traceability_System.Api.Controllers
         //private readonly _966KDataBaseContext _dbContext;
         private readonly SelectAllData _selectAllData;
         private readonly RedisHelper _redisHelper;
-
-        public DBTestController(SelectAllData selectAllData)
+        private readonly LogHelper _logHelper;
+        public DBTestController(SelectAllData selectAllData, LogHelper logHelper)
         {
             _selectAllData = selectAllData;
             _redisHelper = new RedisHelper();
+            _logHelper = logHelper;
         }
 
         [HttpPost("getTableData")]
@@ -29,20 +30,28 @@ namespace Traceability_System.Api.Controllers
         {
             object list;
             _redisHelper.DeleteHash(parameter.tableName);
-
-            if (parameter.tableName == "全部履历")
+            try
             {
-                list = _selectAllData.GetAllTableData(parameter);
+                if (parameter.tableName == "全部履历")
+                {
+                    list = _selectAllData.GetAllTableData(parameter);
+                }
+                else if (parameter.tableName == "出荷履历")
+                {
+                    list = _selectAllData.GetOutTable(parameter);
+                }
+                else
+                {
+                    list = _selectAllData.GetRestTableData(parameter);
+                }
+                return Ok(list);
             }
-            else if (parameter.tableName == "出荷履历")
+            catch (Exception ex)
             {
-                list = _selectAllData.GetOutTable(parameter);
+                _logHelper.Error(parameter.tableName+"读取错误"+ex.Message);
+                return BadRequest();
             }
-            else
-            {
-                list = _selectAllData.GetRestTableData(parameter);
-            }
-            return Ok(list);
+          
         }
 
 
@@ -66,7 +75,7 @@ namespace Traceability_System.Api.Controllers
             catch (Exception e)
             {
                 Logger.WriteLogAsync("redis 读取 错误" + e.Message);
-                throw;
+                return BadRequest();
             }
 
         }

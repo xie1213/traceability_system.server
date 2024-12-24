@@ -231,7 +231,7 @@ public class TableOperation
             //{
             //    File.Delete(oldPath);
             //}
-            Logger.WriteLogAsync($"新文件路径 {newFilePath}\r\n");
+            //Logger.WriteLogAsync($"新文件路径 {newFilePath}\r\n");
 
         }
         catch (IOException ex)

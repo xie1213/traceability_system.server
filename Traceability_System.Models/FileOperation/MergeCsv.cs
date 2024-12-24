@@ -163,7 +163,7 @@ namespace Traceability_System.Models.FileOperation
                                 $"OrderNo = '{fields[22]}',PlineNo = '{fields[23]}',ReceivingNo = '{fields[21]}',Operator = '{fields[17]}' ";
                 }
 
-                Logger.WriteLogAsync($"{pathName}文件下的{itemName}中的{fields[0]}字段更新", path);
+                //Logger.WriteLogAsync($"{pathName}文件下的{itemName}中的{fields[0]}字段更新", path);
                 sql += $"WHERE SerialNo = '{fields[0]}'";
             }
             else
