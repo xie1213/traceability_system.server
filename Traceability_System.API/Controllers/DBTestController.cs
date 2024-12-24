@@ -26,7 +26,7 @@ namespace Traceability_System.Api.Controllers
         }
 
         [HttpPost("getTableData")]
-        public IActionResult getTableData([FromBody] ParameterData parameter)
+        public async Task<IActionResult> getTableData([FromBody] ParameterData parameter)
         {
             object list;
             _redisHelper.DeleteHash(parameter.tableName);
@@ -34,15 +34,15 @@ namespace Traceability_System.Api.Controllers
             {
                 if (parameter.tableName == "全部履历")
                 {
-                    list = _selectAllData.GetAllTableData(parameter);
+                    list = await _selectAllData.GetAllTableData(parameter);
                 }
                 else if (parameter.tableName == "出荷履历")
                 {
-                    list = _selectAllData.GetOutTable(parameter);
+                    list = await _selectAllData.GetOutTable(parameter);
                 }
                 else
                 {
-                    list = _selectAllData.GetRestTableData(parameter);
+                    list = await _selectAllData.GetRestTableData(parameter);
                 }
                 return Ok(list);
             }
@@ -81,10 +81,10 @@ namespace Traceability_System.Api.Controllers
         }
 
         [HttpGet("SelTableGet")]
-        public IActionResult SelTableGet(string TableName)
+        public async Task<IActionResult> SelTableGet(string TableName)
         {
             string sql = $"select top(50)* from  {TableName}";
-            DataTable list = SqlHelper.ExecuteTable(sql);
+            DataTable list = await SqlHelper.ExecuteTableAsync(sql);
 
             string json = JsonConvert.SerializeObject(list);
 
@@ -150,7 +150,7 @@ namespace Traceability_System.Api.Controllers
         //}
 
         [HttpGet("GetAllTable")]
-        public IActionResult GetAllData()
+        public async Task<IActionResult> GetAllData()
         {
             try
             {
@@ -162,7 +162,7 @@ namespace Traceability_System.Api.Controllers
                 $"\rleft join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
                 $"\rwhere ta.Id = 1";
 
-                DataTable resultTable = SqlHelper.ExecuteTable(sqlQuery);
+                DataTable resultTable =await SqlHelper.ExecuteTableAsync(sqlQuery);
                 List<Dictionary<string, object>> resultList = new List<Dictionary<string, object>>();
                 foreach (DataRow row in resultTable.Rows)
                 {
@@ -177,9 +177,9 @@ namespace Traceability_System.Api.Controllers
                 //var list = query.ToList();
                 return new JsonResult(new { data = resultList, code = 200 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                _logHelper.Error("GetAllTable错误"+ex.Message);
                 throw;
             }
 

@@ -50,6 +50,65 @@ namespace Appraisal_System.Utility
             }
         }
 
+        public static async Task<DataTable> ExecuteTableAsync(string cmdText, int maxRetries = 3, int commandTimeout = 30, params SqlParameter[] sqlParameters)
+        {
+            int retries = 0;
+            while (retries < maxRetries)
+            {
+                try
+                {
+                    await using (SqlConnection conn = new SqlConnection(ConStr))
+                    {
+                        await conn.OpenAsync();
+                        using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                        {
+                            cmd.CommandTimeout = commandTimeout; // 设置命令超时时间
+                            if (sqlParameters != null)
+                            {
+                                cmd.Parameters.AddRange(sqlParameters);
+                            }
+
+                            using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                            {
+                                DataSet ds = new DataSet();
+                                await Task.Run(() => sda.Fill(ds));
+                                return ds.Tables[0];
+                            }
+                        }
+                    }
+                }
+                catch (SqlException ex) when (ex.Number == 1205) // 1205是SQL Server的死锁错误代码
+                {
+                    retries++;
+                    if (retries >= maxRetries)
+                    {
+                        logHelper.Warn("ExecuteTableAsync错误: 超过最大重试次数" + ex.Message);
+                        throw;
+                    }
+                    // 等待一段时间后重试
+                    await Task.Delay(1000);
+                }
+                catch (SqlException ex) when (ex.Number == -2) // -2是SQL Server的超时错误代码
+                {
+                    retries++;
+                    if (retries >= maxRetries)
+                    {
+                        logHelper.Warn("ExecuteTableAsync错误: 超时错误，超过最大重试次数" + ex.Message);
+                        throw;
+                    }
+                    // 等待一段时间后重试
+                    await Task.Delay(1000);
+                }
+                catch (Exception ex)
+                {
+                    logHelper.Warn("ExecuteTableAsync错误" + ex.Message);
+                    throw;
+                }
+            }
+            return null;
+        }
+
+
         //執行增刪改的方法
         public static int ExecuteNonQuery(string cmdText, params SqlParameter[] sqlParameters)
         {

@@ -56,58 +56,67 @@ namespace Traceability_System.Models.SelectDB
 
 
         //获取表格信息
-        public object GetRestTableData(ParameterData parameter)
+        public async Task<object> GetRestTableData(ParameterData parameter)
         {
-            RedisHelper redisHelper = new RedisHelper();
-            //redisHelper.DeleteHash(parameter.TableName);
-            string tableName = string.Empty;
-            string orderby = string.Empty;
-
-            // 根据 parameter.tableName 直接从字典中获取对应的值，并进行赋值
-            (tableName, orderby) = tableMappings.GetValueOrDefault(parameter.tableName, (string.Empty, string.Empty));
-
-            string baseSql = $"select * from {tableName} where ";
-
-            exportedName = parameter.tableName;
-
-            //条件sql
-            List<string> sqlList = CreateFactorSql(parameter, orderby);
-
-            string itemSql = string.Join(" and ", sqlList);
-
-            baseSql += $"{itemSql} ORDER BY RIGHT({orderby},8) DESC ";
-
-
-            DataTable dt = SqlHelper.ExecuteTable(baseSql);
-            if (dt.Rows.Count == 0)
+            try
             {
-                return "空值";
+                //RedisHelper redisHelper = new RedisHelper();
+                //redisHelper.DeleteHash(parameter.TableName);
+                string tableName = string.Empty;
+                string orderby = string.Empty;
+
+                // 根据 parameter.tableName 直接从字典中获取对应的值，并进行赋值
+                (tableName, orderby) = tableMappings.GetValueOrDefault(parameter.tableName, (string.Empty, string.Empty));
+
+                string baseSql = $"select * from {tableName} where ";
+
+                exportedName = parameter.tableName;
+
+                //条件sql
+                List<string> sqlList = CreateFactorSql(parameter, orderby);
+
+                string itemSql = string.Join(" and ", sqlList);
+
+                baseSql += $"{itemSql} ORDER BY RIGHT({orderby},8) DESC ";
+
+
+                DataTable dt = await SqlHelper.ExecuteTableAsync(baseSql);
+                if (dt.Rows.Count == 0)
+                {
+                    return "空值";
+                }
+                _redisHelper.DeleteHash(parameter.tableName);
+                var list = new List<object>();
+                Assembly asm = Assembly.Load("Traceability_System.Entity");
+                Type modelType = asm.GetType("Traceability_System.Entity.Models." + tableName);
+
+
+                await Task.Run(() => ExportDataAsync(exportedName, dt));
+
+
+                Console.WriteLine("数据转化");
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var model = dr.DataRowToType(modelType);
+                    var jsonData = JsonConvert.SerializeObject(model);
+
+
+                    var filed = dr["Id"].ToString();
+
+                    _redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);
+
+                    list.Add(model);
+                    // RedisHelper.SetHash()
+                }
+                var listData = list.Take(30);
+                return new { data = listData, count = list.Count() };
             }
-            redisHelper.DeleteHash(parameter.tableName);
-            var list = new List<object>();
-            Assembly asm = Assembly.Load("Traceability_System.Entity");
-            Type modelType = asm.GetType("Traceability_System.Entity.Models." + tableName);
-
-
-            Task.Run(() => ExportDataAsync( exportedName, dt));
-         
-
-            Console.WriteLine("数据转化");
-            foreach (DataRow dr in dt.Rows)
+            catch (Exception ex)
             {
-                var model = dr.DataRowToType(modelType);
-                var jsonData = JsonConvert.SerializeObject(model);
-
-
-                var filed = dr["Id"].ToString();
-
-                redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);
-
-                list.Add(model);
-                // RedisHelper.SetHash()
+                _logHelper.Error("获取表格信息时出错" + ex.Message);
+                throw;
             }
-            var listData = list.Take(30);
-            return new { data = listData, count = list.Count() };
+            
         }
 
 
@@ -250,12 +259,12 @@ namespace Traceability_System.Models.SelectDB
 
         }
 
-        public object GetTableByName(SelTableRequest requestData)
+        public async Task<object> GetTableByName(SelTableRequest requestData)
         {
             try
             {
-                RedisHelper redisHelper = new RedisHelper();
-                redisHelper.DeleteHash(requestData.TableName);
+                //RedisHelper redisHelper = new RedisHelper();
+                _redisHelper.DeleteHash(requestData.TableName);
 
                 string timeItem = "", selItem = "", serialNo = "";
                 string orderByColumn = tablePatterns.TryGetValue($"{requestData.TableName}_OrderBy", out var col) ? col : "";
@@ -302,7 +311,7 @@ namespace Traceability_System.Models.SelectDB
                 sqlQuery += $"ORDER BY RIGHT({orderByColumn},8) DESC ";
 
 
-                DataTable dt = SqlHelper.ExecuteTable(sqlQuery);
+                DataTable dt = await SqlHelper.ExecuteTableAsync(sqlQuery);
 
                 var list = new List<object>();
                 Assembly asm = Assembly.Load("Traceability_System.Entity");
@@ -314,7 +323,7 @@ namespace Traceability_System.Models.SelectDB
                     var jsonData = JsonConvert.SerializeObject(model);
                     var filed = dr["Id"].ToString();
 
-                    redisHelper.SetHashToJson(requestData.TableName, filed, jsonData);
+                    _redisHelper.SetHashToJson(requestData.TableName, filed, jsonData);
 
                     list.Add(model);
                     // RedisHelper.SetHash()
@@ -339,7 +348,7 @@ namespace Traceability_System.Models.SelectDB
 
 
         ////获取出荷数据
-        public object GetOutTable(ParameterData parameter)
+        public async Task <object> GetOutTable(ParameterData parameter)
         {
             string baseSql = "select * from Shipping where";
             Console.WriteLine("查找出荷数据");
@@ -355,10 +364,10 @@ namespace Traceability_System.Models.SelectDB
 
                 var shipList = new List<object>();
 
-                DataTable dt = SqlHelper.ExecuteTable(baseSql);
+                DataTable dt = await SqlHelper.ExecuteTableAsync(baseSql);
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    Task.Run(() => ExportDataAsync(exportedName, dt));
+                   await Task.Run(() => ExportDataAsync(exportedName, dt));
                     
                     _redisHelper.DeleteHash(parameter.tableName);
                     foreach (DataRow dr in dt.Rows)
@@ -380,14 +389,15 @@ namespace Traceability_System.Models.SelectDB
             }
             catch (Exception e)
             {
-
-                return e.Message;
+                _logHelper.Error("获取出荷表数据时出现错误" + e.Message);
+                throw;
+                //return e.Message;
             }
         }
 
 
         //获取全部数据
-        public object GetAllTableData(ParameterData parameter)
+        public async Task<object> GetAllTableData(ParameterData parameter)
         {
             try
             {
@@ -407,12 +417,12 @@ namespace Traceability_System.Models.SelectDB
                            $" where {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
 
 
-                DataTable resultTable = SqlHelper.ExecuteTable(sqlQuery);
+                DataTable resultTable =await SqlHelper.ExecuteTableAsync(sqlQuery);
                 if (resultTable.Rows.Count == 0)
                 {
                     return "空值";
                 }
-                Task.Run(() => ExportDataAsync(exportedName, resultTable));
+                await Task.Run(() => ExportDataAsync(exportedName, resultTable));
 
                 var resultList = new List<Dictionary<string, object>>();
                 foreach (DataRow row in resultTable.Rows)
