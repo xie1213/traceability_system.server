@@ -17,39 +17,48 @@ public class TableOperation
     string today = DateTime.Today.ToString("yyyy-MM-dd");
 
     readonly SqlHelper _sqlHelper = new();
-
+    readonly LogHelper _logHelper = new();  
     //public static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
 
     //检查文件夹中是否有文件
     public async Task DirectoryExist(string folder)
     {
-        string newPath = Path.Combine(DirPath, folder);
-        List<string> directoriesToDelete = new List<string>();
-        var dirPathlist = Directory.GetDirectories(newPath).ToList();
-        if (dirPathlist.Count > 0)
+        try
         {
-            foreach (var item in dirPathlist)
+            string newPath = Path.Combine(DirPath, folder);
+            List<string> directoriesToDelete = new List<string>();
+            var dirPathlist = Directory.GetDirectories(newPath).ToList();
+            if (dirPathlist.Count > 0)
             {
-                string[] files = Directory.GetFiles(item, "*.csv");
-                if (files.Length == 0)
+                foreach (var item in dirPathlist)
                 {
-                    directoriesToDelete.Add(item);
-                    continue;
+                    string[] files = Directory.GetFiles(item, "*.csv");
+                    if (files.Length == 0)
+                    {
+                        directoriesToDelete.Add(item);
+                        continue;
+                    }
+
+                    foreach (var fileName in files)
+                    {
+                        await GetCsvCellValueTask(fileName, folder);
+                    }
                 }
 
-                foreach (var fileName in files)
+                // 在循环外部执行删除操作
+                foreach (var dirToDelete in directoriesToDelete)
                 {
-                    await GetCsvCellValueTask(fileName, folder);
+                    Directory.Delete(dirToDelete);
+                    dirPathlist.Remove(dirToDelete);
                 }
-            }
-
-            // 在循环外部执行删除操作
-            foreach (var dirToDelete in directoriesToDelete)
-            {
-                Directory.Delete(dirToDelete);
-                dirPathlist.Remove(dirToDelete);
             }
         }
+        catch (Exception e)
+        {
+            _logHelper.Warn(e.Message);
+            throw;
+        }
+      
 
     }
 

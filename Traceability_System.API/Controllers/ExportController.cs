@@ -15,29 +15,39 @@ namespace Traceability_System.API.Controllers
         private readonly RedisHelper _redisHelper;
 
         private ExportTask _exportTask;
+        private readonly LogHelper _logHelper;
 
-
-        public ExportController(newExportToExcel exportToExcel)
+        public ExportController(newExportToExcel exportToExcel, LogHelper logHelper)
         {
             _exportToExcel = exportToExcel;
             _redisHelper = new RedisHelper();
             _exportTask = new ExportTask();
+            _logHelper = logHelper;
         }
 
 
         [HttpGet("GetPath")]
         public async Task<IActionResult> GetPath(string tableName)
         {
-            var value = await _redisHelper.RedisGetAsync(tableName);
-            if (value == null)
+            try
             {
-                return BadRequest("没有数据");
+                var value = await _redisHelper.RedisGetAsync(tableName);
+                if (value == null)
+                {
+                    return BadRequest("没有数据");
+                }
+                _exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
+
+                var status = _exportTask.Status.ToString();
+
+                return Ok(status);
             }
-            _exportTask = JsonConvert.DeserializeObject<ExportTask>(value);
-
-            var status = _exportTask.Status.ToString();
-
-            return Ok(status);
+            catch (Exception)
+            {
+                _logHelper.Error("导出失败");
+                return BadRequest();
+            }
+           
         }
 
         [HttpPost("DownloadTable")]

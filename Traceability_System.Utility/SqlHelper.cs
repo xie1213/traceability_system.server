@@ -311,7 +311,7 @@ namespace Appraisal_System.Utility
                 string updateQuery = $"UPDATE {renewParameter.tableName} SET {string.Join(", ", setClauses)} WHERE {renewParameter.specify[0]} = '{renewParameter.specify[1]}'  ;";
 
 
-                return await ExecuteNonQueryAsync(updateQuery);
+                return await ExecuteNonQueryWithRetryAsync(updateQuery);
 
 
             }
@@ -321,6 +321,53 @@ namespace Appraisal_System.Utility
                 throw;
             }
 
+        }
+
+        public async Task<int> ExecuteNonQueryWithRetryAsync(string cmdText, int maxRetries = 3, params SqlParameter[] sqlParameters)
+        {
+            int retries = 0;
+            while (retries < maxRetries)
+            {
+                try
+                {
+                    await using (SqlConnection conn = new SqlConnection(ConStr))
+                    {
+                        using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                        {
+                            if (sqlParameters != null)
+                            {
+                                cmd.Parameters.AddRange(sqlParameters);
+                            }
+                            cmd.CommandTimeout = 30; // 设置超时时间为30秒
+                            await conn.OpenAsync();
+
+                            int rows = await cmd.ExecuteNonQueryAsync();
+                            if (rows <= 0)
+                            {
+                                //throw new Exception("数据库操作失败");
+                            }
+                            return rows;
+                        }
+                    }
+                }
+                catch (SqlException ex) when (ex.Number == 1205) // 1205是SQL Server的死锁错误代码
+                {
+                    retries++;
+                    if (retries >= maxRetries)
+                    {
+                        logHelper.Warn("ExecuteNonQueryAsync错误: 超过最大重试次数" + ex.Message);
+                        throw;
+                    }
+                    // 等待一段时间后重试
+                    await Task.Delay(1000);
+                }
+                catch (Exception ex)
+                {
+                    logHelper.Warn("ExecuteNonQueryAsync错误" + ex.Message);
+                    throw;
+                }
+            }
+            return 0;
         }
 
 
