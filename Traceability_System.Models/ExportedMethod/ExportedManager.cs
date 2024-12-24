@@ -171,7 +171,11 @@ namespace Traceability_System.Models.ExportedMethod
                     Console.WriteLine("保存成功" + w2);
 
                     string fliePath = Path.Combine(_path, _tableName + ".xlsx");
-                    File.Move(path, fliePath);
+                    if (!File.Exists(fliePath))
+                    {
+                        File.Move(path, fliePath);
+                       
+                    }
                     File.Delete(path);
                     ToFileByts(fliePath);
 
@@ -240,7 +244,7 @@ namespace Traceability_System.Models.ExportedMethod
 
             // 保存修改后的 Excel 文件
             workbook.Save(newPatn);
-
+            
             string tblHdrPath = Path.Combine(@"D:\exportTable", prefix + ".xlsx");
 
             //File.Delete(oldPath);

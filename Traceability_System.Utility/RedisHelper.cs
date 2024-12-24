@@ -1,11 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using StackExchange.Redis;
 
 namespace Traceability_System.Utility
 {
     public class RedisHelper
     {
-        private static ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost:6379");
+        //private static ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost:6379");
+
+        private static ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost:6379", options =>
+        {
+            options.SyncTimeout = 5000; // 5秒的同步超时时间
+            options.AsyncTimeout = 5000; // 5秒的异步超时时间
+            options.ConnectTimeout = 5000; // 5秒的连接超时时间
+            options.ConnectRetry = 3; // 连接重试次数
+            options.AbortOnConnectFail = false; // 连接失败时不中止
+        });
+
+
         private static IDatabase db;
 
 
@@ -114,6 +126,36 @@ namespace Traceability_System.Utility
             TimeSpan expiry = TimeSpan.FromDays(1);
             db.HashSet(hashKey, field, value);
             db.KeyExpire(hashKey, expiry);
+        }
+
+        public async Task SetHashToJsonAsync(string hashKey, string field, string value, int dbnum = 7)
+        {
+
+            TimeSpan expiry = TimeSpan.FromDays(1);
+
+            try
+            {
+                // 确保 value 是有效的 JSON 字符串
+                //if (string.IsNullOrWhiteSpace(value))
+                //{
+                //    throw new ArgumentException("Value cannot be null or empty", nameof(value));
+                //}
+                 await db.HashSetAsync(hashKey, new HashEntry[] { new HashEntry(field, value) });
+                //bool result = await db.HashSetAsync(hashKey,field,value);
+                //if (!result)
+                //{
+                //    throw new InvalidOperationException("Failed to set hash value.");
+                //}
+
+                await db.KeyExpireAsync(hashKey, expiry);
+            }
+            catch (Exception ex)
+            {
+                // 记录日志
+                await Console.Out.WriteLineAsync($"设置哈希值到 Redis 时出错: {ex.Message}");
+                //Logger.WriteLogAsync($"设置哈希值到 Redis 时出错: {ex.Message}");
+                throw;
+            }
         }
 
         /// <summary>

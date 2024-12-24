@@ -20,56 +20,103 @@ namespace Traceability_System.Models.FileOperation
             _redisHelper = redisHelper;
         }
 
-        public async Task GetDirList()
+        //public async Task GetDirList()
+        //{
+        //    if (IPInspect() != "链接成功" || !Directory.Exists(dirPath))
+        //        return;
+        //    try
+        //    {
+
+        //        //获取路径下的所有子目录
+        //        List<string> csvDir = Directory.GetDirectories(dirPath).ToList();
+        //        if (csvDir == null)
+        //            return;
+
+        //        foreach (string csvFliesDir in csvDir)
+        //        {
+
+        //            //获取二级文件下是否存在文件
+        //            List<string> csvFiles = Directory.GetDirectories(csvFliesDir).ToList();
+
+        //            //List<string> csvFiles = Directory.GetFiles(csvFliesDir).ToList();
+
+        //            if (csvFiles == null)
+        //                return;
+
+        //            //循环输出文件路径
+
+        //            for (int i = 0; i < csvFiles.Count; i++)
+        //            {
+        //                string[] files = Directory.GetFiles(csvFiles[i]);
+        //                if (files.Length == 0)
+        //                    return;
+
+        //                 lock (lockObject)
+        //                {
+        //                    GetDirListAsync(files);
+
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        Logger.WriteLogAsync($"出荷链接错误:{e.Message}");
+        //    }
+        //    //一级文件
+
+        //}
+
+        private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
+
+        public async Task GetDirListAsync()
         {
             if (IPInspect() != "链接成功" || !Directory.Exists(dirPath))
                 return;
+
             try
             {
-
-                //获取路径下的所有子目录
+                // 获取路径下的所有子目录
                 List<string> csvDir = Directory.GetDirectories(dirPath).ToList();
                 if (csvDir == null)
                     return;
 
-                foreach (string csvFliesDir in csvDir)
+                foreach (string csvFilesDir in csvDir)
                 {
-
-                    //获取二级文件下是否存在文件
-                    List<string> csvFiles = Directory.GetDirectories(csvFliesDir).ToList();
-
-                    //List<string> csvFiles = Directory.GetFiles(csvFliesDir).ToList();
+                    // 获取二级文件下是否存在文件
+                    List<string> csvFiles = Directory.GetDirectories(csvFilesDir).ToList();
 
                     if (csvFiles == null)
                         return;
 
-                    //循环输出文件路径
-
+                    // 循环输出文件路径
                     for (int i = 0; i < csvFiles.Count; i++)
                     {
                         string[] files = Directory.GetFiles(csvFiles[i]);
                         if (files.Length == 0)
                             return;
 
-                        lock (lockObject)
+                        await semaphore.WaitAsync();
+                        try
                         {
-                            GetCsv(files);
-
+                            await GetCsvAsync(files);
+                        }
+                        finally
+                        {
+                            semaphore.Release();
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-
                 Logger.WriteLogAsync($"出荷链接错误:{e.Message}");
             }
-            //一级文件
-
         }
 
         //获取csv文件
-        void GetCsv(string[] files)
+        async Task GetCsvAsync(string[] files)
         {
             for (int i = 0; i < files.Length; i++)
             {
@@ -88,13 +135,13 @@ namespace Traceability_System.Models.FileOperation
                     continue;
                 }
 
-                ReadCsv(files[i], itemName, dirPath);
+               await ReadCsv(files[i], itemName, dirPath);
 
             }
         }
 
         //读取Csv文件并保存到数据库
-        public void ReadCsv(string itemName, string pathName, string dirPath)
+        public async Task ReadCsv(string itemName, string pathName, string dirPath)
         {
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -119,7 +166,7 @@ namespace Traceability_System.Models.FileOperation
                     {
                         // 获取当前行的字段数组
                         string[] fields = parser.ReadFields();
-                        bool isNull = GetBySerialNo(fields[0].TrimEnd());
+                        bool isNull =await GetBySerialNo(fields[0].TrimEnd());
                         string numPath = Path.Combine(path, "序列号");
 
                         string sql = BuildQuery(pathName, isNull, fields, item);
@@ -138,10 +185,10 @@ namespace Traceability_System.Models.FileOperation
         }
 
         //根据序列号获取数据
-        public bool GetBySerialNo(string SerialNo)
+        public async Task<bool> GetBySerialNo(string SerialNo)
         {
             string sql = $"select * from Shipping where SerialNo = '{SerialNo}'";
-            var str = SqlHelper.ExecuteScalar(sql);
+            var str =await SqlHelper.ExecuteScalarAsync(sql);
             return str == null ? false : true;
         }
 

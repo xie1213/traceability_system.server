@@ -48,8 +48,11 @@ public class TableOperation
                 // 在循环外部执行删除操作
                 foreach (var dirToDelete in directoriesToDelete)
                 {
-                    Directory.Delete(dirToDelete);
-                    dirPathlist.Remove(dirToDelete);
+                    if (Directory.Exists(dirToDelete))
+                    {
+                        Directory.Delete(dirToDelete, true); // 删除目录及其内容
+                        dirPathlist.Remove(dirToDelete);
+                    }
                 }
             }
         }
@@ -97,7 +100,7 @@ public class TableOperation
 
                 //从数据库中读取更新次数
                 string sql = $"select Number from {tableName}  where {keyValue[0]} = '{keyValue[1]}' ";
-                var sqlTest = SqlHelper.ExecuteScalar(sql);
+                var sqlTest =await SqlHelper.ExecuteScalarAsync(sql);
 
                 RenewParameter renewParameter = new RenewParameter();
                 renewParameter.tableName = tableName;
@@ -134,7 +137,7 @@ public class TableOperation
                 }
                 //Logger.WriteLogAsync($"旧文件路径:{fileName}");
             }
-            UploadFile(fileName, folder);
+            await UploadFileAsync(fileName, folder);
 
         }
         catch (IOException ex)
@@ -258,6 +261,53 @@ public class TableOperation
         }
     }
 
+    public async Task UploadFileAsync(string oldPath, string folder, int maxRetries = 5)
+    {
+        if (!File.Exists(oldPath))
+        {
+            Logger.WriteLogAsync($"{oldPath} 文件不存在");
+            return;
+        }
+
+        int retries = 0;
+        while (retries < maxRetries)
+        {
+            try
+            {
+                string fileName = Path.GetFileName(oldPath);
+                string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
+                string newPath = Path.Combine(Complete, today, folder, fileDirectory);
+
+                Directory.CreateDirectory(newPath);
+                string newFilePath = Path.Combine(newPath, fileName);
+
+                if (File.Exists(newFilePath))
+                {
+                    File.Delete(newFilePath);
+                }
+
+                File.Move(oldPath, newFilePath);
+                //Logger.WriteLogAsync($"文件移动成功: {oldPath} -> {newFilePath}");
+                return;
+            }
+            catch (IOException ex)
+            {
+                retries++;
+                if (retries >= maxRetries)
+                {
+                    Logger.WriteLogAsync($"无法移动文件 '{oldPath}', {ex.Message}。");
+                    throw;
+                }
+                // 等待一段时间后重试
+                await Task.Delay(1000);
+            }
+            catch (Exception e)
+            {
+                Logger.WriteLogAsync($"错误文件 {oldPath}, {e.Message}");
+                throw; // 保留原始异常信息
+            }
+        }
+    }
 
 }
 

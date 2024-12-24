@@ -33,24 +33,24 @@ namespace Appraisal_System.Utility
 
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
-
                             DataSet ds = new DataSet();
                             sda.Fill(ds);
                             return ds.Tables[0];
+
                         }
                     }
                 }
                 catch (Exception e)
                 {
                     //Console.WriteLine("查询出错" + e.Message);
-                    logHelper.Warn("查询时出现错误"+e.Message);
+                    logHelper.Warn("查询时出现错误" + e.Message);
                     throw;
                 }
 
             }
         }
 
-        public static async Task<DataTable> ExecuteTableAsync(string cmdText, int maxRetries = 3, int commandTimeout = 30, params SqlParameter[] sqlParameters)
+        public static async Task<DataTable> ExecuteTableAsync(string cmdText, int maxRetries = 5, int commandTimeout = 60, params SqlParameter[] sqlParameters)
         {
             int retries = 0;
             while (retries < maxRetries)
@@ -71,8 +71,9 @@ namespace Appraisal_System.Utility
                             using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                             {
                                 DataSet ds = new DataSet();
-                                await Task.Run(() => sda.Fill(ds));
+                                sda.Fill(ds);
                                 return ds.Tables[0];
+
                             }
                         }
                     }
@@ -138,7 +139,7 @@ namespace Appraisal_System.Utility
                 logHelper.Warn("增删改时出现错误" + ex.Message);
                 throw;
             }
-            
+
         }
 
         public async Task<int> ExecuteNonQueryAsync(string cmdText, params SqlParameter[] sqlParameters)
@@ -169,7 +170,7 @@ namespace Appraisal_System.Utility
                 logHelper.Warn("ExecuteNonQueryAsync错误" + ex.Message);
                 throw;
             }
-           
+
         }
         //執行查詢返回單個值方法
         public static object ExecuteScalar(string cmdText, params SqlParameter[] sqlParameters)
@@ -195,7 +196,50 @@ namespace Appraisal_System.Utility
                 logHelper.Warn("单个值出现错误" + ex.Message);
                 throw;
             }
-            
+
+        }
+
+        public static async Task<object> ExecuteScalarAsync(string cmdText, int maxRetries = 5, int commandTimeout = 60, params SqlParameter[] sqlParameters)
+        {
+            int retries = 0;
+            while (retries < maxRetries)
+            {
+                try
+                {
+                    await using (SqlConnection conn = new SqlConnection(ConStr))
+                    {
+                        await conn.OpenAsync();
+                        using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                        {
+                            cmd.CommandTimeout = commandTimeout; // 设置命令超时时间
+                            if (sqlParameters != null)
+                            {
+                                cmd.Parameters.AddRange(sqlParameters);
+                            }
+
+                            object result = await cmd.ExecuteScalarAsync();
+                            return result;
+                        }
+                    }
+                }
+                catch (SqlException ex) when (ex.Number == -2) // -2是SQL Server的超时错误代码
+                {
+                    retries++;
+                    if (retries >= maxRetries)
+                    {
+                        logHelper.Warn("ExecuteScalarAsync错误: 超时错误，超过最大重试次数" + ex.Message);
+                        throw;
+                    }
+                    // 等待一段时间后重试
+                    await Task.Delay(1000);
+                }
+                catch (Exception ex)
+                {
+                    logHelper.Warn("ExecuteScalarAsync错误" + ex.Message);
+                    throw;
+                }
+            }
+            return null;
         }
 
         //執行查詢返回多行多列的方法
@@ -268,46 +312,46 @@ namespace Appraisal_System.Utility
             {
 
                 if (renew.valueList.Count > renew.colNameList.Count)
-            {
-
-                return false;
-            }
-            using var conn = GetConnection();
-
-
-            // 2. 创建临时数据表 
-            var dt = new DataTable();
-            foreach (string name in renew.colNameList)
-            {
-                //if (!name.Equals("Id"))
-                dt.Columns.Add(name);
-            }
-
-            //string Alljson = JsonConvert.SerializeObject(dt);
-
-            //RedisHelper.SetJsonData(renew.tableName, Alljson, 5);
-
-            DataRow newRow = dt.NewRow();
-            for (int i = 0; i < renew.colNameList.Count; i++)
-            {
-                if (i == 0)
                 {
-                    newRow[renew.colNameList[i]] = "";
-                    i++;
+
+                    return false;
                 }
-                if (i <= renew.valueList.Count)
+                using var conn = GetConnection();
+
+
+                // 2. 创建临时数据表 
+                var dt = new DataTable();
+                foreach (string name in renew.colNameList)
                 {
-                    newRow[renew.colNameList[i]] = renew.valueList[i - 1];
-                }
-                else
-                {
-                    newRow[renew.colNameList[i]] = renew.renewTime;
-                    i++;
-                    newRow[renew.colNameList[i]] = renew.renewNum;
+                    //if (!name.Equals("Id"))
+                    dt.Columns.Add(name);
                 }
 
-            }
-            dt.Rows.Add(newRow);
+                //string Alljson = JsonConvert.SerializeObject(dt);
+
+                //RedisHelper.SetJsonData(renew.tableName, Alljson, 5);
+
+                DataRow newRow = dt.NewRow();
+                for (int i = 0; i < renew.colNameList.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        newRow[renew.colNameList[i]] = "";
+                        i++;
+                    }
+                    if (i <= renew.valueList.Count)
+                    {
+                        newRow[renew.colNameList[i]] = renew.valueList[i - 1];
+                    }
+                    else
+                    {
+                        newRow[renew.colNameList[i]] = renew.renewTime;
+                        i++;
+                        newRow[renew.colNameList[i]] = renew.renewNum;
+                    }
+
+                }
+                dt.Rows.Add(newRow);
 
                 // 5. 执行批量插入 
                 using var bulkCopy = new SqlBulkCopy(conn);
@@ -376,7 +420,7 @@ namespace Appraisal_System.Utility
             }
             catch (Exception e)
             {
-                logHelper.Error("BuildUpdateQuery方法错误"+e.Message);
+                logHelper.Error("BuildUpdateQuery方法错误" + e.Message);
                 throw;
             }
 
@@ -403,6 +447,7 @@ namespace Appraisal_System.Utility
                             int rows = await cmd.ExecuteNonQueryAsync();
                             if (rows <= 0)
                             {
+                                logHelper.Error("更新失败");
                                 //throw new Exception("数据库操作失败");
                             }
                             return rows;

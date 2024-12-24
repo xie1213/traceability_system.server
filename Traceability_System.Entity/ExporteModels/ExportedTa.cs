@@ -1027,7 +1027,7 @@ namespace Traceability_System.Entity.ExporteModels
         public string? LeakCol { get; set; }
 
         [ExcelKit(Desc = "Iss计测日时",  Align = TextAlign.Left)]
-        public DateTime? IssDate { get; set; }
+        public string? IssDate { get; set; }
 
         [ExcelKit(Desc = "P锁定判定",  Align = TextAlign.Left)]
         public string? IssP { get; set; }

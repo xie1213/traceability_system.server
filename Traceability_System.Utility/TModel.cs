@@ -33,48 +33,74 @@ public static class TModels
 
     public static TModel DataRowToModel<TModel>(this DataRow dr) where TModel : new()
     {
-        Type type = typeof(TModel);
-        TModel model = new TModel();
-        foreach (var prop in type.GetProperties())
+        string valus = "";
+        try
         {
-            if (!prop.CanWrite || !dr.Table.Columns.Contains(prop.Name) || dr[prop.Name] == DBNull.Value)
+            Type type = typeof(TModel);
+            TModel model = new TModel();
+            foreach (var prop in type.GetProperties())
             {
-                continue;
+                if (!prop.CanWrite || !dr.Table.Columns.Contains(prop.Name) || dr[prop.Name] == DBNull.Value)
+                {
+                    continue;
+                }
+
+                object value = dr[prop.Name];
+                valus = prop.Name;
+                Type propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+
+                // 为了处理可空类型和非可空类型，需要先转换为合适的类型
+                object safeValue = (value == null) ? null : Convert.ChangeType(value, propType);
+
+                prop.SetValue(model, safeValue);
             }
-
-            object value = dr[prop.Name];
-            Type propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-
-            // 为了处理可空类型和非可空类型，需要先转换为合适的类型
-            object safeValue = (value == null) ? null : Convert.ChangeType(value, propType);
-
-            prop.SetValue(model, safeValue);
+            return model;
         }
-        return model;
+        catch (Exception e)
+        {
+
+            Console.WriteLine("字段解析失败"+valus + e.Message);
+            throw;
+        }
+       
     }
 
 
     public static object DataRowToType(this DataRow dr, Type modelType)
     {
+        string valus = "";
         object model = Activator.CreateInstance(modelType);
         try
         {
             foreach (var prop in modelType.GetProperties())
             {
-                if (dr[prop.Name] == DBNull.Value)
-                {
-                    dr[prop.Name] = "";
-                }
+                object value = dr[prop.Name];
 
-                prop.SetValue(model, dr[prop.Name]);
+                valus = prop.Name;
+                Type propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+
+                // 为了处理可空类型和非可空类型，需要先转换为合适的类型
+                object safeValue = (value == null) ? null : Convert.ChangeType(value, propType);
+
+                prop.SetValue(model, safeValue);
+                // 将值设置到目标对象的属性
+                //prop.SetValue(model, Convert.ChangeType(value, prop.PropertyType));
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine(valus + "字段错误" +ex.Message);
             throw;
         }
 
         return model;
+    }
+    private static object GetDefaultValue(Type type)
+    {
+        if (type.IsValueType)
+        {
+            return Activator.CreateInstance(type);
+        }
+        return null;
     }
 }

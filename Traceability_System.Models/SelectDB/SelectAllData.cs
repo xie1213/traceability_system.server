@@ -103,7 +103,7 @@ namespace Traceability_System.Models.SelectDB
 
                     var filed = dr["Id"].ToString();
 
-                    _redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);
+                  await  _redisHelper.SetHashToJsonAsync(parameter.tableName, filed, jsonData);
 
                     list.Add(model);
                     // RedisHelper.SetHash()
@@ -323,7 +323,7 @@ namespace Traceability_System.Models.SelectDB
                     var jsonData = JsonConvert.SerializeObject(model);
                     var filed = dr["Id"].ToString();
 
-                    _redisHelper.SetHashToJson(requestData.TableName, filed, jsonData);
+                  await  _redisHelper.SetHashToJsonAsync(requestData.TableName, filed, jsonData);
 
                     list.Add(model);
                     // RedisHelper.SetHash()
@@ -376,7 +376,7 @@ namespace Traceability_System.Models.SelectDB
                         var jsonData = JsonConvert.SerializeObject(model);
 
                         var filed = model.Id.ToString();
-                        _redisHelper.SetHashToJson(parameter.tableName, filed, jsonData);
+                        await _redisHelper.SetHashToJsonAsync(parameter.tableName, filed, jsonData);
 
                         shipList.Add(model);
                     }
@@ -436,7 +436,7 @@ namespace Traceability_System.Models.SelectDB
 
                     resultList.Add(rowData);
                     var json = JsonConvert.SerializeObject(rowData);
-                    _redisHelper.SetHashToJson("全部履历", row["Id"].ToString(), json);
+                   await _redisHelper.SetHashToJsonAsync("全部履历", row["Id"].ToString(), json);
                 }
 
                 return new { data = resultList.Take(30), count = resultList.Count() };
