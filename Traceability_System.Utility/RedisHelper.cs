@@ -135,17 +135,8 @@ namespace Traceability_System.Utility
 
             try
             {
-                // 确保 value 是有效的 JSON 字符串
-                //if (string.IsNullOrWhiteSpace(value))
-                //{
-                //    throw new ArgumentException("Value cannot be null or empty", nameof(value));
-                //}
-                 await db.HashSetAsync(hashKey, new HashEntry[] { new HashEntry(field, value) });
-                //bool result = await db.HashSetAsync(hashKey,field,value);
-                //if (!result)
-                //{
-                //    throw new InvalidOperationException("Failed to set hash value.");
-                //}
+                db = redis.GetDatabase(dbnum);
+                await db.HashSetAsync(hashKey, new HashEntry[] { new HashEntry(field, value) });
 
                 await db.KeyExpireAsync(hashKey, expiry);
             }

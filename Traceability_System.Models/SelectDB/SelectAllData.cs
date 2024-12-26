@@ -103,7 +103,7 @@ namespace Traceability_System.Models.SelectDB
 
                     var filed = dr["Id"].ToString();
 
-                  await  _redisHelper.SetHashToJsonAsync(parameter.tableName, filed, jsonData);
+                    await  _redisHelper.SetHashToJsonAsync(parameter.tableName, filed, jsonData,7);
 
                     list.Add(model);
                     // RedisHelper.SetHash()

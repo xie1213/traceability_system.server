@@ -60,16 +60,8 @@ namespace Traceability_System.Api.Controllers
         {
             try
             {
-                //Stopwatch stopwatch = new Stopwatch();
-                // 启动计时器
-                //var json = await RedisHelper.ReStringAs
-                //stopwatch.Start();
-                RedisHelper redisHelper = new RedisHelper();
-                var first50Items = await redisHelper.GetHashToPageAsync(tableName, page, limit);
-                //await Console.Out.WriteLineAsync();
-                //stopwatch.Stop();
+                var first50Items = await _redisHelper.GetHashToPageAsync(tableName, page, limit);
 
-                //Console.WriteLine("分页查询时间"+stopwatch.ElapsedMilliseconds);
                 return Ok(new { data = first50Items });
             }
             catch (Exception e)
