@@ -31,6 +31,11 @@ namespace Traceability_System.API.Controllers
         {
             try
             {
+                if (tableName.Contains(" "))
+                {
+                    tableName = tableName.Replace(" ", "%");
+                }
+
                 var value = await _redisHelper.RedisGetAsync(tableName);
                 if (value == null)
                 {
@@ -53,6 +58,10 @@ namespace Traceability_System.API.Controllers
         [HttpPost("DownloadTable")]
         public async Task<IActionResult> DownloadTable(string tableName)
         {
+            if (tableName.Contains(" "))
+            {
+                tableName = tableName.Replace(" ", "%");
+            }
             var value = await _redisHelper.RedisGetAsync(tableName);
             if (value == null)
             {
