@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Bcpg.Sig;
 using Traceability_System.Models.ExportedMethod;
 using Traceability_System.Models.FileOperation;
 using Traceability_System.Utility;
@@ -52,7 +50,7 @@ namespace Traceability_System.API.Controllers
                 _logHelper.Error("导出失败");
                 return BadRequest();
             }
-           
+
         }
 
         [HttpPost("DownloadTable")]

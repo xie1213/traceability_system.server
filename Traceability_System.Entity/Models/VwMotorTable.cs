@@ -166,7 +166,7 @@
         public string? MoAxis9Code { get; set; }
         public string? MoAngle10Axis { get; set; }
         public string? MoAxis10Code { get; set; }
-        public string? MoAb {  get; set; }
+        public string? MoAb { get; set; }
         public string? MoReDate { get; set; }
         public string? MoPokayokeDateBas { get; set; }
         public string? MoPokayokeDate8 { get; set; }

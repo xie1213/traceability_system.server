@@ -1,13 +1,12 @@
 ﻿using ExcelKit.Core.Attributes;
 using ExcelKit.Core.Constraint.Enums;
-using ExcelKit.Core.Infrastructure.Converter;
 namespace Traceability_System.Entity.ExporteModels
 {
 
     public class ExportedAllData
     {
 
-        [ExcelKit(Desc = "采集时间",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "采集时间", Align = TextAlign.Center)]
         public DateTime? CollectionDate { get; set; }
 
         [ExcelKit(Desc = "出荷序列", Align = TextAlign.Center)]
@@ -439,19 +438,19 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "修改历史记录", Align = TextAlign.Center)]
         public string? Reshuffle { get; set; }
 
-        [ExcelKit(Desc = "防错防误15计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误15计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate15 { get; set; }
 
-        [ExcelKit(Desc = "防错防误16计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误16计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate16 { get; set; }
 
-        [ExcelKit(Desc = "ラベル発券计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "ラベル発券计测日時", Align = TextAlign.Center)]
         public string? TagMeasDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误18计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误18计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate18 { get; set; }
 
-        [ExcelKit(Desc = "防错防误19计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误19计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate19 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -610,19 +609,19 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? Hsg2Abvalue { get; set; }
 
-        [ExcelKit(Desc = "防错防误20计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误20计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate20 { get; set; }
 
-        [ExcelKit(Desc = "HSG FIGP计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "HSG FIGP计测日時", Align = TextAlign.Center)]
         public string? HsgFigpDate { get; set; }
 
         [ExcelKit(Desc = "画像判定結果", Align = TextAlign.Center)]
         public string? HsgFigpportrait { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? HsgFitDate { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "HSG合体紧固①计测日時", Align = TextAlign.Center)]
         public string? Hsg1Date { get; set; }
 
         [ExcelKit(Desc = "HSG合体紧固①紧固角度1軸", Align = TextAlign.Center)]
@@ -694,7 +693,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "HSG合体紧固①A/B", Align = TextAlign.Center)]
         public string? Hsg1Ab { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "HSG合体紧固②计测日時", Align = TextAlign.Center)]
         public string? Hsg2MaesDate { get; set; }
 
         [ExcelKit(Desc = "HSG合体紧固②紧固角度1軸", Align = TextAlign.Center)]
@@ -766,7 +765,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "HSG合体紧固②A/B", Align = TextAlign.Center)]
         public string? Hsg2Ab { get; set; }
 
-        [ExcelKit(Desc = "防错防误27计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误27计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate27 { get; set; }
 
         [ExcelKit(Desc = "OS圧入1计测日时", Align = TextAlign.Center)]
@@ -823,22 +822,22 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? Os2abvalue { get; set; }
 
-        [ExcelKit(Desc = "防错防误21计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误21计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate21 { get; set; }
 
-        [ExcelKit(Desc = "Assy正立计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "Assy正立计测日時", Align = TextAlign.Center)]
         public string? AssyDate { get; set; }
 
         [ExcelKit(Desc = "防错防误22计测日時")]
         public string? PokayokeDate22 { get; set; }
 
-        [ExcelKit(Desc = "防错防误23计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误23计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate23 { get; set; }
 
-        [ExcelKit(Desc = "防错防误24计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误24计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate24 { get; set; }
 
-        [ExcelKit(Desc = "防错防误25计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误25计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate25 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -1420,31 +1419,31 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "溢流阀油圧判定", Align = TextAlign.Center)]
         public string? IssReliefValveDec { get; set; }
 
-        [ExcelKit(Desc = "防错防误26计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误26计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate26 { get; set; }
 
-        [ExcelKit(Desc = "防错防误28计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误28计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate28 { get; set; }
 
-        [ExcelKit(Desc = "防错防误29计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误29计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate29 { get; set; }
 
-        [ExcelKit(Desc = "刻印计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "刻印计测日時", Align = TextAlign.Center)]
         public string? EngravingData { get; set; }
 
-        [ExcelKit(Desc = "防错防误30计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误30计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate30 { get; set; }
 
-        [ExcelKit(Desc = "防错防误31计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误31计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate31 { get; set; }
 
-        [ExcelKit(Desc = "外観検査计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "外観検査计测日時", Align = TextAlign.Center)]
         public string? InspectionDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误32计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误32计测日時", Align = TextAlign.Center)]
         public string? PokayokeDate32 { get; set; }
 
-        [ExcelKit(Desc = "HSG セット计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "HSG セット计测日時", Align = TextAlign.Center)]
         public string? HsgSetDate { get; set; }
 
         [ExcelKit(Desc = "托盘No", Align = TextAlign.Center)]
@@ -1453,10 +1452,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "重量", Align = TextAlign.Center)]
         public string? Weight { get; set; }
 
-        [ExcelKit(Desc = "防错防误１计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误１计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate1 { get; set; }
 
-        [ExcelKit(Desc = "防错防误2计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误2计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate2 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -1525,10 +1524,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? MoHsgKnockAbvalue { get; set; }
 
-        [ExcelKit(Desc = "防错防误3计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误3计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate3 { get; set; }
 
-        [ExcelKit(Desc = "防错防误4计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误4计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate4 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -1639,7 +1638,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "第3轴判定代码", Align = TextAlign.Center)]
         public string? MoMg2codeAxis3 { get; set; }
 
-        [ExcelKit(Desc = "防错防误５计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误５计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate5 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -1699,10 +1698,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "MG2定子3軸塑性区紧固扭矩", Align = TextAlign.Center)]
         public string? MoMg2stator3 { get; set; }
 
-        [ExcelKit(Desc = "防错防误6计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误6计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate6 { get; set; }
 
-        [ExcelKit(Desc = "防错防误7计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误7计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate7 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -1732,7 +1731,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "画像判定結果", Align = TextAlign.Center)]
         public string? MoImgResult { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? MoRrcoverDate { get; set; }
 
         [ExcelKit(Desc = "计测日时合体", Align = TextAlign.Center)]
@@ -1873,37 +1872,37 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "A/B", Align = TextAlign.Center)]
         public string? MoAb { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? MoReDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误预备计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误预备计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDateBas { get; set; }
 
-        [ExcelKit(Desc = "防错防误8计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误8计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate8 { get; set; }
 
-        [ExcelKit(Desc = "防错防误9计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误9计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate9 { get; set; }
 
-        [ExcelKit(Desc = "防错防误10计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误10计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate10 { get; set; }
 
-        [ExcelKit(Desc = "防错防误11计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误11计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate11 { get; set; }
 
-        [ExcelKit(Desc = "防错防误12计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误12计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate12 { get; set; }
 
-        [ExcelKit(Desc = "防错防误13计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误13计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate13 { get; set; }
 
-        [ExcelKit(Desc = "防错防误14计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误14计测日時", Align = TextAlign.Center)]
         public string? MoPokayokeDate14 { get; set; }
 
-        [ExcelKit(Desc = "防错防误39计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误39计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate39 { get; set; }
 
-        [ExcelKit(Desc = "防错防误40计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误40计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate40 { get; set; }
 
         [ExcelKit(Desc = "RrBrg圧入计测日时", Align = TextAlign.Center)]
@@ -1936,28 +1935,28 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "RrBrg圧入主行程", Align = TextAlign.Center)]
         public string? GeHsgBrgMaasterStroke { get; set; }
 
-        [ExcelKit(Desc = "防错防误41计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误41计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate41 { get; set; }
 
-        [ExcelKit(Desc = "防错防误42计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误42计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate42 { get; set; }
 
-        [ExcelKit(Desc = "防错防误43计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误43计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate43 { get; set; }
 
-        [ExcelKit(Desc = "防错防误44计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误44计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate44 { get; set; }
 
-        [ExcelKit(Desc = "防错防误44计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误44计测日時", Align = TextAlign.Center)]
         public string? GeUpenderDate { get; set; }
 
-        [ExcelKit(Desc = "翻转机计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "翻转机计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate45 { get; set; }
 
-        [ExcelKit(Desc = "拒绝计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "拒绝计测日時", Align = TextAlign.Center)]
         public string? GeRejectTimeDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误33计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误33计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate33 { get; set; }
 
         [ExcelKit(Desc = "差速器计测日时", Align = TextAlign.Center)]
@@ -1975,7 +1974,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "差速器负重（电流值）4轴", Align = TextAlign.Center)]
         public string? GeDgaload4Axis { get; set; }
 
-        [ExcelKit(Desc = "防错防误34计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误34计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate34 { get; set; }
 
         [ExcelKit(Desc = "差动齿轮计测日时", Align = TextAlign.Center)]
@@ -2008,7 +2007,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "ワーク接触位置", Align = TextAlign.Center)]
         public string? GeContact { get; set; }
 
-        [ExcelKit(Desc = "防错防误35计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误35计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate35 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -2224,19 +2223,19 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "DF2 A/B", Align = TextAlign.Center)]
         public string? GeDf2abvalue { get; set; }
 
-        [ExcelKit(Desc = "DF反転计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "DF反転计测日時", Align = TextAlign.Center)]
         public string? GeDfreverseDate { get; set; }
 
         [ExcelKit(Desc = "ピン検査位置", Align = TextAlign.Center)]
         public string? GePinposition { get; set; }
 
-        [ExcelKit(Desc = "防错防误36计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误36计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate36 { get; set; }
 
-        [ExcelKit(Desc = "防错防误37计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误37计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate37 { get; set; }
 
-        [ExcelKit(Desc = "防错防误38计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误38计测日時", Align = TextAlign.Center)]
         public string? GePokayokeDate38 { get; set; }
 
         [ExcelKit(Desc = "MG1工件温度℃", Align = TextAlign.Center)]
@@ -2257,10 +2256,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "MG2判定", Align = TextAlign.Center)]
         public string? GeMg2dec { get; set; }
 
-        [ExcelKit(Desc = "轴移載计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "轴移載计测日時", Align = TextAlign.Center)]
         public string? GeAslDate { get; set; }
 
-        [ExcelKit(Desc = "铁芯移載计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "铁芯移載计测日時", Align = TextAlign.Center)]
         public string? GeIctlDate { get; set; }
 
         [ExcelKit(Desc = "转子铁芯序列", Align = TextAlign.Center)]
@@ -2269,7 +2268,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "轴序列", Align = TextAlign.Center)]
         public string? GeAxisSerial { get; set; }
 
-        [ExcelKit(Desc = "加工開始日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加工開始日時", Align = TextAlign.Center)]
         public string? GeProcDate { get; set; }
 
         [ExcelKit(Desc = "铁芯加熱有無", Align = TextAlign.Center)]
@@ -2308,13 +2307,13 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "加熱输出(％）", Align = TextAlign.Center)]
         public string? GeHeatOutput { get; set; }
 
-        [ExcelKit(Desc = "加熱完了日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加熱完了日時", Align = TextAlign.Center)]
         public string? GeHeatEndTime { get; set; }
 
         [ExcelKit(Desc = "判定代码", Align = TextAlign.Center)]
         public string? GeJudgmentCode { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? GeApidate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -2350,7 +2349,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "圧入機", Align = TextAlign.Center)]
         public string? GeApimachine { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? GeNtDate { get; set; }
 
         [ExcelKit(Desc = "紧固扭矩1軸", Align = TextAlign.Center)]
@@ -2374,7 +2373,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "松监视器扭矩1軸", Align = TextAlign.Center)]
         public string? GeNtslack1 { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? GeRapDate { get; set; }
 
         [ExcelKit(Desc = "铆接行程（0前）", Align = TextAlign.Center)]
@@ -2416,7 +2415,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "判定代码", Align = TextAlign.Center)]
         public string? GeRapcode2 { get; set; }
 
-        [ExcelKit(Desc = "加工開始日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加工開始日時", Align = TextAlign.Center)]
         public string? GeRtpstartDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -2437,10 +2436,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "抽样履历", Align = TextAlign.Center)]
         public string? GeRtphistory { get; set; }
 
-        [ExcelKit(Desc = "防错防误39计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误39计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate39 { get; set; }
 
-        [ExcelKit(Desc = "防错防误40计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误40计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate40 { get; set; }
 
         [ExcelKit(Desc = "RrBrg圧入计测日时", Align = TextAlign.Center)]
@@ -2473,28 +2472,28 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "RrBrg圧入主行程", Align = TextAlign.Center)]
         public string? Ro1HsgBrgMaasterStroke { get; set; }
 
-        [ExcelKit(Desc = "防错防误41计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误41计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate41 { get; set; }
 
-        [ExcelKit(Desc = "防错防误42计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误42计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate42 { get; set; }
 
-        [ExcelKit(Desc = "防错防误43计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误43计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate43 { get; set; }
 
-        [ExcelKit(Desc = "防错防误44计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误44计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate44 { get; set; }
 
-        [ExcelKit(Desc = "翻转机计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "翻转机计测日時", Align = TextAlign.Center)]
         public string? Ro1UpenderDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误45计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误45计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate45 { get; set; }
 
-        [ExcelKit(Desc = "拒绝计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "拒绝计测日時", Align = TextAlign.Center)]
         public string? Ro1RejectTimeDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误33计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误33计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate33 { get; set; }
 
         [ExcelKit(Desc = "差速器计测日时", Align = TextAlign.Center)]
@@ -2512,7 +2511,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "差速器负重（电流值）4轴", Align = TextAlign.Center)]
         public string? Ro1Dgaload4Axis { get; set; }
 
-        [ExcelKit(Desc = "防错防误34计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误34计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate34 { get; set; }
 
         [ExcelKit(Desc = "差动齿轮计测日时", Align = TextAlign.Center)]
@@ -2539,7 +2538,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "差速器铆接最终负重", Align = TextAlign.Center)]
         public string? Ro1Dprfrl { get; set; }
 
-        [ExcelKit(Desc = "防错防误35计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误35计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate35 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -2755,16 +2754,16 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "DF2 A/B", Align = TextAlign.Center)]
         public string? Ro1Df2abvalue { get; set; }
 
-        [ExcelKit(Desc = "DF反転计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "DF反転计测日時", Align = TextAlign.Center)]
         public string? Ro1DfreverseDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误36计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误36计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate36 { get; set; }
 
-        [ExcelKit(Desc = "防错防误37计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误37计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate37 { get; set; }
 
-        [ExcelKit(Desc = "防错防误38计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误38计测日時", Align = TextAlign.Center)]
         public string? Ro1PokayokeDate38 { get; set; }
 
         [ExcelKit(Desc = "MG1工件温度", Align = TextAlign.Center)]
@@ -2785,10 +2784,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "MG2判定", Align = TextAlign.Center)]
         public string? Ro1Mg2dec { get; set; }
 
-        [ExcelKit(Desc = "轴移載计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "轴移載计测日時", Align = TextAlign.Center)]
         public string? Ro1AslDate { get; set; }
 
-        [ExcelKit(Desc = "铁芯移載计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "铁芯移載计测日時", Align = TextAlign.Center)]
         public string? Ro1IctlDate { get; set; }
 
         [ExcelKit(Desc = "转子铁芯序列", Align = TextAlign.Center)]
@@ -2797,7 +2796,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "轴序列", Align = TextAlign.Center)]
         public string? Ro1AxisSerial { get; set; }
 
-        [ExcelKit(Desc = "加工開始日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加工開始日時", Align = TextAlign.Center)]
         public string? Ro1ProcDate { get; set; }
 
         [ExcelKit(Desc = "铁芯加熱有無", Align = TextAlign.Center)]
@@ -2836,13 +2835,13 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "加熱输出(％）", Align = TextAlign.Center)]
         public string? Ro1HeatOutput { get; set; }
 
-        [ExcelKit(Desc = "加熱完了日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加熱完了日時", Align = TextAlign.Center)]
         public string? Ro1HeatEndTime { get; set; }
 
         [ExcelKit(Desc = "判定代码", Align = TextAlign.Center)]
         public string? Ro1JudgmentCode { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? Ro1ApiDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -2878,7 +2877,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "圧入機", Align = TextAlign.Center)]
         public string? Ro1Apimachine { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? Ro1NtDate { get; set; }
 
         [ExcelKit(Desc = "紧固扭矩1軸", Align = TextAlign.Center)]
@@ -2902,7 +2901,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "松监视器扭矩1軸", Align = TextAlign.Center)]
         public string? Ro1Ntslack1 { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? Ro1RapDate { get; set; }
 
         [ExcelKit(Desc = "铆接行程（0前）", Align = TextAlign.Center)]
@@ -2944,7 +2943,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "判定代码", Align = TextAlign.Center)]
         public string? Ro1Rapcode2 { get; set; }
 
-        [ExcelKit(Desc = "加工開始日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加工開始日時", Align = TextAlign.Center)]
         public string? Ro1RtpstartDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -2971,10 +2970,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "ｾﾝｻ位相間違い検出位置②", Align = TextAlign.Center)]
         public string? Ro1Detection2 { get; set; }
 
-        [ExcelKit(Desc = "防错防误39计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误39计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate39 { get; set; }
 
-        [ExcelKit(Desc = "防错防误40计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误40计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate40 { get; set; }
 
         [ExcelKit(Desc = "RrBrg圧入计测日时", Align = TextAlign.Center)]
@@ -3007,28 +3006,28 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "RrBrg圧入主行程", Align = TextAlign.Center)]
         public string? Ro2HsgBrgMaasterStroke { get; set; }
 
-        [ExcelKit(Desc = "防错防误41计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误41计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate41 { get; set; }
 
-        [ExcelKit(Desc = "防错防误42计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误42计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate42 { get; set; }
 
-        [ExcelKit(Desc = "防错防误43计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误43计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate43 { get; set; }
 
-        [ExcelKit(Desc = "防错防误44计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误44计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate44 { get; set; }
 
-        [ExcelKit(Desc = "翻转机计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "翻转机计测日時", Align = TextAlign.Center)]
         public string? Ro2UpenderDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误45计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误45计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate45 { get; set; }
 
-        [ExcelKit(Desc = "拒绝计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "拒绝计测日時", Align = TextAlign.Center)]
         public string? Ro2RejectTimeDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误33计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误33计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate33 { get; set; }
 
         [ExcelKit(Desc = "差速器计测日时", Align = TextAlign.Center)]
@@ -3046,7 +3045,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "差速器负重（电流值）4轴", Align = TextAlign.Center)]
         public string? Ro2Dgaload4Axis { get; set; }
 
-        [ExcelKit(Desc = "防错防误34计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误34计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate34 { get; set; }
 
         [ExcelKit(Desc = "差动齿轮计测日时", Align = TextAlign.Center)]
@@ -3073,7 +3072,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "差速器铆接最终负重", Align = TextAlign.Center)]
         public string? Ro2Dprfrl { get; set; }
 
-        [ExcelKit(Desc = "防错防误35计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误35计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate35 { get; set; }
 
         [ExcelKit(Desc = "计测日时", Align = TextAlign.Center)]
@@ -3289,16 +3288,16 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "DF2 A/B", Align = TextAlign.Center)]
         public string? Ro2Df2abvalue { get; set; }
 
-        [ExcelKit(Desc = "DF反転计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "DF反転计测日時", Align = TextAlign.Center)]
         public string? Ro2DfreverseDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误36计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误36计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate36 { get; set; }
 
-        [ExcelKit(Desc = "防错防误37计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误37计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate37 { get; set; }
 
-        [ExcelKit(Desc = "防错防误38计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误38计测日時", Align = TextAlign.Center)]
         public string? Ro2PokayokeDate38 { get; set; }
 
         [ExcelKit(Desc = "MG1工件温度", Align = TextAlign.Center)]
@@ -3319,10 +3318,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "MG2判定", Align = TextAlign.Center)]
         public string? Ro2Mg2dec { get; set; }
 
-        [ExcelKit(Desc = "轴移載计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "轴移載计测日時", Align = TextAlign.Center)]
         public string? Ro2AslDate { get; set; }
 
-        [ExcelKit(Desc = "铁芯移載计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "铁芯移載计测日時", Align = TextAlign.Center)]
         public string? Ro2IctlDate { get; set; }
 
         [ExcelKit(Desc = "转子铁芯序列", Align = TextAlign.Center)]
@@ -3331,7 +3330,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "轴序列", Align = TextAlign.Center)]
         public string? Ro2AxisSerial { get; set; }
 
-        [ExcelKit(Desc = "加工開始日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加工開始日時", Align = TextAlign.Center)]
         public string? Ro2ProcDate { get; set; }
 
         [ExcelKit(Desc = "铁芯加熱有無", Align = TextAlign.Center)]
@@ -3370,13 +3369,13 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "加熱输出(％）", Align = TextAlign.Center)]
         public string? Ro2HeatOutput { get; set; }
 
-        [ExcelKit(Desc = "加熱完了日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加熱完了日時", Align = TextAlign.Center)]
         public string? Ro2HeatEndTime { get; set; }
 
         [ExcelKit(Desc = "判定代码", Align = TextAlign.Center)]
         public string? Ro2JudgmentCode { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? Ro2ApiDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -3412,7 +3411,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "圧入機", Align = TextAlign.Center)]
         public string? Ro2Apimachine { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? Ro2NtDate { get; set; }
 
         [ExcelKit(Desc = "紧固扭矩1軸", Align = TextAlign.Center)]
@@ -3436,7 +3435,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "松监视器扭矩1軸", Align = TextAlign.Center)]
         public string? Ro2Ntslack1 { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Center)]
         public string? Ro2RapDate { get; set; }
 
         [ExcelKit(Desc = "铆接行程（0前）", Align = TextAlign.Center)]
@@ -3478,7 +3477,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "判定代码", Align = TextAlign.Center)]
         public string? Ro2Rapcode2 { get; set; }
 
-        [ExcelKit(Desc = "加工開始日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "加工開始日時", Align = TextAlign.Center)]
         public string? Ro2RtpstartDate { get; set; }
 
         [ExcelKit(Desc = "拐点行程", Align = TextAlign.Center)]
@@ -3505,10 +3504,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "ｾﾝｻ位相間違い検出位置②", Align = TextAlign.Center)]
         public string? Ro2Detection2 { get; set; }
 
-        [ExcelKit(Desc = "防错防误39计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误39计测日時", Align = TextAlign.Center)]
         public string? RrpokayokeDate39 { get; set; }
 
-        [ExcelKit(Desc = "防错防误40计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误40计测日時", Align = TextAlign.Center)]
         public string? RrpokayokeDate40 { get; set; }
 
         [ExcelKit(Desc = "RrBrg圧入计测日时", Align = TextAlign.Center)]
@@ -3544,7 +3543,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "防错防误41计测日時", Align = TextAlign.Center)]
         public string? RrpokayokeDate41 { get; set; }
 
-        [ExcelKit(Desc = "防错防误42计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误42计测日時", Align = TextAlign.Center)]
         public string? RrpokayokeDate42 { get; set; }
 
         [ExcelKit(Desc = "防错防误43计测日時", Align = TextAlign.Center)]
@@ -3553,10 +3552,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "防错防误44计测日時", Align = TextAlign.Center)]
         public string? RrpokayokeDate44 { get; set; }
 
-        [ExcelKit(Desc = "反転機计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "反転機计测日時", Align = TextAlign.Center)]
         public string? RrupenderDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误45计测日時",  Align = TextAlign.Center)]
+        [ExcelKit(Desc = "防错防误45计测日時", Align = TextAlign.Center)]
         public string? RrpokayokeDate45 { get; set; }
 
         [ExcelKit(Desc = "拒绝计测日時", Align = TextAlign.Center)]

@@ -48,10 +48,10 @@ namespace Traceability_System.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logHelper.Error(parameter.tableName+"读取错误"+ex.Message);
+                _logHelper.Error(parameter.tableName + "读取错误" + ex.Message);
                 return BadRequest();
             }
-          
+
         }
 
 
@@ -154,7 +154,7 @@ namespace Traceability_System.Api.Controllers
                 $"\rleft join vw_RRTable as rr on ta.RRCoverSerial = rr.RRRRCoverSerial" +
                 $"\rwhere ta.Id = 1";
 
-                DataTable resultTable =await SqlHelper.ExecuteTableAsync(sqlQuery);
+                DataTable resultTable = await SqlHelper.ExecuteTableAsync(sqlQuery);
                 List<Dictionary<string, object>> resultList = new List<Dictionary<string, object>>();
                 foreach (DataRow row in resultTable.Rows)
                 {
@@ -171,7 +171,7 @@ namespace Traceability_System.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logHelper.Error("GetAllTable错误"+ex.Message);
+                _logHelper.Error("GetAllTable错误" + ex.Message);
                 throw;
             }
 

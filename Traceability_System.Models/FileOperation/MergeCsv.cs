@@ -135,7 +135,7 @@ namespace Traceability_System.Models.FileOperation
                     continue;
                 }
 
-               await ReadCsv(files[i], itemName, dirPath);
+                await ReadCsv(files[i], itemName, dirPath);
 
             }
         }
@@ -166,7 +166,7 @@ namespace Traceability_System.Models.FileOperation
                     {
                         // 获取当前行的字段数组
                         string[] fields = parser.ReadFields();
-                        bool isNull =await GetBySerialNo(fields[0].TrimEnd());
+                        bool isNull = await GetBySerialNo(fields[0].TrimEnd());
                         string numPath = Path.Combine(path, "序列号");
 
                         string sql = BuildQuery(pathName, isNull, fields, item);
@@ -188,7 +188,7 @@ namespace Traceability_System.Models.FileOperation
         public async Task<bool> GetBySerialNo(string SerialNo)
         {
             string sql = $"select * from Shipping where SerialNo = '{SerialNo}'";
-            var str =await SqlHelper.ExecuteScalarAsync(sql);
+            var str = await SqlHelper.ExecuteScalarAsync(sql);
             return str == null ? false : true;
         }
 

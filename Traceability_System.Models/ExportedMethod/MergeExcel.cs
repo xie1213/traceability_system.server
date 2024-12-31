@@ -1,16 +1,10 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OfficeOpenXml;
 
 namespace Traceability_System.Models.ExportedMethod
 {
     public class MergeExcel
     {
-       public static void MergeExcelFiles(string filePath1, string filePath2)
+        public static void MergeExcelFiles(string filePath1, string filePath2)
         {
             string outputFilePath = @"D:\WindowsTools\Desktop\合并结果.xlsx";
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -24,7 +18,7 @@ namespace Traceability_System.Models.ExportedMethod
                     // 获取第一个工作表
                     var worksheet1 = package1.Workbook.Worksheets[0];
                     var worksheet2 = package2.Workbook.Worksheets[0];
-                    
+
                     // 创建一个新的工作表用于合并
                     var outputWorksheet = outputPackage.Workbook.Worksheets.Add("Merged");
 

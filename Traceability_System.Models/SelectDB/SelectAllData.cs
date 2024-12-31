@@ -1,7 +1,6 @@
 ﻿using Appraisal_System.Utility;
 using Newtonsoft.Json;
 using System.Data;
-using System.Diagnostics;
 using System.Reflection;
 using Traceability_System.DTO;
 using Traceability_System.Entity.Models;
@@ -103,7 +102,7 @@ namespace Traceability_System.Models.SelectDB
 
                     var filed = dr["Id"].ToString();
 
-                    await  _redisHelper.SetHashToJsonAsync(parameter.tableName, filed, jsonData,7);
+                    await _redisHelper.SetHashToJsonAsync(parameter.tableName, filed, jsonData, 7);
 
                     list.Add(model);
                     // RedisHelper.SetHash()
@@ -116,7 +115,7 @@ namespace Traceability_System.Models.SelectDB
                 _logHelper.Error("获取表格信息时出错" + ex.Message);
                 throw;
             }
-            
+
         }
 
 
@@ -323,7 +322,7 @@ namespace Traceability_System.Models.SelectDB
                     var jsonData = JsonConvert.SerializeObject(model);
                     var filed = dr["Id"].ToString();
 
-                  await  _redisHelper.SetHashToJsonAsync(requestData.TableName, filed, jsonData);
+                    await _redisHelper.SetHashToJsonAsync(requestData.TableName, filed, jsonData);
 
                     list.Add(model);
                     // RedisHelper.SetHash()
@@ -348,7 +347,7 @@ namespace Traceability_System.Models.SelectDB
 
 
         ////获取出荷数据
-        public async Task <object> GetOutTable(ParameterData parameter)
+        public async Task<object> GetOutTable(ParameterData parameter)
         {
             string baseSql = "select * from Shipping where";
             Console.WriteLine("查找出荷数据");
@@ -367,8 +366,8 @@ namespace Traceability_System.Models.SelectDB
                 DataTable dt = await SqlHelper.ExecuteTableAsync(baseSql);
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                   await Task.Run(() => ExportDataAsync(exportedName, dt));
-                    
+                    await Task.Run(() => ExportDataAsync(exportedName, dt));
+
                     _redisHelper.DeleteHash(parameter.tableName);
                     foreach (DataRow dr in dt.Rows)
                     {
@@ -417,7 +416,7 @@ namespace Traceability_System.Models.SelectDB
                            $" where {itemSql} order by RIGHT(ShipmentSerial,8) desc ";
 
 
-                DataTable resultTable =await SqlHelper.ExecuteTableAsync(sqlQuery);
+                DataTable resultTable = await SqlHelper.ExecuteTableAsync(sqlQuery);
                 if (resultTable.Rows.Count == 0)
                 {
                     return "空值";
@@ -436,7 +435,7 @@ namespace Traceability_System.Models.SelectDB
 
                     resultList.Add(rowData);
                     var json = JsonConvert.SerializeObject(rowData);
-                   await _redisHelper.SetHashToJsonAsync("全部履历", row["Id"].ToString(), json);
+                    await _redisHelper.SetHashToJsonAsync("全部履历", row["Id"].ToString(), json);
                 }
 
                 return new { data = resultList.Take(30), count = resultList.Count() };
@@ -447,7 +446,7 @@ namespace Traceability_System.Models.SelectDB
                 _logHelper.Error("全部表读取错误" + ex.Message);
                 throw;
             }
-          
+
         }
 
 

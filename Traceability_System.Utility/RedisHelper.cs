@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using StackExchange.Redis;
 
 namespace Traceability_System.Utility
@@ -75,7 +74,7 @@ namespace Traceability_System.Utility
         /// <param name="key"></param>
         /// <param name="dbNum"></param>
         /// <returns></returns>
-        public string RedisGet(string key,int dbNum = 0)
+        public string RedisGet(string key, int dbNum = 0)
         {
             var db = redis.GetDatabase(dbNum);
             var value = db.StringGet(key);

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace Traceability_System.Utility
 {
@@ -134,8 +129,8 @@ namespace Traceability_System.Utility
         /// </summary>
         public void CleanupLogs()
         {
-           
-                                                                            // 获取当前日期
+
+            // 获取当前日期
             DateTime currentDate = DateTime.Now;
 
             // 获取目录中的日志文件列表

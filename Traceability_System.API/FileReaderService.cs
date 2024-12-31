@@ -59,7 +59,7 @@ namespace Traceability_System.API
             //并行
             var tasks = folders.Select(async folder =>
             {
-                //await TableOperation.DirectoryExist(folder);
+                await TableOperation.DirectoryExist(folder);
                 i++;
             });
 

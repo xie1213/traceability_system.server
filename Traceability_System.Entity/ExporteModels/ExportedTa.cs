@@ -1,6 +1,5 @@
 ﻿using ExcelKit.Core.Attributes;
 using ExcelKit.Core.Constraint.Enums;
-using ExcelKit.Core.Infrastructure.Converter;
 
 namespace Traceability_System.Entity.ExporteModels
 {
@@ -10,7 +9,7 @@ namespace Traceability_System.Entity.ExporteModels
 
         public DateTime? CollectionDate { get; set; }
 
-        [ExcelKit(Desc = "ta出荷",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "ta出荷", Align = TextAlign.Left)]
         public string? ShipmentSerial { get; set; }
 
         [ExcelKit(Desc = "接口No.", Align = TextAlign.Left)]
@@ -43,7 +42,7 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "MG1转子判別", Align = TextAlign.Left)]
         public string? Mg1rotorDec { get; set; }
 
-        [ExcelKit(Desc = "MG2转子判別",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2转子判別", Align = TextAlign.Left)]
         public string? Mg2rotorDec { get; set; }
 
         [ExcelKit(Desc = "线体判別", Align = TextAlign.Left)]
@@ -444,22 +443,22 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "修改历史记录", Align = TextAlign.Left)]
         public string? Reshuffle { get; set; }
 
-        [ExcelKit(Desc = "防错防误15计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误15计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate15 { get; set; }
 
-        [ExcelKit(Desc = "防错防误16计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误16计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate16 { get; set; }
 
-        [ExcelKit(Desc = "ラベル発券计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "ラベル発券计测日時", Align = TextAlign.Left)]
         public string? TagMeasDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误18计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误18计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate18 { get; set; }
 
-        [ExcelKit(Desc = "防错防误19计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误19计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate19 { get; set; }
 
-        [ExcelKit(Desc = "计测日时",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Left)]
         public string? ShimMeasDate { get; set; }
 
         [ExcelKit(Desc = "Hsg侧差速器轴深度t7", Align = TextAlign.Left)]
@@ -570,872 +569,872 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "変曲点负重", Align = TextAlign.Left)]
         public string? Hsg1PtLoadSec { get; set; }
 
-        [ExcelKit(Desc = "最终行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "最终行程", Align = TextAlign.Left)]
         public string? Hsg1FinalStrokeSec { get; set; }
 
-        [ExcelKit(Desc = "最終荷负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "最終荷负重", Align = TextAlign.Left)]
         public string? Hsg1FinalLoadSec { get; set; }
 
-        [ExcelKit(Desc = "主行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "主行程", Align = TextAlign.Left)]
         public string? Hsg1MainStroke { get; set; }
 
-        [ExcelKit(Desc = "A/B",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "A/B", Align = TextAlign.Left)]
         public string? Hsg1Abvalue { get; set; }
 
 
-        [ExcelKit(Desc = "计测日时",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Left)]
         public string? Hsg2Date { get; set; }
 
-        [ExcelKit(Desc = "拐点行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "拐点行程", Align = TextAlign.Left)]
         public string? Hsg2Stroke { get; set; }
 
-        [ExcelKit(Desc = "変曲点负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "変曲点负重", Align = TextAlign.Left)]
         public string? Hsg2PtLoad { get; set; }
 
-        [ExcelKit(Desc = "最终行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "最终行程", Align = TextAlign.Left)]
         public string? Hsg2FinalStroke { get; set; }
 
-        [ExcelKit(Desc = "最終荷负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "最終荷负重", Align = TextAlign.Left)]
         public string? Hsg2FinalLoad { get; set; }
 
-        [ExcelKit(Desc = "拐点行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "拐点行程", Align = TextAlign.Left)]
         public string? Hsg2StrokeSec { get; set; }
 
-        [ExcelKit(Desc = "変曲点负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "変曲点负重", Align = TextAlign.Left)]
         public string? Hsg2PtLoadSec { get; set; }
 
-        [ExcelKit(Desc = "最终行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "最终行程", Align = TextAlign.Left)]
         public string? Hsg2FinalStrokeSec { get; set; }
 
-        [ExcelKit(Desc = "最終荷负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "最終荷负重", Align = TextAlign.Left)]
         public string? Hsg2FinalLoadSec { get; set; }
 
-        [ExcelKit(Desc = "主行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "主行程", Align = TextAlign.Left)]
         public string? Hsg2MainStroke { get; set; }
 
-        [ExcelKit(Desc = "A/B",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "A/B", Align = TextAlign.Left)]
         public string? Hsg2Abvalue { get; set; }
 
 
-        [ExcelKit(Desc = "防错防误20计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误20计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate20 { get; set; }
 
-        [ExcelKit(Desc = "HSG FIGP计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG FIGP计测日時", Align = TextAlign.Left)]
         public string? HsgFigpDate { get; set; }
 
-        [ExcelKit(Desc = "画像判定結果",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "画像判定結果", Align = TextAlign.Left)]
         public string? HsgFigpportrait { get; set; }
 
-        [ExcelKit(Desc = "计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "计测日時", Align = TextAlign.Left)]
         public string? HsgFitDate { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①计测日時", Align = TextAlign.Left)]
         public string? Hsg1Date { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度1軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度1軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis1 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第1轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第1轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis1 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度2軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度2軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis2 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第2轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第2轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis2 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度3軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度3軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis3 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第3轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第3轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis3 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度4軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度4軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis4 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第4轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第4轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis4 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度5軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度5軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis5 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第5轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第5轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis5 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度6軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度6軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis6 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第6轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第6轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis6 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度7軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度7軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis7 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第7轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第7轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis7 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度8軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度8軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis8 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第8轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第8轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis8 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度9軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度9軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis9 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第9轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第9轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis9 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度10軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度10軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis10 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第10轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第10轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis10 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①紧固角度11軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①紧固角度11軸", Align = TextAlign.Left)]
         public string? Hsg1AngleAxis11 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①第11轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①第11轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg1CodeAxis11 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固①A/B",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固①A/B", Align = TextAlign.Left)]
         public string? Hsg1Ab { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②计测日時", Align = TextAlign.Left)]
         public string? Hsg2MaesDate { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度1軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度1軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis1 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第1轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第1轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis1 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度2軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度2軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis2 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第2轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第2轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis2 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度3軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度3軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis3 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第3轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第3轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis3 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度4軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度4軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis4 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第4轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第4轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis4 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度5軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度5軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis5 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第5轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第5轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis5 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度6軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度6軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis6 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第6轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第6轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis6 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度7軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度7軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis7 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第7轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第7轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis7 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度8軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度8軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis8 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第8轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第8轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis8 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度9軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度9軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis9 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第9轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第9轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis9 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度10軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度10軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis10 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第10轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第10轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis10 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②紧固角度11軸",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②紧固角度11軸", Align = TextAlign.Left)]
         public string? Hsg2AngleAxis11 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②第11轴 判定代码",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②第11轴 判定代码", Align = TextAlign.Left)]
         public string? Hsg2CodeAxis11 { get; set; }
 
-        [ExcelKit(Desc = "HSG合体紧固②A/B",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "HSG合体紧固②A/B", Align = TextAlign.Left)]
         public string? Hsg2Ab { get; set; }
 
-        [ExcelKit(Desc = "防错防误27计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误27计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate27 { get; set; }
 
-        [ExcelKit(Desc = "OS圧入1计测日时",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "OS圧入1计测日时", Align = TextAlign.Left)]
         public string? Os1date { get; set; }
 
-        [ExcelKit(Desc = "差速器LH OS拐点行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器LH OS拐点行程", Align = TextAlign.Left)]
         public string? Os1lhstroke { get; set; }
 
-        [ExcelKit(Desc = "差速器LH OS拐点负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器LH OS拐点负重", Align = TextAlign.Left)]
         public string? Os1lhload { get; set; }
 
-        [ExcelKit(Desc = "差速器LH OS最终行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器LH OS最终行程", Align = TextAlign.Left)]
         public string? Os1lhfinalStroke { get; set; }
 
-        [ExcelKit(Desc = "差速器LH OS最终负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器LH OS最终负重", Align = TextAlign.Left)]
         public string? Os1lhfinalLoad { get; set; }
 
-        [ExcelKit(Desc = "差速器RH OS拐点行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器RH OS拐点行程", Align = TextAlign.Left)]
         public string? Os1rhstroke { get; set; }
 
-        [ExcelKit(Desc = "差速器RH OS拐点负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器RH OS拐点负重", Align = TextAlign.Left)]
         public string? Os1rhload { get; set; }
 
-        [ExcelKit(Desc = "差速器RH OS最终行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器RH OS最终行程", Align = TextAlign.Left)]
         public string? Os1rhfinalStroke { get; set; }
 
-        [ExcelKit(Desc = "差速器RH OS最终负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "差速器RH OS最终负重", Align = TextAlign.Left)]
         public string? Os1rhfinalLoad { get; set; }
 
-        [ExcelKit(Desc = "主行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "主行程", Align = TextAlign.Left)]
         public string? Os1mainStroke { get; set; }
 
-        [ExcelKit(Desc = "A/B",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "A/B", Align = TextAlign.Left)]
         public string? Os1abvalue { get; set; }
 
 
-        [ExcelKit(Desc = "OS圧入2计测日时",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "OS圧入2计测日时", Align = TextAlign.Left)]
         public string? Os2date { get; set; }
 
-        [ExcelKit(Desc = "I/P OS拐点行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "I/P OS拐点行程", Align = TextAlign.Left)]
         public string? Os2stroke { get; set; }
 
-        [ExcelKit(Desc = "I/P OS拐点负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "I/P OS拐点负重", Align = TextAlign.Left)]
         public string? Os2ptLoad { get; set; }
 
-        [ExcelKit(Desc = "I/P OS最终行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "I/P OS最终行程", Align = TextAlign.Left)]
         public string? Os2finalStroke { get; set; }
 
-        [ExcelKit(Desc = "I/P OS最终负重",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "I/P OS最终负重", Align = TextAlign.Left)]
         public string? Os2finalLoad { get; set; }
 
-        [ExcelKit(Desc = "主行程",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "主行程", Align = TextAlign.Left)]
         public string? Os2mainStroke { get; set; }
 
-        [ExcelKit(Desc = "A/B",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "A/B", Align = TextAlign.Left)]
         public string? Os2abvalue { get; set; }
 
-        [ExcelKit(Desc = "防错防误21计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误21计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate21 { get; set; }
 
-        [ExcelKit(Desc = "Assy正立计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "Assy正立计测日時", Align = TextAlign.Left)]
         public string? AssyDate { get; set; }
 
-        [ExcelKit(Desc = "防错防误22计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误22计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate22 { get; set; }
 
-        [ExcelKit(Desc = "防错防误23计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误23计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate23 { get; set; }
 
-        [ExcelKit(Desc = "防错防误24计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误24计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate24 { get; set; }
 
-        [ExcelKit(Desc = "防错防误25计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误25计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate25 { get; set; }
 
-        [ExcelKit(Desc = "计测日时",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "计测日时", Align = TextAlign.Left)]
         public string? LeakDate { get; set; }
 
-        [ExcelKit(Desc = "齿轮室泄漏量",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "齿轮室泄漏量", Align = TextAlign.Left)]
         public string? LeakGear { get; set; }
 
-        [ExcelKit(Desc = "泄露修正值",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "泄露修正值", Align = TextAlign.Left)]
         public string? LeakCorrect { get; set; }
 
-        [ExcelKit(Desc = "温度情报",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "温度情报", Align = TextAlign.Left)]
         public string? LeakTempDec { get; set; }
 
-        [ExcelKit(Desc = "主值泄漏量",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "主值泄漏量", Align = TextAlign.Left)]
         public string? LeakMain { get; set; }
 
-        [ExcelKit(Desc = "給油前重量",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "給油前重量", Align = TextAlign.Left)]
         public string? LeakFrontOil { get; set; }
 
-        [ExcelKit(Desc = "e-TAF注油完了",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "e-TAF注油完了", Align = TextAlign.Left)]
         public string? LeakEtaf { get; set; }
 
-        [ExcelKit(Desc = "給油後重量",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "給油後重量", Align = TextAlign.Left)]
         public string? LeakLastOil { get; set; }
 
-        [ExcelKit(Desc = "气氛温度",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "气氛温度", Align = TextAlign.Left)]
         public string? LeakTemp { get; set; }
 
-        [ExcelKit(Desc = "湿度",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "湿度", Align = TextAlign.Left)]
         public string? LeakHumidity { get; set; }
 
-        [ExcelKit(Desc = "油温传感器判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油温传感器判定", Align = TextAlign.Left)]
         public string? LeakOilTempDec { get; set; }
 
-        [ExcelKit(Desc = "絶縁电阻MG1 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁电阻MG1 Ω", Align = TextAlign.Left)]
         public string? LeakMg1mohm { get; set; }
 
-        [ExcelKit(Desc = "絶縁电阻MG1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁电阻MG1判定", Align = TextAlign.Left)]
         public string? LeakMg1dec { get; set; }
 
-        [ExcelKit(Desc = "絶縁电阻MG2 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁电阻MG2 Ω", Align = TextAlign.Left)]
         public string? LeakMg2mohm { get; set; }
 
-        [ExcelKit(Desc = "絶縁电阻MG2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁电阻MG2判定", Align = TextAlign.Left)]
         public string? LeakMg2dec { get; set; }
 
-        [ExcelKit(Desc = "絶縁耐圧MG1",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁耐圧MG1", Align = TextAlign.Left)]
         public string? LeakMg1dielectric { get; set; }
 
-        [ExcelKit(Desc = "絶縁耐圧MG1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁耐圧MG1判定", Align = TextAlign.Left)]
         public string? LeakMg1dielectricDec { get; set; }
 
-        [ExcelKit(Desc = "絶縁耐圧MG2",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁耐圧MG2", Align = TextAlign.Left)]
         public string? LeakMg2dielectric { get; set; }
 
-        [ExcelKit(Desc = "絶縁耐圧MG2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "絶縁耐圧MG2判定", Align = TextAlign.Left)]
         public string? LeakMg2dielectricDec { get; set; }
 
-        [ExcelKit(Desc = "热敏电阻絶縁电阻 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "热敏电阻絶縁电阻 Ω", Align = TextAlign.Left)]
         public string? LeakThermistor { get; set; }
 
-        [ExcelKit(Desc = "热敏电阻絶縁电阻判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "热敏电阻絶縁电阻判定", Align = TextAlign.Left)]
         public string? LeakThermistorDec { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器絶縁电阻 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器絶縁电阻 Ω", Align = TextAlign.Left)]
         public string? LeakResolver { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器絶縁电阻判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器絶縁电阻判定", Align = TextAlign.Left)]
         public string? LeakResolverDec { get; set; }
 
-        [ExcelKit(Desc = "油温传感器絶縁电阻判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油温传感器絶縁电阻判定", Align = TextAlign.Left)]
         public string? LeakOilTempMohmDec { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG1U-V Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG1U-V Ω", Align = TextAlign.Left)]
         public string? LeakMg1uv { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG1U-V判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG1U-V判定", Align = TextAlign.Left)]
         public string? LeakMg1uvdec { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG1V-W Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG1V-W Ω", Align = TextAlign.Left)]
         public string? LeakMg1uw { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG1V-W判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG1V-W判定", Align = TextAlign.Left)]
         public string? LeakMg1uwdec { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG1W-U Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG1W-U Ω", Align = TextAlign.Left)]
         public string? LeakMg1wu { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG1W-U判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG1W-U判定", Align = TextAlign.Left)]
         public string? LeakMg1wudec { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG2U-V Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG2U-V Ω", Align = TextAlign.Left)]
         public string? LeakMg2uv { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG2U-V判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG2U-V判定", Align = TextAlign.Left)]
         public string? LeakMg2uvdec { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG2V-W Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG2V-W Ω", Align = TextAlign.Left)]
         public string? LeakMg2uw { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG2V-W判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG2V-W判定", Align = TextAlign.Left)]
         public string? LeakMg2uwdec { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG2W-U Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG2W-U Ω", Align = TextAlign.Left)]
         public string? LeakMg2wu { get; set; }
 
-        [ExcelKit(Desc = "线间电阻MG2W-U判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "线间电阻MG2W-U判定", Align = TextAlign.Left)]
         public string? LeakMg2wudec { get; set; }
 
-        [ExcelKit(Desc = "热敏电阻线间电阻MG1 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "热敏电阻线间电阻MG1 Ω", Align = TextAlign.Left)]
         public string? LeakThermistorMg1 { get; set; }
 
-        [ExcelKit(Desc = "热敏电阻线间电阻MG1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "热敏电阻线间电阻MG1判定", Align = TextAlign.Left)]
         public string? LeakThermistorMg1dec { get; set; }
 
-        [ExcelKit(Desc = "热敏电阻线间电阻MG2 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "热敏电阻线间电阻MG2 Ω", Align = TextAlign.Left)]
         public string? LeakThermistorMg2 { get; set; }
 
-        [ExcelKit(Desc = "热敏电阻线间电阻MG2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "热敏电阻线间电阻MG2判定", Align = TextAlign.Left)]
         public string? LeakThermistorMg2dec { get; set; }
 
-        [ExcelKit(Desc = "油温传感器絶縁电阻",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油温传感器絶縁电阻", Align = TextAlign.Left)]
         public string? LeakOilLine { get; set; }
 
-        [ExcelKit(Desc = "油温传感器絶縁电阻判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油温传感器絶縁电阻判定", Align = TextAlign.Left)]
         public string? LeakOilLineDec { get; set; }
 
-        [ExcelKit(Desc = "MG1旋转变压器连接器内相关短路判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1旋转变压器连接器内相关短路判定", Align = TextAlign.Left)]
         public string? LeakMg1rotateDec { get; set; }
 
-        [ExcelKit(Desc = "MG2旋转变压器连接器内相关短路判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2旋转变压器连接器内相关短路判定", Align = TextAlign.Left)]
         public string? LeakMg2rotateDec { get; set; }
 
-        [ExcelKit(Desc = "MG1W相×MG2V相短路判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1W相×MG2V相短路判定", Align = TextAlign.Left)]
         public string? LeakMg1wmg2v { get; set; }
 
-        [ExcelKit(Desc = "油温传感器絶縁电阻",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油温传感器絶縁电阻", Align = TextAlign.Left)]
         public string? LeakOil { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GRFG-GRF(9-6間)（Ω）",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GRFG-GRF(9-6間)（Ω）", Align = TextAlign.Left)]
         public string? LeakMg196 { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GRFG-GRF(9-6間)判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GRFG-GRF(9-6間)判定", Align = TextAlign.Left)]
         public string? LeakMg196dec { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GCSG-GCS(14-10間)（Ω）",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GCSG-GCS(14-10間)（Ω）", Align = TextAlign.Left)]
         public string? LeakMg11410 { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GCSG-GCS(14-10間)判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GCSG-GCS(14-10間)判定", Align = TextAlign.Left)]
         public string? LeakMg11410dec { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GSN-GSNG(13-5間)（Ω）",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GSN-GSNG(13-5間)（Ω）", Align = TextAlign.Left)]
         public string? LeakMg1135 { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GSN-GSNG(13-5間)判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG1 GSN-GSNG(13-5間)判定", Align = TextAlign.Left)]
         public string? LeakMg1135dec { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MRFG-MRF(8-1間)（Ω）",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MRFG-MRF(8-1間)（Ω）", Align = TextAlign.Left)]
         public string? LeakMg281 { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MRFG-MRF(8-1間)判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MRFG-MRF(8-1間)判定", Align = TextAlign.Left)]
         public string? LeakMg281dec { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MCSG-MCS(11-7間)（Ω）",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MCSG-MCS(11-7間)（Ω）", Align = TextAlign.Left)]
         public string? LeakMg2117 { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MCSG-MCS(11-7間)判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MCSG-MCS(11-7間)判定", Align = TextAlign.Left)]
         public string? LeakMg2117dec { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MSN-MSNG(3-2間)（Ω）",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MSN-MSNG(3-2間)（Ω）", Align = TextAlign.Left)]
         public string? LeakMg232 { get; set; }
 
-        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MSN-MSNG(3-2間)判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "旋转变压器线间电阻MG2 MSN-MSNG(3-2間)判定", Align = TextAlign.Left)]
         public string? LeakMg232dec { get; set; }
 
-        [ExcelKit(Desc = "多列标识",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "多列标识", Align = TextAlign.Left)]
         public string? LeakCol { get; set; }
 
-        [ExcelKit(Desc = "Iss计测日时",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "Iss计测日时", Align = TextAlign.Left)]
         public string? IssDate { get; set; }
 
-        [ExcelKit(Desc = "P锁定判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "P锁定判定", Align = TextAlign.Left)]
         public string? IssP { get; set; }
 
-        [ExcelKit(Desc = "notP判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "notP判定", Align = TextAlign.Left)]
         public string? IssnotP { get; set; }
 
-        [ExcelKit(Desc = "官能判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "官能判定", Align = TextAlign.Left)]
         public string? IssFunction { get; set; }
 
-        [ExcelKit(Desc = "MG1探测接触电阻U-V间 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1探测接触电阻U-V间 Ω", Align = TextAlign.Left)]
         public string? IssMg1uv { get; set; }
 
-        [ExcelKit(Desc = "MG1探测接触电阻U-V间判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1探测接触电阻U-V间判定", Align = TextAlign.Left)]
         public string? IssMg1uvdec { get; set; }
 
-        [ExcelKit(Desc = "MG1探测接触电阻V-W间 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1探测接触电阻V-W间 Ω", Align = TextAlign.Left)]
         public string? IssMg1vw { get; set; }
 
-        [ExcelKit(Desc = "MG1探测接触电阻V-W间判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1探测接触电阻V-W间判定", Align = TextAlign.Left)]
         public string? IssMg1vwdec { get; set; }
 
-        [ExcelKit(Desc = "MG2探测接触电阻U-V间 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2探测接触电阻U-V间 Ω", Align = TextAlign.Left)]
         public string? IssMg2uv { get; set; }
 
-        [ExcelKit(Desc = "MG2探测接触电阻U-V间判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2探测接触电阻U-V间判定", Align = TextAlign.Left)]
         public string? IssMg2uvdec { get; set; }
 
-        [ExcelKit(Desc = "MG2探测接触电阻V-W间 Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2探测接触电阻V-W间 Ω", Align = TextAlign.Left)]
         public string? IssMg2vw { get; set; }
 
-        [ExcelKit(Desc = "MG2探测接触电阻V-W间判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2探测接触电阻V-W间判定", Align = TextAlign.Left)]
         public string? IssMg2vwdec { get; set; }
 
-        [ExcelKit(Desc = "MG1旋转变压器偏移値",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1旋转变压器偏移値", Align = TextAlign.Left)]
         public string? IssMg1value { get; set; }
 
-        [ExcelKit(Desc = "MG1旋转变压器偏移値判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1旋转变压器偏移値判定", Align = TextAlign.Left)]
         public string? IssMg1valueDec { get; set; }
 
-        [ExcelKit(Desc = "MG2旋转变压器偏移値",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2旋转变压器偏移値", Align = TextAlign.Left)]
         public string? IssMg2value { get; set; }
 
-        [ExcelKit(Desc = "MG2旋转变压器偏移値判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2旋转变压器偏移値判定", Align = TextAlign.Left)]
         public string? IssMg2valueDec { get; set; }
 
-        [ExcelKit(Desc = "MG1反向电压U-V Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1反向电压U-V Ω", Align = TextAlign.Left)]
         public string? IssMg1disUv { get; set; }
 
-        [ExcelKit(Desc = "MG1反向电压U-V判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1反向电压U-V判定", Align = TextAlign.Left)]
         public string? IssMg1disUvdec { get; set; }
 
-        [ExcelKit(Desc = "MG1反向电压V-W Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1反向电压V-W Ω", Align = TextAlign.Left)]
         public string? IssMg1disVw { get; set; }
 
-        [ExcelKit(Desc = "MG1反向电压V-W判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG1反向电压V-W判定", Align = TextAlign.Left)]
         public string? IssMg1disVwdec { get; set; }
 
-        [ExcelKit(Desc = "MG2反向电压U-V Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2反向电压U-V Ω", Align = TextAlign.Left)]
         public string? IssMg2disUv { get; set; }
 
-        [ExcelKit(Desc = "MG2反向电压U-V判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2反向电压U-V判定", Align = TextAlign.Left)]
         public string? IssMg2disUvdec { get; set; }
 
-        [ExcelKit(Desc = "MG2反向电压V-W Ω",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2反向电压V-W Ω", Align = TextAlign.Left)]
         public string? IssMg2disVw { get; set; }
 
-        [ExcelKit(Desc = "MG2反向电压V-W判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "MG2反向电压V-W判定", Align = TextAlign.Left)]
         public string? IssMg2disVwdec { get; set; }
 
-        [ExcelKit(Desc = "齿轮比確認MG2旋转数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "齿轮比確認MG2旋转数", Align = TextAlign.Left)]
         public string? IssMg2gear { get; set; }
 
-        [ExcelKit(Desc = "齿轮比確認判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "齿轮比確認判定", Align = TextAlign.Left)]
         public string? IssMg2gearDec { get; set; }
 
-        [ExcelKit(Desc = "异音測定加速判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "异音測定加速判定", Align = TextAlign.Left)]
         public string? IssRevup { get; set; }
 
-        [ExcelKit(Desc = "异音測定減速判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "异音測定減速判定", Align = TextAlign.Left)]
         public string? IssSlowup { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器综合判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器综合判定", Align = TextAlign.Left)]
         public string? IssRevCounter { get; set; }
 
-        [ExcelKit(Desc = "加速側最终综合判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终综合判定", Align = TextAlign.Left)]
         public string? IssRevLast { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器综合判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器综合判定", Align = TextAlign.Left)]
         public string? IssSlowCounter { get; set; }
 
-        [ExcelKit(Desc = "減速側最终综合判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终综合判定", Align = TextAlign.Left)]
         public string? IssSlowLast { get; set; }
 
         [ExcelKit(Desc = "加速側差速器轴平均負荷扭矩", Align = TextAlign.Left)]
         public string? IssRevAvg { get; set; }
 
-        [ExcelKit(Desc = "加速側差速器轴平均負荷扭矩判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側差速器轴平均負荷扭矩判定", Align = TextAlign.Left)]
         public string? IssRevAvgDec { get; set; }
 
-        [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩", Align = TextAlign.Left)]
         public string? IssSlowAvg { get; set; }
 
-        [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側差速器轴平均負荷扭矩判定", Align = TextAlign.Left)]
         public string? IssSlowAvgDec { get; set; }
 
-        [ExcelKit(Desc = "油温传感器温度",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油温传感器温度", Align = TextAlign.Left)]
         public string? IssOilTemp { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间1噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间1噪音", Align = TextAlign.Left)]
         public string? IssRev1Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间1频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间1频率", Align = TextAlign.Left)]
         public string? IssRev1Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间1判定", Align = TextAlign.Left)]
         public string? IssRev1 { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间2噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间2噪音", Align = TextAlign.Left)]
         public string? IssRev2Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间2频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间2频率", Align = TextAlign.Left)]
         public string? IssRev2Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间2判定", Align = TextAlign.Left)]
         public string? IssRev2 { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间3噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间3噪音", Align = TextAlign.Left)]
         public string? IssRev3Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间3频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间3频率", Align = TextAlign.Left)]
         public string? IssRev3Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间3判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间3判定", Align = TextAlign.Left)]
         public string? IssRev3 { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间4噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间4噪音", Align = TextAlign.Left)]
         public string? IssRev4Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间4频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间4频率", Align = TextAlign.Left)]
         public string? IssRev4Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间4判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间4判定", Align = TextAlign.Left)]
         public string? IssRev4 { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间5噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间5噪音", Align = TextAlign.Left)]
         public string? IssRev5Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间5频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间5频率", Align = TextAlign.Left)]
         public string? IssRev5Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側计数器区间5判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側计数器区间5判定", Align = TextAlign.Left)]
         public string? IssRev5 { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间1噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间1噪音", Align = TextAlign.Left)]
         public string? IssRevLast1Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间1频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间1频率", Align = TextAlign.Left)]
         public string? IssRevLast1Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间1判定", Align = TextAlign.Left)]
         public string? IssRevLast1 { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间2噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间2噪音", Align = TextAlign.Left)]
         public string? IssRevLast2Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间2频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间2频率", Align = TextAlign.Left)]
         public string? IssRevLast2Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间2判定", Align = TextAlign.Left)]
         public string? IssRevLast2 { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间3噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间3噪音", Align = TextAlign.Left)]
         public string? IssRevLast3Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间3频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间3频率", Align = TextAlign.Left)]
         public string? IssRevLast3Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间3判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间3判定", Align = TextAlign.Left)]
         public string? IssRevLast3 { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间4噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间4噪音", Align = TextAlign.Left)]
         public string? IssRevLast4Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间4频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间4频率", Align = TextAlign.Left)]
         public string? IssRevLast4Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间4判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间4判定", Align = TextAlign.Left)]
         public string? IssRevLast4 { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间5噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间5噪音", Align = TextAlign.Left)]
         public string? IssRevLast5Noise { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间5频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间5频率", Align = TextAlign.Left)]
         public string? IssRevLast5Rate { get; set; }
 
-        [ExcelKit(Desc = "加速側最终区间5判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速側最终区间5判定", Align = TextAlign.Left)]
         public string? IssRevLast5 { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间1噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间1噪音", Align = TextAlign.Left)]
         public string? IssSlow1Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间1频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间1频率", Align = TextAlign.Left)]
         public string? IssSlow1Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间1判定", Align = TextAlign.Left)]
         public string? IssSlow1 { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间2噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间2噪音", Align = TextAlign.Left)]
         public string? IssSlow2Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间2频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间2频率", Align = TextAlign.Left)]
         public string? IssSlow2Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间2判定", Align = TextAlign.Left)]
         public string? IssSlow2 { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间3噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间3噪音", Align = TextAlign.Left)]
         public string? IssSlow3Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间3频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间3频率", Align = TextAlign.Left)]
         public string? IssSlow3Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间3判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间3判定", Align = TextAlign.Left)]
         public string? IssSlow3 { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间4噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间4噪音", Align = TextAlign.Left)]
         public string? IssSlow4Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间4频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间4频率", Align = TextAlign.Left)]
         public string? IssSlow4Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间4判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间4判定", Align = TextAlign.Left)]
         public string? IssSlow4 { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间5噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间5噪音", Align = TextAlign.Left)]
         public string? IssSlow5Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间5频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间5频率", Align = TextAlign.Left)]
         public string? IssSlow5Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側计数器区间5判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側计数器区间5判定", Align = TextAlign.Left)]
         public string? IssSlow5 { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间1噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间1噪音", Align = TextAlign.Left)]
         public string? IssSlowLast1Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间1频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间1频率", Align = TextAlign.Left)]
         public string? IssSlowLast1Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间1判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间1判定", Align = TextAlign.Left)]
         public string? IssSlowLast1 { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间2噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间2噪音", Align = TextAlign.Left)]
         public string? IssSlowLast2Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间2频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间2频率", Align = TextAlign.Left)]
         public string? IssSlowLast2Rate { get; set; }
 
 
-        [ExcelKit(Desc = "減速側最终区间2判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间2判定", Align = TextAlign.Left)]
         public string? IssSlowLast2 { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间3噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间3噪音", Align = TextAlign.Left)]
         public string? IssSlowLast3Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间3频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间3频率", Align = TextAlign.Left)]
         public string? IssSlowLast3Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间3判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间3判定", Align = TextAlign.Left)]
         public string? IssSlowLast3 { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间4噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间4噪音", Align = TextAlign.Left)]
         public string? IssSlowLast4Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间4频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间4频率", Align = TextAlign.Left)]
         public string? IssSlowLast4Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间4判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间4判定", Align = TextAlign.Left)]
         public string? IssSlowLast4 { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间5噪音",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间5噪音", Align = TextAlign.Left)]
         public string? IssSlowLast5Noise { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间5频率",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间5频率", Align = TextAlign.Left)]
         public string? IssSlowLast5Rate { get; set; }
 
-        [ExcelKit(Desc = "減速側最终区间5判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速側最终区间5判定", Align = TextAlign.Left)]
         public string? IssSlowLast5 { get; set; }
 
-        [ExcelKit(Desc = "加速颜色映射综合判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "加速颜色映射综合判定", Align = TextAlign.Left)]
         public string? IssRevColor { get; set; }
 
-        [ExcelKit(Desc = "減速颜色映射综合判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "減速颜色映射综合判定", Align = TextAlign.Left)]
         public string? IssSlowColor { get; set; }
 
-        [ExcelKit(Desc = "①加速颜色映射判定噪音(dB)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①加速颜色映射判定噪音(dB)", Align = TextAlign.Left)]
         public string? IssRevColor1dB { get; set; }
 
-        [ExcelKit(Desc = "①加速颜色映射判定频率(Hz)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①加速颜色映射判定频率(Hz)", Align = TextAlign.Left)]
         public string? IssRevColor1Hz { get; set; }
 
-        [ExcelKit(Desc = "①加速颜色映射判定旋转数(rpm)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①加速颜色映射判定旋转数(rpm)", Align = TextAlign.Left)]
         public string? IssRevColor1rpm { get; set; }
 
-        [ExcelKit(Desc = "①加速颜色映射判定次数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①加速颜色映射判定次数", Align = TextAlign.Left)]
         public string? IssRevColor1sum { get; set; }
 
-        [ExcelKit(Desc = "①加速颜色映射判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①加速颜色映射判定", Align = TextAlign.Left)]
         public string? IssRevColor1Dec { get; set; }
 
-        [ExcelKit(Desc = "①減速颜色映射判定噪音(dB)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①減速颜色映射判定噪音(dB)", Align = TextAlign.Left)]
         public string? IssSlowColor1dB { get; set; }
 
-        [ExcelKit(Desc = "①減速颜色映射判定频率(Hz)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①減速颜色映射判定频率(Hz)", Align = TextAlign.Left)]
         public string? IssSlowColor1Hz { get; set; }
 
-        [ExcelKit(Desc = "①減速颜色映射判定旋转数(rpm)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①減速颜色映射判定旋转数(rpm)", Align = TextAlign.Left)]
         public string? IssSlowColor1rpm { get; set; }
 
-        [ExcelKit(Desc = "①減速颜色映射判定次数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①減速颜色映射判定次数", Align = TextAlign.Left)]
         public string? IssSlowColor1sum { get; set; }
 
-        [ExcelKit(Desc = "①減速颜色映射判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "①減速颜色映射判定", Align = TextAlign.Left)]
         public string? IssSlowColor1Dec { get; set; }
 
-        [ExcelKit(Desc = "②加速颜色映射判定噪音(dB)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②加速颜色映射判定噪音(dB)", Align = TextAlign.Left)]
         public string? IssRevColor2dB { get; set; }
 
-        [ExcelKit(Desc = "②加速颜色映射判定频率(Hz)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②加速颜色映射判定频率(Hz)", Align = TextAlign.Left)]
         public string? IssRevColor2Hz { get; set; }
 
-        [ExcelKit(Desc = "②加速颜色映射判定旋转数(rpm)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②加速颜色映射判定旋转数(rpm)", Align = TextAlign.Left)]
         public string? IssRevColor2rpm { get; set; }
 
-        [ExcelKit(Desc = "②加速颜色映射判定次数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②加速颜色映射判定次数", Align = TextAlign.Left)]
         public string? IssRevColor2sum { get; set; }
 
-        [ExcelKit(Desc = "②加速颜色映射判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②加速颜色映射判定", Align = TextAlign.Left)]
         public string? IssRevColor2Dec { get; set; }
 
-        [ExcelKit(Desc = "②減速颜色映射判定噪音(dB)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②減速颜色映射判定噪音(dB)", Align = TextAlign.Left)]
         public string? IssSlowColor2dB { get; set; }
 
-        [ExcelKit(Desc = "②減速颜色映射判定频率(Hz)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②減速颜色映射判定频率(Hz)", Align = TextAlign.Left)]
         public string? IssSlowColor2Hz { get; set; }
 
-        [ExcelKit(Desc = "②減速颜色映射判定旋转数(rpm)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②減速颜色映射判定旋转数(rpm)", Align = TextAlign.Left)]
         public string? IssSlowColor2rpm { get; set; }
 
-        [ExcelKit(Desc = "②減速颜色映射判定次数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②減速颜色映射判定次数", Align = TextAlign.Left)]
         public string? IssSlowColor2sum { get; set; }
 
-        [ExcelKit(Desc = "②減速颜色映射判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "②減速颜色映射判定", Align = TextAlign.Left)]
         public string? IssSlowColor2Dec { get; set; }
 
-        [ExcelKit(Desc = "③加速颜色映射判定噪音(dB)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③加速颜色映射判定噪音(dB)", Align = TextAlign.Left)]
         public string? IssRevColor3dB { get; set; }
 
-        [ExcelKit(Desc = "③加速颜色映射判定频率(Hz)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③加速颜色映射判定频率(Hz)", Align = TextAlign.Left)]
         public string? IssRevColor3Hz { get; set; }
 
-        [ExcelKit(Desc = "③加速颜色映射判定旋转数(rpm)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③加速颜色映射判定旋转数(rpm)", Align = TextAlign.Left)]
         public string? IssRevColor3rpm { get; set; }
 
-        [ExcelKit(Desc = "③加速颜色映射判定次数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③加速颜色映射判定次数", Align = TextAlign.Left)]
         public string? IssRevColor3sum { get; set; }
 
-        [ExcelKit(Desc = "③加速颜色映射判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③加速颜色映射判定", Align = TextAlign.Left)]
         public string? IssRevColor3Dec { get; set; }
 
-        [ExcelKit(Desc = "③減速颜色映射判定噪音(dB)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③減速颜色映射判定噪音(dB)", Align = TextAlign.Left)]
         public string? IssSlowColor3dB { get; set; }
 
-        [ExcelKit(Desc = "③減速颜色映射判定频率(Hz)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③減速颜色映射判定频率(Hz)", Align = TextAlign.Left)]
         public string? IssSlowColor3Hz { get; set; }
 
-        [ExcelKit(Desc = "③減速颜色映射判定旋转数(rpm)",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③減速颜色映射判定旋转数(rpm)", Align = TextAlign.Left)]
         public string? IssSlowColor3rpm { get; set; }
 
-        [ExcelKit(Desc = "③減速颜色映射判定次数",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③減速颜色映射判定次数", Align = TextAlign.Left)]
         public string? IssSlowColor3sum { get; set; }
 
-        [ExcelKit(Desc = "③減速颜色映射判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "③減速颜色映射判定", Align = TextAlign.Left)]
         public string? IssSlowColor3Dec { get; set; }
 
-        [ExcelKit(Desc = "多行识别",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "多行识别", Align = TextAlign.Left)]
         public string? IssCol { get; set; }
 
-        [ExcelKit(Desc = "油泵油圧",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油泵油圧", Align = TextAlign.Left)]
         public string? IssOilPump { get; set; }
 
-        [ExcelKit(Desc = "油泵油圧判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "油泵油圧判定", Align = TextAlign.Left)]
         public string? IssOilPumpDec { get; set; }
 
-        [ExcelKit(Desc = "溢流阀油圧",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "溢流阀油圧", Align = TextAlign.Left)]
         public string? IssReliefValve { get; set; }
 
-        [ExcelKit(Desc = "溢流阀油圧判定",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "溢流阀油圧判定", Align = TextAlign.Left)]
         public string? IssReliefValveDec { get; set; }
 
-        [ExcelKit(Desc = "防错防误26计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误26计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate26 { get; set; }
 
-        [ExcelKit(Desc = "防错防误28计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误28计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate28 { get; set; }
 
-        [ExcelKit(Desc = "防错防误29计测日時",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "防错防误29计测日時", Align = TextAlign.Left)]
         public string? PokayokeDate29 { get; set; }
 
         [ExcelKit(Desc = "刻印计测日時", Align = TextAlign.Left)]
@@ -1456,10 +1455,10 @@ namespace Traceability_System.Entity.ExporteModels
         [ExcelKit(Desc = "HSG セット计测日時", Align = TextAlign.Left)]
         public string? HsgSetDate { get; set; }
 
-        [ExcelKit(Desc = "托盘 No",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "托盘 No", Align = TextAlign.Left)]
         public string? Tray { get; set; }
 
-        [ExcelKit(Desc = "重量",  Align = TextAlign.Left)]
+        [ExcelKit(Desc = "重量", Align = TextAlign.Left)]
         public string? Weight { get; set; }
     }
 }

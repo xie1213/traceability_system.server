@@ -1,7 +1,5 @@
-﻿using DocumentFormat.OpenXml.Vml.Office;
-using ExcelKit.Core.Infrastructure.Factorys;
+﻿using ExcelKit.Core.Infrastructure.Factorys;
 using Newtonsoft.Json;
-using NPOI.SS.Util.CellWalk;
 using OfficeOpenXml;
 using System.Data;
 using System.Diagnostics;
@@ -142,7 +140,7 @@ namespace Traceability_System.Models.ExportedMethod
                 result.Add(item);
             }
 
-           
+
 
 
             ExportTask exportTask = new ExportTask();
@@ -174,7 +172,7 @@ namespace Traceability_System.Models.ExportedMethod
                     if (!File.Exists(fliePath))
                     {
                         File.Move(path, fliePath);
-                       
+
                     }
                     File.Delete(path);
                     ToFileByts(fliePath);
@@ -211,7 +209,7 @@ namespace Traceability_System.Models.ExportedMethod
                 return false;
                 //inUse =false;
             }
-            
+
             bool isflie = File.Exists(value.fliePath);
 
             if (!isflie)
@@ -244,7 +242,7 @@ namespace Traceability_System.Models.ExportedMethod
 
             // 保存修改后的 Excel 文件
             workbook.Save(newPatn);
-            
+
             string tblHdrPath = Path.Combine(@"D:\exportTable", prefix + ".xlsx");
 
             //File.Delete(oldPath);
@@ -259,7 +257,7 @@ namespace Traceability_System.Models.ExportedMethod
         }
 
         //合并文件
-        public void MergeFile(string path1, string path2,int intCount)
+        public void MergeFile(string path1, string path2, int intCount)
         {
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
             try

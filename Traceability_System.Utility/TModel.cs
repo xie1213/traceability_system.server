@@ -59,10 +59,10 @@ public static class TModels
         catch (Exception e)
         {
 
-            Console.WriteLine("字段解析失败"+valus + e.Message);
+            Console.WriteLine("字段解析失败" + valus + e.Message);
             throw;
         }
-       
+
     }
 
 
@@ -89,7 +89,7 @@ public static class TModels
         }
         catch (Exception ex)
         {
-            Console.WriteLine(valus + "字段错误" +ex.Message);
+            Console.WriteLine(valus + "字段错误" + ex.Message);
             throw;
         }
 

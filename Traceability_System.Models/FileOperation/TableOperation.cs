@@ -17,7 +17,7 @@ public class TableOperation
     string today = DateTime.Today.ToString("yyyy-MM-dd");
 
     readonly SqlHelper _sqlHelper = new();
-    readonly LogHelper _logHelper = new();  
+    readonly LogHelper _logHelper = new();
     //public static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
 
     //检查文件夹中是否有文件
@@ -58,10 +58,10 @@ public class TableOperation
         }
         catch (Exception e)
         {
-            _logHelper.Warn(e.Message);
+            _logHelper.Warn("DirectoryExist方法错误:"+e.Message);
             throw;
         }
-      
+
 
     }
 
@@ -69,89 +69,87 @@ public class TableOperation
     public async Task GetCsvCellValueTask(string fileName, string folder)
     {
         if (!File.Exists(fileName))
-        {
             return;
-        }
-        try
+
+        int retryCount = 0;
+        const int maxRetryCount = 3;
+        while (retryCount < maxRetryCount)
         {
-            using (var reader = new StreamReader(fileName))
+            try
             {
-                //await _fileAccessSemaphore.WaitAsync(); // 获取文件信号保证只有一个
-                ProofData proofData = new ProofData();
-                string[] lines = File.ReadLines(fileName).ToArray();
-                if (lines.Length == 0)
+                using (var reader = new StreamReader(fileName))
                 {
-                    return;
-                }
+                    //await _fileAccessSemaphore.WaitAsync(); // 获取文件信号保证只有一个
+                    ProofData proofData = new ProofData();
+                    string[] lines = File.ReadLines(fileName).ToArray();
+                    if (lines.Length == 0)
+                        return;
 
-                var strFile = lines[RowIndex].Split(',')[ColIndex];
-                var strtime = lines[RowIndex].Split(',')[0];
-                string tableName = folder + "Table";
+                    var strFile = lines[RowIndex].Split(',')[ColIndex];
+                    var strtime = lines[RowIndex].Split(',')[0];
+                    string tableName = folder + "Table";
 
-                // 获取数据分析结果
+                    // 获取数据分析结果
 
-                var list = GetAnalysis(strFile, fileName, folder);
+                    var list = GetAnalysis(strFile, fileName, folder);
 
-                // 获取表的列名
-                var colName = SqlHelper.GetSqlColumnName(tableName);
+                    // 获取表的列名
+                    var colName = SqlHelper.GetSqlColumnName(tableName);
 
 
-                var keyValue = proofData.KeyValues(tableName, list);
+                    var keyValue = proofData.KeyValues(tableName, list);
 
-                //从数据库中读取更新次数
-                string sql = $"select Number from {tableName}  where {keyValue[0]} = '{keyValue[1]}' ";
-                var sqlTest =await SqlHelper.ExecuteScalarAsync(sql);
+                    //从数据库中读取更新次数
+                    string sql = $"select Number from {tableName}  where {keyValue[0]} = '{keyValue[1]}' ";
+                    var sqlTest = await SqlHelper.ExecuteScalarAsync(sql);
 
-                RenewParameter renewParameter = new RenewParameter();
-                renewParameter.tableName = tableName;
-                renewParameter.colNameList = colName; ;
-                renewParameter.valueList = list;
-                renewParameter.specify = keyValue;
-                renewParameter.renewTime = strtime;
-                renewParameter.renewNum = Convert.ToInt32(sqlTest);
+                    RenewParameter renewParameter = new RenewParameter();
+                    renewParameter.tableName = tableName;
+                    renewParameter.colNameList = colName; ;
+                    renewParameter.valueList = list;
+                    renewParameter.specify = keyValue;
+                    renewParameter.renewTime = strtime;
+                    renewParameter.renewNum = Convert.ToInt32(sqlTest);
 
-                if (sqlTest != null)
-                {
-                    int renew = await _sqlHelper.BuildUpdateQuery(renewParameter);
-                    if (renew >= 1)
+                    if (sqlTest != null)
                     {
-                        Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
-                        //Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
+                        int renew = await _sqlHelper.BuildUpdateQuery(renewParameter);
+                        if (renew >= 1)
+                        {
+                            Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
+                        }
 
                     }
-
-                }
-                else
-                {
-                    var AddTable = SqlHelper.BatchAddTable(renewParameter);
-                    if (AddTable)
+                    else
                     {
+                        var AddTable = SqlHelper.BatchAddTable(renewParameter);
+                        if (AddTable)
+                        {
 
-                        Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},添加成功");
-                        //Logger.WriteLogAsync($"表:{tableName},序列号:{keyValue[1]},添加成功");
+                            Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},添加成功");
+                           
+                        }
                     }
-
-
-                    //Logger.WriteLogAsync(fileName + "添加成功");
-
                 }
-                //Logger.WriteLogAsync($"旧文件路径:{fileName}");
+                await UploadFileAsync(fileName, folder);
+                break;
+
             }
-            await UploadFileAsync(fileName, folder);
-
+            catch (IOException ex)
+            {
+                Logger.WriteLogAsync($"文件 {fileName} 正在被另一个程序调用，跳过,跳过次数 {retryCount}");
+                retryCount++;
+                if (retryCount < maxRetryCount)
+                {
+                    await Task.Delay(1000); // 等待1秒钟后重试
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLogAsync($"读取文件{fileName}失败,因为:{ex.Message}");
+                throw;
+            }
         }
-        catch (IOException ex)
-        {
-            // 可以选择等待一段时间或者尝试其他方式来解决这个问题
-            Logger.WriteLogAsync($"'{fileName} 错误 {ex.Message}'");
-            return;
-        }
-        catch (Exception ex)
-        {
-            Logger.WriteLogAsync(fileName + "解析失败" + ex.Message);
-            throw;
-        }
-
     }
 
 
@@ -199,7 +197,7 @@ public class TableOperation
         }
         catch (Exception ex)
         {
-            Logger.WriteLogAsync($"解析表失败{ex.Message}");
+            Logger.WriteLogAsync($"解析{dirName}表失败:{ex.Message}");
             //Console.WriteLine(str + "error");
             throw;
         }
@@ -211,10 +209,7 @@ public class TableOperation
     public void UploadFile(string oldPath, string folder)
     {
         if (!File.Exists(oldPath))
-        {
-            //Console.WriteLine(oldPath + "文件不存在");
             return;
-        }
         try
         {
             //await TableOperation._fileAccessSemaphore.WaitAsync(); // 获取文件信号保证只有一个
@@ -238,13 +233,7 @@ public class TableOperation
             }
             File.Move(oldPath, newFilePath);
 
-            // 删除源文件
-            //if (File.Exists(newFilePath))
-            //{
-            //    File.Delete(oldPath);
-            //}
-            //Logger.WriteLogAsync($"新文件路径 {newFilePath}\r\n");
-
+           
         }
         catch (IOException ex)
         {
@@ -287,7 +276,6 @@ public class TableOperation
                 }
 
                 File.Move(oldPath, newFilePath);
-                //Logger.WriteLogAsync($"文件移动成功: {oldPath} -> {newFilePath}");
                 return;
             }
             catch (IOException ex)
@@ -295,7 +283,7 @@ public class TableOperation
                 retries++;
                 if (retries >= maxRetries)
                 {
-                    Logger.WriteLogAsync($"无法移动文件 '{oldPath}', {ex.Message}。");
+                    Logger.WriteLogAsync($"文件{oldPath} 正在被占用 , 跳过次数:{retries}");
                     throw;
                 }
                 // 等待一段时间后重试
@@ -303,7 +291,7 @@ public class TableOperation
             }
             catch (Exception e)
             {
-                Logger.WriteLogAsync($"错误文件 {oldPath}, {e.Message}");
+                Logger.WriteLogAsync($"更新文件失败, {e.Message}");
                 throw; // 保留原始异常信息
             }
         }

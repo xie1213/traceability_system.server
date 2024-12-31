@@ -2,7 +2,6 @@
 
 using ExcelKit.Core.Attributes;
 using ExcelKit.Core.Constraint.Enums;
-using ExcelKit.Core.Infrastructure.Converter;
 
 namespace Traceability_System.Entity.ExporteModels
 {
