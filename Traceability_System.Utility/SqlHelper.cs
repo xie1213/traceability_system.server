@@ -302,7 +302,72 @@ namespace Appraisal_System.Utility
 
 
         }
+        //public static bool BatchAddTable(RenewParameter renew)
+        //{
+        //    try
+        //    {
+        //        if (renew.valueList.Count > renew.colNameList.Count)
+        //        {
+        //            return false;
+        //        }
 
+        //        using var conn = GetConnection();
+
+        //        // 创建临时数据表
+        //        var dt = new DataTable();
+        //        foreach (string name in renew.colNameList)
+        //        {
+        //            dt.Columns.Add(name);
+        //        }
+
+        //        // 创建数据行并赋值
+        //        DataRow newRow = dt.NewRow();
+        //        for (int i = 0; i < renew.colNameList.Count; i++)
+        //        {
+        //            string colName = renew.colNameList[i];
+        //            if (i < renew.valueList.Count)
+        //            {
+        //                // 处理空字符串或无效日期值
+        //                if (dt.Columns[colName].DataType == typeof(DateTime) && string.IsNullOrWhiteSpace(renew.valueList[i]?.ToString()))
+        //                {
+        //                    newRow[colName] = DBNull.Value; // 将空字符串替换为 DBNull
+        //                }
+        //                else
+        //                {
+        //                    newRow[colName] = renew.valueList[i];
+        //                }
+        //            }
+        //            else
+        //            {
+        //                // 如果 valueList 不足，填充默认值
+        //                newRow[colName] = DBNull.Value;
+        //            }
+        //        }
+        //        dt.Rows.Add(newRow);
+
+        //        // 执行批量插入
+        //        using var bulkCopy = new SqlBulkCopy(conn);
+        //        bulkCopy.DestinationTableName = renew.tableName;
+
+        //        // 映射列
+        //        foreach (var colName in renew.colNameList)
+        //        {
+        //            bulkCopy.ColumnMappings.Add(colName, colName);
+        //        }
+
+        //        if (dt != null)
+        //        {
+        //            bulkCopy.WriteToServer(dt);
+        //        }
+
+        //        return true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        logHelper.Error("批量插入时失败: " + e.Message);
+        //        return false; // 返回 false 表示操作失败
+        //    }
+        //}
         //批量添加
         //public static bool BatchAddTable(List<string> valueList, List<string> colNameList, string tableName, string strtime)
         public static bool BatchAddTable(RenewParameter renew)
@@ -326,7 +391,7 @@ namespace Appraisal_System.Utility
                     //if (!name.Equals("Id"))
                     dt.Columns.Add(name);
                 }
-
+                Console.WriteLine();
                 //string Alljson = JsonConvert.SerializeObject(dt);
 
                 //RedisHelper.SetJsonData(renew.tableName, Alljson, 5);

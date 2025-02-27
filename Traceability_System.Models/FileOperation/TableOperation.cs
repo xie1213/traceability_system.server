@@ -13,7 +13,7 @@ public class TableOperation
     int RowIndex = 3; // 第四行的索引（索引从0开始）
     string DirPath = "D:\\FTP\\";
 
-    public string Complete = "D:\\FTP\\Complete";
+    public string Complete = "D:\\FTP";
     string today = DateTime.Today.ToString("yyyy-MM-dd");
 
     readonly SqlHelper _sqlHelper = new();
@@ -79,8 +79,8 @@ public class TableOperation
             {
                 using (var reader = new StreamReader(fileName))
                 {
-                    //await _fileAccessSemaphore.WaitAsync(); // 获取文件信号保证只有一个
                     ProofData proofData = new ProofData();
+
                     string[] lines = File.ReadLines(fileName).ToArray();
                     if (lines.Length == 0)
                         return;
@@ -103,13 +103,16 @@ public class TableOperation
                     string sql = $"select Number from {tableName}  where {keyValue[0]} = '{keyValue[1]}' ";
                     var sqlTest = await SqlHelper.ExecuteScalarAsync(sql);
 
-                    RenewParameter renewParameter = new RenewParameter();
-                    renewParameter.tableName = tableName;
-                    renewParameter.colNameList = colName; ;
-                    renewParameter.valueList = list;
-                    renewParameter.specify = keyValue;
-                    renewParameter.renewTime = strtime;
-                    renewParameter.renewNum = Convert.ToInt32(sqlTest);
+                    RenewParameter renewParameter = new RenewParameter()
+                    {
+                        tableName = tableName,
+                        colNameList = colName,
+                        valueList = list,
+                        specify = keyValue,
+                        renewTime = strtime,
+                        renewNum = Convert.ToInt32(sqlTest)
+                    };
+                    
 
                     if (sqlTest != null)
                     {
@@ -117,6 +120,8 @@ public class TableOperation
                         if (renew >= 1)
                         {
                             Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
+
+                            await UploadFileAsync(fileName, folder, "Complete");
                         }
 
                     }
@@ -127,18 +132,18 @@ public class TableOperation
                         {
 
                             Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},添加成功");
-                           
+
+                            await UploadFileAsync(fileName, folder, "Complete");
                         }
                     }
                 }
-                await UploadFileAsync(fileName, folder);
                 break;
 
             }
             catch (IOException ex)
             {
-                Logger.WriteLogAsync($"文件 {fileName} 正在被另一个程序调用，跳过,跳过次数 {retryCount}");
-                retryCount++;
+                //Logger.WriteLogAsync($"文件 {fileName} 正在被另一个程序调用，跳过,跳过次数 {retryCount}");
+                retryCount+=1;
                 if (retryCount < maxRetryCount)
                 {
                     await Task.Delay(1000); // 等待1秒钟后重试
@@ -147,6 +152,7 @@ public class TableOperation
             catch (Exception ex)
             {
                 Logger.WriteLogAsync($"读取文件{fileName}失败,因为:{ex.Message}");
+                await UploadFileAsync(fileName, folder, "Error");
                 throw;
             }
         }
@@ -250,7 +256,7 @@ public class TableOperation
         }
     }
 
-    public async Task UploadFileAsync(string oldPath, string folder, int maxRetries = 5)
+    public async Task UploadFileAsync(string oldPath, string folder,string state, int maxRetries = 5)
     {
         if (!File.Exists(oldPath))
         {
@@ -265,7 +271,7 @@ public class TableOperation
             {
                 string fileName = Path.GetFileName(oldPath);
                 string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
-                string newPath = Path.Combine(Complete, today, folder, fileDirectory);
+                string newPath = Path.Combine(Complete, state, today, folder, fileDirectory);
 
                 Directory.CreateDirectory(newPath);
                 string newFilePath = Path.Combine(newPath, fileName);
