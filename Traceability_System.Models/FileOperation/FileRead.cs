@@ -32,7 +32,11 @@ namespace Traceability_System.Models.FileOperation
 
         public async Task ProcessFileAsync(string fileName, string folder)
         {
-            if (!File.Exists(fileName)) return;
+            if (IsFileLocked(fileName))
+            {
+                _loger.Warn($"文件 {fileName} 被占用，无法处理");
+                return;
+            }
 
             string[] lines;
             using (var reader = new StreamReader(fileName))
@@ -47,7 +51,7 @@ namespace Traceability_System.Models.FileOperation
             }
 
             // 2. 移动文件到处理目录
-            string processingFolder = Path.Combine(Complete, "_processing");
+            string processingFolder = Path.Combine(Complete,folder, "_processing");
             Directory.CreateDirectory(processingFolder); // 确保目录存在
             string processingFilePath = Path.Combine(processingFolder, Path.GetFileName(fileName));
             try
@@ -128,7 +132,8 @@ namespace Traceability_System.Models.FileOperation
 
         }
 
-
+        
+        
 
 
 
@@ -163,6 +168,21 @@ namespace Traceability_System.Models.FileOperation
 
 
 
+        public bool IsFileLocked(string filePath)
+        {
+            try
+            {
+                using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                {
+                    stream.Close();
+                }
+                return false; // 文件未被占用
+            }
+            catch (IOException)
+            {
+                return true; // 文件被占用
+            }
+        }
 
 
 
@@ -173,32 +193,47 @@ namespace Traceability_System.Models.FileOperation
                 Logger.WriteLogAsync($"{oldPath} 文件不存在");
                 return;
             }
-
             int retries = 0;
+            while (retries < maxRetries)
             {
-                try
+
                 {
-                    string fileName = Path.GetFileName(oldPath);
-                    string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
-                    string newPath = Path.Combine(Complete, state, today, folder, fileDirectory);
-
-                    Directory.CreateDirectory(newPath);
-                    string newFilePath = Path.Combine(newPath, fileName);
-
-                    if (File.Exists(newFilePath))
+                    try
                     {
-                        File.Delete(newFilePath);
-                    }
+                        string fileName = Path.GetFileName(oldPath);
+                        string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
+                        string newPath = Path.Combine(Complete, state, today, folder, fileDirectory);
 
-                    File.Move(oldPath, newFilePath);
-                    return;
-                }
-                catch (Exception e)
-                {
-                    Logger.WriteLogAsync($"移动文件失败, {e.Message}");
-                    throw; // 保留原始异常信息
+                        Directory.CreateDirectory(newPath);
+                        string newFilePath = Path.Combine(newPath, fileName);
+
+                        if (File.Exists(newFilePath))
+                        {
+                            File.Delete(newFilePath);
+                        }
+
+                        File.Move(oldPath, newFilePath);
+                        return;
+                    }
+                    catch (IOException ex)
+                    {
+                        retries++;
+                        if (retries >= maxRetries)
+                        {
+                            Logger.WriteLogAsync($"文件{oldPath} 正在被占用 , 跳过次数:{retries}");
+                            //throw;
+                        }
+                        // 等待一段时间后重试
+                        await Task.Delay(1000);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.WriteLogAsync($"移动文件失败, {e.Message}");
+                        throw; // 保留原始异常信息
+                    }
                 }
             }
         }
     }
 }
+
