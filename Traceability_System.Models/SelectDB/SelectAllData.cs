@@ -112,6 +112,9 @@ namespace Traceability_System.Models.SelectDB
             }
             catch (Exception ex)
             {
+                var json = JsonConvert.SerializeObject(parameter);
+                _logHelper.Error(json);
+
                 _logHelper.Error("获取表格信息时出错" + ex.Message);
                 throw;
             }
@@ -388,6 +391,8 @@ namespace Traceability_System.Models.SelectDB
             }
             catch (Exception e)
             {
+                var json = JsonConvert.SerializeObject(parameter);
+                _logHelper.Error(json);
                 _logHelper.Error("获取出荷表数据时出现错误" + e.Message);
                 throw;
                 //return e.Message;

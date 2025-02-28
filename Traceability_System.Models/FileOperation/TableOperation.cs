@@ -91,7 +91,7 @@ public class TableOperation
 
                     // 获取数据分析结果
 
-                    var list = GetAnalysis(strFile, fileName, folder);
+                    var list = await GetAnalysis(strFile, fileName, folder);
 
                     // 获取表的列名
                     var colName = SqlHelper.GetSqlColumnName(tableName);
@@ -152,7 +152,7 @@ public class TableOperation
             catch (Exception ex)
             {
                 Logger.WriteLogAsync($"读取文件{fileName}失败,因为:{ex.Message}");
-                await UploadFileAsync(fileName, folder, "Error");
+                //await UploadFileAsync(fileName, folder, "Error");
                 throw;
             }
         }
@@ -168,7 +168,7 @@ public class TableOperation
     }
 
     //根据表名获取解析文件得方法
-    List<string> GetAnalysis(string str, string filePath, string dirName)
+    async Task<List<string>>GetAnalysis(string str, string filePath, string dirName)
     {
         //Console.WriteLine(dirName);
         object rotor;
@@ -205,6 +205,7 @@ public class TableOperation
         {
             Logger.WriteLogAsync($"解析{dirName}表失败:{ex.Message}");
             //Console.WriteLine(str + "error");
+           await UploadFileAsync(filePath, dirName, "Error");
             throw;
         }
 
@@ -256,7 +257,7 @@ public class TableOperation
         }
     }
 
-    public async Task UploadFileAsync(string oldPath, string folder,string state, int maxRetries = 5)
+    public async Task UploadFileAsync(string oldPath, string folder,string state, int maxRetries = 3)
     {
         if (!File.Exists(oldPath))
         {
@@ -290,14 +291,14 @@ public class TableOperation
                 if (retries >= maxRetries)
                 {
                     Logger.WriteLogAsync($"文件{oldPath} 正在被占用 , 跳过次数:{retries}");
-                    throw;
+                    //throw;
                 }
                 // 等待一段时间后重试
                 await Task.Delay(1000);
             }
             catch (Exception e)
             {
-                Logger.WriteLogAsync($"更新文件失败, {e.Message}");
+                Logger.WriteLogAsync($"移动文件失败, {e.Message}");
                 throw; // 保留原始异常信息
             }
         }
