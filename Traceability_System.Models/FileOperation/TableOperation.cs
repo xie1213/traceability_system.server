@@ -7,6 +7,9 @@ namespace Traceability_System.Models.FileOperation;
 
 public class TableOperation
 {
+    readonly SqlHelper _sqlHelper = new();
+    readonly LogHelper _logHelper = new();
+    readonly FileRead _fileRead = new();
 
     public List<string> PathList = new();
     int ColIndex = 1; // 第二列的索引（索引从0开始）
@@ -16,8 +19,6 @@ public class TableOperation
     public string Complete = "D:\\FTP";
     string today = DateTime.Today.ToString("yyyy-MM-dd");
 
-    readonly SqlHelper _sqlHelper = new();
-    readonly LogHelper _logHelper = new();
     //public static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
 
     //检查文件夹中是否有文件
@@ -41,7 +42,7 @@ public class TableOperation
 
                     foreach (var fileName in files)
                     {
-                        await GetCsvCellValueTask(fileName, folder);
+                        await _fileRead.ProcessFileAsync(fileName, folder);
                     }
                 }
 
@@ -58,7 +59,7 @@ public class TableOperation
         }
         catch (Exception e)
         {
-            _logHelper.Warn("DirectoryExist方法错误:"+e.Message);
+            _logHelper.Warn("DirectoryExist方法错误:" + e.Message);
             throw;
         }
 
@@ -112,7 +113,7 @@ public class TableOperation
                         renewTime = strtime,
                         renewNum = Convert.ToInt32(sqlTest)
                     };
-                    
+
 
                     if (sqlTest != null)
                     {
@@ -143,7 +144,7 @@ public class TableOperation
             catch (IOException ex)
             {
                 //Logger.WriteLogAsync($"文件 {fileName} 正在被另一个程序调用，跳过,跳过次数 {retryCount}");
-                retryCount+=1;
+                retryCount += 1;
                 if (retryCount < maxRetryCount)
                 {
                     await Task.Delay(1000); // 等待1秒钟后重试
@@ -158,6 +159,8 @@ public class TableOperation
         }
     }
 
+   
+
 
 
 
@@ -168,7 +171,7 @@ public class TableOperation
     }
 
     //根据表名获取解析文件得方法
-    async Task<List<string>>GetAnalysis(string str, string filePath, string dirName)
+    async Task<List<string>> GetAnalysis(string str, string filePath, string dirName)
     {
         //Console.WriteLine(dirName);
         object rotor;
@@ -205,7 +208,7 @@ public class TableOperation
         {
             Logger.WriteLogAsync($"解析{dirName}表失败:{ex.Message}");
             //Console.WriteLine(str + "error");
-           await UploadFileAsync(filePath, dirName, "Error");
+            await UploadFileAsync(filePath, dirName, "Error");
             throw;
         }
 
@@ -240,7 +243,7 @@ public class TableOperation
             }
             File.Move(oldPath, newFilePath);
 
-           
+
         }
         catch (IOException ex)
         {
@@ -257,7 +260,7 @@ public class TableOperation
         }
     }
 
-    public async Task UploadFileAsync(string oldPath, string folder,string state, int maxRetries = 3)
+    public async Task UploadFileAsync(string oldPath, string folder, string state, int maxRetries = 3)
     {
         if (!File.Exists(oldPath))
         {
