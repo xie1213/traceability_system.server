@@ -1,14 +1,5 @@
 ﻿using Appraisal_System.Utility;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using NPOI.SS.Formula.Functions;
-using NPOI.SS.UserModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Transactions;
 using Traceability_System.DTO;
 using Traceability_System.Models.CharAnalysis;
 using Traceability_System.Utility;
@@ -23,47 +14,22 @@ namespace Traceability_System.Models.FileOperation
 
         int ColIndex = 1; // 第二列的索引（索引从0开始）
         int RowIndex = 3; // 第四行的索引（索引从0开始）
+        //int retryCount = 0;
+        int maxRetries = 5;
+        string error = "Error";
+        string complete = "Complete";
 
-
-        public string Complete = "D:\\FTP";
+        public string dirFile = "D:\\FTP";
         string today = DateTime.Today.ToString("yyyy-MM-dd");
 
 
 
         public async Task ProcessFileAsync(string fileName, string folder)
         {
-            if (IsFileLocked(fileName))
-            {
-                _loger.Warn($"文件 {fileName} 被占用，无法处理");
-                return;
-            }
 
-            string[] lines;
-            using (var reader = new StreamReader(fileName))
-            {
-                lines = File.ReadLines(fileName).ToArray();
-                if (lines.Length == 0)
-                {
-                    await UploadFileAsync(fileName, folder, "Error");
-                    _loger.Error($"{fileName} 读取错误,数据为空");
-                    return;
-                }
-            }
 
-            // 2. 移动文件到处理目录
-            string processingFolder = Path.Combine(Complete,folder, "_processing");
-            Directory.CreateDirectory(processingFolder); // 确保目录存在
-            string processingFilePath = Path.Combine(processingFolder, Path.GetFileName(fileName));
-            try
-            {
-                File.Move(fileName, processingFilePath); // 文件移动操作
-            }
-            catch (Exception ex)
-            {
-                _loger.Error($"文件 {fileName} 移动失败, 跳过当前文件, 错误信息: {ex.Message}");
-                return;
-            }
-
+            string[] lines = await ReadFileWithRetryAsync(fileName);
+            if (lines == null) return;
 
             var strFile = lines[RowIndex].Split(',')[ColIndex];
             var strtime = lines[RowIndex].Split(',')[0];
@@ -72,15 +38,86 @@ namespace Traceability_System.Models.FileOperation
             try
             {
                 // 分析表
-                list = await ParseDataAsync(strFile, folder);
+                list = ParseDataAsync(strFile, folder);
+                //await UploadFileAsync(fileName, folder, "Complete");
             }
             catch (Exception ex)
             {
-                await UploadFileAsync(processingFilePath, folder, "Error");
+                await UploadFileAsync(fileName, folder, error);
                 _loger.Error($"文件 {fileName} 读取失败,错误信息: {ex.Message}");
                 return;
             }
+
+            try
+            {
+                bool success = await CreateSQLAsync(fileName, folder, tableName, list, strtime);
+                if (success)
+                {
+                    await UploadFileAsync(fileName, folder, complete);
+                }
+            }
+            catch (Exception ex)
+            {
+                var logs = Path.GetFileNameWithoutExtension(fileName);
+               
+
+                _loger.logDir = CeratePath(fileName, error, folder);    
+
+                _loger.Error($"数据添加到数据库错误\t{ex.Message}");
+                await UploadFileAsync(fileName, folder, error);
+                throw;
+            }
+           
+
+
+
             //获取表列名
+
+
+
+        }
+
+        public async Task<string[]> ReadFileWithRetryAsync(string filePath)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    if (IsFileLocked(filePath))
+                    {
+                        retryCount++;
+                        if (retryCount >= maxRetries)
+                        {
+                            _loger.Warn($"文件 {filePath} 被占用，重试次数已用完");
+                            throw new IOException($"文件 {filePath} 被占用");
+                        }
+                        await Task.Delay(1000); // 等待1秒后重试
+                    }
+                    else
+                    {
+                        using (var reader = new StreamReader(filePath))
+                        {
+                            return (await reader.ReadToEndAsync()).Split(Environment.NewLine);
+                        }
+                    }
+                }
+                catch (IOException ex)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                    {
+                        _loger.Error($"文件 {filePath} 读取失败，重试次数已用完，错误信息: {ex.Message}");
+                        break ;
+                    }
+                    await Task.Delay(1000); // 等待1秒后重试
+                }
+            }
+            return null;
+        }
+
+        async Task<bool> CreateSQLAsync(string fileName, string folder, string tableName, List<string> list, string strtime)
+        {
             var colName = SqlHelper.GetSqlColumnName(tableName);
 
             var keyValue = _proofData.KeyValues(tableName, list);
@@ -99,45 +136,64 @@ namespace Traceability_System.Models.FileOperation
                 renewTime = strtime,
                 renewNum = Convert.ToInt32(sqlTest)
             };
-            try
+
+            if (sqlTest == null)
             {
-                if (sqlTest != null)
+                try
                 {
-                    int renew = await _sqlHelper.BuildUpdateQuery(renewParameter);
-                    if (renew >= 1)
+
+                    SqlHelper.BatchAddTable(renewParameter);
+                    Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},添加成功");
+                    return true;
+                }
+                catch (Exception ex)
+                {
                     {
-                        Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
-
-                        // 移动文件到完成目录
-                        await UploadFileAsync(processingFilePath, folder, "Complete");
-                    }
-                    else
-                    {
-                        var AddTable = SqlHelper.BatchAddTable(renewParameter);
-                        if (AddTable)
-                        {
-
-                            Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},添加成功");
-
-                            await UploadFileAsync(fileName, folder, "Complete");
-                        }
+                        _loger.Warn($"添加失败:{tableName},序列号:{keyValue[1]} \n错误:{ex.Message} ");
+                        return false;
                     }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                _loger.Error($"数据库操作失败{fileName}");
-                return;
-            }
+                try
+                {
+                    await _sqlHelper.BuildUpdateQuery(renewParameter);
+                    Console.WriteLine($"表:{tableName},序列号:{keyValue[1]},更新成功,已更新{renewParameter.renewNum + 1}次");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _loger.Warn($"更新失败:{tableName},序列号:{keyValue[1]} \n错误:{ex.Message} ");
+                    return false;
 
+                }
+            }
         }
 
-        
-        
+
+        private async Task<bool> ExecuteTransactionAsync(string fileName, string folder, string tableName, List<string> list, string strtime)
+        {
+            using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {   
+                // 存储数据
+                bool dbSuccess = await CreateSQLAsync(fileName, folder, tableName, list, strtime);
+                if (!dbSuccess)
+                {
+                    return false;
+                }
+
+                // 移动文件
+                await UploadFileAsync(fileName, folder, complete);
+
+                // 提交事务
+                transaction.Complete();
+                return true;
+            }
+        }
 
 
-
-        private async Task<List<string>> ParseDataAsync(string str, string dirName)
+        private List<string> ParseDataAsync(string str, string dirName)
         {
             var parserMap = new Dictionary<string, Func<object>>
             {
@@ -186,7 +242,7 @@ namespace Traceability_System.Models.FileOperation
 
 
 
-        public async Task UploadFileAsync(string oldPath, string folder, string state, int maxRetries = 3)
+        public async Task UploadFileAsync(string oldPath, string folder, string state)
         {
             if (!File.Exists(oldPath))
             {
@@ -196,16 +252,13 @@ namespace Traceability_System.Models.FileOperation
             int retries = 0;
             while (retries < maxRetries)
             {
-
                 {
                     try
                     {
-                        string fileName = Path.GetFileName(oldPath);
-                        string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
-                        string newPath = Path.Combine(Complete, state, today, folder, fileDirectory);
+                        string fileDirectory = Path.GetFileName(oldPath);
+                        string newPath = CeratePath(oldPath, state, folder);
 
-                        Directory.CreateDirectory(newPath);
-                        string newFilePath = Path.Combine(newPath, fileName);
+                        string newFilePath = Path.Combine(newPath, fileDirectory);
 
                         if (File.Exists(newFilePath))
                         {
@@ -222,6 +275,7 @@ namespace Traceability_System.Models.FileOperation
                         {
                             Logger.WriteLogAsync($"文件{oldPath} 正在被占用 , 跳过次数:{retries}");
                             //throw;
+                            break;
                         }
                         // 等待一段时间后重试
                         await Task.Delay(1000);
@@ -233,6 +287,17 @@ namespace Traceability_System.Models.FileOperation
                     }
                 }
             }
+        }
+
+        string CeratePath(string oldPath,string state,string folder)
+        {
+            string fileName = Path.GetFileName(oldPath);
+            string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));
+            string newPath = Path.Combine(dirFile, state, today, folder, fileDirectory);
+
+            Directory.CreateDirectory(newPath);
+            return newPath;
+
         }
     }
 }

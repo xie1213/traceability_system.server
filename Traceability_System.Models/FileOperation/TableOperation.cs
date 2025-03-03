@@ -1,4 +1,5 @@
 ﻿using Appraisal_System.Utility;
+using NPOI.HPSF;
 using Traceability_System.DTO;
 using Traceability_System.Models.CharAnalysis;
 using Traceability_System.Utility;
@@ -24,46 +25,59 @@ public class TableOperation
     //检查文件夹中是否有文件
     public async Task DirectoryExist(string folder)
     {
-        try
-        {
-            string newPath = Path.Combine(DirPath, folder);
-            List<string> directoriesToDelete = new List<string>();
-            var dirPathlist = Directory.GetDirectories(newPath).ToList();
-            if (dirPathlist.Count > 0)
-            {
-                foreach (var item in dirPathlist)
-                {
-                    string[] files = Directory.GetFiles(item, "*.csv");
-                    if (files.Length == 0)
-                    {
-                        directoriesToDelete.Add(item);
-                        continue;
-                    }
+        string newPath = Path.Combine(DirPath, folder);
+        var dirPathlist = Directory.GetDirectories(newPath).ToList();
 
-                    foreach (var fileName in files)
-                    {
-                        await _fileRead.ProcessFileAsync(fileName, folder);
-                    }
+        if (dirPathlist.Count == 0) return;
+
+        List<string> directoriesToDelete = new List<string>();
+
+        foreach (var item in dirPathlist)
+        {
+            try
+            {
+                if (!Directory.Exists(item))
+                    continue;
+
+
+                string[] files = Directory.GetFiles(item, "*.csv");
+                if (files.Length == 0)
+                {
+                    directoriesToDelete.Add(item);
+                    continue;
                 }
 
-                // 在循环外部执行删除操作
-                foreach (var dirToDelete in directoriesToDelete)
+                await Parallel.ForEachAsync(files, async (fileName, cancellationToken) =>
                 {
-                    if (Directory.Exists(dirToDelete))
-                    {
-                        Directory.Delete(dirToDelete, true); // 删除目录及其内容
-                        dirPathlist.Remove(dirToDelete);
-                    }
+                    await _fileRead.ProcessFileAsync(fileName, folder);
+                });
+            }
+            catch (Exception ex)
+            {
+                _logHelper.Error($"文件读取异常:{ex.Message}");
+                throw;
+            }
+
+        }
+        DeleteEmptyDirectories(directoriesToDelete);
+    }
+    private void DeleteEmptyDirectories(List<string> directoriesToDelete)
+    {
+        foreach (var dirToDelete in directoriesToDelete)
+        {
+            try
+            {
+                if (Directory.Exists(dirToDelete))
+                {
+                    Directory.Delete(dirToDelete, true); // 删除目录及其内容
+                    _logHelper.Info($"目录 {dirToDelete} 已删除");
                 }
             }
+            catch (Exception ex)
+            {
+                _logHelper.Error($"删除目录 {dirToDelete} 失败, 错误信息: {ex.Message}");
+            }
         }
-        catch (Exception e)
-        {
-            _logHelper.Warn("DirectoryExist方法错误:" + e.Message);
-            throw;
-        }
-
-
     }
 
     //读取文件并移动文件
@@ -73,7 +87,7 @@ public class TableOperation
             return;
 
         int retryCount = 0;
-        const int maxRetryCount = 3;
+        const int maxRetryCount = 5;
         while (retryCount < maxRetryCount)
         {
             try
@@ -143,12 +157,15 @@ public class TableOperation
             }
             catch (IOException ex)
             {
-                //Logger.WriteLogAsync($"文件 {fileName} 正在被另一个程序调用，跳过,跳过次数 {retryCount}");
+                //L
                 retryCount += 1;
-                if (retryCount < maxRetryCount)
+                if (retryCount >= maxRetryCount)
                 {
-                    await Task.Delay(1000); // 等待1秒钟后重试
+                    _logHelper.Warn($"文件 {fileName} 正在被另一个程序调用，跳过,跳过次数 {retryCount}");
+                    break;
                 }
+
+                await Task.Delay(1000); // 等待1秒钟后重试
             }
             catch (Exception ex)
             {
@@ -159,7 +176,7 @@ public class TableOperation
         }
     }
 
-   
+
 
 
 
