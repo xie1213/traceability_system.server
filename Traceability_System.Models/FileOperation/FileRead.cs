@@ -27,14 +27,28 @@ namespace Traceability_System.Models.FileOperation
         public async Task ProcessFileAsync(string fileName, string folder)
         {
 
+            string tableName = folder + "Table";
+            List<string> list;
+            string strFile, strtime = "";
 
             string[] lines = await ReadFileWithRetryAsync(fileName);
             if (lines == null) return;
 
-            var strFile = lines[RowIndex].Split(',')[ColIndex];
-            var strtime = lines[RowIndex].Split(',')[0];
-            string tableName = folder + "Table";
-            List<string> list;
+            // 检查行数是否足够
+            if (lines.Length <= RowIndex)
+            {
+
+                _loger.logDir = CeratePath(fileName, error, folder);
+                _loger.Error($"文件 {fileName} 行数不足，至少需要 {RowIndex + 1} 行");
+                await UploadFileAsync(fileName, folder, error);
+                return;
+            }
+
+            strFile = lines[RowIndex].Split(',')[ColIndex];
+            strtime = lines[RowIndex].Split(',')[0];
+            
+
+
             try
             {
                 // 分析表
@@ -59,15 +73,15 @@ namespace Traceability_System.Models.FileOperation
             catch (Exception ex)
             {
                 var logs = Path.GetFileNameWithoutExtension(fileName);
-               
 
-                _loger.logDir = CeratePath(fileName, error, folder);    
+
+                _loger.logDir = CeratePath(fileName, error, folder);
 
                 _loger.Error($"数据添加到数据库错误\t{ex.Message}");
                 await UploadFileAsync(fileName, folder, error);
                 throw;
             }
-           
+
 
 
 
@@ -108,7 +122,7 @@ namespace Traceability_System.Models.FileOperation
                     if (retryCount >= maxRetries)
                     {
                         _loger.Error($"文件 {filePath} 读取失败，重试次数已用完，错误信息: {ex.Message}");
-                        break ;
+                        break;
                     }
                     await Task.Delay(1000); // 等待1秒后重试
                 }
@@ -175,7 +189,7 @@ namespace Traceability_System.Models.FileOperation
         private async Task<bool> ExecuteTransactionAsync(string fileName, string folder, string tableName, List<string> list, string strtime)
         {
             using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            {   
+            {
                 // 存储数据
                 bool dbSuccess = await CreateSQLAsync(fileName, folder, tableName, list, strtime);
                 if (!dbSuccess)
@@ -289,7 +303,7 @@ namespace Traceability_System.Models.FileOperation
             }
         }
 
-        string CeratePath(string oldPath,string state,string folder)
+        string CeratePath(string oldPath, string state, string folder)
         {
             string fileName = Path.GetFileName(oldPath);
             string fileDirectory = Path.GetFileName(Path.GetDirectoryName(oldPath));

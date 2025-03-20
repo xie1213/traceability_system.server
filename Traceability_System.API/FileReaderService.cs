@@ -53,14 +53,17 @@ namespace Traceability_System.API
         // 定时任务调用的方法 
         public async Task ReadFilesAsync()
         {
-            TableOperation TableOperation = new TableOperation();
+            // 1. 使用驼峰命名法规范变量名
+            var tableOperation = new TableOperation();
+            //TableOperation TableOperation = new TableOperation();
             var folders = new[] { "Gear", "Motor", "Rotor", "TA", "Rr" };
             int i = 0;
             //并行
             var tasks = folders.Select(async folder =>
             {
-                await TableOperation.DirectoryExist(folder);
-                i++;
+                await tableOperation.DirectoryExist(folder);
+                //i++;
+                Interlocked.Increment(ref i);
             });
 
             await Task.WhenAll(tasks);
