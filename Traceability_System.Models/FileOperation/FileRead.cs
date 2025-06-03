@@ -57,6 +57,9 @@ namespace Traceability_System.Models.FileOperation
             }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("Timeout expired."))
+                    return;
+
                 await UploadFileAsync(fileName, folder, error);
                 _loger.Error($"文件 {fileName} 读取失败,错误信息: {ex.Message}");
                 return;
@@ -70,16 +73,22 @@ namespace Traceability_System.Models.FileOperation
                     await UploadFileAsync(fileName, folder, complete);
                 }
             }
+            catch (IOException Io)
+            {
+                _loger.Warn($"数据添加超时\t{Io.Message}");
+                return;
+            }
             catch (Exception ex)
             {
+                if (ex.Message.Contains("Timeout expired."))
+                return;
+
                 var logs = Path.GetFileNameWithoutExtension(fileName);
-
-
                 _loger.logDir = CeratePath(fileName, error, folder);
 
                 _loger.Error($"数据添加到数据库错误\t{ex.Message}");
                 await UploadFileAsync(fileName, folder, error);
-                throw;
+                return;
             }
 
 
@@ -162,6 +171,11 @@ namespace Traceability_System.Models.FileOperation
                 }
                 catch (Exception ex)
                 {
+                    if (ex.Message.Contains("Timeout expried"))
+                    {
+                        return false;
+                    }
+                    else
                     {
                         _loger.Warn($"添加失败:{tableName},序列号:{keyValue[1]} \n错误:{ex.Message} ");
                         return false;
@@ -178,6 +192,7 @@ namespace Traceability_System.Models.FileOperation
                 }
                 catch (Exception ex)
                 {
+                    
                     _loger.Warn($"更新失败:{tableName},序列号:{keyValue[1]} \n错误:{ex.Message} ");
                     return false;
 

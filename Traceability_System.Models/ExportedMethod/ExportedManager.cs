@@ -1,4 +1,5 @@
 ﻿using ExcelKit.Core.Infrastructure.Factorys;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using System.Data;
@@ -13,7 +14,15 @@ namespace Traceability_System.Models.ExportedMethod
         public string _tableName = "";
         public DataTable? data = null;
         public int _count;
-        string _path = @"D:\exportTable\export";
+        
+        private readonly IConfiguration _configuration;
+        public ExportedManager(IConfiguration Configuration)
+        {
+            _configuration = Configuration;
+           
+        }
+        
+        //string _path = _configuration
         //string _taskId = Guid.NewGuid().ToString();
         private readonly RedisHelper _redisHelper = new RedisHelper();
 
@@ -116,13 +125,14 @@ namespace Traceability_System.Models.ExportedMethod
         //分析表数据并导出
         public async Task ProcessDataAsync<T>(DataTable data, Func<DataRow, T> converter) where T : class, new()
         {
+            string _path = _configuration["Constant:ExportFile"];
             var watch = new Stopwatch();
             string w1, w2;
             watch.Start();
 
             if (data.Rows.Count == 0)
             {
-                _redisHelper.DeleteHash(_tableName, 0);
+                _redisHelper.DeleteHash(_tableName, 1);
                 return;
             }
 
@@ -215,7 +225,7 @@ namespace Traceability_System.Models.ExportedMethod
             if (!isflie)
             {
                 ExportTask exportTask = new ExportTask();
-                _redisHelper.DeleteHash(fileName, 0); // 文件不存在，删除哈希
+                _redisHelper.DeleteHash(fileName, 1); // 文件不存在，删除哈希
                 var initialJson = JsonConvert.SerializeObject(exportTask);
                 _redisHelper.RedisSet(_tableName, initialJson);
                 isflie = false;

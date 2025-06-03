@@ -26,7 +26,7 @@ namespace Traceability_System.Utility
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public bool RedisSet(string key, string value, int dbNum = 0)
+        public bool RedisSet(string key, string value, int dbNum = 1)
         {
             db = redis.GetDatabase(dbNum);
             TimeSpan expiry = TimeSpan.FromDays(1);
@@ -43,7 +43,7 @@ namespace Traceability_System.Utility
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="dbNum"></param>
-        public async Task RedisSetAsync(string key, string value, int dbNum = 0)
+        public async Task RedisSetAsync(string key, string value, int dbNum = 1)
         {
             db = redis.GetDatabase(dbNum);
 
@@ -58,7 +58,7 @@ namespace Traceability_System.Utility
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public async Task<string> RedisGetAsync(string key, int dbNum = 0)
+        public async Task<string> RedisGetAsync(string key, int dbNum = 1)
         {
             //Task.Delay(1000); // 模拟延迟
             var db = redis.GetDatabase(dbNum);
@@ -74,7 +74,7 @@ namespace Traceability_System.Utility
         /// <param name="key"></param>
         /// <param name="dbNum"></param>
         /// <returns></returns>
-        public string RedisGet(string key, int dbNum = 0)
+        public string RedisGet(string key, int dbNum = 1)
         {
             var db = redis.GetDatabase(dbNum);
             var value = db.StringGet(key);
@@ -268,7 +268,7 @@ namespace Traceability_System.Utility
 
 
         //检查键是否存在
-        public bool keyExists(string Key, int dbnum = 0)
+        public bool keyExists(string Key, int dbnum = 1)
         {
             db = redis.GetDatabase(dbnum);
             bool keyExists = db.KeyExists(Key);

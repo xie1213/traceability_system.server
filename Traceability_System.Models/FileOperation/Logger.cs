@@ -8,12 +8,14 @@ namespace Traceability_System.Models.FileOperation
         private static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
 
         static string Today = DateTime.Now.ToString("yyyy-MM-dd");
+
+        static string path = @"D:\\追溯系统\\Traceability";
         /// <summary>
         /// 写入日志
         /// </summary>
         /// <param name="logLevel"></param>
         /// <returns></returns>
-        public static async void WriteLogAsync(string logMessage, string path = "D:\\Traceability")
+        public static async void WriteLogAsync(string logMessage)
         {
 
             string logPath = await LogPathIsNull(path); // 日志文件夹路径

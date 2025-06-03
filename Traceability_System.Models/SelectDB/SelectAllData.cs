@@ -1,4 +1,5 @@
 ﻿using Appraisal_System.Utility;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Data;
 using System.Reflection;
@@ -15,10 +16,13 @@ namespace Traceability_System.Models.SelectDB
 
         private readonly RedisHelper _redisHelper;
         private readonly LogHelper _logHelper;
-        public SelectAllData(RedisHelper redisHelper, LogHelper logHelper)
+
+        private readonly IConfiguration Configuration;
+        public SelectAllData(RedisHelper redisHelper, LogHelper logHelper, IConfiguration configuration)
         {
             _redisHelper = redisHelper;
             _logHelper = logHelper;
+            Configuration = configuration;
         }
 
         Dictionary<string, string> tablePatterns = new Dictionary<string, string>
@@ -465,10 +469,10 @@ namespace Traceability_System.Models.SelectDB
             return lastPingStatus.ToString();
         }
 
-
         private async Task ExportDataAsync(string exportedName, DataTable dt)
         {
-            ExportedManager exported = new ExportedManager();
+
+            ExportedManager exported = new ExportedManager(Configuration);
             exported._tableName = exportedName;
             exported.data = dt;
 

@@ -7,7 +7,7 @@ namespace Traceability_System.Utility
         private static SemaphoreSlim _fileAccessSemaphore = new SemaphoreSlim(1, 1);
         public string Today { get { return DateTime.Now.ToString("yyyy-MM-dd"); } }
 
-        public string logDir = @"D:\LogFile";
+        public string logDir = @"D:\追溯系统\LogFile";
 
 
         public void Warn(string log)

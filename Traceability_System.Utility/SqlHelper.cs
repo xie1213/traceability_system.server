@@ -197,8 +197,7 @@ namespace Appraisal_System.Utility
                             cmd.Parameters.AddRange(sqlParameters);
                         }
 
-                        object result = await cmd.ExecuteScalarAsync();
-                        return result;
+                        return await cmd.ExecuteScalarAsync();
                     }
                 }
             }

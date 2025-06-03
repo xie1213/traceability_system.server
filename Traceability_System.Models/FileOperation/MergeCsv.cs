@@ -127,7 +127,7 @@ namespace Traceability_System.Models.FileOperation
                 string itemName = filePath + "\\" + parts[parts.Length - 2];
 
                 string item = parts[parts.Length - 1].Replace(".csv", "");
-                var redisPath = _redisHelper.GetAllHashValues(itemName, 0);
+                var redisPath = _redisHelper.GetAllHashValues(itemName, 1);
                 //int index = redisPath == null ? -1 : Array.FindIndex(files, file => file.Contains(redisPath));
 
                 if (redisPath.Contains(item) || GetTime(filePath))
@@ -174,7 +174,7 @@ namespace Traceability_System.Models.FileOperation
                         SqlHelper.ExecuteNonQuery(sql);
 
                     }
-                    _redisHelper.SetHash(lastFolder, item, 0);
+                    _redisHelper.SetHash(lastFolder, item, 1);
 
                 }
             }
